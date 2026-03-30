@@ -9,7 +9,7 @@ interface AddToCartButtonProps {
     name: string;
     price: number;
     salePrice?: number | null;
-    category: string;
+    imageUrl?: string | null;
   };
   className?: string;
   size?: "sm" | "md" | "lg";
@@ -38,10 +38,10 @@ export function AddToCartButton({
           slug: product.slug,
           name: product.name,
           price: product.salePrice ?? product.price,
-          category: product.category,
+          imageUrl: product.imageUrl || undefined,
         });
       }}
-      className={`inline-flex items-center justify-center bg-dark text-white font-body font-medium uppercase tracking-widest hover:bg-pink transition-colors duration-300 ${sizeClasses[size]} ${className}`}
+      className={`bg-pink text-white font-body font-semibold uppercase tracking-[0.2em] rounded-full hover:bg-dark transition-colors ${sizeClasses[size]} ${className}`}
     >
       Adaugă în coș
     </button>

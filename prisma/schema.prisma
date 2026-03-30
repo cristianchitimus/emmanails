@@ -8,21 +8,27 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
+// ─── PRODUCTS ──────────────────────────────────────────────
+
 model Product {
-  id          String   @id @default(cuid())
-  slug        String   @unique
+  id          String      @id @default(cuid())
+  slug        String      @unique
   name        String
   description String?
-  price       Int      // price in bani (1 leu = 100 bani)
-  salePrice   Int?     // sale price in bani, null if not on sale
-  category    String   // "polygel" | "instrumente"
-  size        String?  // "30g", "60g", etc.
-  inStock     Boolean  @default(true)
-  featured    Boolean  @default(false)
+  price       Int         // price in bani (1 leu = 100 bani)
+  salePrice   Int?        // sale price in bani, null if not on sale
+  category    String      // "polygel" | "instrumente"
+  subcategory String?     // "polygel-color", "polygel-reflective", etc.
+  size        String?     // "30g", "60g", etc.
+  inStock     Boolean     @default(true)
+  featured    Boolean     @default(false)
   imageUrl    String?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  orderItems  OrderItem[]
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
 }
+
+// ─── COURSES ───────────────────────────────────────────────
 
 model Course {
   id          String   @id @default(cuid())
@@ -38,4 +44,71 @@ model Course {
   imageUrl    String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+}
+
+// ─── USERS & AUTH ──────────────────────────────────────────
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  name         String?
+  phone        String?
+  passwordHash String
+  orders       Order[]
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+// ─── ORDERS ────────────────────────────────────────────────
+
+model Order {
+  id              String      @id @default(cuid())
+  orderNumber     String      @unique
+  userId          String?
+  user            User?       @relation(fields: [userId], references: [id])
+  email           String
+  name            String
+  phone           String?
+  address         String
+  city            String
+  county          String
+  postalCode      String?
+  paymentMethod   String      // "stripe" | "ramburs"
+  paymentStatus   String      @default("pending") // "pending" | "paid" | "failed"
+  stripeSessionId String?
+  subtotal        Int         // bani
+  discount        Int         @default(0) // discount in bani
+  discountCode    String?
+  shipping        Int         @default(0) // shipping in bani
+  total           Int         // bani
+  status          String      @default("pending") // "pending" | "processing" | "shipped" | "delivered" | "cancelled"
+  items           OrderItem[]
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+}
+
+model OrderItem {
+  id        String  @id @default(cuid())
+  orderId   String
+  order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+  name      String
+  price     Int     // price at time of purchase, in bani
+  quantity  Int
+}
+
+// ─── DISCOUNT CODES ────────────────────────────────────────
+
+model DiscountCode {
+  id            String    @id @default(cuid())
+  code          String    @unique
+  type          String    // "percentage" | "fixed"
+  value         Int       // percentage (0-100) or fixed amount in bani
+  minOrderValue Int?      // minimum order value in bani
+  maxUses       Int?      // null = unlimited
+  usedCount     Int       @default(0)
+  active        Boolean   @default(true)
+  expiresAt     DateTime?
+  createdAt     DateTime  @default(now())
 }

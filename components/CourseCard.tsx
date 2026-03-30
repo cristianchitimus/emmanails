@@ -4,7 +4,6 @@ import { formatPriceRange } from "@/lib/utils";
 
 interface CourseCardProps {
   course: {
-    id: string;
     slug: string;
     name: string;
     priceFrom: number;
@@ -15,79 +14,62 @@ interface CourseCardProps {
   };
 }
 
-const levelColors: Record<string, string> = {
-  incepator: "bg-emerald-50 text-emerald-700",
-  mediu: "bg-amber-50 text-amber-700",
-  avansat: "bg-purple-50 text-purple-700",
-};
-
-const levelLabels: Record<string, string> = {
+const LEVEL_LABELS: Record<string, string> = {
   incepator: "Începător",
   mediu: "Mediu",
   avansat: "Avansat",
+};
+
+const LEVEL_COLORS: Record<string, string> = {
+  incepator: "bg-green-100 text-green-700",
+  mediu: "bg-yellow-100 text-yellow-700",
+  avansat: "bg-pink-100 text-pink-700",
 };
 
 export function CourseCard({ course }: CourseCardProps) {
   return (
     <Link
       href={`/academie/${course.slug}`}
-      className="group block card-hover"
+      className="group block bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300"
     >
-      <div className="relative bg-white border border-dark-100 rounded-sm overflow-hidden h-full hover:border-pink/40 hover:shadow-xl hover:shadow-pink/5 transition-all duration-500">
-        {/* Course image */}
-        {course.imageUrl && (
-          <div className="relative h-48 md:h-56 overflow-hidden">
-            <Image
-              src={course.imageUrl}
-              alt={course.name}
-              fill
-              className="object-cover img-zoom"
-              sizes="(max-width: 768px) 100vw, 50vw"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent" />
+      {/* Image */}
+      <div className="relative aspect-[16/10] bg-nude/20 overflow-hidden">
+        {course.imageUrl ? (
+          <Image
+            src={course.imageUrl}
+            alt={course.name}
+            fill
+            className="object-cover group-hover:scale-105 transition-transform duration-500"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          />
+        ) : (
+          <div className="flex items-center justify-center h-full bg-gradient-to-br from-pink/10 to-nude/40">
+            <span className="font-display text-4xl font-bold text-pink/20">EN</span>
           </div>
         )}
 
-        {/* Content */}
-        <div className="p-6 md:p-8">
-          {/* Top row */}
-          <div className="flex items-center justify-between mb-4">
-            {course.level && (
-              <span
-                className={`font-body text-[10px] font-semibold uppercase tracking-widest px-2.5 py-1 rounded-sm ${
-                  levelColors[course.level] || "bg-dark-50 text-dark-500"
-                }`}
-              >
-                {levelLabels[course.level] || course.level}
-              </span>
-            )}
-            {course.duration && (
-              <span className="font-body text-[11px] text-dark-400 uppercase tracking-wider">
-                {course.duration}
-              </span>
-            )}
-          </div>
+        {/* Level badge */}
+        {course.level && (
+          <span className={`absolute top-3 left-3 font-body text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full ${LEVEL_COLORS[course.level] || "bg-neutral-100 text-neutral-600"}`}>
+            {LEVEL_LABELS[course.level] || course.level}
+          </span>
+        )}
+      </div>
 
-          {/* Name */}
-          <h3 className="font-display text-xl md:text-2xl font-medium text-dark leading-snug group-hover:text-pink transition-colors mb-4 line-clamp-2">
-            {course.name}
-          </h3>
-
-          {/* Price */}
-          <p className="font-body text-sm text-dark-400 mb-5">
-            de la{" "}
-            <span className="text-dark font-semibold text-base">
-              {formatPriceRange(course.priceFrom, course.priceTo)}
+      {/* Content */}
+      <div className="p-5">
+        <h3 className="font-display text-base font-bold leading-snug line-clamp-2 group-hover:text-pink transition-colors">
+          {course.name}
+        </h3>
+        <div className="flex items-center gap-3 mt-3">
+          {course.duration && (
+            <span className="font-body text-xs text-neutral-500">
+              {course.duration}
             </span>
-          </p>
-
-          {/* CTA */}
-          <div className="flex items-center gap-2 font-body text-xs font-medium uppercase tracking-widest text-pink group-hover:gap-3 transition-all">
-            <span>Vezi detalii</span>
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </div>
+          )}
+          <span className="font-display text-sm font-bold text-pink">
+            {formatPriceRange(course.priceFrom, course.priceTo)}
+          </span>
         </div>
       </div>
     </Link>

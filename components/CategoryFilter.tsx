@@ -1,47 +1,58 @@
 "use client";
 
-import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
 
 interface CategoryFilterProps {
-  categories: { slug: string; count: number }[];
-  totalCount: number;
-  activeCategory?: string;
+  categories: { value: string; label: string; count?: number }[];
+  paramName?: string;
 }
 
-const categoryLabels: Record<string, string> = {
-  polygel: "PolyGel",
-  instrumente: "Instrumente",
-};
+export function CategoryFilter({ categories, paramName = "categorie" }: CategoryFilterProps) {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const active = searchParams.get(paramName) || "";
 
-export function CategoryFilter({
-  categories,
-  totalCount,
-  activeCategory,
-}: CategoryFilterProps) {
+  const handleFilter = (value: string) => {
+    const params = new URLSearchParams(searchParams.toString());
+    if (value) {
+      params.set(paramName, value);
+    } else {
+      params.delete(paramName);
+    }
+    // Clear subcategory when changing main category
+    if (paramName === "categorie") {
+      params.delete("sub");
+    }
+    router.push(`?${params.toString()}`);
+  };
+
   return (
     <div className="flex flex-wrap gap-2">
-      <Link
-        href="/produse"
-        className={`font-body text-[12px] font-medium uppercase tracking-[0.15em] px-5 py-2.5 rounded-full border transition-all duration-300 ${
-          !activeCategory
-            ? "bg-pink text-white border-pink"
-            : "bg-transparent text-dark-400 border-dark-200 hover:border-pink hover:text-pink"
+      <button
+        onClick={() => handleFilter("")}
+        className={`font-body text-xs font-semibold uppercase tracking-[0.15em] px-5 py-2 rounded-full transition-colors ${
+          !active
+            ? "bg-dark text-white"
+            : "bg-neutral-100 text-neutral-600 hover:bg-neutral-200"
         }`}
       >
-        Toate ({totalCount})
-      </Link>
+        Toate
+      </button>
       {categories.map((cat) => (
-        <Link
-          key={cat.slug}
-          href={`/produse?categorie=${cat.slug}`}
-          className={`font-body text-[12px] font-medium uppercase tracking-[0.15em] px-5 py-2.5 rounded-full border transition-all duration-300 ${
-            activeCategory === cat.slug
-              ? "bg-pink text-white border-pink"
-              : "bg-transparent text-dark-400 border-dark-200 hover:border-pink hover:text-pink"
+        <button
+          key={cat.value}
+          onClick={() => handleFilter(cat.value)}
+          className={`font-body text-xs font-semibold uppercase tracking-[0.15em] px-5 py-2 rounded-full transition-colors ${
+            active === cat.value
+              ? "bg-pink text-white"
+              : "bg-neutral-100 text-neutral-600 hover:bg-neutral-200"
           }`}
         >
-          {categoryLabels[cat.slug] || cat.slug} ({cat.count})
-        </Link>
+          {cat.label}
+          {cat.count !== undefined && (
+            <span className="ml-1 opacity-60">({cat.count})</span>
+          )}
+        </button>
       ))}
     </div>
   );
