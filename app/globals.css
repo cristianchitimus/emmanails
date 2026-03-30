@@ -23,10 +23,18 @@
 
 @layer components {
   .btn-primary {
-    @apply inline-flex items-center justify-center px-10 py-4 bg-pink text-white font-body text-[13px] font-medium uppercase tracking-[0.2em] rounded-full hover:bg-pink-700 transition-all duration-500 hover:scale-[1.03] hover:shadow-lg hover:shadow-pink/20;
+    @apply inline-flex items-center justify-center px-10 py-4 text-white font-body text-[13px] font-medium uppercase tracking-[0.2em] rounded-full transition-all duration-500 hover:scale-[1.03] hover:shadow-lg hover:shadow-pink/25;
+    background: linear-gradient(135deg, #D4537E 0%, #e06d97 100%);
+  }
+  .btn-primary:hover {
+    background: linear-gradient(135deg, #c0426d 0%, #D4537E 100%);
   }
   .btn-pink {
-    @apply inline-flex items-center justify-center px-10 py-4 bg-pink text-white font-body text-[13px] font-medium uppercase tracking-[0.2em] rounded-full hover:bg-pink-700 transition-all duration-500 hover:scale-[1.03] hover:shadow-lg hover:shadow-pink/20;
+    @apply inline-flex items-center justify-center px-10 py-4 text-white font-body text-[13px] font-medium uppercase tracking-[0.2em] rounded-full transition-all duration-500 hover:scale-[1.03] hover:shadow-lg hover:shadow-pink/25;
+    background: linear-gradient(135deg, #D4537E 0%, #e06d97 100%);
+  }
+  .btn-pink:hover {
+    background: linear-gradient(135deg, #c0426d 0%, #D4537E 100%);
   }
   .btn-secondary {
     @apply inline-flex items-center justify-center px-10 py-4 border border-dark text-dark font-body text-[13px] font-medium uppercase tracking-[0.2em] rounded-full hover:bg-dark hover:text-white transition-all duration-500;
@@ -144,3 +152,44 @@
 .snap-x-container > * {
   @apply snap-start flex-shrink-0;
 }
+
+/* ─── SCROLL REVEAL ─── */
+.sr-hidden {
+  opacity: 0;
+}
+.sr-visible {
+  opacity: 1 !important;
+  transform: translate3d(0, 0, 0) scale(1) !important;
+}
+
+/* ─── GRADIENT BACKGROUNDS ─── */
+.gradient-pink {
+  background: linear-gradient(135deg, #D4537E 0%, #e8789e 50%, #f0a0b8 100%);
+}
+.gradient-nude {
+  background: linear-gradient(135deg, #F5E6D3 0%, #fdf0e5 50%, #fff8f2 100%);
+}
+.gradient-dark {
+  background: linear-gradient(135deg, #1A1A1A 0%, #2d2d2d 50%, #3a3a3a 100%);
+}
+.gradient-pink-dark {
+  background: linear-gradient(135deg, #D4537E 0%, #1A1A1A 100%);
+}
+.gradient-glass {
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+  backdrop-filter: blur(10px);
+}
+
+/* ─── PARALLAX-LIKE SMOOTH ─── */
+.smooth-scroll-section {
+  transition: background-position 0.3s ease-out;
+}
+
+/* ─── GLOW EFFECTS ─── */
+.glow-pink {
+  box-shadow: 0 0 30px rgba(212, 83, 126, 0.15), 0 0 60px rgba(212, 83, 126, 0.05);
+}
+.hover-glow-pink:hover {
+  box-shadow: 0 8px 40px rgba(212, 83, 126, 0.2), 0 0 80px rgba(212, 83, 126, 0.08);
+}
+
