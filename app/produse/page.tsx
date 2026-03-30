@@ -47,9 +47,11 @@ export default async function ProdusePage({ searchParams }: Props) {
       <section className="py-10 md:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <CategoryFilter
-            categories={categories.map((c) => ({ slug: c.category, count: c._count.id }))}
-            totalCount={totalCount}
-            activeCategory={category}
+            categories={categories.map((c) => ({
+              value: c.category,
+              label: c.category === "polygel" ? "PolyGel" : "Instrumente",
+              count: c._count.id,
+            }))}
           />
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-5 mt-8">
