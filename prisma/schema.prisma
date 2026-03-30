@@ -1,0 +1,41 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Product {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  name        String
+  description String?
+  price       Int      // price in bani (1 leu = 100 bani)
+  salePrice   Int?     // sale price in bani, null if not on sale
+  category    String   // "polygel" | "instrumente"
+  size        String?  // "30g", "60g", etc.
+  inStock     Boolean  @default(true)
+  featured    Boolean  @default(false)
+  imageUrl    String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Course {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  name        String
+  description String?
+  priceFrom   Int      // minimum price in bani
+  priceTo     Int      // maximum price in bani
+  level       String?  // "incepator", "mediu", "avansat"
+  duration    String?  // e.g. "3 zile", "5 zile"
+  includes    String[] // what's included
+  featured    Boolean  @default(false)
+  imageUrl    String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
