@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/db";
-import { stripe, calculateShipping } from "@/lib/stripe";
+import { getStripe, calculateShipping } from "@/lib/stripe";
 import { generateOrderNumber } from "@/lib/utils";
 
 interface CheckoutItem {
@@ -109,7 +109,7 @@ export async function POST(req: Request) {
 
     if (paymentMethod === "stripe") {
       // Create Stripe Checkout Session
-      const stripeSession = await stripe.checkout.sessions.create({
+      const stripeSession = await getStripe().checkout.sessions.create({
         payment_method_types: ["card"],
         mode: "payment",
         customer_email: email,
@@ -164,7 +164,7 @@ export async function POST(req: Request) {
           ? {
               discounts: [
                 {
-                  coupon: await stripe.coupons
+                  coupon: await getStripe().coupons
                     .create({
                       amount_off: discount,
                       currency: "ron",
