@@ -86,7 +86,7 @@ export function CartDrawer() {
                   {/* Product image placeholder */}
                   <div className="w-16 h-16 bg-nude/30 rounded-lg flex-shrink-0 flex items-center justify-center">
                     {item.imageUrl ? (
-                      <img src={item.imageUrl} alt={item.name} className="w-full h-full object-contain rounded-lg" />
+                      <img src={item.imageUrl} alt={item.name} className="w-full h-full object-cover rounded-lg" />
                     ) : (
                       <span className="text-pink text-lg font-display font-bold">EN</span>
                     )}

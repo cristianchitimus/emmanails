@@ -28,13 +28,13 @@ export function ProductCard({ product }: ProductCardProps) {
     <div className="group relative">
       <Link href={`/produse/${product.slug}`} className="block">
         {/* Image */}
-        <div className="relative aspect-square bg-nude/20 rounded-2xl overflow-hidden mb-3">
+        <div className="relative aspect-square bg-neutral-50 rounded-2xl overflow-hidden mb-3">
           {product.imageUrl ? (
             <Image
               src={product.imageUrl}
               alt={product.name}
               fill
-              className="object-contain p-6 group-hover:scale-105 transition-transform duration-500"
+              className="object-cover group-hover:scale-105 transition-transform duration-500"
               sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
             />
           ) : (

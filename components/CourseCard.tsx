@@ -33,7 +33,7 @@ export function CourseCard({ course }: CourseCardProps) {
       className="group block bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300"
     >
       {/* Image */}
-      <div className="relative aspect-[16/10] bg-nude/20 overflow-hidden">
+      <div className="relative aspect-[16/10] bg-neutral-100 overflow-hidden">
         {course.imageUrl ? (
           <Image
             src={course.imageUrl}
