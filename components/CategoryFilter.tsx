@@ -19,10 +19,7 @@ export function CategoryFilter({ categories, paramName = "categorie" }: Category
     } else {
       params.delete(paramName);
     }
-    // Clear subcategory when changing main category
-    if (paramName === "categorie") {
-      params.delete("sub");
-    }
+    if (paramName === "categorie") params.delete("sub");
     router.push(`?${params.toString()}`);
   };
 
@@ -30,10 +27,10 @@ export function CategoryFilter({ categories, paramName = "categorie" }: Category
     <div className="flex flex-wrap gap-2">
       <button
         onClick={() => handleFilter("")}
-        className={`font-body text-xs font-semibold uppercase tracking-[0.15em] px-5 py-2 rounded-full transition-colors ${
+        className={`font-body text-xs font-semibold uppercase tracking-wider px-5 py-2 border transition-colors rounded-sm ${
           !active
-            ? "bg-dark text-white"
-            : "bg-neutral-100 text-neutral-600 hover:bg-neutral-200"
+            ? "bg-dark text-white border-dark"
+            : "bg-white text-dark/60 border-neutral-200 hover:border-dark hover:text-dark"
         }`}
       >
         Toate
@@ -42,10 +39,10 @@ export function CategoryFilter({ categories, paramName = "categorie" }: Category
         <button
           key={cat.value}
           onClick={() => handleFilter(cat.value)}
-          className={`font-body text-xs font-semibold uppercase tracking-[0.15em] px-5 py-2 rounded-full transition-colors ${
+          className={`font-body text-xs font-semibold uppercase tracking-wider px-5 py-2 border transition-colors rounded-sm ${
             active === cat.value
-              ? "bg-pink text-white"
-              : "bg-neutral-100 text-neutral-600 hover:bg-neutral-200"
+              ? "bg-pink text-white border-pink"
+              : "bg-white text-dark/60 border-neutral-200 hover:border-dark hover:text-dark"
           }`}
         >
           {cat.label}

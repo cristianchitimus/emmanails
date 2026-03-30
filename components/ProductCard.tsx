@@ -25,10 +25,10 @@ export function ProductCard({ product }: ProductCardProps) {
   const hasDiscount = product.salePrice && product.salePrice < product.price;
 
   return (
-    <div className="group relative">
+    <div className="group relative bg-white">
       <Link href={`/produse/${product.slug}`} className="block">
-        {/* Image */}
-        <div className="relative aspect-square bg-neutral-50 rounded-2xl overflow-hidden mb-3">
+        {/* Image — white background, clean */}
+        <div className="relative aspect-square bg-white overflow-hidden border border-neutral-100 rounded-sm">
           {product.imageUrl ? (
             <Image
               src={product.imageUrl}
@@ -38,62 +38,64 @@ export function ProductCard({ product }: ProductCardProps) {
               sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
             />
           ) : (
-            <div className="flex items-center justify-center h-full">
-              <span className="font-display text-3xl font-bold text-pink/20">EN</span>
+            <div className="flex items-center justify-center h-full bg-neutral-50">
+              <span className="font-display text-3xl font-bold text-neutral-200">EN</span>
             </div>
           )}
 
           {/* Badges */}
-          <div className="absolute top-3 left-3 flex flex-col gap-1.5">
-            {hasDiscount && (
-              <span className="bg-pink text-white font-body text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full">
-                Reducere
-              </span>
-            )}
-            {!product.inStock && (
-              <span className="bg-dark text-white font-body text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full">
-                Stoc epuizat
-              </span>
-            )}
-          </div>
+          {hasDiscount && (
+            <span className="absolute top-3 left-3 bg-pink text-white font-body text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-sm z-10">
+              Reducere
+            </span>
+          )}
+          {!product.inStock && (
+            <span className="absolute top-3 left-3 bg-neutral-800 text-white font-body text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-sm z-10">
+              Stoc epuizat
+            </span>
+          )}
 
-          {/* Quick add button */}
+          {/* Quick add overlay */}
           {product.inStock && (
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                addItem({
-                  id: product.id,
-                  slug: product.slug,
-                  name: product.name,
-                  price,
-                  imageUrl: product.imageUrl || undefined,
-                });
-              }}
-              className="absolute bottom-3 left-3 right-3 bg-dark text-white font-body text-[11px] font-semibold uppercase tracking-[0.15em] py-2.5 rounded-full text-center opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 hover:bg-pink"
-            >
-              Adaugă în coș
-            </button>
+            <div className="absolute inset-x-0 bottom-0 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 p-3 z-10">
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  addItem({
+                    id: product.id,
+                    slug: product.slug,
+                    name: product.name,
+                    price,
+                    imageUrl: product.imageUrl || undefined,
+                  });
+                }}
+                className="w-full bg-dark text-white font-body text-[11px] font-semibold uppercase tracking-[0.15em] py-2.5 rounded-sm text-center hover:bg-pink transition-colors"
+              >
+                Adaugă în coș
+              </button>
+            </div>
           )}
         </div>
 
         {/* Info */}
-        <div>
-          <p className="font-body text-xs text-neutral-400 uppercase tracking-wider mb-0.5">
-            {product.category === "polygel" ? "PolyGel" : "Instrumente"}
-            {product.size && ` · ${product.size}`}
-          </p>
-          <h3 className="font-body text-sm font-medium text-dark leading-snug line-clamp-2 group-hover:text-pink transition-colors">
+        <div className="pt-3 pb-1">
+          <h3 className="font-body text-sm text-dark leading-snug line-clamp-2 group-hover:text-pink transition-colors">
             {product.name}
           </h3>
           <div className="flex items-center gap-2 mt-1.5">
-            <span className="font-display text-base font-bold text-pink">
-              {formatPrice(price)}
-            </span>
-            {hasDiscount && (
-              <span className="font-body text-xs text-neutral-400 line-through">
-                {formatPrice(product.price)}
+            {hasDiscount ? (
+              <>
+                <span className="font-body text-sm font-bold text-pink">
+                  {formatPrice(product.salePrice!)}
+                </span>
+                <span className="font-body text-xs text-neutral-400 line-through">
+                  {formatPrice(product.price)}
+                </span>
+              </>
+            ) : (
+              <span className="font-body text-sm font-bold text-dark">
+                {formatPrice(price)}
               </span>
             )}
           </div>

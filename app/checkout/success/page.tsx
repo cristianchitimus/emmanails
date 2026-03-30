@@ -1,12 +1,11 @@
 import Link from "next/link";
 
 interface Props {
-  searchParams: Promise<{ order?: string }>;
+  searchParams: { order?: string };
 }
 
 export default async function CheckoutSuccessPage({ searchParams }: Props) {
-  const params = await searchParams;
-  const orderNumber = params.order;
+  const orderNumber = searchParams.order;
 
   return (
     <div className="min-h-[70vh] flex items-center justify-center px-4">

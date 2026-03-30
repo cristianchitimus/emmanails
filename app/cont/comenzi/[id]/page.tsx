@@ -6,11 +6,11 @@ import Link from "next/link";
 import { formatPrice, ORDER_STATUS_LABELS, PAYMENT_STATUS_LABELS } from "@/lib/utils";
 
 interface Props {
-  params: Promise<{ id: string }>;
+  params: { id: string };
 }
 
 export default async function OrderDetailPage({ params }: Props) {
-  const { id } = await params;
+  const { id } = params;
   const session = await getServerSession(authOptions);
 
   if (!session?.user?.id) {
