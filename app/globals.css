@@ -25,6 +25,9 @@
   .btn-primary {
     @apply inline-flex items-center justify-center px-10 py-4 bg-pink text-white font-body text-[13px] font-medium uppercase tracking-[0.2em] rounded-full hover:bg-pink-700 transition-all duration-500 hover:scale-[1.03] hover:shadow-lg hover:shadow-pink/20;
   }
+  .btn-pink {
+    @apply inline-flex items-center justify-center px-10 py-4 bg-pink text-white font-body text-[13px] font-medium uppercase tracking-[0.2em] rounded-full hover:bg-pink-700 transition-all duration-500 hover:scale-[1.03] hover:shadow-lg hover:shadow-pink/20;
+  }
   .btn-secondary {
     @apply inline-flex items-center justify-center px-10 py-4 border border-dark text-dark font-body text-[13px] font-medium uppercase tracking-[0.2em] rounded-full hover:bg-dark hover:text-white transition-all duration-500;
   }

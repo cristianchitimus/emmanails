@@ -12,7 +12,7 @@ export function formatPriceRange(from: number, to: number): string {
 
 /** Generate WhatsApp link */
 export function whatsappLink(message?: string): string {
-  const phone = "40740000000"; // Replace with Emma's actual number
+  const phone = "40747906311";
   const base = `https://wa.me/${phone}`;
   return message ? `${base}?text=${encodeURIComponent(message)}` : base;
 }
