@@ -3,17 +3,12 @@ import Image from "next/image";
 import { prisma } from "@/lib/db";
 import { ProductCard } from "@/components/ProductCard";
 import { CourseCard } from "@/components/CourseCard";
-import { whatsappLink, formatPrice } from "@/lib/utils";
+import { HeroCarousel } from "@/components/HeroCarousel";
+import { whatsappLink } from "@/lib/utils";
 
 export const revalidate = 60;
 
 const EMMA_PORTRAIT = "https://emmanails.ro/wp-content/uploads/2025/04/image.jpg";
-
-const HERO_NAILS = [
-  "https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2025-11-04-at-21.36.26.jpeg",
-  "https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2025-09-21-at-08.46.02-2.jpeg",
-  "https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2025-11-04-at-21.05.20.jpeg",
-];
 
 const GALLERY = [
   "https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2024-07-10-at-13.46.40-1.jpeg",
@@ -30,7 +25,7 @@ export default async function HomePage() {
       prisma.product.findMany({
         where: { featured: true },
         orderBy: { createdAt: "desc" },
-        take: 8,
+        take: 4,
       }),
       prisma.course.findMany({
         where: { featured: true },
@@ -44,16 +39,16 @@ export default async function HomePage() {
   return (
     <>
       {/* ═══════════════════════════════════════════════════════
-          HERO — WHITE + PINK, Glamnetic style
-          Full width, light background, big image on the right
+          HERO — White bg, text left, ROTATING carousel right
+          Matching Glamnetic hero proportions
       ═══════════════════════════════════════════════════════ */}
-      <section className="relative bg-gradient-to-br from-white via-pink-50/40 to-nude-100 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 lg:py-32">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            {/* Text side */}
-            <div className="space-y-7 animate-fade-in-up stagger-child" style={{ animationFillMode: "forwards" }}>
+      <section className="bg-gradient-to-br from-white via-pink-50/30 to-nude-100 overflow-hidden">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 lg:py-28">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+            {/* Text */}
+            <div className="space-y-6 animate-fade-in-up stagger-child" style={{ animationFillMode: "forwards" }}>
               <p className="section-label">Emma Nails — Iași, România</p>
-              <h1 className="font-display text-5xl md:text-6xl lg:text-[4.5rem] font-medium leading-[1.05] text-dark">
+              <h1 className="font-display text-[2.8rem] md:text-[3.5rem] lg:text-[4.2rem] font-medium leading-[1.08] text-dark">
                 Frumusețea{" "}
                 <span className="italic text-pink">profesională</span>{" "}
                 începe aici
@@ -63,22 +58,16 @@ export default async function HomePage() {
                 acreditate de manichiură. Peste 15 ani de experiență.
               </p>
               <div className="flex flex-wrap gap-3 pt-2">
-                <Link href="/produse" className="btn-primary">
-                  Shop Acum
-                </Link>
-                <Link href="/academie" className="btn-secondary">
-                  Vezi Cursurile
-                </Link>
+                <Link href="/produse" className="btn-primary">Shop Acum</Link>
+                <Link href="/academie" className="btn-secondary">Vezi Cursurile</Link>
               </div>
-
-              {/* Mini stats */}
-              <div className="flex gap-8 pt-4">
+              <div className="flex gap-10 pt-4">
                 {[
                   { num: "15+", label: "Ani experiență" },
                   { num: `${productCount}`, label: "Produse" },
                   { num: `${courseCount}`, label: "Cursuri" },
                 ].map((s, i) => (
-                  <div key={i} className="text-center">
+                  <div key={i}>
                     <span className="font-display text-2xl md:text-3xl font-bold text-pink">{s.num}</span>
                     <p className="font-body text-[10px] uppercase tracking-[0.2em] text-dark-300 mt-0.5">{s.label}</p>
                   </div>
@@ -86,67 +75,59 @@ export default async function HomePage() {
               </div>
             </div>
 
-            {/* Image side — bento grid */}
-            <div className="grid grid-cols-2 gap-3 h-[420px] md:h-[520px] lg:h-[580px] animate-slide-left stagger-child" style={{ animationDelay: "0.3s", animationFillMode: "forwards" }}>
-              <div className="relative rounded-2xl overflow-hidden row-span-2">
-                <Image
-                  src={HERO_NAILS[0]}
-                  alt="Manichiură profesională"
-                  fill
-                  className="object-cover animate-zoom-slow"
-                  sizes="(max-width: 1024px) 50vw, 25vw"
-                  priority
-                />
-              </div>
-              <div className="relative rounded-2xl overflow-hidden">
-                <Image
-                  src={HERO_NAILS[1]}
-                  alt="Nail art Emma Nails"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 1024px) 50vw, 25vw"
-                />
-              </div>
-              <div className="relative rounded-2xl overflow-hidden">
-                <Image
-                  src={HERO_NAILS[2]}
-                  alt="Curs manichiură"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 1024px) 50vw, 25vw"
-                />
-              </div>
+            {/* Carousel — auto-rotating images */}
+            <div className="h-[400px] md:h-[500px] lg:h-[580px] animate-slide-left stagger-child" style={{ animationDelay: "0.3s", animationFillMode: "forwards" }}>
+              <HeroCarousel />
             </div>
           </div>
         </div>
-
-        {/* Decorative blobs */}
-        <div className="absolute -top-20 -right-20 w-80 h-80 bg-pink/5 rounded-full blur-3xl" />
-        <div className="absolute -bottom-20 -left-20 w-60 h-60 bg-nude-300/20 rounded-full blur-3xl" />
       </section>
 
       {/* ═══════════════════════════════════════════════════════
-          CATEGORY CARDS — Glamnetic "Shop by" row
+          CATEGORY BANNERS — 3 MASSIVE full-width cards
+          Like Glamnetic "Shop Nails / Shop Lashes / Shop Accessories"
+          Each card is very tall and spans 1/3 of the page width
       ═══════════════════════════════════════════════════════ */}
-      <section className="py-16 md:py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <section className="bg-white py-4 md:py-6">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
             {[
-              { title: "PolyGel", desc: "Formulă originală", img: "https://emmanails.ro/wp-content/uploads/2025/05/1.jpg", href: "/produse?categorie=polygel" },
-              { title: "Instrumente", desc: "Calitate profesională", img: "https://emmanails.ro/wp-content/uploads/2025/05/DSC_8271.jpg", href: "/produse?categorie=instrumente" },
-              { title: "Cursuri", desc: "Cu diplomă acreditată", img: "https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2025-11-04-at-21.36.26.jpeg", href: "/academie" },
-              { title: "Despre Emma", desc: "15+ ani experiență", img: EMMA_PORTRAIT, href: "/despre" },
+              {
+                title: "SHOP POLYGEL",
+                img: "https://emmanails.ro/wp-content/uploads/2025/05/1.jpg",
+                href: "/produse?categorie=polygel",
+                bg: "from-pink-100 to-pink-200",
+              },
+              {
+                title: "SHOP INSTRUMENTE",
+                img: "https://emmanails.ro/wp-content/uploads/2025/05/DSC_8271.jpg",
+                href: "/produse?categorie=instrumente",
+                bg: "from-nude-100 to-nude-300",
+              },
+              {
+                title: "ACADEMIE",
+                img: "https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2025-11-04-at-21.36.26.jpeg",
+                href: "/academie",
+                bg: "from-pink-50 to-nude-200",
+              },
             ].map((cat, i) => (
               <Link
                 key={i}
                 href={cat.href}
-                className="group relative rounded-2xl overflow-hidden aspect-[3/4] card-hover"
+                className="group relative overflow-hidden rounded-xl aspect-[4/5] md:aspect-[3/4]"
               >
-                <Image src={cat.img} alt={cat.title} fill className="object-cover img-zoom" sizes="(max-width: 768px) 50vw, 25vw" />
-                <div className="absolute inset-0 bg-gradient-to-t from-dark/70 via-dark/10 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-4 md:p-5">
-                  <h3 className="font-display text-lg md:text-xl font-medium text-white">{cat.title}</h3>
-                  <p className="font-body text-[11px] text-white/70 uppercase tracking-wider mt-1">{cat.desc}</p>
+                <Image
+                  src={cat.img}
+                  alt={cat.title}
+                  fill
+                  className="object-cover img-zoom"
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-dark/50 via-transparent to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
+                  <h3 className="font-body text-sm md:text-base font-semibold text-white uppercase tracking-[0.2em]">
+                    {cat.title}
+                  </h3>
                 </div>
               </Link>
             ))}
@@ -155,26 +136,25 @@ export default async function HomePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════
-          FEATURED PRODUCTS — Big grid on white
+          BEST SELLERS — 4 EQUAL large product cards in a row
+          Like Glamnetic "OUR BEST SELLERS"
+          Each product gets 1/4 width, large square images
       ═══════════════════════════════════════════════════════ */}
       <section className="py-16 md:py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 md:mb-16">
-            <p className="section-label mb-3">Magazin</p>
-            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-medium">
-              Cele mai <span className="italic text-pink">populare</span>
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10 md:mb-14">
+            <h2 className="font-body text-base md:text-lg font-semibold uppercase tracking-[0.25em] text-dark">
+              CELE MAI POPULARE
             </h2>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-5">
-            {featuredProducts.map((product, idx) => (
-              <div key={product.id} className={idx === 0 ? "col-span-2 row-span-2" : ""}>
-                <ProductCard product={product} featured={idx === 0} />
-              </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+            {featuredProducts.map((product) => (
+              <ProductCard key={product.id} product={product} />
             ))}
           </div>
 
-          <div className="text-center mt-12">
+          <div className="text-center mt-10 md:mt-14">
             <Link href="/produse" className="btn-secondary">
               Vezi toate {productCount} produse
             </Link>
@@ -183,42 +163,101 @@ export default async function HomePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════
-          PINK BANNER — Full width CTA (Glamnetic style)
+          WHY EMMA NAILS — HUGE section like Glamnetic's
+          "WHY CHOOSE GLAMNETIC?" — pink gradient bg,
+          text left, images right, very tall section
       ═══════════════════════════════════════════════════════ */}
-      <section className="bg-pink py-16 md:py-20 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 left-1/4 w-60 h-60 bg-white rounded-full blur-3xl" />
-          <div className="absolute bottom-0 right-1/4 w-40 h-40 bg-white rounded-full blur-3xl" />
-        </div>
-        <div className="relative z-10 max-w-3xl mx-auto px-4 text-center">
-          <p className="font-body text-[11px] font-semibold uppercase tracking-[0.25em] text-white/70 mb-3">Emma Nails Academy</p>
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-medium text-white leading-tight">
-            Începe-ți cariera în beauty
-          </h2>
-          <p className="font-body text-base text-white/70 mt-4 max-w-md mx-auto">
-            Cursuri acreditate cu diplomă. De la nivel începător la avansat.
-          </p>
-          <div className="mt-8">
-            <Link href="/academie" className="btn-white">
-              Vezi Cursurile
-            </Link>
+      <section className="relative bg-gradient-to-r from-pink-600 via-pink to-pink-400 overflow-hidden">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 lg:py-36">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+            {/* Text side */}
+            <div className="text-white space-y-6">
+              <p className="font-body text-[11px] font-semibold uppercase tracking-[0.25em] text-white/60">
+                DE CE EMMA NAILS
+              </p>
+              <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-medium leading-tight">
+                Emma Nails Academy
+              </h2>
+              <p className="font-body text-base md:text-lg text-white/70 leading-relaxed max-w-lg">
+                Peste 15 ani de experiență în formarea de profesioniști.
+                Cursuri acreditate cu diplomă, practică pe model real, și
+                suport continuu după absolvire.
+              </p>
+
+              {/* Trust badges */}
+              <div className="flex flex-wrap gap-6 pt-4">
+                {[
+                  { num: "15+", label: "Ani" },
+                  { num: "500+", label: "Cursante" },
+                  { num: `${courseCount}`, label: "Cursuri" },
+                ].map((s, i) => (
+                  <div key={i} className="text-center">
+                    <span className="font-display text-3xl md:text-4xl font-bold text-white">{s.num}</span>
+                    <p className="font-body text-[10px] uppercase tracking-[0.2em] text-white/50 mt-1">{s.label}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="pt-4">
+                <Link href="/academie" className="btn-white">
+                  Vezi Cursurile
+                </Link>
+              </div>
+            </div>
+
+            {/* Images side — grid of course/nail photos */}
+            <div className="grid grid-cols-3 gap-3 h-[350px] md:h-[450px]">
+              <div className="relative rounded-xl overflow-hidden row-span-2">
+                <Image
+                  src="https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2025-11-04-at-21.36.26.jpeg"
+                  alt="Curs manichiură"
+                  fill
+                  className="object-cover"
+                  sizes="20vw"
+                />
+              </div>
+              <div className="relative rounded-xl overflow-hidden">
+                <Image
+                  src="https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2025-09-21-at-08.46.02-2.jpeg"
+                  alt="Nail art"
+                  fill
+                  className="object-cover"
+                  sizes="20vw"
+                />
+              </div>
+              <div className="relative rounded-xl overflow-hidden">
+                <Image
+                  src="https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2025-11-04-at-21.05.20.jpeg"
+                  alt="Perfecționare gel"
+                  fill
+                  className="object-cover"
+                  sizes="20vw"
+                />
+              </div>
+              <div className="relative rounded-xl overflow-hidden col-span-2">
+                <Image
+                  src="https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2024-07-10-at-13.46.40-1.jpeg"
+                  alt="Academy classroom"
+                  fill
+                  className="object-cover"
+                  sizes="40vw"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* ═══════════════════════════════════════════════════════
-          COURSES — On light nude background
+          COURSES — Large cards with images
       ═══════════════════════════════════════════════════════ */}
       <section className="py-16 md:py-24 bg-nude-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 md:mb-16">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10 md:mb-14">
             <p className="section-label mb-3">Academie</p>
             <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-medium">
               Cursuri <span className="italic text-pink">profesionale</span>
             </h2>
-            <p className="font-body text-base text-dark-400 mt-4 max-w-lg mx-auto">
-              Practică pe model real, sub îndrumarea directă a Emmei.
-            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
@@ -227,7 +266,7 @@ export default async function HomePage() {
             ))}
           </div>
 
-          <div className="text-center mt-12">
+          <div className="text-center mt-10 md:mt-14">
             <Link href="/academie" className="btn-primary">
               Toate cele {courseCount} cursuri
             </Link>
@@ -236,44 +275,11 @@ export default async function HomePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════
-          HOW IT WORKS — Glamnetic "steps" section
+          ABOUT EMMA — Full-width split, big image
       ═══════════════════════════════════════════════════════ */}
-      <section className="py-16 md:py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
-            <p className="section-label mb-3">De ce Emma Nails</p>
-            <h2 className="font-display text-4xl md:text-5xl font-medium">
-              De ce ne <span className="italic text-pink">aleg</span> profesioniștii
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-6">
-            {[
-              { step: "01", icon: "✨", title: "Formulă Originală", desc: "Polygel dezvoltat pe baza a 15+ ani de experiență directă în salon" },
-              { step: "02", icon: "🎓", title: "Diplomă Acreditată", desc: "Cursuri cu certificare oficială recunoscută la nivel național" },
-              { step: "03", icon: "👩‍🏫", title: "Practică Reală", desc: "Fiecare cursantă lucrează pe model real cu feedback personalizat" },
-              { step: "04", icon: "📦", title: "Livrare Rapidă", desc: "Comenzi procesate în 24h cu livrare în toată România" },
-            ].map((item, i) => (
-              <div key={i} className="text-center group">
-                <div className="w-16 h-16 bg-pink-50 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-pink-100 transition-colors duration-500 group-hover:scale-110">
-                  <span className="text-2xl">{item.icon}</span>
-                </div>
-                <span className="font-body text-[10px] font-bold uppercase tracking-[0.3em] text-pink">{item.step}</span>
-                <h3 className="font-display text-lg font-medium mt-2 mb-2">{item.title}</h3>
-                <p className="font-body text-sm text-dark-400 leading-relaxed max-w-[200px] mx-auto">{item.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════════════════
-          ABOUT EMMA — Split section, light
-      ═══════════════════════════════════════════════════════ */}
-      <section className="bg-nude-100">
-        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[70vh]">
-          {/* Image */}
-          <div className="relative h-[50vh] lg:h-auto overflow-hidden">
+      <section className="bg-white">
+        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[75vh]">
+          <div className="relative h-[55vh] lg:h-auto overflow-hidden">
             <Image
               src={EMMA_PORTRAIT}
               alt="Emma — nail instructor"
@@ -282,34 +288,19 @@ export default async function HomePage() {
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
           </div>
-
-          {/* Text */}
-          <div className="flex items-center px-8 md:px-16 lg:px-20 py-14 md:py-20">
+          <div className="flex items-center bg-nude-100 px-8 md:px-16 lg:px-20 py-16 md:py-20">
             <div className="max-w-md">
               <p className="section-label mb-4">Despre Emma</p>
               <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-medium leading-tight">
                 Pasiune, <span className="italic text-pink">dedicare</span> și excelență
               </h2>
               <p className="font-body text-base text-dark-400 leading-relaxed mt-5">
-                Cu peste 15 ani de experiență, Emma a format sute de
-                profesioniști. Produsele Emma Nails sunt dezvoltate pe baza
-                nevoilor reale din salon.
+                Cu peste 15 ani de experiență în industria manichiurii, Emma a
+                format sute de profesioniști. Produsele Emma Nails sunt dezvoltate
+                pe baza nevoilor reale din salon.
               </p>
-              <div className="flex gap-8 mt-7">
-                {[
-                  { num: "15+", label: "Ani" },
-                  { num: "500+", label: "Cursante" },
-                ].map((s, i) => (
-                  <div key={i}>
-                    <span className="font-display text-3xl font-bold text-pink">{s.num}</span>
-                    <p className="font-body text-[10px] uppercase tracking-[0.2em] text-dark-300 mt-1">{s.label}</p>
-                  </div>
-                ))}
-              </div>
               <div className="flex flex-wrap gap-3 mt-8">
-                <Link href="/despre" className="btn-primary">
-                  Citește Povestea
-                </Link>
+                <Link href="/despre" className="btn-primary">Citește Povestea</Link>
               </div>
             </div>
           </div>
@@ -317,26 +308,23 @@ export default async function HomePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════
-          GALLERY — Instagram-style grid
+          BENEFITS — 4 icons row like Glamnetic
       ═══════════════════════════════════════════════════════ */}
-      <section className="py-16 md:py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <p className="section-label mb-3">@emmanails</p>
-            <h2 className="font-display text-4xl md:text-5xl font-medium">
-              Lucrări <span className="italic text-pink">reale</span>
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-3 md:grid-cols-6 gap-2 md:gap-3">
-            {GALLERY.map((img, i) => (
-              <div key={i} className="relative aspect-square rounded-xl overflow-hidden group cursor-pointer">
-                <Image src={img} alt={`Emma Nails lucrare ${i + 1}`} fill className="object-cover img-zoom" sizes="(max-width: 768px) 33vw, 16vw" />
-                <div className="absolute inset-0 bg-pink/0 group-hover:bg-pink/20 transition-colors duration-500 flex items-center justify-center">
-                  <svg className="w-6 h-6 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                  </svg>
+      <section className="py-16 md:py-20 bg-white border-t border-dark-100/30">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-6">
+            {[
+              { icon: "✨", title: "Formulă Originală", desc: "Polygel dezvoltat din 15+ ani de experiență" },
+              { icon: "🎓", title: "Diplomă Acreditată", desc: "Certificare oficială recunoscută național" },
+              { icon: "👩‍🏫", title: "Practică Reală", desc: "Fiecare cursantă lucrează pe model real" },
+              { icon: "📦", title: "Livrare Rapidă", desc: "Comenzi procesate în 24h, toată România" },
+            ].map((item, i) => (
+              <div key={i} className="text-center group">
+                <div className="w-14 h-14 bg-pink-50 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:bg-pink-100 group-hover:scale-110 transition-all duration-500">
+                  <span className="text-xl">{item.icon}</span>
                 </div>
+                <h3 className="font-body text-sm font-semibold uppercase tracking-wider mb-1">{item.title}</h3>
+                <p className="font-body text-xs text-dark-400 leading-relaxed">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -344,10 +332,32 @@ export default async function HomePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════
-          TRUST / REVIEWS strip
+          GALLERY — Instagram grid
       ═══════════════════════════════════════════════════════ */}
-      <section className="py-14 md:py-16 bg-pink-50/50 border-y border-pink-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-16 md:py-24 bg-white">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10 md:mb-14">
+            <p className="section-label mb-3">@emmanails</p>
+            <h2 className="font-display text-4xl md:text-5xl font-medium">
+              Lucrări <span className="italic text-pink">reale</span>
+            </h2>
+          </div>
+          <div className="grid grid-cols-3 md:grid-cols-6 gap-2 md:gap-3">
+            {GALLERY.map((img, i) => (
+              <div key={i} className="relative aspect-square rounded-xl overflow-hidden group cursor-pointer">
+                <Image src={img} alt={`Lucrare ${i + 1}`} fill className="object-cover img-zoom" sizes="(max-width: 768px) 33vw, 16vw" />
+                <div className="absolute inset-0 bg-pink/0 group-hover:bg-pink/20 transition-colors duration-500" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════
+          STATS BAR
+      ═══════════════════════════════════════════════════════ */}
+      <section className="py-12 md:py-16 bg-pink-50/50 border-y border-pink-100">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
             {[
               { num: "15+", label: "Ani de Experiență" },
@@ -365,14 +375,11 @@ export default async function HomePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════
-          FINAL CTA — Light with pink accent
+          FINAL CTA
       ═══════════════════════════════════════════════════════ */}
       <section className="py-20 md:py-28 bg-white relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-pink/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-        <div className="absolute bottom-0 left-0 w-80 h-80 bg-nude-300/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
-
+        <div className="absolute top-0 right-0 w-96 h-96 bg-pink/5 rounded-full blur-3xl" />
         <div className="relative z-10 max-w-3xl mx-auto px-4 text-center">
-          <p className="section-label mb-3">Contact</p>
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-medium leading-tight">
             Hai să <span className="italic text-pink">vorbim</span>
           </h2>
@@ -391,12 +398,8 @@ export default async function HomePage() {
               </svg>
               Scrie pe WhatsApp
             </a>
-            <Link href="/produse" className="btn-secondary">
-              Shop
-            </Link>
-            <Link href="/academie" className="btn-secondary">
-              Academie
-            </Link>
+            <Link href="/produse" className="btn-secondary">Shop</Link>
+            <Link href="/academie" className="btn-secondary">Academie</Link>
           </div>
         </div>
       </section>
