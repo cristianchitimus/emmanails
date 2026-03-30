@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import { formatPrice } from "@/lib/utils";
 import { AddToCartButton } from "@/components/AddToCartButton";
+import { ImageGallery } from "@/components/ImageGallery";
 import Link from "next/link";
 import type { Metadata } from "next";
 
@@ -40,19 +41,11 @@ export default async function ProductDetailPage({ params }: Props) {
           </nav>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
-            {/* Product image */}
-            <div className="relative aspect-square rounded-sm overflow-hidden bg-nude-100">
-              {product.imageUrl ? (
-                <Image src={product.imageUrl} alt={product.name} fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" priority />
-              ) : (
-                <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-nude-100 to-nude-300">
-                  <div className="w-24 h-36 rounded-t-full bg-white/30" />
-                </div>
-              )}
+            {/* Product image gallery */}
+            <div>
+              <ImageGallery images={product.images || (product.imageUrl ? [product.imageUrl] : [])} alt={product.name} />
               {isOnSale && (
-                <div className="absolute top-4 right-4 z-10">
-                  <span className="font-body text-xs font-bold uppercase tracking-wider bg-pink text-white px-3 py-1.5 rounded-sm">Ofertă</span>
-                </div>
+                <span className="inline-block mt-3 font-body text-xs font-bold uppercase tracking-wider bg-pink text-white px-3 py-1.5 rounded-sm">Ofertă</span>
               )}
             </div>
 

@@ -2,6 +2,8 @@ import { prisma } from "@/lib/db";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import { formatPriceRange, whatsappLink } from "@/lib/utils";
+import { ImageGallery } from "@/components/ImageGallery";
+import { CourseEnrollment } from "@/components/CourseEnrollment";
 import Link from "next/link";
 import type { Metadata } from "next";
 
@@ -62,12 +64,8 @@ export default async function CourseDetailPage({ params }: Props) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-16">
             <div className="lg:col-span-2 space-y-8">
-              {/* Course image */}
-              {course.imageUrl && (
-                <div className="relative aspect-video rounded-sm overflow-hidden">
-                  <Image src={course.imageUrl} alt={course.name} fill className="object-cover" sizes="(max-width: 1024px) 100vw, 66vw" />
-                </div>
-              )}
+              {/* Course image gallery */}
+              <ImageGallery images={course.images || (course.imageUrl ? [course.imageUrl] : [])} alt={course.name} />
 
               {course.description && (
                 <div>
@@ -91,30 +89,45 @@ export default async function CourseDetailPage({ params }: Props) {
                   </ul>
                 </div>
               )}
+
+              {course.curriculum && course.curriculum.length > 0 && (
+                <div>
+                  <h2 className="font-display text-xl font-medium mb-4">Ce vei învăța</h2>
+                  <ul className="space-y-2">
+                    {course.curriculum.map((item, idx) => (
+                      <li key={idx} className="flex items-start gap-3">
+                        <span className="font-display text-sm font-bold text-pink mt-0.5 flex-shrink-0 w-5 text-center">{idx + 1}</span>
+                        <span className="font-body text-sm text-dark-500">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              <div className="bg-nude-50 rounded-sm p-5">
+                <p className="font-body text-xs text-dark/40 mb-1">ℹ️ Informații practice</p>
+                <p className="font-body text-sm text-dark-500">Cursanta își va asigura modelul de practică dacă e posibil. Se lucrează o mână — 1 model la 2 cursante. Toate lucrările afișate sunt realizate de către cursante în cadrul cursului.</p>
+              </div>
             </div>
 
-            {/* Sidebar */}
+            {/* Sidebar — Enrollment form */}
             <div className="lg:col-span-1">
-              <div className="sticky top-28 bg-white border border-dark-100 rounded-sm p-6 md:p-8 shadow-sm space-y-5">
-                <div>
-                  <p className="font-body text-xs text-dark-400 uppercase tracking-wider mb-1">Investiție</p>
-                  <p className="font-display text-2xl font-semibold text-dark">{formatPriceRange(course.priceFrom, course.priceTo)}</p>
-                  <p className="font-body text-xs text-dark-400 mt-1">Prețul variază în funcție de opțiunile alese</p>
-                </div>
+              <div className="sticky top-28 bg-white border border-dark-100 rounded-sm p-6 md:p-8 shadow-sm">
                 {course.duration && (
-                  <div className="border-t border-dark-100 pt-4 flex items-center justify-between">
-                    <span className="font-body text-sm text-dark-400">Durată</span>
-                    <span className="font-body text-sm font-medium">{course.duration}</span>
+                  <div className="flex items-center justify-between mb-5 pb-4 border-b border-dark-100">
+                    <span className="font-body text-sm text-dark/40">Durată</span>
+                    <span className="font-body text-sm font-semibold">{course.duration}</span>
                   </div>
                 )}
-                <div className="border-t border-dark-100 pt-5 space-y-3">
-                  <a href={whatsappLink(`Bună! Aș dori să mă înscriu la cursul: ${course.name}`)} target="_blank" rel="noopener noreferrer" className="btn-pink w-full text-center">
-                    Înscrie-te acum
-                  </a>
-                  <a href={whatsappLink(`Bună! Aș dori informații despre cursul: ${course.name}`)} target="_blank" rel="noopener noreferrer" className="btn-secondary w-full text-center">
-                    Cere informații
-                  </a>
-                </div>
+                <CourseEnrollment course={{
+                  id: course.id,
+                  slug: course.slug,
+                  name: course.name,
+                  priceFrom: course.priceFrom,
+                  priceTo: course.priceTo,
+                  dates: course.dates || [],
+                  hasAccreditation: course.hasAccreditation || false,
+                }} />
               </div>
             </div>
           </div>

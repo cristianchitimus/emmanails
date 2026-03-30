@@ -8,692 +8,447 @@ async function main() {
 
   // ─── PRODUCTS ──────────────────────────────────────────────
   const products = [
-    // INSTRUMENTE (10)
+    // INSTRUMENTE
     {
       slug: "chiureta-dubla-dietter-baumann",
       name: "Chiuretă dublă Dietter Baumann",
-      description:
-        "Chiuretă dublă profesională Dietter Baumann, ideală pentru îndepărtarea cuticulelor și curățarea matricei unghiale. Oțel inoxidabil de calitate superioară.",
-      price: 9000,
-      category: "instrumente",
-      subcategory: "instrumente-manichiura",
-      inStock: true,
-      featured: false,
-      imageUrl:
-        "https://emmanails.ro/wp-content/uploads/2024/10/chiureta-dubla-dietter-baumann.png",
+      description: "Este un instrument dublu, format din 2 capete. Chiuretă dublă profesională Dietter Baumann, ideală pentru îndepărtarea cuticulelor și curățarea matricei unghiale. Oțel inoxidabil chirurgical de calitate superioară germană.",
+      price: 4500, category: "instrumente", subcategory: "instrumente-manichiura",
+      inStock: true, featured: false,
+      imageUrl: "https://emmanails.ro/wp-content/uploads/2025/05/DSC_8288.jpg",
+      images: ["https://emmanails.ro/wp-content/uploads/2025/05/DSC_8288.jpg", "https://emmanails.ro/wp-content/uploads/2025/05/DSC_8289.jpg"],
     },
     {
-      slug: "freza-electrica-mercedes-2000",
-      name: "Freză electrică Mercedes 2000",
-      description:
-        "Freză profesională Mercedes 2000 cu motor puternic și silențios. Include set de capete interschimbabile. Ideală pentru salon și cursuri.",
-      price: 45000,
-      category: "instrumente",
-      subcategory: "instrumente-aparatura",
-      inStock: true,
-      featured: true,
-      imageUrl:
-        "https://emmanails.ro/wp-content/uploads/2024/10/freza-electrica-mercedes-2000.png",
+      slug: "cleste-profesional-dietter-baumann",
+      name: "Clește profesional Dietter Baumann",
+      description: "Clește profesional Dietter Baumann pentru cuticulele. Lame ascuțite din oțel chirurgical german, mâner ergonomic. Instrument esențial pentru manichiura profesională. Tăiere precisă și curată.",
+      price: 16000, category: "instrumente", subcategory: "instrumente-manichiura",
+      inStock: true, featured: true,
+      imageUrl: "https://emmanails.ro/wp-content/uploads/2025/05/DSC_8271.jpg",
+      images: ["https://emmanails.ro/wp-content/uploads/2025/05/DSC_8271.jpg", "https://emmanails.ro/wp-content/uploads/2025/05/DSC_8272.jpg", "https://emmanails.ro/wp-content/uploads/2025/05/WhatsApp-Image-2024-08-22-at-08.09.53-1.jpeg"],
     },
     {
-      slug: "lampa-uv-led-sun5-48w",
-      name: "Lampă UV/LED SUN5 48W",
-      description:
-        "Lampă profesională UV/LED SUN5 cu putere de 48W. Uscare rapidă pentru gel, polygel și oja semipermanentă. Timer integrat.",
-      price: 15000,
-      category: "instrumente",
-      subcategory: "instrumente-aparatura",
-      inStock: true,
-      featured: true,
-      imageUrl:
-        "https://emmanails.ro/wp-content/uploads/2024/10/lampa-uv-led-sun5-48w.png",
+      slug: "foarfece-exclusive-staleks",
+      name: "Foarfece Exclusive Staleks",
+      description: "Foarfece pentru cuticulă, taie cu precizie. Lamele sunt ascuțite și subțiri, ușor curbată este extrem de ușor de utilizat. Finisaj de înaltă calitate din gama Exclusive Staleks.",
+      price: 13500, category: "instrumente", subcategory: "instrumente-manichiura",
+      inStock: true, featured: false,
+      imageUrl: "https://emmanails.ro/wp-content/uploads/2025/05/DSC_8278.jpg",
+      images: ["https://emmanails.ro/wp-content/uploads/2025/05/DSC_8278.jpg", "https://emmanails.ro/wp-content/uploads/2025/05/DSC_8279.jpg", "https://emmanails.ro/wp-content/uploads/2025/05/forbice-per-cuticole-staleks-exclusive-sx-221-magnolia-21mm.png"],
     },
     {
-      slug: "penseta-curba-inox",
-      name: "Pensetă curbă INOX",
-      description:
-        "Pensetă curbă din oțel inoxidabil, esențială pentru aplicarea formelor și manipularea decorațiunilor fine.",
-      price: 3500,
-      category: "instrumente",
-      subcategory: "instrumente-manichiura",
-      inStock: true,
-      featured: false,
-      imageUrl:
-        "https://emmanails.ro/wp-content/uploads/2024/10/penseta-curba-inox.png",
+      slug: "foarfece-maniprof-110mm",
+      name: "Foarfece Maniprof 110mm",
+      description: "Foarfece pentru cuticulă, taie cu precizie. Lamele sunt drepte, ascuțite și subțiri. Lungime totală 110mm, ideale pentru tăierea precisă a cuticulelor și pielițelor.",
+      price: 13000, category: "instrumente", subcategory: "instrumente-manichiura",
+      inStock: true, featured: false,
+      imageUrl: "https://emmanails.ro/wp-content/uploads/2025/05/DSC_8273.jpg",
+      images: ["https://emmanails.ro/wp-content/uploads/2025/05/DSC_8273.jpg", "https://emmanails.ro/wp-content/uploads/2025/05/DSC_8274.jpg"],
     },
     {
-      slug: "set-pile-profesionale-100-180",
-      name: "Set pile profesionale 100/180",
-      description:
-        "Set de pile profesionale cu granulație 100/180, perfecte pentru modelarea și finisarea unghiilor artificiale.",
-      price: 2500,
-      category: "instrumente",
-      subcategory: "instrumente-consumabile",
-      inStock: true,
-      featured: false,
-      imageUrl:
-        "https://emmanails.ro/wp-content/uploads/2024/10/set-pile-profesionale.png",
+      slug: "foarfece-maniprof-97mm",
+      name: "Foarfece Maniprof 97mm",
+      description: "Foarfece pentru cuticulă, taie cu precizie. Lamele sunt drepte, ascuțite și subțiri. Model compact de 97mm pentru control maxim.",
+      price: 13500, category: "instrumente", subcategory: "instrumente-manichiura",
+      inStock: true, featured: false,
+      imageUrl: "https://emmanails.ro/wp-content/uploads/2025/05/DSC_8275.jpg",
+      images: ["https://emmanails.ro/wp-content/uploads/2025/05/DSC_8275.jpg", "https://emmanails.ro/wp-content/uploads/2025/05/DSC_8277.jpg"],
     },
     {
-      slug: "buffer-bloc-alb-4-fete",
-      name: "Buffer bloc alb 4 fețe",
-      description:
-        "Buffer profesional cu 4 fețe pentru pregătirea și lustruirea unghiei naturale. Granulații diferite pe fiecare față.",
-      price: 800,
-      category: "instrumente",
-      subcategory: "instrumente-consumabile",
-      inStock: true,
-      featured: false,
-      imageUrl:
-        "https://emmanails.ro/wp-content/uploads/2024/10/buffer-bloc-alb.png",
+      slug: "instrument-profesional-dietter-baumann-pentru-unghii-incarnate-si-bataturi",
+      name: "Instrument profesional Dietter Baumann pentru unghii încarnate și bătături",
+      description: "Instrument profesional dublu Dietter Baumann, special conceput pentru tratamentul unghiilor încarnate și îndepărtarea bătăturilor. Oțel chirurgical german de cea mai înaltă calitate.",
+      price: 13900, category: "instrumente", subcategory: "instrumente-pedichiura",
+      inStock: true, featured: true,
+      imageUrl: "https://emmanails.ro/wp-content/uploads/2025/05/DSC_8269.jpg",
+      images: ["https://emmanails.ro/wp-content/uploads/2025/05/DSC_8269.jpg", "https://emmanails.ro/wp-content/uploads/2025/05/DSC_8267.jpg"],
     },
     {
-      slug: "tipsuri-clear-500-buc",
-      name: "Tipsuri clear 500 buc",
-      description:
-        "Set 500 tipsuri transparente în 10 mărimi. Potrivire universală, ușor de modelat și lipit.",
-      price: 3000,
-      category: "instrumente",
-      subcategory: "instrumente-consumabile",
-      inStock: true,
-      featured: false,
-      imageUrl:
-        "https://emmanails.ro/wp-content/uploads/2024/10/tipsuri-clear-500.png",
+      slug: "microforfecuta-tweezer-staleks-pro-expert",
+      name: "Microforfecuță — Tweezer Staleks Pro Expert",
+      description: "Instrument pentru manichiură și pedichiură utilizat pentru cuticulă, taie cu precizie. Lamele sunt ascuțite și subțiri, ușor curbată este extrem de ușor de utilizat.",
+      price: 9900, category: "instrumente", subcategory: "instrumente-manichiura",
+      inStock: true, featured: false,
+      imageUrl: "https://emmanails.ro/wp-content/uploads/2025/05/DSC_8280.jpg",
+      images: ["https://emmanails.ro/wp-content/uploads/2025/05/DSC_8280.jpg", "https://emmanails.ro/wp-content/uploads/2025/05/DSC_8282.jpg", "https://emmanails.ro/wp-content/uploads/2025/05/Tijera-para-manicure-Staleks-Expert-90-1-Enails-1-1024x1024-1.jpg"],
     },
     {
-      slug: "pensula-ovala-nr-6-polygel",
-      name: "Pensulă ovală nr.6 PolyGel",
-      description:
-        "Pensulă profesională ovală nr.6 special concepută pentru aplicarea PolyGel-ului. Păr sintetic de înaltă calitate.",
-      price: 2500,
-      category: "instrumente",
-      subcategory: "instrumente-pensule",
-      inStock: true,
-      featured: false,
-      imageUrl:
-        "https://emmanails.ro/wp-content/uploads/2024/10/pensula-ovala-nr6.png",
+      slug: "oferta-cleste-foarfece-chiureta",
+      name: "Ofertă clește + foarfece + chiuretă",
+      description: "Set complet de instrumente profesionale la preț special: clește Dietter Baumann + foarfece + chiuretă. Tot ce ai nevoie pentru manichiura profesională într-un singur pachet avantajos.",
+      price: 34500, salePrice: 29500, category: "instrumente", subcategory: "instrumente-set",
+      inStock: true, featured: true,
+      imageUrl: "https://emmanails.ro/wp-content/uploads/2025/06/DSC_8291.jpg",
+      images: ["https://emmanails.ro/wp-content/uploads/2025/06/DSC_8291.jpg", "https://emmanails.ro/wp-content/uploads/2025/06/DSC_8293.jpg"],
     },
     {
-      slug: "aspirator-praf-profesional",
-      name: "Aspirator praf profesional",
-      description:
-        "Aspirator de praf profesional pentru masa de manichiură. Motor puternic cu filtru lavabil. Reduce semnificativ praful în salon.",
-      price: 12000,
-      category: "instrumente",
-      subcategory: "instrumente-aparatura",
-      inStock: true,
-      featured: false,
-      imageUrl:
-        "https://emmanails.ro/wp-content/uploads/2024/10/aspirator-praf.png",
+      slug: "penseta-pedichiura-staleks-pro-podo",
+      name: "Pensetă pedichiură Staleks Pro Podo",
+      description: "Este folosită pentru a îndepărta elementele unghiilor încarnate din pliurile laterale și a bătăturilor subunghiale. Instrument esențial pentru pedichiura profesională.",
+      price: 6500, category: "instrumente", subcategory: "instrumente-pedichiura",
+      inStock: true, featured: false,
+      imageUrl: "https://emmanails.ro/wp-content/uploads/2025/05/DSC_8284.jpg",
+      images: ["https://emmanails.ro/wp-content/uploads/2025/05/DSC_8284.jpg", "https://emmanails.ro/wp-content/uploads/2025/05/DSC_8285.jpg"],
+    },
+    // POLYGEL
+    {
+      slug: "polygel-emma-nails",
+      name: "Polygel Emma Nails",
+      description: "Cel mai top produs ever! PolyGel Emma Nails cu formulă revoluționară, foarte rezistent și ideal pentru construcția unghiilor pe tips/șablon/la întreținere cu schimbarea arhitecturii/french interior. Formulă originală dezvoltată din 15+ ani de experiență.",
+      price: 8000, category: "polygel", subcategory: "polygel-clasic", size: "30g",
+      inStock: true, featured: true,
+      imageUrl: "https://emmanails.ro/wp-content/uploads/2025/04/29.jpg",
+      images: ["https://emmanails.ro/wp-content/uploads/2025/04/29.jpg"],
     },
     {
-      slug: "suport-mana-piele-ecologica",
-      name: "Suport mână piele ecologică",
-      description:
-        "Suport ergonomic pentru mână din piele ecologică. Confortabil și ușor de curățat. Ideal pentru salon.",
-      price: 4500,
-      category: "instrumente",
-      subcategory: "instrumente-accesorii",
-      inStock: true,
-      featured: false,
-      imageUrl:
-        "https://emmanails.ro/wp-content/uploads/2024/10/suport-mana.png",
-    },
-    // POLYGEL (18)
-    {
-      slug: "polygel-emma-nails-cover-light-30g",
-      name: "PolyGel Emma Nails Cover Light, 30g",
-      description:
-        "PolyGel Emma Nails Cover Light — nuanță naturală deschisă, perfectă pentru extensii cu aspect natural. Formulă premium cu auto-nivelare excelentă.",
-      price: 5500,
-      category: "polygel",
-      subcategory: "polygel-nude",
-      size: "30g",
-      inStock: true,
-      featured: true,
-      imageUrl:
-        "https://emmanails.ro/wp-content/uploads/2024/10/polygel-cover-light-30g.png",
+      slug: "polygel-verde",
+      name: "Polygel Verde",
+      description: "PolyGel Emma Nails verde — culoare vibrantă și unică. Cu formulă revoluționară, foarte rezistent și ideal pentru construcția unghiilor.",
+      price: 3100, category: "polygel", subcategory: "polygel-color", size: "30g",
+      inStock: true, featured: false,
+      imageUrl: "https://emmanails.ro/wp-content/uploads/2025/04/29.jpg",
+      images: ["https://emmanails.ro/wp-content/uploads/2025/04/29.jpg"],
     },
     {
-      slug: "polygel-emma-nails-cover-light-60g",
-      name: "PolyGel Emma Nails Cover Light, 60g",
-      description:
-        "PolyGel Emma Nails Cover Light în formatul economic de 60g. Aceeași formulă premium, pentru profesioniștii care lucrează intens.",
-      price: 9000,
-      category: "polygel",
-      subcategory: "polygel-nude",
-      size: "60g",
-      inStock: true,
-      featured: false,
-      imageUrl:
-        "https://emmanails.ro/wp-content/uploads/2024/10/polygel-cover-light-60g.png",
+      slug: "polygel-emma-nails-color-01-60g",
+      name: "Polygel Emma Nails Color 01, 60g",
+      description: "Cu o formulă revoluționară, foarte rezistent și ideal pentru construcția unghiilor pe tips/șablon/la întreținere cu schimbarea arhitecturii/french interior. Format economic 60g pentru profesioniști.",
+      price: 14000, category: "polygel", subcategory: "polygel-color", size: "60g",
+      inStock: true, featured: true,
+      imageUrl: "https://emmanails.ro/wp-content/uploads/2025/05/1.jpg",
+      images: ["https://emmanails.ro/wp-content/uploads/2025/05/1.jpg"],
     },
     {
-      slug: "polygel-emma-nails-cover-dark-30g",
-      name: "PolyGel Emma Nails Cover Dark, 30g",
-      description:
-        "PolyGel Emma Nails Cover Dark — nuanță caramel elegantă. Acoperire perfectă și ținere de lungă durată.",
-      price: 5500,
-      category: "polygel",
-      subcategory: "polygel-nude",
-      size: "30g",
-      inStock: true,
-      featured: false,
-      imageUrl:
-        "https://emmanails.ro/wp-content/uploads/2024/10/polygel-cover-dark-30g.png",
+      slug: "polygel-emma-nails-color-06-30g",
+      name: "Polygel Emma Nails Color 06, 30g",
+      description: "Cu o formulă revoluționară, foarte rezistent și ideal pentru construcția unghiilor pe tips/șablon/la întreținere cu schimbarea arhitecturii/french interior.",
+      price: 8000, category: "polygel", subcategory: "polygel-color", size: "30g",
+      inStock: true, featured: false,
+      imageUrl: "https://emmanails.ro/wp-content/uploads/2025/05/06.jpg",
+      images: ["https://emmanails.ro/wp-content/uploads/2025/05/06.jpg"],
     },
     {
-      slug: "polygel-emma-nails-cover-dark-60g",
-      name: "PolyGel Emma Nails Cover Dark, 60g",
-      description:
-        "PolyGel Emma Nails Cover Dark format economic 60g. Nuanță caramel caldă, formulă profesională.",
-      price: 9000,
-      category: "polygel",
-      subcategory: "polygel-nude",
-      size: "60g",
-      inStock: true,
-      featured: false,
-      imageUrl:
-        "https://emmanails.ro/wp-content/uploads/2024/10/polygel-cover-dark-60g.png",
+      slug: "polygel-emma-nails-color-08-30g",
+      name: "Polygel Emma Nails Color 08, 30g",
+      description: "Cu o formulă revoluționară, foarte rezistent și ideal pentru construcția unghiilor pe tips/șablon/la întreținere cu schimbarea arhitecturii/french interior.",
+      price: 8000, category: "polygel", subcategory: "polygel-color", size: "30g",
+      inStock: true, featured: false,
+      imageUrl: "https://emmanails.ro/wp-content/uploads/2025/05/08.jpg",
+      images: ["https://emmanails.ro/wp-content/uploads/2025/05/08.jpg"],
     },
     {
-      slug: "polygel-emma-nails-clear-30g",
-      name: "PolyGel Emma Nails Clear, 30g",
-      description:
-        "PolyGel Emma Nails Clear — complet transparent, ideal pentru baby boomer, french și încapsulări de design.",
-      price: 5500,
-      category: "polygel",
-      subcategory: "polygel-clear",
-      size: "30g",
-      inStock: true,
-      featured: true,
-      imageUrl:
-        "https://emmanails.ro/wp-content/uploads/2024/10/polygel-clear-30g.png",
+      slug: "polygel-emma-nails-color-26-30g",
+      name: "Polygel Emma Nails Color 26, 30g",
+      description: "Cu o formulă revoluționară, foarte rezistent și ideal pentru construcția unghiilor pe tips/șablon/la întreținere cu schimbarea arhitecturii/french interior.",
+      price: 8000, category: "polygel", subcategory: "polygel-color", size: "30g",
+      inStock: true, featured: false,
+      imageUrl: "https://emmanails.ro/wp-content/uploads/2025/05/26.jpg",
+      images: ["https://emmanails.ro/wp-content/uploads/2025/05/26.jpg"],
     },
     {
-      slug: "polygel-emma-nails-clear-60g",
-      name: "PolyGel Emma Nails Clear, 60g",
-      description:
-        "PolyGel Emma Nails Clear format economic 60g. Transparent perfect, consistență ideală pentru profesioniști.",
-      price: 9000,
-      category: "polygel",
-      subcategory: "polygel-clear",
-      size: "60g",
-      inStock: true,
-      featured: false,
-      imageUrl:
-        "https://emmanails.ro/wp-content/uploads/2024/10/polygel-clear-60g.png",
+      slug: "polygel-emma-nails-color-27-60g",
+      name: "Polygel Emma Nails Color 27, 60g",
+      description: "Cu o formulă revoluționară, foarte rezistent și ideal pentru construcția unghiilor pe tips/șablon/la întreținere cu schimbarea arhitecturii/french interior. Format economic 60g.",
+      price: 14000, category: "polygel", subcategory: "polygel-color", size: "60g",
+      inStock: true, featured: false,
+      imageUrl: "https://emmanails.ro/wp-content/uploads/2025/05/27.jpg",
+      images: ["https://emmanails.ro/wp-content/uploads/2025/05/27.jpg"],
     },
     {
-      slug: "polygel-emma-nails-white-30g",
-      name: "PolyGel Emma Nails White, 30g",
-      description:
-        "PolyGel Emma Nails White — alb pur, crisp. Perfect pentru french clasic și nail art alb.",
-      price: 5500,
-      category: "polygel",
-      subcategory: "polygel-clasic",
-      size: "30g",
-      inStock: true,
-      featured: false,
-      imageUrl:
-        "https://emmanails.ro/wp-content/uploads/2024/10/polygel-white-30g.png",
+      slug: "polygel-emma-nails-color-29-30g",
+      name: "Polygel Emma Nails Color 29, 30g",
+      description: "Cu o formulă revoluționară, foarte rezistent și ideal pentru construcția unghiilor pe tips/șablon/la întreținere cu schimbarea arhitecturii/french interior.",
+      price: 8000, category: "polygel", subcategory: "polygel-color", size: "30g",
+      inStock: true, featured: false,
+      imageUrl: "https://emmanails.ro/wp-content/uploads/2025/05/29.jpg",
+      images: ["https://emmanails.ro/wp-content/uploads/2025/05/29.jpg"],
     },
     {
-      slug: "polygel-emma-nails-pink-30g",
-      name: "PolyGel Emma Nails Pink, 30g",
-      description:
-        "PolyGel Emma Nails Pink — roz delicat, natural. Ideal pentru look-uri feminine și elegante.",
-      price: 5500,
-      category: "polygel",
-      subcategory: "polygel-clasic",
-      size: "30g",
-      inStock: true,
-      featured: false,
-      imageUrl:
-        "https://emmanails.ro/wp-content/uploads/2024/10/polygel-pink-30g.png",
+      slug: "polygel-emma-nails-color-30-30g",
+      name: "Polygel Emma Nails Color 30, 30g",
+      description: "Cu o formulă revoluționară, foarte rezistent și ideal pentru construcția unghiilor pe tips/șablon/la întreținere cu schimbarea arhitecturii/french interior.",
+      price: 8000, category: "polygel", subcategory: "polygel-color", size: "30g",
+      inStock: true, featured: false,
+      imageUrl: "https://emmanails.ro/wp-content/uploads/2025/05/30.jpg",
+      images: ["https://emmanails.ro/wp-content/uploads/2025/05/30.jpg"],
     },
     {
-      slug: "polygel-emma-nails-color-kd01-30g",
-      name: "PolyGel Emma Nails Color KD01, 30g",
-      description:
-        "Din colecția specială KD, culoare vibrantă cu acoperire uniformă. Pigment intens la prima aplicare.",
-      price: 8000,
-      category: "polygel",
-      subcategory: "polygel-color",
-      size: "30g",
-      inStock: true,
-      featured: false,
-      imageUrl:
-        "https://emmanails.ro/wp-content/uploads/2024/10/polygel-kd01-30g.png",
+      slug: "polygel-emma-nails-color-32-30g",
+      name: "Polygel Emma Nails Color 32, 30g",
+      description: "Cu o formulă revoluționară, foarte rezistent și ideal pentru construcția unghiilor pe tips/șablon/la întreținere cu schimbarea arhitecturii/french interior.",
+      price: 8000, category: "polygel", subcategory: "polygel-color", size: "30g",
+      inStock: true, featured: false,
+      imageUrl: "https://emmanails.ro/wp-content/uploads/2025/05/32.jpg",
+      images: ["https://emmanails.ro/wp-content/uploads/2025/05/32.jpg"],
     },
     {
-      slug: "polygel-emma-nails-color-kd02-30g",
-      name: "PolyGel Emma Nails Color KD02, 30g",
-      description:
-        "Din colecția specială KD, culoare elegantă cu finisaj perfect. Consistență excelentă pentru modelare.",
-      price: 8000,
-      category: "polygel",
-      subcategory: "polygel-color",
-      size: "30g",
-      inStock: true,
-      featured: false,
-      imageUrl:
-        "https://emmanails.ro/wp-content/uploads/2024/10/polygel-kd02-30g.png",
+      slug: "polygel-emma-nails-color-34-30g",
+      name: "Polygel Emma Nails Color 34, 30g",
+      description: "Cu o formulă revoluționară, foarte rezistent și ideal pentru construcția unghiilor pe tips/șablon/la întreținere cu schimbarea arhitecturii/french interior.",
+      price: 8000, category: "polygel", subcategory: "polygel-color", size: "30g",
+      inStock: true, featured: false,
+      imageUrl: "https://emmanails.ro/wp-content/uploads/2025/05/34.jpg",
+      images: ["https://emmanails.ro/wp-content/uploads/2025/05/34.jpg"],
     },
     {
-      slug: "polygel-emma-nails-color-kd03-30g",
-      name: "PolyGel Emma Nails Color KD03, 30g",
-      description:
-        "Din colecția specială KD, culoare distinctivă cu acoperire uniformă. Pigment premium.",
-      price: 8000,
-      category: "polygel",
-      subcategory: "polygel-color",
-      size: "30g",
-      inStock: true,
-      featured: false,
-      imageUrl:
-        "https://emmanails.ro/wp-content/uploads/2024/10/polygel-kd03-30g.png",
+      slug: "polygel-emma-nails-color-44-30g",
+      name: "Polygel Emma Nails Color 44, 30g",
+      description: "Cu o formulă revoluționară, foarte rezistent și ideal pentru construcția unghiilor pe tips/șablon/la întreținere cu schimbarea arhitecturii/french interior.",
+      price: 8000, category: "polygel", subcategory: "polygel-color", size: "30g",
+      inStock: true, featured: false,
+      imageUrl: "https://emmanails.ro/wp-content/uploads/2025/05/44.jpg",
+      images: ["https://emmanails.ro/wp-content/uploads/2025/05/44.jpg"],
+    },
+    {
+      slug: "polygel-emma-nails-color-45-30g",
+      name: "Polygel Emma Nails Color 45, 30g",
+      description: "Cu o formulă revoluționară, foarte rezistent și ideal pentru construcția unghiilor pe tips/șablon/la întreținere cu schimbarea arhitecturii/french interior.",
+      price: 8000, category: "polygel", subcategory: "polygel-color", size: "30g",
+      inStock: true, featured: false,
+      imageUrl: "https://emmanails.ro/wp-content/uploads/2025/05/45.jpg",
+      images: ["https://emmanails.ro/wp-content/uploads/2025/05/45.jpg"],
+    },
+    {
+      slug: "polygel-emma-nails-color-kd2-30g",
+      name: "Polygel Emma Nails Color KD2, 30g",
+      description: "Din colecția specială KD. Cu o formulă revoluționară, foarte rezistent și ideal pentru construcția unghiilor pe tips/șablon/la întreținere cu schimbarea arhitecturii/french interior.",
+      price: 8000, category: "polygel", subcategory: "polygel-color", size: "30g",
+      inStock: true, featured: false,
+      imageUrl: "https://emmanails.ro/wp-content/uploads/2025/05/KD2.jpg",
+      images: ["https://emmanails.ro/wp-content/uploads/2025/05/KD2.jpg"],
+    },
+    {
+      slug: "polygel-emma-nails-color-kd3-30g",
+      name: "Polygel Emma Nails Color KD3, 30g",
+      description: "Din colecția specială KD. Cu o formulă revoluționară, foarte rezistent și ideal pentru construcția unghiilor pe tips/șablon/la întreținere cu schimbarea arhitecturii/french interior.",
+      price: 8000, category: "polygel", subcategory: "polygel-color", size: "30g",
+      inStock: true, featured: false,
+      imageUrl: "https://emmanails.ro/wp-content/uploads/2025/05/KD3.jpg",
+      images: ["https://emmanails.ro/wp-content/uploads/2025/05/KD3.jpg"],
     },
     {
       slug: "reflective-polygel-emma-nails-color-09-30g",
-      name: "Reflective PolyGel Emma Nails Color 09, 30g",
-      description:
-        "PolyGel reflectiv Emma Nails Color 09. Efect oglindă spectaculos sub lumina UV, formulă premium.",
-      price: 8000,
-      category: "polygel",
-      subcategory: "polygel-reflective",
-      size: "30g",
-      inStock: true,
-      featured: true,
-      imageUrl:
-        "https://emmanails.ro/wp-content/uploads/2024/10/reflective-09-30g.png",
+      name: "Reflective Polygel Emma Nails Color 09, 30g",
+      description: "PolyGel reflectiv cu efect strălucitor spectaculos. Cu o formulă revoluționară, foarte rezistent și ideal pentru construcția unghiilor pe tips/șablon/la întreținere cu schimbarea arhitecturii/french interior.",
+      price: 8000, category: "polygel", subcategory: "polygel-reflective", size: "30g",
+      inStock: true, featured: true,
+      imageUrl: "https://emmanails.ro/wp-content/uploads/2025/05/09.jpg",
+      images: ["https://emmanails.ro/wp-content/uploads/2025/05/09.jpg"],
     },
     {
       slug: "reflective-polygel-emma-nails-color-19-30g",
-      name: "Reflective PolyGel Emma Nails Color 19, 30g",
-      description:
-        "PolyGel reflectiv Emma Nails Color 19. Efect strălucitor unic, perfect pentru manichiuri de eveniment.",
-      price: 8000,
-      category: "polygel",
-      subcategory: "polygel-reflective",
-      size: "30g",
-      inStock: true,
-      featured: false,
-      imageUrl:
-        "https://emmanails.ro/wp-content/uploads/2024/10/reflective-19-30g.png",
+      name: "Reflective Polygel Emma Nails Color 19, 30g",
+      description: "PolyGel reflectiv cu efect strălucitor unic. Cu o formulă revoluționară, foarte rezistent și ideal pentru construcția unghiilor pe tips/șablon/la întreținere cu schimbarea arhitecturii/french interior.",
+      price: 8000, category: "polygel", subcategory: "polygel-reflective", size: "30g",
+      inStock: true, featured: false,
+      imageUrl: "https://emmanails.ro/wp-content/uploads/2025/05/19.jpg",
+      images: ["https://emmanails.ro/wp-content/uploads/2025/05/19.jpg"],
     },
     {
       slug: "reflective-polygel-emma-nails-color-24-30g",
-      name: "Reflective PolyGel Emma Nails Color 24, 30g",
-      description:
-        "PolyGel reflectiv Emma Nails Color 24. Efect holografic subtil, culoare fascinantă.",
-      price: 8000,
-      category: "polygel",
-      subcategory: "polygel-reflective",
-      size: "30g",
-      inStock: true,
-      featured: false,
-      imageUrl:
-        "https://emmanails.ro/wp-content/uploads/2024/10/reflective-24-30g.png",
+      name: "Reflective Polygel Emma Nails Color 24, 30g",
+      description: "PolyGel reflectiv cu efect holografic. Cu o formulă revoluționară, foarte rezistent și ideal pentru construcția unghiilor pe tips/șablon/la întreținere cu schimbarea arhitecturii/french interior.",
+      price: 8000, category: "polygel", subcategory: "polygel-reflective", size: "30g",
+      inStock: true, featured: false,
+      imageUrl: "https://emmanails.ro/wp-content/uploads/2025/05/25.jpg",
+      images: ["https://emmanails.ro/wp-content/uploads/2025/05/25.jpg"],
     },
     {
-      slug: "polygel-emma-nails-milky-white-30g",
-      name: "PolyGel Emma Nails Milky White, 30g",
-      description:
-        "PolyGel Milky White — alb lăptos semi-transparent. Ideal pentru baby boomer și look-uri soft.",
-      price: 5500,
-      category: "polygel",
-      subcategory: "polygel-clasic",
-      size: "30g",
-      inStock: true,
-      featured: false,
-      imageUrl:
-        "https://emmanails.ro/wp-content/uploads/2024/10/polygel-milky-white-30g.png",
-    },
-    {
-      slug: "polygel-emma-nails-nude-rose-30g",
-      name: "PolyGel Emma Nails Nude Rosé, 30g",
-      description:
-        "PolyGel Nude Rosé — nuanță roză-nude sofisticată. Cea mai populară culoare pentru extensii elegante.",
-      price: 5500,
-      category: "polygel",
-      subcategory: "polygel-nude",
-      size: "30g",
-      inStock: true,
-      featured: true,
-      imageUrl:
-        "https://emmanails.ro/wp-content/uploads/2024/10/polygel-nude-rose-30g.png",
-    },
-    {
-      slug: "polygel-emma-nails-peach-30g",
-      name: "PolyGel Emma Nails Peach, 30g",
-      description:
-        "PolyGel Peach — nuanță piersică caldă și feminină. Perfect pentru sezonul cald.",
-      price: 5500,
-      category: "polygel",
-      subcategory: "polygel-nude",
-      size: "30g",
-      inStock: true,
-      featured: false,
-      imageUrl:
-        "https://emmanails.ro/wp-content/uploads/2024/10/polygel-peach-30g.png",
-    },
-    {
-      slug: "polygel-emma-nails-builder-gel-30g",
-      name: "PolyGel Emma Nails Builder Gel, 30g",
-      description:
-        "Builder Gel Emma Nails — gel de construcție puternic, ideal pentru întărirea și alungirea unghiilor naturale.",
-      price: 6000,
-      category: "polygel",
-      subcategory: "polygel-builder",
-      size: "30g",
-      inStock: true,
-      featured: false,
-      imageUrl:
-        "https://emmanails.ro/wp-content/uploads/2024/10/builder-gel-30g.png",
+      slug: "reflective-polygel-emma-nails-color-25-30g",
+      name: "Reflective Polygel Emma Nails Color 25, 30g",
+      description: "PolyGel reflectiv cu efect fascinant. Cu o formulă revoluționară, foarte rezistent și ideal pentru construcția unghiilor pe tips/șablon/la întreținere cu schimbarea arhitecturii/french interior.",
+      price: 8000, category: "polygel", subcategory: "polygel-reflective", size: "30g",
+      inStock: true, featured: false,
+      imageUrl: "https://emmanails.ro/wp-content/uploads/2025/05/25.jpg",
+      images: ["https://emmanails.ro/wp-content/uploads/2025/05/25.jpg"],
     },
   ];
 
-  for (const product of products) {
-    await prisma.product.upsert({
-      where: { slug: product.slug },
-      update: product,
-      create: product,
-    });
+  // Delete all existing products and re-create
+  await prisma.orderItem.deleteMany({});
+  await prisma.product.deleteMany({});
+  for (const p of products) {
+    await prisma.product.create({ data: p });
   }
   console.log(`✅ ${products.length} products seeded`);
 
-  // ─── COURSES ──────────────────────────────────────────────
+  // ─── COURSES (real data from academy.emmanails.ro) ────────
   const courses = [
     {
       slug: "curs-baza-stilist-protezist-unghii-nivel-1",
       name: "Curs bază stilist protezist unghii — Nivel 1",
-      description:
-        "Cursul ideal pentru începătoare. Învață de la zero tehnicile fundamentale ale manichiurii profesionale: pregătirea unghiei naturale, aplicarea gelului, construcția și modelarea formei, finisajul perfect.",
-      priceFrom: 40000,
-      priceTo: 270000,
-      level: "incepator",
-      duration: "5 zile",
-      includes: [
-        "Diplomă de absolvire acreditată",
-        "Kit de produse inclus (varianta cu kit)",
-        "Suport de curs",
-        "Practică pe model real",
-        "Consultanță post-curs",
+      description: "Cursul ideal pentru începătoare. Învață de la zero tehnicile fundamentale ale construcției unghiilor profesionale. 5 zile intensive de teorie + practică pe model real.",
+      priceFrom: 40000, priceTo: 270000, level: "incepator", duration: "5 zile",
+      curriculum: [
+        "Anatomia unghiei naturale",
+        "Patologie și identificarea diferitelor boli ale unghiilor",
+        "Norme de igienă și etape de distrugere a agenților patogeni",
+        "Amenajarea spațiului de lucru",
+        "Clasificarea biturilor și zonele de lucru",
+        "Alegerea formelor construite în funcție de unghia naturală",
+        "Decuparea șabloanelor",
+        "Etapele pilirii în funcție de formă, pilirea pas cu pas",
+        "Curățarea cuticulei cu ajutorul tehnicilor moderne",
+        "Aplicarea culorii sub cuticulă",
+        "Realizarea french-ului de suprafață",
+        "Babyboomer (acrygel/gel)",
+        "Realizarea pozelor profesionale și cum trebuie să arate un portofoliu",
       ],
-      featured: true,
-      imageUrl:
-        "https://academy.emmanails.ro/wp-content/uploads/2024/10/curs-baza-nivel-1.jpg",
+      includes: ["Diplomă de absolvire acreditată", "Practică pe model real", "Suport de curs", "Consultanță post-curs"],
+      dates: ["19-23 Ianuarie", "9-13 Februarie", "9-13 Martie", "27 Aprilie-01 Mai", "25-29 Mai", "22-26 Iunie", "20-24 Iulie", "24-27 August"],
+      hasAccreditation: true, featured: true,
+      imageUrl: "https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2025-11-04-at-21.36.26.jpeg",
+      images: ["https://academy.emmanails.ro/wp-content/uploads/2024/04/WhatsApp-Image-2025-06-09-at-11.19.42-1.webp","https://academy.emmanails.ro/wp-content/uploads/2024/04/WhatsApp-Image-2025-06-09-at-11.19.43.webp","https://academy.emmanails.ro/wp-content/uploads/2024/04/WhatsApp-Image-2025-08-23-at-13.21.50.jpeg","https://academy.emmanails.ro/wp-content/uploads/2024/04/WhatsApp-Image-2025-08-29-at-10.32.29-1.jpeg","https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2025-11-04-at-21.36.26.jpeg","https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2025-11-04-at-21.59.52-1-1.jpeg"],
     },
     {
       slug: "curs-baza-stilist-protezist-unghii-nivel-2",
       name: "Curs bază stilist protezist unghii — Nivel 2",
-      description:
-        "Continuarea cursului de bază. Aprofundează tehnicile avansate de construcție, forme complexe, aplicare pe unghii problematice, și tehnici de viteză pentru salon.",
-      priceFrom: 40000,
-      priceTo: 250000,
-      level: "mediu",
-      duration: "4 zile",
-      includes: [
-        "Diplomă de absolvire",
-        "Tehnici avansate de construcție",
-        "Forme complexe",
-        "Practică pe model real",
-      ],
-      featured: true,
-      imageUrl:
-        "https://academy.emmanails.ro/wp-content/uploads/2024/10/curs-baza-nivel-2.jpg",
+      description: "Continuarea cursului de bază. Aprofundează tehnicile avansate de construcție, forme complexe, french exterior și interior.",
+      priceFrom: 40000, priceTo: 250000, level: "mediu", duration: "5 zile",
+      curriculum: ["Anatomia unghiei naturale","Patologie și identificarea diferitelor boli ale unghiilor","Norme de igienă","Clasificarea biturilor și zonele de lucru","Alegerea formelor construite","Decuparea șabloanelor","Etapele pilirii în funcție de formă","Curățarea cuticulei cu tehnici moderne","Aplicarea culorii sub cuticulă","Realizarea french-ului de exterior și interior","Realizarea pozelor profesionale"],
+      includes: ["Diplomă de absolvire", "Tehnici avansate", "Practică pe model real"],
+      dates: ["16-20 Februarie", "30 Martie-3 Aprilie", "4-8 Mai", "1-5 Iunie", "29 Iunie-3 Iulie", "27-31 Iulie", "31 August-4 Septembrie"],
+      hasAccreditation: true, featured: true,
+      imageUrl: "https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2024-04-16-at-11.35.36.jpeg",
+      images: ["https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2024-04-16-at-11.35.36.jpeg","https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2025-11-04-at-21.00.36-1.jpeg","https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2025-11-04-at-21.05.55-1.jpeg","https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2025-11-04-at-21.16.36.jpeg"],
     },
     {
-      slug: "curs-perfectionare-polygel",
-      name: "Curs perfecționare PolyGel",
-      description:
-        "Curs intensiv de perfecționare în tehnica PolyGel. Aprofundare construcție, forme speciale, troubleshooting, și tehnici de viteză.",
-      priceFrom: 30000,
-      priceTo: 180000,
-      level: "mediu",
-      duration: "2 zile",
-      includes: [
-        "Diplomă de absolvire",
-        "Tehnici avansate PolyGel",
-        "Troubleshooting",
-        "Practică pe model real",
-      ],
-      featured: false,
-      imageUrl:
-        "https://academy.emmanails.ro/wp-content/uploads/2024/10/curs-polygel.jpg",
+      slug: "curs-perfectionare-gel-nivel-1",
+      name: "Curs perfecționare gel — Nivel 1",
+      description: "Curs de perfecționare pentru cele care au terminat cursul de bază. Tehnici avansate de lucru cu gel.",
+      priceFrom: 25000, priceTo: 180000, level: "mediu", duration: "2-3 zile",
+      curriculum: [],
+      includes: ["Diplomă de absolvire", "Practică pe model real", "Toate lucrările afișate sunt realizate de cursante"],
+      dates: ["20-21 Ianuarie", "10-12 Februarie", "10-12 Martie", "28-30 Aprilie", "26-28 Mai", "23-25 Iunie", "21-23 Iulie", "25-26 August"],
+      hasAccreditation: false, featured: false,
+      imageUrl: "https://academy.emmanails.ro/wp-content/uploads/2024/04/WhatsApp-Image-2024-04-16-at-10.32.35-1.jpeg",
+      images: ["https://academy.emmanails.ro/wp-content/uploads/2024/04/WhatsApp-Image-2024-04-16-at-10.32.35-1.jpeg","https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2024-06-07-at-16.27.57.jpeg","https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2025-06-09-at-11.47.16-1.webp","https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2025-09-21-at-08.46.02-2.jpeg"],
     },
     {
-      slug: "curs-nail-art-baza",
-      name: "Curs nail art — bază",
-      description:
-        "Curs de nail art pentru începătoare. Tehnici fundamentale de pictură pe unghii: linii, puncte, degradeuri, flori simple, french modern.",
-      priceFrom: 25000,
-      priceTo: 150000,
-      level: "incepator",
-      duration: "2 zile",
-      includes: [
-        "Diplomă de absolvire",
-        "Pensule de nail art incluse",
-        "Tehnici fundamentale",
-        "Practică intensivă",
-      ],
-      featured: false,
-      imageUrl:
-        "https://academy.emmanails.ro/wp-content/uploads/2024/10/curs-nail-art.jpg",
+      slug: "curs-perfectionare-gel-nivel-2",
+      name: "Curs perfecționare gel — Nivel 2",
+      description: "Perfecționare avansată în tehnicile de gel. Pentru profesioniste care vor să-și ducă abilitățile la next level.",
+      priceFrom: 30000, priceTo: 200000, level: "avansat", duration: "3 zile",
+      curriculum: [],
+      includes: ["Diplomă de absolvire", "Practică pe model real", "Toate lucrările afișate sunt realizate de cursante"],
+      dates: ["16-18 Februarie", "30 Martie-3 Aprilie", "4-6 Mai", "1-3 Iunie", "29 Iunie-1 Iulie", "27-29 Iulie", "31 August-3 Septembrie"],
+      hasAccreditation: false, featured: false,
+      imageUrl: "https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2025-11-04-at-21.05.20.jpeg",
+      images: ["https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2025-06-09-at-10.41.13-1.jpeg","https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2025-11-04-at-21.05.20.jpeg","https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2025-11-04-at-21.05.54.jpeg","https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2025-11-04-at-21.12.35.jpeg"],
     },
     {
-      slug: "curs-nail-art-avansat",
-      name: "Curs nail art avansat",
-      description:
-        "Curs avansat de nail art. Tehnici complexe: acuarelă, micropainting, chrome, babyboomer perfect, marble, foil art.",
-      priceFrom: 35000,
-      priceTo: 200000,
-      level: "avansat",
-      duration: "3 zile",
-      includes: [
-        "Diplomă de absolvire",
-        "Materiale premium incluse",
-        "Tehnici avansate de pictură",
-        "Portofoliu foto profesional",
-      ],
-      featured: true,
-      imageUrl:
-        "https://academy.emmanails.ro/wp-content/uploads/2024/10/curs-nail-art-avansat.jpg",
+      slug: "curs-perfectionare-gel-nivel-3",
+      name: "Curs perfecționare gel — Nivel 3",
+      description: "Cel mai avansat nivel de perfecționare. Tehnici de top, forme extreme, nail art complex.",
+      priceFrom: 35000, priceTo: 250000, level: "avansat", duration: "3 zile",
+      curriculum: [],
+      includes: ["Diplomă de absolvire", "Practică pe model real"],
+      dates: ["11-13 Mai", "17-19 Iunie", "15-17 Iulie"],
+      hasAccreditation: false, featured: true,
+      imageUrl: "https://academy.emmanails.ro/wp-content/uploads/2024/04/e2138287-df35-4c04-98e6-95ed273f9d78.jpg",
+      images: ["https://academy.emmanails.ro/wp-content/uploads/2024/04/e2138287-df35-4c04-98e6-95ed273f9d78.jpg","https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2024-04-25-at-22.06.31-2.jpeg","https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2024-04-25-at-22.07.55-1.jpeg","https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2025-06-09-at-12.20.48.webp"],
     },
     {
-      slug: "curs-manichiura-combinata",
-      name: "Curs manichiură combinată",
-      description:
-        "Cursul complet de manichiură combinată: tehnica rusească cu freză + clasică. Pregătirea perfectă a unghiei naturale.",
-      priceFrom: 25000,
-      priceTo: 160000,
-      level: "incepator",
-      duration: "2 zile",
-      includes: [
-        "Diplomă de absolvire",
-        "Tehnica rusească cu freză",
-        "Manichiură clasică",
-        "Practică pe model",
-      ],
-      featured: false,
-      imageUrl:
-        "https://academy.emmanails.ro/wp-content/uploads/2024/10/curs-manichiura.jpg",
+      slug: "curs-fast-tips-manicure",
+      name: "Curs Fast Tips Manicure",
+      description: "Curs practic pentru tehnica fast tips. Construirea formelor cu French Glass, pilirea și finisarea.",
+      priceFrom: 20000, priceTo: 120000, level: "mediu", duration: "2 zile",
+      curriculum: ["Construirea formelor cu tehnica French Glass","Pilirea și finisarea french-ului pentru transparență","Realizarea lucrării complete și sesiune foto pentru portofoliu"],
+      includes: ["Diplomă de absolvire", "Practică pe model real", "Toate lucrările afișate sunt realizate de cursante"],
+      dates: ["15-16 Aprilie", "7-8 Mai", "4-5 Iunie", "2-3 Iulie", "30-31 Iulie", "3-4 Septembrie"],
+      hasAccreditation: false, featured: false,
+      imageUrl: "https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2025-06-09-at-10.41.15-1.webp",
+      images: ["https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2025-06-09-at-10.41.15-1.webp","https://academy.emmanails.ro/wp-content/uploads/2024/12/316dd4a8-0794-4ac2-8b91-073c4ba69be1.jpg","https://academy.emmanails.ro/wp-content/uploads/2024/12/WhatsApp-Image-2025-06-03-at-11.51.08-7.jpeg"],
     },
     {
-      slug: "curs-pedichiura-estetica",
-      name: "Curs pedichiură estetică",
-      description:
-        "Curs complet de pedichiură estetică. Tehnici de prelucrare profesională, tratarea calusurilor, și aplicarea gelului pe unghiile de la picioare.",
-      priceFrom: 30000,
-      priceTo: 190000,
-      level: "mediu",
-      duration: "3 zile",
-      includes: [
-        "Diplomă de absolvire",
-        "Tehnici de pedichiură estetică",
-        "Prelucrare profesională",
-        "Practică pe model",
-      ],
-      featured: false,
-      imageUrl:
-        "https://academy.emmanails.ro/wp-content/uploads/2024/10/curs-pedichiura.jpg",
+      slug: "curs-intretinere-schimbarea-arhitecturii",
+      name: "Curs întreținere cu schimbarea arhitecturii",
+      description: "Cursul are o durată de 1 zi și se lucrează 8-10 ore/zi. Învață tehnica completă de întreținere cu schimbarea formei unghiei.",
+      priceFrom: 15000, priceTo: 100000, level: "mediu", duration: "1 zi",
+      curriculum: ["Tehnica completă de întreținere", "Schimbarea arhitecturii unghiei", "Practică intensivă 8-10 ore"],
+      includes: ["Diplomă de absolvire", "Practică pe model real"],
+      dates: ["20 Februarie", "3 Martie", "8 Mai", "5 Iunie", "3 Iulie", "31 Iulie", "4 Septembrie"],
+      hasAccreditation: false, featured: false,
+      imageUrl: "https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2024-07-10-at-13.46.40-1.jpeg",
+      images: ["https://academy.emmanails.ro/wp-content/uploads/2024/04/f4f8ff5b-e9a2-42da-96e8-5f06dc58a225.jpg","https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2024-06-07-at-16.22.35.jpeg","https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2024-07-10-at-13.46.40-1.jpeg"],
+    },
+    {
+      slug: "curs-intretinere-simpla",
+      name: "Curs întreținere simplă",
+      description: "Curs de o zi dedicat tehnicii de întreținere simplă a unghiilor construite.",
+      priceFrom: 10000, priceTo: 80000, level: "incepator", duration: "1 zi",
+      curriculum: ["Tehnica de întreținere simplă", "Practică pe model real"],
+      includes: ["Diplomă de absolvire", "Practică pe model real"],
+      dates: ["23 Ianuarie", "13 Februarie", "13 Martie", "1 Mai", "29 Mai", "26 Iunie", "24 Iulie", "27 August"],
+      hasAccreditation: false, featured: false,
+      imageUrl: "https://academy.emmanails.ro/wp-content/uploads/2024/04/3abd0d45-45a2-46dc-9988-e4345e03d24f.jpg",
+      images: ["https://academy.emmanails.ro/wp-content/uploads/2024/04/3abd0d45-45a2-46dc-9988-e4345e03d24f.jpg","https://academy.emmanails.ro/wp-content/uploads/2024/04/4cb4f10b-54c7-4771-b2a9-25278a94234a.jpg","https://academy.emmanails.ro/wp-content/uploads/2024/04/WhatsApp-Image-2025-06-09-at-11.19.42-3.webp"],
+    },
+    {
+      slug: "curs-oja-semipermanenta",
+      name: "Curs aplicare ojă semipermanentă",
+      description: "Curs practic de o zi pentru tehnica completă de aplicare a ojei semipermanente.",
+      priceFrom: 10000, priceTo: 60000, level: "incepator", duration: "1 zi",
+      curriculum: ["Tehnica completă de aplicare ojă semipermanentă", "Pregătirea unghiei naturale", "Practică pe model real"],
+      includes: ["Diplomă de absolvire", "Practică pe model real"],
+      dates: ["19 Ianuarie", "9 Februarie", "9 Martie", "27 Aprilie", "25 Mai", "22 Iunie", "20 Iulie", "24 August"],
+      hasAccreditation: false, featured: false,
+      imageUrl: "https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2024-04-16-at-11.33.22.jpeg",
+      images: ["https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2024-04-16-at-11.33.22.jpeg","https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2024-04-25-at-22.04.01-1.jpeg","https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2025-06-09-at-12.02.48.webp"],
     },
     {
       slug: "curs-pedichiura-complexa",
       name: "Curs pedichiură complexă",
-      description:
-        "Cursul cel mai complet de pedichiură. Include tehnici avansate pentru cazuri complexe: unghii încarnate, micoze, bătături, și reconstrucție.",
-      priceFrom: 40000,
-      priceTo: 280000,
-      level: "avansat",
-      duration: "5 zile",
-      includes: [
-        "Diplomă de absolvire",
-        "Kit profesional inclus (varianta cu kit)",
-        "Tehnici pentru cazuri complexe",
-        "Unghii încarnate și bătături",
-        "Practică pe model real",
-      ],
-      featured: true,
-      imageUrl:
-        "https://academy.emmanails.ro/wp-content/uploads/2024/10/curs-pedichiura-complexa.jpg",
+      description: "Cursul cel mai complet de pedichiură. Include tehnici avansate pentru cazuri complexe: unghii încarnate, micoze, bătături, și reconstrucție.",
+      priceFrom: 40000, priceTo: 280000, level: "avansat", duration: "3 zile",
+      curriculum: ["Tehnici avansate pedichiură", "Unghii încarnate", "Micoze și bătături", "Reconstrucție"],
+      includes: ["Diplomă de absolvire acreditată", "Practică cu 2 modele pe zi"],
+      dates: ["26-28 Ianuarie", "23-25 Februarie", "20-22 Aprilie", "18-20 Mai", "10-12 Iunie", "6-8 Iulie", "17-19 August"],
+      hasAccreditation: true, featured: true,
+      imageUrl: "https://academy.emmanails.ro/wp-content/uploads/2024/04/957ceb81-2e15-46a9-b978-a7ac26d8cc51.jpg",
+      images: ["https://academy.emmanails.ro/wp-content/uploads/2024/04/957ceb81-2e15-46a9-b978-a7ac26d8cc51.jpg","https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2024-07-10-at-15.22.46.jpeg","https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2024-07-10-at-15.22.47-1.jpeg","https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2024-07-10-at-15.22.48-1.jpeg","https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2024-11-28-at-14.04.02.jpeg"],
     },
     {
       slug: "curs-sisteme-corectie",
       name: "Curs sisteme de corecție",
-      description:
-        "Curs specializat pe sistemele moderne de corecție a unghiilor încarnate. Aplicarea bracketurilor, plăcuțelor și tehnicilor non-invazive.",
-      priceFrom: 30000,
-      priceTo: 180000,
-      level: "avansat",
-      duration: "2 zile",
-      includes: [
-        "Diplomă de absolvire",
-        "Sisteme de corecție incluse",
-        "Tehnici non-invazive",
-        "Practică pe model real",
-      ],
-      featured: false,
-      imageUrl:
-        "https://academy.emmanails.ro/wp-content/uploads/2024/10/curs-corectie.jpg",
+      description: "Curs specializat pe sistemele moderne de corecție a unghiilor încarnate. Aplicarea bracketurilor, plăcuțelor și tehnicilor non-invazive.",
+      priceFrom: 30000, priceTo: 180000, level: "avansat", duration: "2 zile",
+      curriculum: ["Sisteme de corecție moderne", "Aplicarea bracketurilor", "Tehnici non-invazive"],
+      includes: ["Diplomă de absolvire", "Practică pe model real"],
+      dates: ["29-30 Ianuarie", "26-27 Februarie", "21-22 Mai", "15-16 Iunie", "9-10 Iulie", "20-21 August"],
+      hasAccreditation: false, featured: false,
+      imageUrl: "https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2024-07-10-at-15.19.54-1.jpeg",
+      images: ["https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2024-07-10-at-15.19.54-1.jpeg","https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2024-07-10-at-15.19.55-1.jpeg","https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2025-06-09-at-13.12.17-1.webp"],
     },
     {
-      slug: "curs-gel-x-tips",
-      name: "Curs Gel X / Tips",
-      description:
-        "Curs practic pentru tehnica Gel X cu tipsuri soft gel. Metoda rapidă de extensie — aplicare în 30 de minute.",
-      priceFrom: 20000,
-      priceTo: 120000,
-      level: "incepator",
-      duration: "1 zi",
-      includes: [
-        "Diplomă de absolvire",
-        "Kit tipsuri inclus",
-        "Tehnica completă Gel X",
-        "Practică intensivă",
-      ],
-      featured: false,
-      imageUrl:
-        "https://academy.emmanails.ro/wp-content/uploads/2024/10/curs-gel-x.jpg",
-    },
-    {
-      slug: "curs-instructor-nail",
-      name: "Curs instructor / trainer nail",
-      description:
-        "Cursul pentru cele care vor să devină instructoare. Pedagogie, metodologie de predare, construirea unui curriculum, și managementul claselor.",
-      priceFrom: 50000,
-      priceTo: 350000,
-      level: "avansat",
-      duration: "5 zile",
-      includes: [
-        "Diplomă de instructor acreditată",
-        "Metodologie de predare",
-        "Curriculum complet",
-        "Mentorat post-curs",
-        "Acces grup privat instructori",
-      ],
-      featured: false,
-      imageUrl:
-        "https://academy.emmanails.ro/wp-content/uploads/2024/10/curs-instructor.jpg",
-    },
-    {
-      slug: "masterclass-emma-nails",
-      name: "Masterclass Emma Nails",
-      description:
-        "Masterclass exclusiv cu Emma. Tehnici de top, secretele din 15+ ani de experiență, demonstrații live, și sesiune Q&A.",
-      priceFrom: 60000,
-      priceTo: 60000,
-      level: "avansat",
-      duration: "1 zi",
-      includes: [
-        "Certificat de participare",
-        "Demonstrații live Emma",
-        "Sesiune Q&A",
-        "Kit cadou Emma Nails",
-        "Networking cu profesioniști",
-      ],
-      featured: true,
-      imageUrl:
-        "https://academy.emmanails.ro/wp-content/uploads/2024/10/masterclass.jpg",
+      slug: "curs-smart-pedicure",
+      name: "Curs Smart Pedicure — Pedichiură Estetică",
+      description: "Curs complet de pedichiură estetică. Tehnici moderne de prelucrare profesională.",
+      priceFrom: 25000, priceTo: 160000, level: "mediu", duration: "2 zile",
+      curriculum: ["Pedichiură estetică modernă", "Tehnici de prelucrare profesională"],
+      includes: ["Diplomă de absolvire", "Practică pe model"],
+      dates: ["2-3 Februarie", "23-24 Aprilie", "14-15 Mai", "8-9 Iunie", "13-14 Iulie", "3-4 August"],
+      hasAccreditation: true, featured: false,
+      imageUrl: "https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2024-04-25-at-22.00.14.jpeg",
+      images: ["https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2024-04-25-at-22.00.13.jpeg","https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2024-04-25-at-22.00.14.jpeg","https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2024-07-10-at-14.20.53-1.jpeg","https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2025-09-21-at-09.29.26-2.jpeg"],
     },
   ];
 
-  for (const course of courses) {
-    await prisma.course.upsert({
-      where: { slug: course.slug },
-      update: course,
-      create: course,
-    });
+  await prisma.course.deleteMany({});
+  for (const c of courses) {
+    await prisma.course.create({ data: c });
   }
   console.log(`✅ ${courses.length} courses seeded`);
 
   // ─── DISCOUNT CODES ──────────────────────────────────────
   const discountCodes = [
-    {
-      code: "WELCOME10",
-      type: "percentage",
-      value: 10,
-      minOrderValue: 10000, // min 100 lei
-      maxUses: null,
-      active: true,
-      expiresAt: null,
-    },
-    {
-      code: "EMMA20",
-      type: "percentage",
-      value: 20,
-      minOrderValue: 20000, // min 200 lei
-      maxUses: 100,
-      active: true,
-      expiresAt: new Date("2026-12-31"),
-    },
-    {
-      code: "LIVRARE0",
-      type: "fixed",
-      value: 2000, // 20 lei discount (covers standard shipping)
-      minOrderValue: 15000, // min 150 lei
-      maxUses: null,
-      active: true,
-      expiresAt: null,
-    },
-    {
-      code: "ABSOLVENT15",
-      type: "percentage",
-      value: 15,
-      minOrderValue: 5000,
-      maxUses: null,
-      active: true,
-      expiresAt: null,
-    },
+    { code: "WELCOME10", type: "percentage", value: 10, minOrderValue: 10000, active: true },
+    { code: "EMMA20", type: "percentage", value: 20, minOrderValue: 20000, maxUses: 100, active: true, expiresAt: new Date("2026-12-31") },
+    { code: "LIVRARE0", type: "fixed", value: 2000, minOrderValue: 15000, active: true },
+    { code: "ABSOLVENT15", type: "percentage", value: 15, minOrderValue: 5000, active: true },
   ];
-
   for (const dc of discountCodes) {
-    await prisma.discountCode.upsert({
-      where: { code: dc.code },
-      update: dc,
-      create: dc,
-    });
+    await prisma.discountCode.upsert({ where: { code: dc.code }, update: dc, create: dc });
   }
   console.log(`✅ ${discountCodes.length} discount codes seeded`);
 
@@ -702,12 +457,7 @@ async function main() {
   await prisma.user.upsert({
     where: { email: "test@emmanails.ro" },
     update: { passwordHash: testPasswordHash },
-    create: {
-      email: "test@emmanails.ro",
-      name: "Maria Test",
-      phone: "0740000000",
-      passwordHash: testPasswordHash,
-    },
+    create: { email: "test@emmanails.ro", name: "Maria Test", phone: "0740000000", passwordHash: testPasswordHash },
   });
   console.log("✅ Test user seeded (test@emmanails.ro / test1234)");
 
@@ -715,10 +465,5 @@ async function main() {
 }
 
 main()
-  .catch((e) => {
-    console.error(e);
-    process.exit(1);
-  })
-  .finally(async () => {
-    await prisma.$disconnect();
-  });
+  .catch((e) => { console.error(e); process.exit(1); })
+  .finally(async () => { await prisma.$disconnect(); });
