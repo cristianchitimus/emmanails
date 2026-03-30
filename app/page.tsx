@@ -96,7 +96,6 @@ export default async function HomePage() {
               <h2 className="font-body text-base md:text-lg font-semibold uppercase tracking-[0.25em] text-dark">
                 <TextWipe>CELE MAI POPULARE</TextWipe>
               </h2>
-              </h2>
             </div>
           </ScrollReveal>
 
