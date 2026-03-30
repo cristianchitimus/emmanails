@@ -74,6 +74,34 @@ export default async function CourseDetailPage({ params }: Props) {
                 </div>
               )}
 
+              {/* ── Structura curs (day-by-day) ── */}
+              {course.curriculum && course.curriculum.length > 0 && (
+                <div>
+                  <h2 className="font-display text-2xl font-semibold mb-2">Structura curs</h2>
+                  <p className="font-body text-sm text-dark-400 mb-4">
+                    Cursul are o durată de {course.duration} și se lucrează 8-10 ore/zi:
+                  </p>
+                  <div className="space-y-2">
+                    {course.curriculum.map((item, idx) => {
+                      const dayMatch = item.match(/^(Ziua \d+):?\s*(.*)/);
+                      return (
+                        <div key={idx} className="border border-dark-100 rounded-sm overflow-hidden">
+                          <div className="bg-dark-50 px-4 py-2.5 font-body text-sm font-semibold text-dark">
+                            {dayMatch ? dayMatch[1] : `Ziua ${idx + 1}`}
+                          </div>
+                          {dayMatch && dayMatch[2] && (
+                            <div className="px-4 py-2.5">
+                              <p className="font-body text-sm text-dark-500">{dayMatch[2]}</p>
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {/* ── Ce include cursul ── */}
               {course.includes.length > 0 && (
                 <div>
                   <h2 className="font-display text-xl font-medium mb-4">Ce include cursul</h2>
@@ -90,23 +118,98 @@ export default async function CourseDetailPage({ params }: Props) {
                 </div>
               )}
 
-              {course.curriculum && course.curriculum.length > 0 && (
-                <div>
-                  <h2 className="font-display text-xl font-medium mb-4">Ce vei învăța</h2>
-                  <ul className="space-y-2">
-                    {course.curriculum.map((item, idx) => (
-                      <li key={idx} className="flex items-start gap-3">
-                        <span className="font-display text-sm font-bold text-pink mt-0.5 flex-shrink-0 w-5 text-center">{idx + 1}</span>
-                        <span className="font-body text-sm text-dark-500">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
+              {/* ── Post de lucru asigurat ── */}
+              <div>
+                <h2 className="font-display text-2xl font-semibold mb-2">Post de lucru asigurat</h2>
+                <p className="font-body text-sm text-dark-400 mb-4">
+                  Școala noastră vă asigura un post de lucru dotat cu:
+                </p>
+                <ul className="space-y-2">
+                  {["Freză profesională STRONG 210 putere 64W", "Lampă LED 36W", "Toate materialele necesare"].map((item, i) => (
+                    <li key={i} className="flex items-center gap-2">
+                      <svg className="w-4 h-4 text-dark flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span className="font-body text-sm text-dark-500">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
-              <div className="bg-nude-50 rounded-sm p-5">
-                <p className="font-body text-xs text-dark/40 mb-1">ℹ️ Informații practice</p>
-                <p className="font-body text-sm text-dark-500">Cursanta își va asigura modelul de practică dacă e posibil. Se lucrează o mână — 1 model la 2 cursante. Toate lucrările afișate sunt realizate de către cursante în cadrul cursului.</p>
+              {/* ── Mențiuni ── */}
+              <div className="bg-neutral-50 border border-dark-100 rounded-sm p-5">
+                <h3 className="font-display text-base font-semibold mb-3">Mențiuni</h3>
+                <ul className="space-y-2 list-disc list-inside">
+                  <li className="font-body text-sm text-dark-500">Cursanta își va asigura modelul de practică dacă e posibil</li>
+                  <li className="font-body text-sm text-dark-500">Se lucrează o mână — 1 model la 2 cursante.</li>
+                  <li className="font-body text-sm text-dark-500">Toate lucrările afișate sunt realizate de către cursante în cadrul cursului</li>
+                </ul>
+              </div>
+
+              {/* ── Toți participanții la curs primesc ── */}
+              <div>
+                <h2 className="font-display text-2xl font-semibold mb-5">Toți participanții la curs primesc</h2>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="border border-dark-100 rounded-sm p-5">
+                    <span className="text-2xl mb-2 block">📖</span>
+                    <h3 className="font-display text-base font-bold">Nail Book</h3>
+                    <p className="font-body text-xs text-dark-400 mt-1">Suport de curs cu toate schemele și teoria predată</p>
+                  </div>
+                  <div className="border border-dark-100 rounded-sm p-5">
+                    <span className="text-2xl mb-2 block">🎓</span>
+                    <h3 className="font-display text-base font-bold">Diplomă de participare</h3>
+                    <p className="font-body text-xs text-dark-400 mt-1">Semnată de școala noastră</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* ── Info grid ── */}
+              <div className="grid grid-cols-2 gap-3">
+                <div className="border border-dark-100 rounded-sm p-4 flex items-start gap-3">
+                  <span className="text-lg">📍</span>
+                  <div>
+                    <p className="font-body text-[10px] font-bold uppercase tracking-wider text-dark/40">Locație</p>
+                    <p className="font-body text-sm font-medium mt-0.5">Strada Anton Crihan 9, Iași</p>
+                  </div>
+                </div>
+                <div className="border border-dark-100 rounded-sm p-4 flex items-start gap-3">
+                  <span className="text-lg">📅</span>
+                  <div>
+                    <p className="font-body text-[10px] font-bold uppercase tracking-wider text-dark/40">Durată</p>
+                    <p className="font-body text-sm font-medium mt-0.5">{course.duration || "—"}</p>
+                  </div>
+                </div>
+                <div className="border border-dark-100 rounded-sm p-4 flex items-start gap-3">
+                  <span className="text-lg">📊</span>
+                  <div>
+                    <p className="font-body text-[10px] font-bold uppercase tracking-wider text-dark/40">Nivel</p>
+                    <p className="font-body text-sm font-medium mt-0.5 capitalize">{course.level || "—"}</p>
+                  </div>
+                </div>
+                <div className="border border-dark-100 rounded-sm p-4 flex items-start gap-3">
+                  <span className="text-lg">🎓</span>
+                  <div>
+                    <p className="font-body text-[10px] font-bold uppercase tracking-wider text-dark/40">Diplomă</p>
+                    <p className="font-body text-sm font-medium mt-0.5">{course.hasAccreditation ? "Diplomă acreditată" : "Diplomă de participare"}</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* ── Trainer ── */}
+              <div className="flex items-center gap-4 border-t border-dark-100 pt-6">
+                <div className="relative w-14 h-14 rounded-full overflow-hidden bg-neutral-200 flex-shrink-0">
+                  <Image
+                    src="https://emmanails.ro/wp-content/uploads/2025/04/image.jpg"
+                    alt="Emma Răileanu"
+                    fill
+                    className="object-cover object-top"
+                    sizes="56px"
+                  />
+                </div>
+                <div>
+                  <p className="font-display text-base font-semibold">Emma Răileanu</p>
+                  <p className="font-body text-xs text-dark/40">Trainer</p>
+                </div>
               </div>
             </div>
 
