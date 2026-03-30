@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ProductCard } from "@/components/ProductCard";
+import { ProductCarousel } from "@/components/ProductCarousel";
 
 interface Product {
   id: string;
@@ -24,7 +24,7 @@ interface ProductTabsProps {
 }
 
 export function ProductTabs({ allProducts, featuredProducts }: ProductTabsProps) {
-  const [activeTab, setActiveTab] = useState<"noutati" | "bestsellers" | "polygel" | "instrumente">("bestsellers");
+  const [activeTab, setActiveTab] = useState<"bestsellers" | "noutati" | "polygel" | "instrumente">("bestsellers");
 
   const tabs = [
     { id: "bestsellers" as const, label: "Bestsellers" },
@@ -38,21 +38,19 @@ export function ProductTabs({ allProducts, featuredProducts }: ProductTabsProps)
       case "bestsellers":
         return featuredProducts;
       case "noutati":
-        return [...allProducts].reverse().slice(0, 8);
+        return [...allProducts].reverse().slice(0, 10);
       case "polygel":
-        return allProducts.filter((p) => p.category === "polygel").slice(0, 8);
+        return allProducts.filter((p) => p.category === "polygel").slice(0, 10);
       case "instrumente":
-        return allProducts.filter((p) => p.category === "instrumente").slice(0, 8);
+        return allProducts.filter((p) => p.category === "instrumente").slice(0, 10);
     }
   };
-
-  const products = getProducts();
 
   return (
     <section className="py-12 md:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Tab headers */}
-        <div className="flex items-center justify-between mb-8 md:mb-12 border-b border-neutral-200">
+        <div className="flex items-center justify-between mb-8 md:mb-10 border-b border-neutral-200">
           <div className="flex gap-6 md:gap-10 overflow-x-auto hide-scrollbar">
             {tabs.map((tab) => (
               <button
@@ -76,12 +74,8 @@ export function ProductTabs({ allProducts, featuredProducts }: ProductTabsProps)
           </Link>
         </div>
 
-        {/* Products grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-          {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
+        {/* Carousel */}
+        <ProductCarousel products={getProducts()} />
 
         <div className="text-center mt-8 md:hidden">
           <Link

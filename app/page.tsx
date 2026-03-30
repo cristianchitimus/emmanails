@@ -4,6 +4,7 @@ import { prisma } from "@/lib/db";
 import { ProductTabs } from "@/components/ProductTabs";
 import { CourseCard } from "@/components/CourseCard";
 import { HeroSlider } from "@/components/HeroSlider";
+import { Testimonials } from "@/components/Testimonials";
 import { whatsappLink, formatPrice } from "@/lib/utils";
 
 export const revalidate = 60;
@@ -33,50 +34,55 @@ export default async function HomePage() {
       {/* ═══ HERO SLIDER — Annette-style carousel ═══ */}
       <HeroSlider />
 
-      {/* ═══ CATEGORY BANNERS — Two columns: Produse + Cursuri ═══ */}
-      <section className="bg-white py-3">
+      {/* ═══ CATEGORY BANNERS — Pink/nude bg like Annette ═══ */}
+      <section className="bg-[#F5E6D8] py-10 md:py-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <h2 className="font-display text-2xl md:text-3xl font-semibold mb-6 md:mb-8">
+            Descoperă gama<br />Emma Nails
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
             <Link
               href="/produse"
-              className="group relative h-[220px] md:h-[280px] overflow-hidden rounded-sm bg-neutral-100"
+              className="group block bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow"
             >
-              <Image
-                src="https://emmanails.ro/wp-content/uploads/2025/05/DSC_8271.jpg"
-                alt="Produse"
-                fill
-                className="object-cover group-hover:scale-105 transition-transform duration-700"
-                sizes="50vw"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-dark/60 via-dark/20 to-transparent" />
-              <div className="absolute bottom-6 left-6 z-10">
-                <span className="font-body text-[10px] font-bold uppercase tracking-[0.25em] text-white/70">
-                  {productCount} produse
-                </span>
-                <h3 className="font-display text-2xl md:text-3xl font-semibold text-white mt-1">
+              <div className="relative h-[200px] md:h-[260px] overflow-hidden">
+                <Image
+                  src="https://emmanails.ro/wp-content/uploads/2025/05/DSC_8271.jpg"
+                  alt="Produse"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  sizes="50vw"
+                />
+              </div>
+              <div className="flex items-center justify-between p-4">
+                <h3 className="font-body text-sm font-medium text-dark">
                   Shop Produse
                 </h3>
+                <svg className="w-4 h-4 text-dark/40 group-hover:text-pink transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M17 7H7M17 7v10" />
+                </svg>
               </div>
             </Link>
             <Link
               href="/academie"
-              className="group relative h-[220px] md:h-[280px] overflow-hidden rounded-sm bg-neutral-100"
+              className="group block bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow"
             >
-              <Image
-                src="https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2024-07-10-at-13.46.40-1.jpeg"
-                alt="Cursuri"
-                fill
-                className="object-cover group-hover:scale-105 transition-transform duration-700"
-                sizes="50vw"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-dark/60 via-dark/20 to-transparent" />
-              <div className="absolute bottom-6 left-6 z-10">
-                <span className="font-body text-[10px] font-bold uppercase tracking-[0.25em] text-white/70">
-                  {courseCount} cursuri acreditate
-                </span>
-                <h3 className="font-display text-2xl md:text-3xl font-semibold text-white mt-1">
+              <div className="relative h-[200px] md:h-[260px] overflow-hidden">
+                <Image
+                  src="https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2024-07-10-at-13.46.40-1.jpeg"
+                  alt="Cursuri"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  sizes="50vw"
+                />
+              </div>
+              <div className="flex items-center justify-between p-4">
+                <h3 className="font-body text-sm font-medium text-dark">
                   Academie & Cursuri
                 </h3>
+                <svg className="w-4 h-4 text-dark/40 group-hover:text-pink transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M17 7H7M17 7v10" />
+                </svg>
               </div>
             </Link>
           </div>
@@ -157,15 +163,18 @@ export default async function HomePage() {
         </section>
       )}
 
+      {/* ═══ TESTIMONIALS ═══ */}
+      <Testimonials />
+
       {/* ═══ BENEFITS BAR ═══ */}
-      <section className="py-10 md:py-14 bg-neutral-50 border-y border-neutral-100">
+      <section className="py-12 md:py-16 bg-[#F5E6D8]/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
-              { icon: "📦", title: "Livrare rapidă", desc: "Comenzi procesate în 24h" },
-              { icon: "🎓", title: "Diplomă acreditată", desc: "Certificare oficială" },
-              { icon: "✨", title: "Formulă originală", desc: "Dezvoltată din experiență" },
-              { icon: "💬", title: "Suport WhatsApp", desc: "Răspundem rapid" },
+              { icon: "📦", title: "Livrare gratuită", desc: "La comenzi peste 200 lei" },
+              { icon: "🎓", title: "Diplomă acreditată", desc: "Certificare oficială la cursuri" },
+              { icon: "✨", title: "Formulă originală", desc: "PolyGel dezvoltat din experiență" },
+              { icon: "💬", title: "Customer service", desc: "Răspundem rapid pe WhatsApp" },
             ].map((item, i) => (
               <div key={i} className="text-center">
                 <span className="text-xl">{item.icon}</span>
