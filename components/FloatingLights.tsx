@@ -29,7 +29,7 @@ export function FloatingLights({ color = "pink", count = 6, opacity = 0.07 }: Fl
 
     for (let i = 0; i < count; i++) {
       const orb = document.createElement("div");
-      const size = 80 + Math.random() * 200;
+      const size = 120 + Math.random() * 280;
       const c = palette[Math.floor(Math.random() * palette.length)];
       const x = Math.random() * 100;
       const y = Math.random() * 100;
@@ -42,12 +42,12 @@ export function FloatingLights({ color = "pink", count = 6, opacity = 0.07 }: Fl
         height: ${size}px;
         left: ${x}%;
         top: ${y}%;
-        background: radial-gradient(circle, rgba(${c},${opacity}) 0%, rgba(${c},0) 70%);
+        background: radial-gradient(circle, rgba(${c},${opacity}) 0%, rgba(${c},${opacity * 0.4}) 40%, rgba(${c},0) 70%);
         border-radius: 50%;
         pointer-events: none;
         animation: floatOrb${i % 3} ${duration}s ease-in-out ${delay}s infinite;
         will-change: transform;
-        filter: blur(${30 + Math.random() * 40}px);
+        filter: blur(${20 + Math.random() * 30}px);
       `;
 
       container.appendChild(orb);
