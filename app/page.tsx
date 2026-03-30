@@ -5,7 +5,6 @@ import { ProductCard } from "@/components/ProductCard";
 import { CourseCard } from "@/components/CourseCard";
 import { SplitVideoHero } from "@/components/SplitVideoHero";
 import { ScrollReveal } from "@/components/ScrollReveal";
-import { FloatingLights } from "@/components/FloatingLights";
 import { whatsappLink } from "@/lib/utils";
 
 export const revalidate = 60;
@@ -49,8 +48,7 @@ export default async function HomePage() {
       {/* ═══════════════════════════════════════════════════════
           CATEGORY BANNERS — 3 full-width, more spacing
       ═══════════════════════════════════════════════════════ */}
-      <section className="bg-white py-6 md:py-8 relative overflow-hidden">
-        <FloatingLights color="nude" count={4} opacity={0.06} />
+      <section className="py-6 md:py-8 relative overflow-hidden" style={{ background: "linear-gradient(180deg, #ffffff 0%, #fef8fa 100%)" }}>
         <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
             {[
@@ -86,8 +84,7 @@ export default async function HomePage() {
       {/* ═══════════════════════════════════════════════════════
           BEST SELLERS — 4 equal large cards, more spacing
       ═══════════════════════════════════════════════════════ */}
-      <section className="py-16 md:py-24 bg-white relative overflow-hidden">
-        <FloatingLights color="pink" count={5} opacity={0.07} />
+      <section className="py-16 md:py-24 relative overflow-hidden" style={{ background: "linear-gradient(180deg, #fef8fa 0%, #ffffff 50%, #fef5f8 100%)" }}>
         <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal animation="fade-up">
             <div className="text-center mb-10 md:mb-14">
@@ -118,8 +115,7 @@ export default async function HomePage() {
       {/* ═══════════════════════════════════════════════════════
           COURSES — Large cards, more spacing
       ═══════════════════════════════════════════════════════ */}
-      <section className="py-16 md:py-24 relative overflow-hidden" style={{ background: "linear-gradient(180deg, #fdf5ef 0%, #fff8f2 40%, #ffffff 100%)" }}>
-        <FloatingLights color="nude" count={6} opacity={0.06} />
+      <section className="py-16 md:py-24 relative overflow-hidden" style={{ background: "linear-gradient(180deg, #fce4ec 0%, #ffeef5 30%, #ffffff 100%)" }}>
         <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal animation="fade-up">
             <div className="text-center mb-10 md:mb-14">
@@ -162,8 +158,7 @@ export default async function HomePage() {
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
           </ScrollReveal>
-          <div className="flex items-center px-8 md:px-16 lg:px-20 py-16 md:py-20 relative overflow-hidden" style={{ background: "linear-gradient(135deg, #F5E6D3 0%, #fdf0e5 50%, #fff8f2 100%)" }}>
-            <FloatingLights color="pink" count={5} opacity={0.06} />
+          <div className="flex items-center px-8 md:px-16 lg:px-20 py-16 md:py-20 relative overflow-hidden" style={{ background: "linear-gradient(135deg, #fce4ec 0%, #f8bbd0 30%, #fce4ec 60%, #fff5f8 100%)" }}>
             <ScrollReveal animation="fade-left" delay={200}>
               <div className="max-w-md">
                 <p className="section-label mb-4">Despre Emma</p>
@@ -187,8 +182,7 @@ export default async function HomePage() {
       {/* ═══════════════════════════════════════════════════════
           BENEFITS — 4 icons
       ═══════════════════════════════════════════════════════ */}
-      <section className="py-16 md:py-20 bg-white border-t border-dark-100/30 relative overflow-hidden">
-        <FloatingLights color="mixed" count={4} opacity={0.06} />
+      <section className="py-16 md:py-20 border-t border-pink-100/50 relative overflow-hidden" style={{ background: "linear-gradient(180deg, #ffffff 0%, #fef5f8 50%, #fce4ec 100%)" }}>
         <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-8">
             {[
@@ -214,8 +208,7 @@ export default async function HomePage() {
       {/* ═══════════════════════════════════════════════════════
           GALLERY — More spacing between photos
       ═══════════════════════════════════════════════════════ */}
-      <section className="py-16 md:py-24 bg-white relative overflow-hidden">
-        <FloatingLights color="pink" count={4} opacity={0.06} />
+      <section className="py-16 md:py-24 relative overflow-hidden" style={{ background: "linear-gradient(180deg, #fce4ec 0%, #ffffff 40%, #fef8fa 100%)" }}>
         <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal animation="fade-up">
             <div className="text-center mb-10 md:mb-14">
@@ -241,8 +234,7 @@ export default async function HomePage() {
       {/* ═══════════════════════════════════════════════════════
           STATS BAR
       ═══════════════════════════════════════════════════════ */}
-      <section className="py-12 md:py-16 border-y border-pink-100 relative overflow-hidden" style={{ background: "linear-gradient(135deg, #fce4ec 0%, #fff0f5 50%, #fdf5ef 100%)" }}>
-        <FloatingLights color="white" count={5} opacity={0.1} />
+      <section className="py-12 md:py-16 border-y border-pink-200 relative overflow-hidden" style={{ background: "linear-gradient(135deg, #f8bbd0 0%, #fce4ec 40%, #f3e5f5 100%)" }}>
         <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
             {[
@@ -265,10 +257,9 @@ export default async function HomePage() {
       {/* ═══════════════════════════════════════════════════════
           FINAL CTA
       ═══════════════════════════════════════════════════════ */}
-      <section className="py-20 md:py-28 bg-white relative overflow-hidden">
-        <FloatingLights color="mixed" count={7} opacity={0.1} />
-        <div className="absolute top-0 right-0 w-96 h-96 rounded-full blur-3xl" style={{ background: "radial-gradient(circle, rgba(212,83,126,0.08) 0%, transparent 70%)" }} />
-        <div className="absolute bottom-0 left-0 w-72 h-72 rounded-full blur-3xl" style={{ background: "radial-gradient(circle, rgba(245,230,211,0.3) 0%, transparent 70%)" }} />
+      <section className="py-20 md:py-28 relative overflow-hidden" style={{ background: "linear-gradient(180deg, #fef8fa 0%, #ffffff 40%, #fce4ec 100%)" }}>
+        <div className="absolute top-0 right-0 w-96 h-96 rounded-full blur-3xl" style={{ background: "radial-gradient(circle, rgba(212,83,126,0.12) 0%, transparent 70%)" }} />
+        <div className="absolute bottom-0 left-0 w-72 h-72 rounded-full blur-3xl" style={{ background: "radial-gradient(circle, rgba(248,187,208,0.2) 0%, transparent 70%)" }} />
         <div className="relative z-10 max-w-3xl mx-auto px-4 text-center">
           <ScrollReveal animation="scale">
             <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-medium leading-tight">

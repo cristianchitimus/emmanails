@@ -166,8 +166,8 @@
 .gradient-pink {
   background: linear-gradient(135deg, #D4537E 0%, #e8789e 50%, #f0a0b8 100%);
 }
-.gradient-nude {
-  background: linear-gradient(135deg, #F5E6D3 0%, #fdf0e5 50%, #fff8f2 100%);
+.gradient-rose {
+  background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 50%, #fce4ec 100%);
 }
 .gradient-dark {
   background: linear-gradient(135deg, #1A1A1A 0%, #2d2d2d 50%, #3a3a3a 100%);
@@ -175,9 +175,8 @@
 .gradient-pink-dark {
   background: linear-gradient(135deg, #D4537E 0%, #1A1A1A 100%);
 }
-.gradient-glass {
-  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
-  backdrop-filter: blur(10px);
+.gradient-blush {
+  background: linear-gradient(135deg, #fce4ec 0%, #f3e5f5 50%, #fce4ec 100%);
 }
 
 /* ─── PARALLAX-LIKE SMOOTH ─── */
