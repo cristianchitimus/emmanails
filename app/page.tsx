@@ -5,6 +5,7 @@ import { ProductCard } from "@/components/ProductCard";
 import { CourseCard } from "@/components/CourseCard";
 import { SplitVideoHero } from "@/components/SplitVideoHero";
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { FloatingLights } from "@/components/FloatingLights";
 import { whatsappLink } from "@/lib/utils";
 
 export const revalidate = 60;
@@ -84,8 +85,9 @@ export default async function HomePage() {
       {/* ═══════════════════════════════════════════════════════
           BEST SELLERS — 4 equal large cards, more spacing
       ═══════════════════════════════════════════════════════ */}
-      <section className="py-16 md:py-24 bg-white">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-16 md:py-24 bg-white relative overflow-hidden">
+        <FloatingLights color="pink" count={5} opacity={0.04} />
+        <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal animation="fade-up">
             <div className="text-center mb-10 md:mb-14">
               <h2 className="font-body text-base md:text-lg font-semibold uppercase tracking-[0.25em] text-dark">
@@ -115,8 +117,9 @@ export default async function HomePage() {
       {/* ═══════════════════════════════════════════════════════
           COURSES — Large cards, more spacing
       ═══════════════════════════════════════════════════════ */}
-      <section className="py-16 md:py-24" style={{ background: "linear-gradient(180deg, #fdf5ef 0%, #fff8f2 40%, #ffffff 100%)" }}>
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-16 md:py-24 relative overflow-hidden" style={{ background: "linear-gradient(180deg, #fdf5ef 0%, #fff8f2 40%, #ffffff 100%)" }}>
+        <FloatingLights color="nude" count={6} opacity={0.06} />
+        <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal animation="fade-up">
             <div className="text-center mb-10 md:mb-14">
               <p className="section-label mb-3">Academie</p>
@@ -182,8 +185,9 @@ export default async function HomePage() {
       {/* ═══════════════════════════════════════════════════════
           BENEFITS — 4 icons
       ═══════════════════════════════════════════════════════ */}
-      <section className="py-16 md:py-20 bg-white border-t border-dark-100/30">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-16 md:py-20 bg-white border-t border-dark-100/30 relative overflow-hidden">
+        <FloatingLights color="mixed" count={4} opacity={0.03} />
+        <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-8">
             {[
               { icon: "✨", title: "Formulă Originală", desc: "Polygel dezvoltat din 15+ ani de experiență" },
@@ -208,8 +212,9 @@ export default async function HomePage() {
       {/* ═══════════════════════════════════════════════════════
           GALLERY — More spacing between photos
       ═══════════════════════════════════════════════════════ */}
-      <section className="py-16 md:py-24 bg-white">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-16 md:py-24 bg-white relative overflow-hidden">
+        <FloatingLights color="pink" count={4} opacity={0.03} />
+        <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal animation="fade-up">
             <div className="text-center mb-10 md:mb-14">
               <p className="section-label mb-3">@emmanails</p>
@@ -234,8 +239,9 @@ export default async function HomePage() {
       {/* ═══════════════════════════════════════════════════════
           STATS BAR
       ═══════════════════════════════════════════════════════ */}
-      <section className="py-12 md:py-16 border-y border-pink-100" style={{ background: "linear-gradient(135deg, #fce4ec 0%, #fff0f5 50%, #fdf5ef 100%)" }}>
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-12 md:py-16 border-y border-pink-100 relative overflow-hidden" style={{ background: "linear-gradient(135deg, #fce4ec 0%, #fff0f5 50%, #fdf5ef 100%)" }}>
+        <FloatingLights color="white" count={5} opacity={0.08} />
+        <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
             {[
               { num: "15+", label: "Ani de Experiență" },
@@ -258,6 +264,7 @@ export default async function HomePage() {
           FINAL CTA
       ═══════════════════════════════════════════════════════ */}
       <section className="py-20 md:py-28 bg-white relative overflow-hidden">
+        <FloatingLights color="mixed" count={7} opacity={0.05} />
         <div className="absolute top-0 right-0 w-96 h-96 rounded-full blur-3xl" style={{ background: "radial-gradient(circle, rgba(212,83,126,0.08) 0%, transparent 70%)" }} />
         <div className="absolute bottom-0 left-0 w-72 h-72 rounded-full blur-3xl" style={{ background: "radial-gradient(circle, rgba(245,230,211,0.3) 0%, transparent 70%)" }} />
         <div className="relative z-10 max-w-3xl mx-auto px-4 text-center">
