@@ -1,11 +1,12 @@
 import { prisma } from "@/lib/db";
+import Image from "next/image";
 import { ProductCard } from "@/components/ProductCard";
 import { CategoryFilter } from "@/components/CategoryFilter";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Produse — Emma Nails",
-  description: "PolyGel Emma Nails, instrumente profesionale de manichiură și pedichiură.",
+  title: "Produse",
+  description: "Polygel Emma Nails, instrumente profesionale de manichiură și pedichiură.",
 };
 
 export const revalidate = 60;
@@ -25,24 +26,25 @@ export default async function ProdusePage({ searchParams }: Props) {
     _count: { id: true },
   });
 
+  const totalCount = categories.reduce((sum, c) => sum + c._count.id, 0);
+
   return (
     <>
-      {/* Header */}
-      <section className="bg-white pt-8 pb-6 md:pt-12 md:pb-8 border-b border-neutral-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <nav className="font-body text-[11px] text-dark/40 uppercase tracking-wider mb-4">
-            <span>Acasă</span> <span className="mx-1.5">/</span> <span className="text-dark">Produse</span>
-          </nav>
-          <h1 className="font-display text-3xl md:text-4xl font-semibold text-dark">
-            Produse
+      {/* Hero — light pink, Glamnetic style */}
+      <section className="relative bg-gradient-to-br from-white via-pink-50/50 to-nude-100 py-16 md:py-24 overflow-hidden">
+        <div className="absolute -top-20 -right-20 w-80 h-80 bg-pink/5 rounded-full blur-3xl" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <p className="section-label mb-3">Magazin</p>
+          <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-medium text-dark leading-tight">
+            Produse <span className="italic text-pink">profesionale</span>
           </h1>
-          <p className="font-body text-sm text-dark/50 mt-2">
-            {products.length} produse
+          <p className="font-body text-base md:text-lg text-dark-400 mt-4 max-w-xl">
+            Polygel Emma Nails cu formulă originală și instrumente premium pentru manichiură profesională.
           </p>
         </div>
       </section>
 
-      <section className="py-8 md:py-12 bg-white">
+      <section className="py-10 md:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <CategoryFilter
             categories={categories.map((c) => ({
@@ -52,7 +54,7 @@ export default async function ProdusePage({ searchParams }: Props) {
             }))}
           />
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 mt-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-5 mt-8">
             {products.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
@@ -60,7 +62,7 @@ export default async function ProdusePage({ searchParams }: Props) {
 
           {products.length === 0 && (
             <div className="text-center py-20">
-              <p className="font-body text-base text-dark/40">Nu s-au găsit produse în această categorie.</p>
+              <p className="font-display text-xl text-dark-400">Nu s-au găsit produse în această categorie.</p>
             </div>
           )}
         </div>
