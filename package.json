@@ -11,6 +11,7 @@
     "db:seed": "npx tsx prisma/seed.ts",
     "db:studio": "npx prisma studio",
     "db:reset": "npx prisma db push --force-reset && npm run db:seed",
+    "db:fix-images": "npx tsx prisma/fix-images.ts",
     "postinstall": "npx prisma generate"
   },
   "prisma": {
