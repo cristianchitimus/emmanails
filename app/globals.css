@@ -153,6 +153,27 @@
   @apply snap-start flex-shrink-0;
 }
 
+/* ─── TEXT WIPE ─── */
+.tw-hidden {
+  clip-path: inset(0 100% 0 0);
+}
+.tw-visible {
+  clip-path: inset(0 0% 0 0) !important;
+}
+
+/* ─── GLOW LINE ─── */
+.gl-hidden {
+  transform: scaleX(0);
+}
+.gl-visible {
+  transform: scaleX(1) !important;
+}
+
+@keyframes glowSweep {
+  0% { left: -60%; }
+  100% { left: 100%; }
+}
+
 /* ─── SCROLL REVEAL ─── */
 .sr-hidden {
   opacity: 0;

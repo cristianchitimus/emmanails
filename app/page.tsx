@@ -5,6 +5,9 @@ import { ProductCard } from "@/components/ProductCard";
 import { CourseCard } from "@/components/CourseCard";
 import { SplitVideoHero } from "@/components/SplitVideoHero";
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { TextWipe } from "@/components/TextWipe";
+import { GlowLine } from "@/components/GlowLine";
+import { CountUp } from "@/components/CountUp";
 import { whatsappLink } from "@/lib/utils";
 
 export const revalidate = 60;
@@ -81,6 +84,8 @@ export default async function HomePage() {
         </div>
       </section>
 
+      <GlowLine />
+
       {/* ═══════════════════════════════════════════════════════
           BEST SELLERS — 4 equal large cards, more spacing
       ═══════════════════════════════════════════════════════ */}
@@ -89,7 +94,8 @@ export default async function HomePage() {
           <ScrollReveal animation="fade-up">
             <div className="text-center mb-10 md:mb-14">
               <h2 className="font-body text-base md:text-lg font-semibold uppercase tracking-[0.25em] text-dark">
-                CELE MAI POPULARE
+                <TextWipe>CELE MAI POPULARE</TextWipe>
+              </h2>
               </h2>
             </div>
           </ScrollReveal>
@@ -112,6 +118,8 @@ export default async function HomePage() {
         </div>
       </section>
 
+      <GlowLine />
+
       {/* ═══════════════════════════════════════════════════════
           COURSES — Large cards, more spacing
       ═══════════════════════════════════════════════════════ */}
@@ -119,9 +127,9 @@ export default async function HomePage() {
         <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal animation="fade-up">
             <div className="text-center mb-10 md:mb-14">
-              <p className="section-label mb-3">Academie</p>
+              <p className="section-label mb-3"><TextWipe>Academie</TextWipe></p>
               <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-medium">
-                Cursuri <span className="italic text-pink">profesionale</span>
+                <TextWipe delay={200}>Cursuri <span className="italic text-pink">profesionale</span></TextWipe>
               </h2>
             </div>
           </ScrollReveal>
@@ -163,7 +171,7 @@ export default async function HomePage() {
               <div className="max-w-md">
                 <p className="section-label mb-4">Despre Emma</p>
                 <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-medium leading-tight">
-                  Pasiune, <span className="italic text-pink">dedicare</span> și excelență
+                  <TextWipe>Pasiune, <span className="italic text-pink">dedicare</span> și excelență</TextWipe>
                 </h2>
                 <p className="font-body text-base text-dark-400 leading-relaxed mt-5">
                   Cu peste 15 ani de experiență în industria manichiurii, Emma a
@@ -179,10 +187,12 @@ export default async function HomePage() {
         </div>
       </section>
 
+      <GlowLine />
+
       {/* ═══════════════════════════════════════════════════════
           BENEFITS — 4 icons
       ═══════════════════════════════════════════════════════ */}
-      <section className="py-16 md:py-20 border-t border-pink-100/50 relative overflow-hidden" style={{ background: "linear-gradient(180deg, #ffffff 0%, #fef5f8 50%, #fce4ec 100%)" }}>
+      <section className="py-16 md:py-20 relative overflow-hidden" style={{ background: "linear-gradient(180deg, #ffffff 0%, #fef5f8 50%, #fce4ec 100%)" }}>
         <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-8">
             {[
@@ -205,6 +215,8 @@ export default async function HomePage() {
         </div>
       </section>
 
+      <GlowLine />
+
       {/* ═══════════════════════════════════════════════════════
           GALLERY — More spacing between photos
       ═══════════════════════════════════════════════════════ */}
@@ -212,9 +224,9 @@ export default async function HomePage() {
         <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal animation="fade-up">
             <div className="text-center mb-10 md:mb-14">
-              <p className="section-label mb-3">@emmanails</p>
+              <p className="section-label mb-3"><TextWipe>@emmanails</TextWipe></p>
               <h2 className="font-display text-4xl md:text-5xl font-medium">
-                Lucrări <span className="italic text-pink">reale</span>
+                <TextWipe delay={200}>Lucrări <span className="italic text-pink">reale</span></TextWipe>
               </h2>
             </div>
           </ScrollReveal>
@@ -231,21 +243,23 @@ export default async function HomePage() {
         </div>
       </section>
 
+      <GlowLine />
+
       {/* ═══════════════════════════════════════════════════════
           STATS BAR
       ═══════════════════════════════════════════════════════ */}
-      <section className="py-12 md:py-16 border-y border-pink-200 relative overflow-hidden" style={{ background: "linear-gradient(135deg, #f8bbd0 0%, #fce4ec 40%, #f3e5f5 100%)" }}>
+      <section className="py-12 md:py-16 relative overflow-hidden" style={{ background: "linear-gradient(135deg, #f8bbd0 0%, #fce4ec 40%, #f3e5f5 100%)" }}>
         <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
             {[
-              { num: "15+", label: "Ani de Experiență" },
-              { num: `${productCount}+`, label: "Produse Profesionale" },
-              { num: "500+", label: "Cursante Formate" },
-              { num: `${courseCount}`, label: "Cursuri Disponibile" },
+              { target: 15, suffix: "+", label: "Ani de Experiență" },
+              { target: productCount, suffix: "+", label: "Produse Profesionale" },
+              { target: 500, suffix: "+", label: "Cursante Formate" },
+              { target: courseCount, suffix: "", label: "Cursuri Disponibile" },
             ].map((s, i) => (
               <ScrollReveal key={i} animation="fade-up" delay={i * 100}>
                 <div className="text-center">
-                  <span className="font-display text-3xl md:text-4xl font-bold text-pink">{s.num}</span>
+                  <CountUp target={s.target} suffix={s.suffix} className="font-display text-3xl md:text-4xl font-bold text-pink" />
                   <p className="font-body text-[11px] uppercase tracking-[0.2em] text-dark-400 mt-1">{s.label}</p>
                 </div>
               </ScrollReveal>
@@ -263,7 +277,7 @@ export default async function HomePage() {
         <div className="relative z-10 max-w-3xl mx-auto px-4 text-center">
           <ScrollReveal animation="scale">
             <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-medium leading-tight">
-              Hai să <span className="italic text-pink">vorbim</span>
+              <TextWipe>Hai să <span className="italic text-pink">vorbim</span></TextWipe>
             </h2>
             <p className="font-body text-base md:text-lg text-dark-400 mt-5 max-w-lg mx-auto">
               Fie că ești interesată de produse sau de cursuri, suntem aici pentru tine.
