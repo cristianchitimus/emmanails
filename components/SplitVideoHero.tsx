@@ -58,7 +58,7 @@ export function SplitVideoHero() {
               src={src}
               alt="Emma Nails Academy"
               fill
-              className="object-cover object-top"
+              className={`object-cover object-top ${i === 0 ? "-scale-x-100" : ""}`}
               sizes="50vw"
               priority={i === 0}
             />
