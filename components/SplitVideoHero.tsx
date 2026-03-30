@@ -58,10 +58,10 @@ export function SplitVideoHero() {
         </video>
 
         {/* Overlay */}
-        <div className="absolute inset-0 bg-pink/40 group-hover:bg-pink/50 transition-colors duration-500" />
+        <div className="absolute inset-0 bg-gradient-to-t from-pink/70 via-pink/40 to-pink/20 group-hover:from-pink/80 transition-colors duration-500" />
 
         {/* Content */}
-        <div className="relative z-10 h-full flex flex-col justify-end p-8 md:p-12 lg:p-16">
+        <div className="relative z-10 h-full flex flex-col items-start justify-end p-8 md:p-12 lg:p-16">
           <span className="font-body text-[10px] font-bold uppercase tracking-[0.3em] text-white/70 mb-3">
             De Ce Emma Nails
           </span>
@@ -113,10 +113,10 @@ export function SplitVideoHero() {
         </video>
 
         {/* Overlay */}
-        <div className="absolute inset-0 bg-dark/40 group-hover:bg-dark/50 transition-colors duration-500" />
+        <div className="absolute inset-0 bg-gradient-to-t from-dark/70 via-dark/40 to-dark/20 group-hover:from-dark/80 transition-colors duration-500" />
 
-        {/* Content */}
-        <div className="relative z-10 h-full flex flex-col justify-end p-8 md:p-12 lg:p-16">
+        {/* Content — bottom left, matching Academy side */}
+        <div className="relative z-10 h-full flex flex-col items-start justify-end p-8 md:p-12 lg:p-16">
           <span className="font-body text-[10px] font-bold uppercase tracking-[0.3em] text-white/70 mb-3">
             Magazin Online
           </span>
