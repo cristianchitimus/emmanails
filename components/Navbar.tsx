@@ -37,6 +37,14 @@ const MEGA_MENU_DATA = {
           { label: "Toate nuanțele", href: "/produse?categorie=acrylic-liquid" },
         ],
       },
+      {
+        title: "Baze Rubber",
+        links: [
+          { label: "Toate bazele", href: "/produse?categorie=baze-rubber" },
+          { label: "Rubber Base", href: "/produse?categorie=baze-rubber&sub=rubber-base" },
+          { label: "Glitter Rubber Base", href: "/produse?categorie=baze-rubber&sub=glitter-rubber-base" },
+        ],
+      },
     ],
     featured: {
       title: "BEST SELLER",
