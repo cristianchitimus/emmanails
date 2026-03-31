@@ -45,6 +45,12 @@ const MEGA_MENU_DATA = {
           { label: "Glitter Rubber Base", href: "/produse?categorie=baze-rubber&sub=glitter-rubber-base" },
         ],
       },
+      {
+        title: "Gel De Construcție",
+        links: [
+          { label: "Gel Liquid", href: "/produse?categorie=gel-constructie&sub=gel-liquid" },
+        ],
+      },
     ],
     featured: {
       title: "BEST SELLER",
