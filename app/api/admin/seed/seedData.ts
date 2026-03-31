@@ -66,6 +66,7 @@ export const products = [
   { slug: "jelly-gel-jelly-milk", name: "Jelly Builder Gel — Jelly Milk, 30g", description: "Tender Crush Jelly Builder Gel (HEMA – TPO FREE), nuanța Jelly Milk. Gel de construcție jelly profesional, 30g.", price: 9500, category: "gel-constructie", subcategory: "jelly", size: "30g", inStock: true, featured: false, imageUrl: "/jelly-gel-jelly-milk.jpg", images: ["/jelly-gel-jelly-milk.jpg"] },
   // TOP COAT — Emma's Nails, 12ml
   { slug: "glitter-vibe-top-coat-12ml", name: "Glitter Vibe Top Coat, 12ml", description: "Glitter Vibe Top Coat Emma's Nails — top coat cu particule de glitter pentru un finish strălucitor. Polimerizare în lampă UV/LED 30 secunde. 12ml / 0.42 oz.", price: 7000, category: "top-coat", subcategory: "glitter-vibe-top", size: "12ml", inStock: true, featured: false, imageUrl: "/glitter-vibe-top-coat-front.jpg", images: ["/glitter-vibe-top-coat-front.jpg", "/glitter-vibe-top-coat-back.jpg"] },
+  { slug: "velvet-matte-top-coat-12ml", name: "Velvet Matte Top Coat, 12ml", description: "Velvet Matte Top Coat Emma's Nails — top coat mat cu finish catifea. Polimerizare în lampă UV/LED 30 secunde. 12ml / 0.42 oz.", price: 7000, category: "top-coat", subcategory: "velvet-matte-top", size: "12ml", inStock: true, featured: false, imageUrl: "/velvet-matte-top-coat-front.jpg", images: ["/velvet-matte-top-coat-front.jpg", "/velvet-matte-top-coat-back.jpg"] },
 ];
 
 export const courses = [

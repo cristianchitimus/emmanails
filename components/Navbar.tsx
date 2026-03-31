@@ -58,6 +58,7 @@ const MEGA_MENU_DATA = {
         title: "Top Coat",
         links: [
           { label: "Glitter Vibe Top", href: "/produse?categorie=top-coat&sub=glitter-vibe-top" },
+          { label: "Velvet Matte Top", href: "/produse?categorie=top-coat&sub=velvet-matte-top" },
         ],
       },
     ],
