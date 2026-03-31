@@ -49,7 +49,7 @@ export default async function ProdusePage({ searchParams }: Props) {
           <CategoryFilter
             categories={categories.map((c) => ({
               value: c.category,
-              label: c.category === "polygel" ? "PolyGel" : "Instrumente",
+              label: c.category === "polygel" ? "PolyGel" : c.category === "acrylic-liquid" ? "Acrylic Liquid" : "Instrumente",
               count: c._count.id,
             }))}
           />

@@ -31,6 +31,12 @@ const MEGA_MENU_DATA = {
           { label: "Consumabile", href: "/produse?categorie=instrumente&sub=instrumente-consumabile" },
         ],
       },
+      {
+        title: "Acrylic Liquid",
+        links: [
+          { label: "Toate nuanțele", href: "/produse?categorie=acrylic-liquid" },
+        ],
+      },
     ],
     featured: {
       title: "BEST SELLER",

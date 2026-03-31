@@ -53,10 +53,11 @@ export default async function HomePage() {
       ═══════════════════════════════════════════════════════ */}
       <section className="py-6 md:py-8 relative overflow-hidden" style={{ background: "linear-gradient(180deg, #ffffff 0%, #fef8fa 100%)" }}>
         <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
             {[
               { title: "SHOP POLYGEL", img: "https://emmanails.ro/wp-content/uploads/2025/05/1.jpg", href: "/produse?categorie=polygel" },
-              { title: "SHOP INSTRUMENTE", img: "https://emmanails.ro/wp-content/uploads/2025/05/DSC_8271.jpg", href: "/produse?categorie=instrumente" },
+              { title: "ACRYLIC LIQUID", img: "/acrylic-soft-nude.jpg", href: "/produse?categorie=acrylic-liquid" },
+              { title: "INSTRUMENTE", img: "https://emmanails.ro/wp-content/uploads/2025/05/DSC_8271.jpg", href: "/produse?categorie=instrumente" },
               { title: "ACADEMIE", img: "https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2025-11-04-at-21.36.26.jpeg", href: "/academie" },
             ].map((cat, i) => (
               <ScrollReveal key={i} animation="fade-up" delay={i * 120}>
