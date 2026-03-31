@@ -186,6 +186,8 @@ export default async function HomePage() {
         </div>
       </section>
 
+      <GlowLine />
+
       {/* ═══════════════════════════════════════════════════════
           BENEFITS — 4 icons
       ═══════════════════════════════════════════════════════ */}
