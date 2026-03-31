@@ -4,8 +4,18 @@ import Image from "next/image";
 import { formatPrice } from "@/lib/utils";
 import { AddToCartButton } from "@/components/AddToCartButton";
 import { ImageGallery } from "@/components/ImageGallery";
+import { HeartSwatch } from "@/components/HeartSwatch";
 import Link from "next/link";
 import type { Metadata } from "next";
+
+const CATEGORY_LABELS: Record<string, string> = {
+  polygel: "PolyGel",
+  instrumente: "Instrumente",
+  "acrylic-liquid": "Acrylic Liquid",
+  "baze-rubber": "Baze Rubber",
+  "gel-constructie": "Gel Construcție",
+  "top-coat": "Top Coat",
+};
 
 interface Props { params: { slug: string } }
 
@@ -27,6 +37,7 @@ export default async function ProductDetailPage({ params }: Props) {
   });
 
   const isOnSale = product.salePrice && product.salePrice < product.price;
+  const catLabel = CATEGORY_LABELS[product.category] || product.category;
 
   return (
     <>
@@ -35,7 +46,7 @@ export default async function ProductDetailPage({ params }: Props) {
           <nav className="mb-8 flex items-center gap-2 font-body text-xs text-dark-400 uppercase tracking-wider">
             <Link href="/produse" className="hover:text-pink transition-colors">Produse</Link>
             <span>/</span>
-            <Link href={`/produse?categorie=${product.category}`} className="hover:text-pink transition-colors capitalize">{product.category}</Link>
+            <Link href={`/produse?categorie=${product.category}`} className="hover:text-pink transition-colors">{catLabel}</Link>
             <span>/</span>
             <span className="text-dark truncate max-w-[200px]">{product.name}</span>
           </nav>
@@ -52,9 +63,28 @@ export default async function ProductDetailPage({ params }: Props) {
             {/* Details */}
             <div className="flex flex-col justify-center space-y-6">
               <div>
-                <span className="section-label">{product.category === "polygel" ? "PolyGel" : "Instrumente"}</span>
+                <div className="flex items-center gap-2">
+                  <span className="section-label">{catLabel}</span>
+                  {product.colorHex && (
+                    <HeartSwatch color={product.colorHex} size={20} />
+                  )}
+                </div>
                 <h1 className="font-display text-3xl md:text-4xl font-medium mt-2 leading-tight">{product.name}</h1>
               </div>
+
+              {/* Color swatch row */}
+              {product.colorHex && (
+                <div className="flex items-center gap-3">
+                  <HeartSwatch color={product.colorHex} size={32} />
+                  <div>
+                    <span className="font-body text-xs text-neutral-400 uppercase tracking-wider">Nuanță</span>
+                    <div
+                      className="mt-1 w-20 h-5 rounded-full border border-black/5"
+                      style={{ backgroundColor: product.colorHex }}
+                    />
+                  </div>
+                </div>
+              )}
 
               <div className="flex items-center gap-3">
                 {isOnSale ? (
@@ -68,7 +98,7 @@ export default async function ProductDetailPage({ params }: Props) {
               </div>
 
               {product.description && (
-                <p className="font-body text-base text-dark-500 leading-relaxed">{product.description}</p>
+                <p className="font-body text-base text-dark-500 leading-relaxed whitespace-pre-line">{product.description}</p>
               )}
 
               <div className="border-t border-b border-dark-100 py-4 space-y-3">
@@ -80,7 +110,7 @@ export default async function ProductDetailPage({ params }: Props) {
                 )}
                 <div className="flex items-center justify-between">
                   <span className="font-body text-sm text-dark-400">Categorie</span>
-                  <span className="font-body text-sm font-medium capitalize">{product.category}</span>
+                  <span className="font-body text-sm font-medium">{catLabel}</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="font-body text-sm text-dark-400">Disponibilitate</span>
@@ -117,6 +147,13 @@ export default async function ProductDetailPage({ params }: Props) {
                     ) : (
                       <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-nude-100 to-nude-300">
                         <div className="w-10 h-16 rounded-t-full bg-white/30" />
+                      </div>
+                    )}
+                    {p.colorHex && (
+                      <div className="absolute top-2 right-2 drop-shadow-sm">
+                        <svg width="20" height="20" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill={p.colorHex} stroke="rgba(0,0,0,0.08)" strokeWidth="0.5" />
+                        </svg>
                       </div>
                     )}
                   </div>

@@ -24,6 +24,7 @@ model Product {
   featured    Boolean     @default(false)
   imageUrl    String?
   images      String[]    // all product images
+  colorHex    String?     // hex color for swatch heart preview
   orderItems  OrderItem[]
   createdAt   DateTime    @default(now())
   updatedAt   DateTime    @updatedAt

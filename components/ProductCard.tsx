@@ -4,6 +4,16 @@ import Link from "next/link";
 import Image from "next/image";
 import { useCart } from "@/hooks/useCart";
 import { formatPrice } from "@/lib/utils";
+import { HeartSwatch } from "./HeartSwatch";
+
+const CATEGORY_LABELS: Record<string, string> = {
+  polygel: "PolyGel",
+  instrumente: "Instrumente",
+  "acrylic-liquid": "Acrylic Liquid",
+  "baze-rubber": "Baze Rubber",
+  "gel-constructie": "Gel Construcție",
+  "top-coat": "Top Coat",
+};
 
 interface ProductCardProps {
   product: {
@@ -14,6 +24,7 @@ interface ProductCardProps {
     salePrice?: number | null;
     category: string;
     size?: string | null;
+    colorHex?: string | null;
     imageUrl?: string | null;
     inStock: boolean;
   };
@@ -57,6 +68,13 @@ export function ProductCard({ product }: ProductCardProps) {
             )}
           </div>
 
+          {/* Heart swatch in top-right corner */}
+          {product.colorHex && (
+            <div className="absolute top-3 right-3 drop-shadow-sm">
+              <HeartSwatch color={product.colorHex} size={26} />
+            </div>
+          )}
+
           {/* Quick add button */}
           {product.inStock && (
             <button
@@ -80,10 +98,15 @@ export function ProductCard({ product }: ProductCardProps) {
 
         {/* Info */}
         <div>
-          <p className="font-body text-xs text-neutral-400 uppercase tracking-wider mb-0.5">
-            {product.category === "polygel" ? "PolyGel" : "Instrumente"}
-            {product.size && ` · ${product.size}`}
-          </p>
+          <div className="flex items-center gap-1.5 mb-0.5">
+            <p className="font-body text-xs text-neutral-400 uppercase tracking-wider">
+              {CATEGORY_LABELS[product.category] || product.category}
+              {product.size && ` · ${product.size}`}
+            </p>
+            {product.colorHex && (
+              <HeartSwatch color={product.colorHex} size={14} className="opacity-70" />
+            )}
+          </div>
           <h3 className="font-body text-sm font-medium text-dark leading-snug line-clamp-2 group-hover:text-pink transition-colors">
             {product.name}
           </h3>
