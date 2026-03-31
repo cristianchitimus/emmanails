@@ -51,6 +51,7 @@ const MEGA_MENU_DATA = {
           { label: "Toate gelurile", href: "/produse?categorie=gel-constructie" },
           { label: "Gel Liquid", href: "/produse?categorie=gel-constructie&sub=gel-liquid" },
           { label: "Builder Gel", href: "/produse?categorie=gel-constructie&sub=builder-gel" },
+          { label: "Jelly Builder Gel", href: "/produse?categorie=gel-constructie&sub=jelly" },
         ],
       },
     ],
