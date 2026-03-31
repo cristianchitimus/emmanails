@@ -17,10 +17,6 @@ export default async function AcademiePage() {
     orderBy: { createdAt: "asc" },
   });
 
-  const beginnerCourses = courses.filter((c) => c.level === "incepator");
-  const mediumCourses = courses.filter((c) => c.level === "mediu");
-  const advancedCourses = courses.filter((c) => c.level === "avansat");
-
   return (
     <>
       {/* Hero — light pink */}
@@ -75,27 +71,19 @@ export default async function AcademiePage() {
         </div>
       </section>
 
-      {/* Courses by level */}
-      {[
-        { label: "Începător", courses: beginnerCourses, color: "text-emerald-600" },
-        { label: "Mediu", courses: mediumCourses, color: "text-amber-600" },
-        { label: "Avansat", courses: advancedCourses, color: "text-purple-600" },
-      ]
-        .filter((g) => g.courses.length > 0)
-        .map((group) => (
-          <section key={group.label} className="py-14 md:py-20 bg-white border-b border-dark-100/50 last:border-0">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <h2 className="font-display text-3xl md:text-4xl font-medium mb-10">
-                Nivel <span className={`italic ${group.color}`}>{group.label}</span>
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
-                {group.courses.map((course) => (
-                  <CourseCard key={course.id} course={course} />
-                ))}
-              </div>
-            </div>
-          </section>
-        ))}
+      {/* All courses — flat grid, seed order */}
+      <section className="py-14 md:py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="font-display text-3xl md:text-4xl font-medium mb-10">
+            Toate <span className="italic text-pink">cursurile</span>
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+            {courses.map((course) => (
+              <CourseCard key={course.id} course={course} />
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* CTA — pink */}
       <section className="py-20 md:py-28 bg-pink relative overflow-hidden">
