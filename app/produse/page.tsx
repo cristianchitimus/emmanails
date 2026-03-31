@@ -49,7 +49,7 @@ export default async function ProdusePage({ searchParams }: Props) {
           <CategoryFilter
             categories={categories.map((c) => ({
               value: c.category,
-              label: ({ "polygel": "PolyGel", "acrylic-liquid": "Acrylic Liquid", "baze-rubber": "Baze Rubber", "gel-constructie": "Gel De Construcție", "instrumente": "Instrumente" })[c.category] || c.category,
+              label: ({ "polygel": "PolyGel", "acrylic-liquid": "Acrylic Liquid", "baze-rubber": "Baze Rubber", "gel-constructie": "Gel De Construcție", "top-coat": "Top Coat", "instrumente": "Instrumente" })[c.category] || c.category,
               count: c._count.id,
             }))}
           />

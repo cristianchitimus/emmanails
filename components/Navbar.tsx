@@ -54,6 +54,12 @@ const MEGA_MENU_DATA = {
           { label: "Jelly Builder Gel", href: "/produse?categorie=gel-constructie&sub=jelly" },
         ],
       },
+      {
+        title: "Top Coat",
+        links: [
+          { label: "Glitter Vibe Top", href: "/produse?categorie=top-coat&sub=glitter-vibe-top" },
+        ],
+      },
     ],
     featured: {
       title: "BEST SELLER",
