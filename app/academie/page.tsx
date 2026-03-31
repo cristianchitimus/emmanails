@@ -14,7 +14,7 @@ export const revalidate = 60;
 
 export default async function AcademiePage() {
   const courses = await prisma.course.findMany({
-    orderBy: [{ featured: "desc" }, { name: "asc" }],
+    orderBy: { createdAt: "asc" },
   });
 
   const beginnerCourses = courses.filter((c) => c.level === "incepator");

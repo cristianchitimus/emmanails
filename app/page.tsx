@@ -33,7 +33,7 @@ export default async function HomePage() {
       }),
       prisma.course.findMany({
         where: { featured: true },
-        orderBy: { createdAt: "desc" },
+        orderBy: { createdAt: "asc" },
         take: 4,
       }),
       prisma.product.count(),
