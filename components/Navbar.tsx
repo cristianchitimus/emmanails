@@ -48,7 +48,9 @@ const MEGA_MENU_DATA = {
       {
         title: "Gel De Construcție",
         links: [
+          { label: "Toate gelurile", href: "/produse?categorie=gel-constructie" },
           { label: "Gel Liquid", href: "/produse?categorie=gel-constructie&sub=gel-liquid" },
+          { label: "Builder Gel", href: "/produse?categorie=gel-constructie&sub=builder-gel" },
         ],
       },
     ],
