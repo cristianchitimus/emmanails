@@ -11,6 +11,9 @@ export const metadata: Metadata = {
   title: "Emma Nails — Produse Profesionale & Academie",
   description:
     "Polygel Emma Nails, instrumente premium și academie cu peste 15 ani de experiență. Iași, România.",
+  other: {
+    "color-scheme": "light only",
+  },
   keywords: [
     "emma nails",
     "polygel",
