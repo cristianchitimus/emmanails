@@ -16,7 +16,7 @@ const DESC = {
   topMatte: "Top Velvet Matte Emma Nails — finisaj \"No Wipe\" cu efect mat absolut. Textură fină asemănătoare catifelei, senzație catifelată la atingere, respinge praful și transferul de culoare.",
 };
 
-const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+const slug = (s: string) => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 
 // Helper to make rubber base products
 const rb = (name: string, hex: string) => ({
