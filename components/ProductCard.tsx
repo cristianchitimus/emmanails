@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useCart } from "@/hooks/useCart";
 import { formatPrice } from "@/lib/utils";
-import { HeartSwatch } from "./HeartSwatch";
+import { HeartSwatch, isGlitterProduct } from "./HeartSwatch";
 
 const CATEGORY_LABELS: Record<string, string> = {
   polygel: "PolyGel",
@@ -23,6 +23,7 @@ interface ProductCardProps {
     price: number;
     salePrice?: number | null;
     category: string;
+    subcategory?: string | null;
     size?: string | null;
     colorHex?: string | null;
     imageUrl?: string | null;
@@ -34,6 +35,7 @@ export function ProductCard({ product }: ProductCardProps) {
   const { addItem } = useCart();
   const price = product.salePrice ?? product.price;
   const hasDiscount = product.salePrice && product.salePrice < product.price;
+  const glitter = isGlitterProduct(product);
 
   return (
     <div className="group relative">
@@ -71,7 +73,7 @@ export function ProductCard({ product }: ProductCardProps) {
           {/* Heart swatch in top-right corner */}
           {product.colorHex && (
             <div className="absolute top-3 right-3 drop-shadow-sm">
-              <HeartSwatch color={product.colorHex} size={26} />
+              <HeartSwatch color={product.colorHex} size={26} glitter={glitter} />
             </div>
           )}
 
@@ -104,7 +106,7 @@ export function ProductCard({ product }: ProductCardProps) {
               {product.size && ` · ${product.size}`}
             </p>
             {product.colorHex && (
-              <HeartSwatch color={product.colorHex} size={14} className="opacity-70" />
+              <HeartSwatch color={product.colorHex} size={14} glitter={glitter} className="opacity-70" />
             )}
           </div>
           <h3 className="font-body text-sm font-medium text-dark leading-snug line-clamp-2 group-hover:text-pink transition-colors">

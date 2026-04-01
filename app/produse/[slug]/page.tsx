@@ -4,7 +4,7 @@ import Image from "next/image";
 import { formatPrice } from "@/lib/utils";
 import { AddToCartButton } from "@/components/AddToCartButton";
 import { ImageGallery } from "@/components/ImageGallery";
-import { HeartSwatch } from "@/components/HeartSwatch";
+import { HeartSwatch, isGlitterProduct } from "@/components/HeartSwatch";
 import Link from "next/link";
 import type { Metadata } from "next";
 
@@ -38,6 +38,7 @@ export default async function ProductDetailPage({ params }: Props) {
 
   const isOnSale = product.salePrice && product.salePrice < product.price;
   const catLabel = CATEGORY_LABELS[product.category] || product.category;
+  const glitter = isGlitterProduct(product);
 
   return (
     <>
@@ -66,7 +67,7 @@ export default async function ProductDetailPage({ params }: Props) {
                 <div className="flex items-center gap-2">
                   <span className="section-label">{catLabel}</span>
                   {product.colorHex && (
-                    <HeartSwatch color={product.colorHex} size={20} />
+                    <HeartSwatch color={product.colorHex} size={20} glitter={glitter} />
                   )}
                 </div>
                 <h1 className="font-display text-3xl md:text-4xl font-medium mt-2 leading-tight">{product.name}</h1>
@@ -75,7 +76,7 @@ export default async function ProductDetailPage({ params }: Props) {
               {/* Color swatch row */}
               {product.colorHex && (
                 <div className="flex items-center gap-3">
-                  <HeartSwatch color={product.colorHex} size={32} />
+                  <HeartSwatch color={product.colorHex} size={32} glitter={glitter} />
                   <div>
                     <span className="font-body text-xs text-neutral-400 uppercase tracking-wider">Nuanță</span>
                     <div
@@ -151,9 +152,7 @@ export default async function ProductDetailPage({ params }: Props) {
                     )}
                     {p.colorHex && (
                       <div className="absolute top-2 right-2 drop-shadow-sm">
-                        <svg width="20" height="20" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill={p.colorHex} stroke="rgba(0,0,0,0.08)" strokeWidth="0.5" />
-                        </svg>
+                        <HeartSwatch color={p.colorHex} size={20} glitter={isGlitterProduct(p)} />
                       </div>
                     )}
                   </div>
