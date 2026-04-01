@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
+import { ImageUpload } from "@/components/admin/ImageUpload";
 
 interface Session {
   id: string;
@@ -31,10 +32,15 @@ interface Enrollment {
 interface Course {
   id: string;
   name: string;
+  description: string | null;
   priceFrom: number;
   priceTo: number;
+  level: string | null;
   duration: string | null;
   hasAccreditation: boolean;
+  featured: boolean;
+  imageUrl: string | null;
+  images: string[];
   sessions: Session[];
   totalEnrollments: number;
 }
@@ -126,6 +132,23 @@ export default function AdminCourseDetailPage() {
     await fetchData();
   };
 
+  const [courseImages, setCourseImages] = useState<string[]>([]);
+  const [savingImages, setSavingImages] = useState(false);
+
+  useEffect(() => {
+    if (course) setCourseImages(course.images || []);
+  }, [course]);
+
+  const saveCourseImages = async () => {
+    setSavingImages(true);
+    await fetch(`/api/admin/courses/${courseId}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ imageUrl: courseImages[0] || null, images: courseImages }),
+    });
+    setSavingImages(false);
+  };
+
   if (loading) return <div className="flex justify-center p-12"><div className="animate-spin w-8 h-8 border-2 border-pink border-t-transparent rounded-full" /></div>;
   if (!course) return <p className="text-dark-400 p-8">Cursul nu a fost găsit.</p>;
 
@@ -142,6 +165,20 @@ export default function AdminCourseDetailPage() {
             Avans: <strong className="text-pink">{formatPrice(course.priceFrom)}</strong> · Integral: <strong>{formatPrice(course.priceTo)}</strong>
             {course.duration && ` · ${course.duration}`}
           </p>
+        </div>
+      </div>
+
+      {/* Course Images */}
+      <div className="bg-white rounded-2xl border border-neutral-100 overflow-hidden">
+        <div className="flex items-center justify-between p-5 border-b border-neutral-100">
+          <h2 className="font-display text-lg font-medium">Imagini curs</h2>
+          <button onClick={saveCourseImages} disabled={savingImages}
+            className="bg-emerald-500 text-white font-body text-[10px] font-semibold uppercase tracking-wider px-4 py-2 rounded-xl hover:bg-emerald-600 disabled:opacity-50">
+            {savingImages ? "Se salvează..." : "Salvează imaginile"}
+          </button>
+        </div>
+        <div className="p-5">
+          <ImageUpload images={courseImages} onChange={setCourseImages} />
         </div>
       </div>
 
