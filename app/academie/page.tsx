@@ -1,8 +1,8 @@
 import { prisma } from "@/lib/db";
 import Image from "next/image";
 import { CourseCard } from "@/components/CourseCard";
-import { whatsappLink } from "@/lib/utils";
 import { GlowLine } from "@/components/GlowLine";
+import { whatsappLink } from "@/lib/utils";
 import Link from "next/link";
 import type { Metadata } from "next";
 
@@ -20,13 +20,22 @@ export default async function AcademiePage() {
 
   return (
     <>
-      {/* All courses — flat grid, seed order — FIRST */}
-      <section className="py-14 md:py-20 bg-white">
+      {/* Mini header */}
+      <section className="pt-12 pb-6 md:pt-16 md:pb-8 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="section-label mb-3">Emma Nails Academy</p>
-          <h2 className="font-display text-3xl md:text-5xl font-medium mb-10">
+          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-medium text-dark leading-tight">
             Toate <span className="italic text-pink">cursurile</span>
-          </h2>
+          </h1>
+          <p className="font-body text-base text-dark-400 mt-3 max-w-xl">
+            Alege cursul potrivit nivelului tău. Fiecare include practică pe model real și diplomă.
+          </p>
+        </div>
+      </section>
+
+      {/* All courses — flat grid, seed order */}
+      <section className="pb-14 md:pb-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
             {courses.map((course) => (
               <CourseCard key={course.id} course={course} />
@@ -35,17 +44,16 @@ export default async function AcademiePage() {
         </div>
       </section>
 
-      {/* GlowLine divider */}
       <GlowLine />
 
-      {/* Hero CTA — "Cursuri de manichiură" + Programează-te */}
+      {/* Promotional hero — Cursuri de manichiură + image */}
       <section className="relative bg-gradient-to-br from-white via-pink-50/50 to-nude-100 py-16 md:py-24 overflow-hidden">
         <div className="absolute -top-20 -right-20 w-80 h-80 bg-pink/5 rounded-full blur-3xl" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
             <div>
-              <p className="section-label mb-3">Emma Nails Academy</p>
-              <h2 className="font-display text-5xl md:text-6xl lg:text-7xl font-medium text-dark leading-tight">
+              <p className="section-label mb-3">Înscrie-te acum</p>
+              <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-medium text-dark leading-tight">
                 Cursuri de <span className="italic text-pink">manichiură</span>
               </h2>
               <p className="font-body text-base md:text-lg text-dark-400 mt-5 max-w-xl leading-relaxed">
@@ -70,7 +78,6 @@ export default async function AcademiePage() {
         </div>
       </section>
 
-      {/* GlowLine divider */}
       <GlowLine />
 
       {/* Stats */}
@@ -92,6 +99,8 @@ export default async function AcademiePage() {
           </div>
         </div>
       </section>
+
+      <GlowLine />
 
       {/* CTA — pink */}
       <section className="py-20 md:py-28 bg-pink relative overflow-hidden">
