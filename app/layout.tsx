@@ -42,8 +42,10 @@ export default function RootLayout({
       <body className="min-h-screen flex flex-col">
         <SessionProvider>
           <CartProvider>
-            <AnnouncementBar />
-            <Navbar />
+            <div data-site-chrome>
+              <AnnouncementBar />
+              <Navbar />
+            </div>
             <main className="flex-1">{children}</main>
             <Footer />
             <CartDrawer />
