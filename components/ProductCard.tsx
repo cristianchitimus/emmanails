@@ -4,7 +4,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { useCart } from "@/hooks/useCart";
 import { formatPrice } from "@/lib/utils";
-import { HeartSwatch, isGlitterProduct } from "./HeartSwatch";
+import { HeartSwatch } from "./HeartSwatch";
+import { isGlitterProduct } from "@/lib/glitter";
 
 const CATEGORY_LABELS: Record<string, string> = {
   polygel: "PolyGel",

@@ -4,7 +4,8 @@ import Image from "next/image";
 import { formatPrice } from "@/lib/utils";
 import { AddToCartButton } from "@/components/AddToCartButton";
 import { ImageGallery } from "@/components/ImageGallery";
-import { HeartSwatch, isGlitterProduct } from "@/components/HeartSwatch";
+import { HeartSwatch } from "@/components/HeartSwatch";
+import { isGlitterProduct } from "@/lib/glitter";
 import Link from "next/link";
 import type { Metadata } from "next";
 
