@@ -25,8 +25,8 @@ const rb = (name: string, hex: string) => ({
   description: `${DESC.rubberBase} Nuanța ${name}.`,
   price: 6500, category: "baze-rubber", subcategory: "rubber-base", size: "12ml",
   inStock: true, featured: false, colorHex: hex,
-  imageUrl: "/rubber-base-coat-front.jpg",
-  images: ["/rubber-base-coat-front.jpg", "/rubber-base-coat-back.jpg"],
+  imageUrl: "/emma-nails-jar-generic.jpg",
+  images: ["/emma-nails-jar-generic.jpg"],
 });
 
 const grb = (name: string, hex: string) => ({
@@ -35,8 +35,8 @@ const grb = (name: string, hex: string) => ({
   description: `${DESC.glitterRubber} Nuanța ${name}.`,
   price: 7000, category: "baze-rubber", subcategory: "glitter-rubber-base", size: "12ml",
   inStock: true, featured: false, colorHex: hex,
-  imageUrl: "/glitter-rubber-base-front.jpg",
-  images: ["/glitter-rubber-base-front.jpg", "/glitter-rubber-base-back.jpg"],
+  imageUrl: "/emma-nails-jar-generic.jpg",
+  images: ["/emma-nails-jar-generic.jpg"],
 });
 
 const bg = (name: string, line: string, hex: string) => ({
@@ -55,8 +55,8 @@ const bl = (name: string, hex: string) => ({
   description: `${DESC.builderLiquid} Nuanța ${name}.`,
   price: 7000, category: "gel-constructie", subcategory: "gel-liquid", size: "12ml",
   inStock: true, featured: false, colorHex: hex,
-  imageUrl: "/balance-builder-liquid-front.jpg",
-  images: ["/balance-builder-liquid-front.jpg", "/balance-builder-liquid-back.jpg"],
+  imageUrl: "/emma-nails-jar-generic.jpg",
+  images: ["/emma-nails-jar-generic.jpg"],
 });
 
 const jg = (name: string, hex: string) => ({
@@ -219,9 +219,9 @@ export const products = [
   // ═══════════════════════════════════════════════════════════
   // TOP COAT — Glitter Vibe (3 shades from PDF)
   // ═══════════════════════════════════════════════════════════
-  { slug: "glitter-vibe-top-coat-true-silver-12ml", name: "Glitter Vibe Top Coat — True Silver, 12ml", description: `${DESC.topGlitter} Nuanța True Silver — argint strălucitor.`, price: 7000, category: "top-coat", subcategory: "glitter-vibe-top", size: "12ml", inStock: true, featured: false, colorHex: "#C0BCC4", imageUrl: "/glitter-vibe-top-coat-front.jpg", images: ["/glitter-vibe-top-coat-front.jpg", "/glitter-vibe-top-coat-back.jpg"] },
-  { slug: "glitter-vibe-top-coat-diamond-mist-12ml", name: "Glitter Vibe Top Coat — Diamond Mist, 12ml", description: `${DESC.topGlitter} Nuanța Diamond Mist — ceață de diamant.`, price: 7000, category: "top-coat", subcategory: "glitter-vibe-top", size: "12ml", inStock: true, featured: false, colorHex: "#D4CCD4", imageUrl: "/glitter-vibe-top-coat-front.jpg", images: ["/glitter-vibe-top-coat-front.jpg", "/glitter-vibe-top-coat-back.jpg"] },
-  { slug: "glitter-vibe-top-coat-moon-glow-12ml", name: "Glitter Vibe Top Coat — Moon Glow, 12ml", description: `${DESC.topGlitter} Nuanța Moon Glow — strălucire lunară.`, price: 7000, category: "top-coat", subcategory: "glitter-vibe-top", size: "12ml", inStock: true, featured: false, colorHex: "#D4CCC0", imageUrl: "/glitter-vibe-top-coat-front.jpg", images: ["/glitter-vibe-top-coat-front.jpg", "/glitter-vibe-top-coat-back.jpg"] },
+  { slug: "glitter-vibe-top-coat-true-silver-12ml", name: "Glitter Vibe Top Coat — True Silver, 12ml", description: `${DESC.topGlitter} Nuanța True Silver — argint strălucitor.`, price: 7000, category: "top-coat", subcategory: "glitter-vibe-top", size: "12ml", inStock: true, featured: false, colorHex: "#C0BCC4", imageUrl: "/emma-nails-jar-generic.jpg", images: ["/emma-nails-jar-generic.jpg"] },
+  { slug: "glitter-vibe-top-coat-diamond-mist-12ml", name: "Glitter Vibe Top Coat — Diamond Mist, 12ml", description: `${DESC.topGlitter} Nuanța Diamond Mist — ceață de diamant.`, price: 7000, category: "top-coat", subcategory: "glitter-vibe-top", size: "12ml", inStock: true, featured: false, colorHex: "#D4CCD4", imageUrl: "/emma-nails-jar-generic.jpg", images: ["/emma-nails-jar-generic.jpg"] },
+  { slug: "glitter-vibe-top-coat-moon-glow-12ml", name: "Glitter Vibe Top Coat — Moon Glow, 12ml", description: `${DESC.topGlitter} Nuanța Moon Glow — strălucire lunară.`, price: 7000, category: "top-coat", subcategory: "glitter-vibe-top", size: "12ml", inStock: true, featured: false, colorHex: "#D4CCC0", imageUrl: "/emma-nails-jar-generic.jpg", images: ["/emma-nails-jar-generic.jpg"] },
 
   // ═══════════════════════════════════════════════════════════
   // TOP COAT — Clear Steel (1 shade)
