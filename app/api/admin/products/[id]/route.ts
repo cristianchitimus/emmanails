@@ -8,11 +8,19 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
   }
 
   const body = await req.json();
-  const { price, salePrice, stock, inStock, featured } = body;
+  const { name, description, price, salePrice, category, subcategory, size, colorHex, imageUrl, images, stock, inStock, featured } = body;
 
   const data: Record<string, unknown> = {};
-  if (price !== undefined) data.price = price;
-  if (salePrice !== undefined) data.salePrice = salePrice || null;
+  if (name !== undefined) data.name = name;
+  if (description !== undefined) data.description = description || null;
+  if (price !== undefined) data.price = parseInt(price);
+  if (salePrice !== undefined) data.salePrice = salePrice ? parseInt(salePrice) : null;
+  if (category !== undefined) data.category = category;
+  if (subcategory !== undefined) data.subcategory = subcategory || null;
+  if (size !== undefined) data.size = size || null;
+  if (colorHex !== undefined) data.colorHex = colorHex || null;
+  if (imageUrl !== undefined) data.imageUrl = imageUrl || null;
+  if (images !== undefined) data.images = images?.filter(Boolean) || [];
   if (stock !== undefined) data.stock = stock === "" || stock === null ? null : parseInt(stock);
   if (inStock !== undefined) data.inStock = inStock;
   if (featured !== undefined) data.featured = featured;
@@ -23,4 +31,22 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
   });
 
   return NextResponse.json(product);
+}
+
+export async function DELETE(req: Request, { params }: { params: { id: string } }) {
+  if (!(await isAdminAuthenticated())) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  // Check if product has order items
+  const orderItems = await prisma.orderItem.count({ where: { productId: params.id } });
+  if (orderItems > 0) {
+    return NextResponse.json(
+      { error: `Nu poți șterge acest produs — are ${orderItems} comenzi asociate. Dezactivează-l în schimb.` },
+      { status: 400 }
+    );
+  }
+
+  await prisma.product.delete({ where: { id: params.id } });
+  return NextResponse.json({ success: true });
 }

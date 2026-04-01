@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface Product {
   id: string;
@@ -81,13 +82,32 @@ export default function AdminProductsPage() {
     setSaving(null);
   };
 
+  const deleteProduct = async (id: string, name: string) => {
+    if (!confirm(`Sigur vrei să ștergi „${name}"?`)) return;
+    setSaving(id);
+    const res = await fetch(`/api/admin/products/${id}`, { method: "DELETE" });
+    if (res.ok) {
+      setProducts((prev) => prev.filter((p) => p.id !== id));
+    } else {
+      const data = await res.json();
+      alert(data.error || "Eroare la ștergere");
+    }
+    setSaving(null);
+  };
+
   const categories = ["all", ...Object.keys(CAT_LABELS)];
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="font-display text-2xl md:text-3xl font-medium text-dark">Produse & Stocuri</h1>
-        <p className="font-body text-sm text-dark-400 mt-1">Editează prețuri, stocuri și disponibilitate</p>
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div>
+          <h1 className="font-display text-2xl md:text-3xl font-medium text-dark">Produse & Stocuri</h1>
+          <p className="font-body text-sm text-dark-400 mt-1">Editează prețuri, stocuri și disponibilitate</p>
+        </div>
+        <Link href="/admin/produse/nou"
+          className="bg-pink text-white font-body text-xs font-semibold uppercase tracking-wider px-5 py-2.5 rounded-xl hover:bg-pink/90 transition-colors text-center">
+          + Produs nou
+        </Link>
       </div>
 
       {/* Filters */}
@@ -205,9 +225,15 @@ export default function AdminProductsPage() {
                             </button>
                           </div>
                         ) : (
-                          <button onClick={() => startEdit(p)} className="font-body text-[10px] font-semibold uppercase px-2.5 py-1.5 bg-neutral-100 text-dark-400 rounded-lg hover:bg-neutral-200">
-                            Editează
-                          </button>
+                          <div className="flex gap-1">
+                            <button onClick={() => startEdit(p)} className="font-body text-[10px] font-semibold uppercase px-2.5 py-1.5 bg-neutral-100 text-dark-400 rounded-lg hover:bg-neutral-200">
+                              Editează
+                            </button>
+                            <button onClick={() => deleteProduct(p.id, p.name)} disabled={saving === p.id}
+                              className="font-body text-[10px] font-semibold uppercase px-2 py-1.5 bg-red-50 text-red-400 rounded-lg hover:bg-red-100 disabled:opacity-50">
+                              ×
+                            </button>
+                          </div>
                         )}
                       </td>
                     </tr>
