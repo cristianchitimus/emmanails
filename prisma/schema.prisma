@@ -21,6 +21,7 @@ model Product {
   subcategory String?     // "polygel-color", "polygel-reflective", etc.
   size        String?     // "30g", "60g", etc.
   inStock     Boolean     @default(true)
+  stock       Int?        // null = unlimited, 0 = out of stock
   featured    Boolean     @default(false)
   imageUrl    String?
   images      String[]    // all product images
