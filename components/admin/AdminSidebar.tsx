@@ -8,6 +8,7 @@ const NAV_ITEMS = [
   { href: "/admin", label: "Dashboard", icon: "📊" },
   { href: "/admin/comenzi", label: "Comenzi", icon: "📦" },
   { href: "/admin/produse", label: "Produse & Stocuri", icon: "🏷️" },
+  { href: "/admin/cursuri", label: "Cursuri & Înscrieri", icon: "🎓" },
   { href: "/admin/coduri", label: "Coduri Reducere", icon: "🎟️" },
 ];
 

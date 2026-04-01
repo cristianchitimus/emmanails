@@ -5,7 +5,6 @@ import { hash } from "bcryptjs";
 export const dynamic = "force-dynamic";
 
 // Visit /api/admin/seed?key=emma2026seed to populate database
-// Use ONCE then delete this route
 export async function GET(req: Request) {
   const url = new URL(req.url);
   if (url.searchParams.get("key") !== "emma2026seed") {
@@ -13,17 +12,32 @@ export async function GET(req: Request) {
   }
 
   try {
-    // Clear existing
+    // Clear existing (order matters for FK constraints)
+    await prisma.courseEnrollment.deleteMany({});
+    await prisma.courseSession.deleteMany({});
     await prisma.orderItem.deleteMany({});
     await prisma.order.deleteMany({});
     await prisma.product.deleteMany({});
     await prisma.course.deleteMany({});
 
-    // Products — see prisma/seed.ts for full data
     const { products, courses } = await import("./seedData");
 
     for (const p of products) { await prisma.product.create({ data: p }); }
-    for (const c of courses) { await prisma.course.create({ data: c }); }
+
+    // Create courses with sessions from their dates arrays
+    for (const c of courses) {
+      const { dates, ...courseData } = c;
+      const course = await prisma.course.create({ data: { ...courseData, dates } });
+
+      // Create a session for each date with 10 spots
+      if (dates && dates.length > 0) {
+        for (const dateLabel of dates) {
+          await prisma.courseSession.create({
+            data: { courseId: course.id, dateLabel, maxSpots: 10, active: true },
+          });
+        }
+      }
+    }
 
     // Discount codes
     for (const dc of [
@@ -45,10 +59,10 @@ export async function GET(req: Request) {
 
     const pc = await prisma.product.count();
     const cc = await prisma.course.count();
+    const sc = await prisma.courseSession.count();
 
-    return NextResponse.json({ success: true, products: pc, courses: cc });
+    return NextResponse.json({ success: true, products: pc, courses: cc, sessions: sc });
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
-// trigger

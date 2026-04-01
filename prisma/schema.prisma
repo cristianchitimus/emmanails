@@ -34,23 +34,54 @@ model Product {
 // ─── COURSES ───────────────────────────────────────────────
 
 model Course {
-  id               String   @id @default(cuid())
-  slug             String   @unique
+  id               String          @id @default(cuid())
+  slug             String          @unique
   name             String
   description      String?
-  priceFrom        Int      // minimum price in bani
-  priceTo          Int      // maximum price in bani
-  level            String?  // "incepator", "mediu", "avansat"
-  duration         String?  // e.g. "3 zile", "5 zile"
-  includes         String[] // what's included
-  curriculum       String[] // course curriculum items
-  dates            String[] // available dates e.g. ["19-23 Ianuarie", "9-13 Februarie"]
-  hasAccreditation Boolean  @default(false) // whether acreditat/neacreditat option exists
-  featured         Boolean  @default(false)
+  priceFrom        Int             // avans price in bani
+  priceTo          Int             // full price in bani
+  level            String?         // "incepator", "mediu", "avansat"
+  duration         String?         // e.g. "3 zile", "5 zile"
+  includes         String[]        // what's included
+  curriculum       String[]        // course curriculum items
+  dates            String[]        // legacy dates (kept for backward compat)
+  hasAccreditation Boolean         @default(false)
+  featured         Boolean         @default(false)
   imageUrl         String?
-  images           String[] // all course gallery images
-  createdAt        DateTime @default(now())
-  updatedAt        DateTime @updatedAt
+  images           String[]        // all course gallery images
+  sessions         CourseSession[]
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime        @updatedAt
+}
+
+model CourseSession {
+  id          String             @id @default(cuid())
+  courseId    String
+  course      Course             @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  dateLabel   String             // "19-23 Ianuarie 2026"
+  maxSpots    Int                @default(10)
+  active      Boolean            @default(true)
+  enrollments CourseEnrollment[]
+  createdAt   DateTime           @default(now())
+}
+
+model CourseEnrollment {
+  id              String        @id @default(cuid())
+  sessionId       String
+  session         CourseSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  name            String
+  email           String
+  phone           String?
+  accreditation   String?       // "acreditat" | "neacreditat" | null
+  paymentType     String        // "avans" | "integral"
+  amountPaid      Int           // amount paid in bani
+  totalPrice      Int           // total course price in bani
+  paymentStatus   String        @default("pending") // "pending" | "paid" | "failed"
+  stripeSessionId String?
+  status          String        @default("pending") // "pending" | "confirmed" | "cancelled"
+  notes           String?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
 }
 
 // ─── USERS & AUTH ──────────────────────────────────────────
