@@ -4,9 +4,8 @@ import { AdminSidebar } from "@/components/admin/AdminSidebar";
 
 export const dynamic = "force-dynamic";
 
-export default async function AdminDashboardLayout({ children }: { children: React.ReactNode }) {
-  const authenticated = await isAdminAuthenticated();
-  if (!authenticated) redirect("/admin/login");
+export default function AdminDashboardLayout({ children }: { children: React.ReactNode }) {
+  if (!isAdminAuthenticated()) redirect("/admin/login");
 
   return (
     <div className="min-h-screen bg-neutral-50 flex">

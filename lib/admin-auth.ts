@@ -17,11 +17,15 @@ export function verifyAdminToken(token: string): boolean {
   return token === getExpectedToken();
 }
 
-export async function isAdminAuthenticated(): Promise<boolean> {
-  const cookieStore = await cookies();
-  const token = cookieStore.get(COOKIE_NAME)?.value;
-  if (!token) return false;
-  return verifyAdminToken(token);
+export function isAdminAuthenticated(): boolean {
+  try {
+    const cookieStore = cookies();
+    const token = cookieStore.get(COOKIE_NAME)?.value;
+    if (!token) return false;
+    return verifyAdminToken(token);
+  } catch {
+    return false;
+  }
 }
 
 export function getAdminCookieName(): string {
