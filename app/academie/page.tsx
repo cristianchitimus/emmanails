@@ -2,6 +2,7 @@ import { prisma } from "@/lib/db";
 import Image from "next/image";
 import { CourseCard } from "@/components/CourseCard";
 import { whatsappLink } from "@/lib/utils";
+import { GlowLine } from "@/components/GlowLine";
 import Link from "next/link";
 import type { Metadata } from "next";
 
@@ -19,16 +20,34 @@ export default async function AcademiePage() {
 
   return (
     <>
-      {/* Hero — light pink */}
+      {/* All courses — flat grid, seed order — FIRST */}
+      <section className="py-14 md:py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <p className="section-label mb-3">Emma Nails Academy</p>
+          <h2 className="font-display text-3xl md:text-5xl font-medium mb-10">
+            Toate <span className="italic text-pink">cursurile</span>
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+            {courses.map((course) => (
+              <CourseCard key={course.id} course={course} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* GlowLine divider */}
+      <GlowLine />
+
+      {/* Hero CTA — "Cursuri de manichiură" + Programează-te */}
       <section className="relative bg-gradient-to-br from-white via-pink-50/50 to-nude-100 py-16 md:py-24 overflow-hidden">
         <div className="absolute -top-20 -right-20 w-80 h-80 bg-pink/5 rounded-full blur-3xl" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
             <div>
               <p className="section-label mb-3">Emma Nails Academy</p>
-              <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-medium text-dark leading-tight">
+              <h2 className="font-display text-5xl md:text-6xl lg:text-7xl font-medium text-dark leading-tight">
                 Cursuri de <span className="italic text-pink">manichiură</span>
-              </h1>
+              </h2>
               <p className="font-body text-base md:text-lg text-dark-400 mt-5 max-w-xl leading-relaxed">
                 Indiferent dacă ești începătoare sau profesionistă, avem cursuri adaptate nivelului tău. Toate includ diplomă acreditată.
               </p>
@@ -51,6 +70,9 @@ export default async function AcademiePage() {
         </div>
       </section>
 
+      {/* GlowLine divider */}
+      <GlowLine />
+
       {/* Stats */}
       <section className="py-12 bg-pink-50/50 border-y border-pink-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -67,20 +89,6 @@ export default async function AcademiePage() {
               <span className="font-display text-3xl md:text-4xl font-bold text-pink">500+</span>
               <p className="font-body text-[11px] uppercase tracking-[0.2em] text-dark-400 mt-1">Cursante</p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* All courses — flat grid, seed order */}
-      <section className="py-14 md:py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="font-display text-3xl md:text-4xl font-medium mb-10">
-            Toate <span className="italic text-pink">cursurile</span>
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
-            {courses.map((course) => (
-              <CourseCard key={course.id} course={course} />
-            ))}
           </div>
         </div>
       </section>
