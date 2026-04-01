@@ -119,10 +119,10 @@ export const products = [
   // ═══════════════════════════════════════════════════════════
   // ACRYLIC LIQUID (7 products — colors from PDF)
   // ═══════════════════════════════════════════════════════════
-  { ...al("Soft Nude",   "#DCBFA8"), featured: true },
-  al("Soft Lilac",  "#C4A0BE"),
-  al("Pink Luna",   "#E8A0B0"),
-  al("Amme Touch",  "#D8B498"),
+  { ...al("Soft Nude",   "#F0C4B8"), featured: true },
+  al("Soft Lilac",  "#E0C4DC"),
+  al("Pink Luna",   "#F0C8D8"),
+  al("Amme Touch",  "#E8D4C4"),
   al("Ivory Silk",  "#F0E2D4"),
   al("Blush Nude",  "#E0BAA8"),
   al("Mood Nude",   "#D4AA90"),
@@ -130,48 +130,48 @@ export const products = [
   // ═══════════════════════════════════════════════════════════
   // BAZE RUBBER — Rubber Base Coat (7 shades from PDF)
   // ═══════════════════════════════════════════════════════════
-  rb("Nude On Point",    "#D4978A"),
-  rb("Lilac Mist",      "#C09CC8"),
-  rb("Moon Dust",        "#7A6878"),
-  rb("White No Limits",  "#F0ECE6"),
-  rb("Sand That's Hot",  "#D0AC8C"),
-  rb("Rose Heartbeat",   "#D06880"),
-  rb("Pink Queen Mode",  "#E07898"),
+  rb("Nude On Point",    "#D4A494"),
+  rb("Lilac Mist",      "#C8A8D0"),
+  rb("Moon Dust",        "#A8A0B0"),
+  rb("White No Limits",  "#E8E4E0"),
+  rb("Sand That's Hot",  "#D4BCA0"),
+  rb("Rose Heartbeat",   "#D88898"),
+  rb("Pink Queen Mode",  "#CC6888"),
 
   // ═══════════════════════════════════════════════════════════
   // BAZE RUBBER — Glitter Rubber Base (31 shades from PDF)
   // ═══════════════════════════════════════════════════════════
-  grb("White Keep Shining", "#EDE6DE"),
+  grb("White Keep Shining", "#E8E0D8"),
   grb("Velvet Dream",       "#7A5870"),
-  grb("Bronze Moment",      "#A07858"),
+  grb("Bronze Moment",      "#A08068"),
   grb("White No Limits",    "#E8E2DA"),
   grb("White Manifest",     "#E6DED6"),
   grb("Anto's Love",        "#CCA098"),
-  grb("Blush Mirage",       "#B08098"),
+  grb("Blush Mirage",       "#B88098"),
   grb("Blue Drip Queen",    "#6888A8"),
-  grb("Silver Luxe",        "#B8B4BC"),
+  grb("Silver Luxe",        "#B8B4C0"),
   grb("Kiwi Influence",     "#908068"),
   grb("White Vision",       "#ECE6E2"),
   grb("Lecel Up Nude",      "#D0B498"),
   grb("Money Mood",         "#BCA068"),
   grb("White Grace",        "#ECEAE6"),
-  grb("Green Mirage",       "#88A078"),
+  grb("Green Mirage",       "#8CA38E"),
   grb("Desert Glow",        "#CCA084"),
   grb("Grey On Repeat",     "#A09898"),
-  grb("Pink Hug",           "#E0ACB4"),
-  grb("Sunset Bronze",      "#B88868"),
-  grb("Pearl Kiss",         "#E4D4CC"),
-  grb("Nude Reflection",    "#CDB8A8"),
-  grb("Rose Affection",     "#D08890"),
+  grb("Pink Hug",           "#E0B0B8"),
+  grb("Sunset Bronze",      "#B08870"),
+  grb("Pearl Kiss",         "#D8CAC0"),
+  grb("Nude Reflection",    "#C8B0A4"),
+  grb("Rose Affection",     "#D48898"),
   grb("Turcoaz Pearl",      "#78B0B0"),
-  grb("Platinum Poise",     "#C0B8BC"),
-  grb("Shine Up",           "#D4C088"),
+  grb("Platinum Poise",     "#C0B8C0"),
+  grb("Shine Up",           "#D0C088"),
   grb("Adore Gold",         "#C4A058"),
   grb("Sun Kiss",           "#CCA868"),
   grb("White Bliss",        "#E8E4DE"),
   grb("Gold Power",         "#B89848"),
-  grb("Vero Rose",          "#C07888"),
-  grb("Ice Lilac",          "#C4B4CC"),
+  grb("Vero Rose",          "#C88090"),
+  grb("Ice Lilac",          "#C8B8D0"),
 
   // ═══════════════════════════════════════════════════════════
   // GEL CONSTRUCȚIE — Self-leveling Fit Gel (1 shade)
@@ -182,39 +182,39 @@ export const products = [
   // GEL CONSTRUCȚIE — Balance Builder Liquid (5 shades from PDF)
   // ═══════════════════════════════════════════════════════════
   bl("White Please",  "#ECE6DE"),
-  bl("Nude Sandy",    "#D0A886"),
-  bl("Pink Gloss",    "#E08890"),
-  bl("Nude Forever",  "#D4A090"),
-  bl("Pink Boss",     "#E05878"),
+  bl("Nude Sandy",    "#D4A888"),
+  bl("Pink Gloss",    "#E89098"),
+  bl("Nude Forever",  "#D8A898"),
+  bl("Pink Boss",     "#E06080"),
 
   // ═══════════════════════════════════════════════════════════
   // GEL CONSTRUCȚIE — Builder Gel (16 shades — fixed Lara Grace)
   // ═══════════════════════════════════════════════════════════
-  bg("White Wonder",  "Harmony Builder Gel",          "#F5F0EB"),
-  bg("Nude Soft",     "Harmony Builder Gel",          "#D8C0AD"),
+  bg("White Wonder",  "Harmony Builder Gel",          "#EAE2DA"),
+  bg("Nude Soft",     "Harmony Builder Gel",          "#E4CEC0"),
   bg("Still White",   "Mood Cover Builder Gel",       "#F2EDE8"),
-  bg("Moon Shimmer",  "Glow Moment Builder Gel",      "#E0D8E4"),
-  bg("Soul Sisters",  "Glow Moment Builder Gel",      "#E5DCE8"),
-  bg("Pearl Touch",   "Fairy Kiss Builder Gel",       "#EDE4DA"),
-  bg("Pink Promise",  "Fairy Kiss Builder Gel",       "#F0A8BC"),
-  bg("Lilac Anne",    "Fairy Kiss Builder Gel",       "#C8A8C8"),
-  bg("Metal Bloom",   "Diamond Boss Builder Gel",     "#C0B8C4"),
-  bg("Allè Vibes",    "Diamond Boss Builder Gel",     "#C4B4CC"),
-  bg("Cosmic Chrome", "Diamond Boss Builder Gel",     "#B8B8C8"),
-  bg("Pink Filter",   "Pearl Soft Mode Builder Gel",  "#ECA8B8"),
-  bg("My Alma",       "Pearl Soft Mode Builder Gel",  "#D4AE98"),
-  bg("Beige Cuddle",  "Pearl Soft Mode Builder Gel",  "#D8C4A8"),
-  bg("Lara Grace",    "Pearl Soft Mode Builder Gel",  "#D8BCAA"),
-  bg("Blue Chill",    "Pearl Soft Mode Builder Gel",  "#A4BCD6"),
+  bg("Moon Shimmer",  "Glow Moment Builder Gel",      "#D4C4CC"),
+  bg("Soul Sisters",  "Glow Moment Builder Gel",      "#D8C0D0"),
+  bg("Pearl Touch",   "Fairy Kiss Builder Gel",       "#E8DCD4"),
+  bg("Pink Promise",  "Fairy Kiss Builder Gel",       "#E8A8BC"),
+  bg("Lilac Anne",    "Fairy Kiss Builder Gel",       "#B898C0"),
+  bg("Metal Bloom",   "Diamond Boss Builder Gel",     "#C8AEB0"),
+  bg("Allè Vibes",    "Diamond Boss Builder Gel",     "#C4B8C4"),
+  bg("Cosmic Chrome", "Diamond Boss Builder Gel",     "#D0B0A8"),
+  bg("Pink Filter",   "Pearl Soft Mode Builder Gel",  "#E8D0D8"),
+  bg("My Alma",       "Pearl Soft Mode Builder Gel",  "#DFC0B0"),
+  bg("Beige Cuddle",  "Pearl Soft Mode Builder Gel",  "#E0CCC8"),
+  bg("Lara Grace",    "Pearl Soft Mode Builder Gel",  "#E4DCD4"),
+  bg("Blue Chill",    "Pearl Soft Mode Builder Gel",  "#B8C8C4"),
 
   // ═══════════════════════════════════════════════════════════
   // GEL CONSTRUCȚIE — Jelly Builder Gel (5 shades)
   // ═══════════════════════════════════════════════════════════
   jg("Jelly Milk",       "#F0E8DF"),
-  jg("Jelly Rose",       "#E8A0AB"),
-  jg("Nude In Control",  "#D8A0AC"),
-  jg("Nude Delight",     "#E0C4B2"),
-  jg("Liliac Sand",      "#C4A4B8"),
+  jg("Jelly Rose",       "#E8A8B0"),
+  jg("Nude In Control",  "#D0A0A4"),
+  jg("Nude Delight",     "#E0C4B4"),
+  jg("Liliac Sand",      "#C4A8C0"),
 
   // ═══════════════════════════════════════════════════════════
   // TOP COAT — Glitter Vibe (3 shades from PDF)
