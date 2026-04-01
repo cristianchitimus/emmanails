@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import { isAdminAuthenticated } from "@/lib/admin-auth";
+import { sendOrderStatusEmail } from "@/lib/email";
 
 export async function GET(req: Request, { params }: { params: { id: string } }) {
   if (!(await isAdminAuthenticated())) {
@@ -33,6 +34,11 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
     data,
     include: { items: true },
   });
+
+  // Send status change email to customer (non-blocking)
+  if (status) {
+    sendOrderStatusEmail(order.email, order.name, order.orderNumber, status).catch(() => {});
+  }
 
   return NextResponse.json(order);
 }

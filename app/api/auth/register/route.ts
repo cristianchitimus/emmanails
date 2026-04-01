@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { hash } from "bcryptjs";
 import { prisma } from "@/lib/db";
+import { sendWelcomeEmail } from "@/lib/email";
 
 export async function POST(req: Request) {
   try {
@@ -44,6 +45,9 @@ export async function POST(req: Request) {
         passwordHash,
       },
     });
+
+    // Send welcome email (non-blocking)
+    sendWelcomeEmail(emailNormalized, name?.trim()).catch(() => {});
 
     return NextResponse.json(
       { message: "Cont creat cu succes", userId: user.id },

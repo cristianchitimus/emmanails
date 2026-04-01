@@ -4,6 +4,7 @@ import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import { getStripe, calculateShipping } from "@/lib/stripe";
 import { generateOrderNumber } from "@/lib/utils";
+import { sendOrderConfirmationEmail } from "@/lib/email";
 
 interface CheckoutItem {
   id: string;
@@ -205,6 +206,15 @@ export async function POST(req: Request) {
         },
       });
 
+      // Send order confirmation email (non-blocking)
+      sendOrderConfirmationEmail({
+        orderNumber, name, email,
+        items: orderItemsData,
+        subtotal, discount, discountCode, shipping, total,
+        paymentMethod: "stripe",
+        address, city, county,
+      }).catch(() => {});
+
       return NextResponse.json({ url: stripeSession.url });
     } else {
       // Cash on delivery (ramburs)
@@ -230,6 +240,16 @@ export async function POST(req: Request) {
           items: { create: orderItemsData },
         },
       });
+
+      // Send order confirmation email (non-blocking)
+      sendOrderConfirmationEmail({
+        orderNumber: order.orderNumber,
+        name, email,
+        items: orderItemsData,
+        subtotal, discount, discountCode, shipping, total,
+        paymentMethod: "ramburs",
+        address, city, county,
+      }).catch(() => {});
 
       return NextResponse.json({
         success: true,
