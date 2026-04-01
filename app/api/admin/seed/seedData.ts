@@ -1,5 +1,88 @@
+// ════════════════════════════════════════════════════════════
+// EMMA NAILS — SEED DATA (auto-generated from PDF catalog + docx descriptions)
+// Total: ~105 products + 12 courses
+// ════════════════════════════════════════════════════════════
+
+// ─── DESCRIPTIONS (from docx files) ───────────────────────
+const DESC = {
+  rubberBase: "Rubber Base Emma Nails — fundamentul esențial pentru o manichiură tehnică de succes. Concepută special pentru unghiile subțiri, casante sau problematice, oferă aderență magnetică și flexibilitate rezistentă. Vâscozitate inteligentă, tehnologie \"Shock-Absorb\", autonivelare high-definition și camuflaj sofisticat. Garantează manichiură intactă peste 4 săptămâni.",
+  glitterRubber: "Glitter Rubber Base Emma Nails — soluția 2-în-1 care combină rezistența unei baze elastice cu estetica prețioasă a sclipiciului fin. Efect \"Jewel-Tone\" cu particule de sclipici de înaltă densitate, suspendate într-o formulă autonivelantă. Aderență magnetică, camuflaj și design din aplicare unică. Rezistență 4 săptămâni.",
+  builderGel: "Builder Gel Emma Nails — structură rigidă cu polimerizare la rece, confort maxim și durabilitate peste 4 săptămâni. Proprietăți excelente de autonivelare — reduce timpul de finisare cu 30%. Culori stabile, fără îngălbenire.",
+  builderLiquid: "Builder Liquid Emma Nails — gel de construcție \"la sticluță\" ce redefinește eficiența în salon. Textură inovatoare care se autonivelează instantaneu, formează o legătură moleculară puternică. Aplicare directă cu pensula din sticlă, necesită pilire minimă sau deloc.",
+  jellyGel: "Tender Crush Jelly Builder Gel (HEMA – TPO FREE). Consistență densă de tip jeleu — materialul rămâne exact unde este plasat, fără a migra spre cuticule. Odorless & HEMA-Free, reduce riscul de alergii. Barieră extrem de dură după polimerizare.",
+  acrylicLiquid: "Acrylic Liquid Emma Nails — material de înaltă performanță cu formulă avansată. Timp de lucru optimizat, aderență chimică superioară, rezistență UV și anti-îngălbenire. Control absolut al materialului, finit de precizie și versatilitate structurală.",
+  topGlitter: "Glitter Vibe Top Coat Emma Nails — finisajul suprem \"No Wipe\" infuzat cu micro-particule strălucitoare într-o formulă ultra-lucioasă. Tehnologie No-Wipe cu luciu instantaneu de oglindă, densitate omogenă a sclipiciului, barieră anti-zgârieturi.",
+  topSteel: "Top Clear Steel Emma Nails — finisajul de elită \"No Wipe\" conceput pentru protecție îndelungată. Formulă inspirată de rezistența oțelului, scut protector ultra-rigid și luciu vitros impecabil. Imun la micro-zgârieturi.",
+  topMatte: "Top Velvet Matte Emma Nails — finisaj \"No Wipe\" cu efect mat absolut. Textură fină asemănătoare catifelei, senzație catifelată la atingere, respinge praful și transferul de culoare.",
+};
+
+const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+
+// Helper to make rubber base products
+const rb = (name: string, hex: string) => ({
+  slug: `rubber-base-${slug(name)}-12ml`,
+  name: `Rubber Base Coat — ${name}, 12ml`,
+  description: `${DESC.rubberBase} Nuanța ${name}.`,
+  price: 6500, category: "baze-rubber", subcategory: "rubber-base", size: "12ml",
+  inStock: true, featured: false, colorHex: hex,
+  imageUrl: "/rubber-base-coat-front.jpg",
+  images: ["/rubber-base-coat-front.jpg", "/rubber-base-coat-back.jpg"],
+});
+
+const grb = (name: string, hex: string) => ({
+  slug: `glitter-rubber-base-${slug(name)}-12ml`,
+  name: `Glitter Rubber Base — ${name}, 12ml`,
+  description: `${DESC.glitterRubber} Nuanța ${name}.`,
+  price: 7000, category: "baze-rubber", subcategory: "glitter-rubber-base", size: "12ml",
+  inStock: true, featured: false, colorHex: hex,
+  imageUrl: "/glitter-rubber-base-front.jpg",
+  images: ["/glitter-rubber-base-front.jpg", "/glitter-rubber-base-back.jpg"],
+});
+
+const bg = (name: string, line: string, hex: string) => ({
+  slug: `builder-gel-${slug(name)}`,
+  name: `Builder Gel — ${name}, 30g`,
+  description: `${line} (HEMA – TPO FREE). ${DESC.builderGel} Nuanța ${name}.`,
+  price: 9500, category: "gel-constructie", subcategory: "builder-gel", size: "30g",
+  inStock: true, featured: false, colorHex: hex,
+  imageUrl: `/builder-gel-${slug(name)}.jpg`,
+  images: [`/builder-gel-${slug(name)}.jpg`],
+});
+
+const bl = (name: string, hex: string) => ({
+  slug: `balance-builder-liquid-${slug(name)}-12ml`,
+  name: `Balance Builder Liquid — ${name}, 12ml`,
+  description: `${DESC.builderLiquid} Nuanța ${name}.`,
+  price: 7000, category: "gel-constructie", subcategory: "gel-liquid", size: "12ml",
+  inStock: true, featured: false, colorHex: hex,
+  imageUrl: "/balance-builder-liquid-front.jpg",
+  images: ["/balance-builder-liquid-front.jpg", "/balance-builder-liquid-back.jpg"],
+});
+
+const jg = (name: string, hex: string) => ({
+  slug: `jelly-gel-${slug(name)}`,
+  name: `Jelly Builder Gel — ${name}, 30g`,
+  description: `${DESC.jellyGel} Nuanța ${name}.`,
+  price: 9500, category: "gel-constructie", subcategory: "jelly", size: "30g",
+  inStock: true, featured: false, colorHex: hex,
+  imageUrl: `/jelly-gel-${slug(name)}.jpg`,
+  images: [`/jelly-gel-${slug(name)}.jpg`],
+});
+
+const al = (name: string, hex: string) => ({
+  slug: `acrylic-liquid-${slug(name)}`,
+  name: `Acrylic Extension Liquid — ${name}, 30g`,
+  description: `${DESC.acrylicLiquid} Nuanța ${name}.`,
+  price: 9500, category: "acrylic-liquid", subcategory: "acrylic-liquid", size: "30g",
+  inStock: true, featured: false, colorHex: hex,
+  imageUrl: `/acrylic-${slug(name)}.jpg`,
+  images: [`/acrylic-${slug(name)}.jpg`],
+});
+
 export const products = [
-  // ─── INSTRUMENTE ────────────────────────────────
+  // ═══════════════════════════════════════════════════════════
+  // INSTRUMENTE (9 products — unchanged)
+  // ═══════════════════════════════════════════════════════════
   { slug: "chiureta-dubla-dietter-baumann", name: "Chiuretă dublă Dietter Baumann", description: "Este un instrument dublu, format din 2 capete. Chiuretă dublă profesională Dietter Baumann, ideală pentru îndepărtarea cuticulelor și curățarea matricei unghiale. Oțel inoxidabil chirurgical de calitate superioară germană.", price: 4500, category: "instrumente", subcategory: "instrumente-manichiura", inStock: true, featured: false, imageUrl: "https://emmanails.ro/wp-content/uploads/2025/05/DSC_8288.jpg", images: ["https://emmanails.ro/wp-content/uploads/2025/05/DSC_8288.jpg", "https://emmanails.ro/wp-content/uploads/2025/05/DSC_8289.jpg"] },
   { slug: "cleste-profesional-dietter-baumann", name: "Clește profesional Dietter Baumann", description: "Clește profesional Dietter Baumann pentru cuticulele. Lame ascuțite din oțel chirurgical german, mâner ergonomic.", price: 16000, category: "instrumente", subcategory: "instrumente-manichiura", inStock: true, featured: true, imageUrl: "https://emmanails.ro/wp-content/uploads/2025/05/DSC_8271.jpg", images: ["https://emmanails.ro/wp-content/uploads/2025/05/DSC_8271.jpg", "https://emmanails.ro/wp-content/uploads/2025/05/DSC_8272.jpg", "https://emmanails.ro/wp-content/uploads/2025/05/WhatsApp-Image-2024-08-22-at-08.09.53-1.jpeg"] },
   { slug: "foarfece-exclusive-staleks", name: "Foarfece Exclusive Staleks", description: "Foarfece pentru cuticulă, taie cu precizie. Lamele sunt ascuțite și subțiri, ușor curbată.", price: 13500, category: "instrumente", subcategory: "instrumente-manichiura", inStock: true, featured: false, imageUrl: "https://emmanails.ro/wp-content/uploads/2025/05/DSC_8278.jpg", images: ["https://emmanails.ro/wp-content/uploads/2025/05/DSC_8278.jpg", "https://emmanails.ro/wp-content/uploads/2025/05/DSC_8279.jpg", "https://emmanails.ro/wp-content/uploads/2025/05/forbice-per-cuticole-staleks-exclusive-sx-221-magnolia-21mm.png"] },
@@ -10,7 +93,9 @@ export const products = [
   { slug: "oferta-cleste-foarfece-chiureta", name: "Ofertă clește + foarfece + chiuretă", description: "Set complet la preț special: clește + foarfece + chiuretă.", price: 34500, salePrice: 29500, category: "instrumente", subcategory: "instrumente-set", inStock: true, featured: true, imageUrl: "https://emmanails.ro/wp-content/uploads/2025/06/DSC_8291.jpg", images: ["https://emmanails.ro/wp-content/uploads/2025/06/DSC_8291.jpg", "https://emmanails.ro/wp-content/uploads/2025/06/DSC_8293.jpg"] },
   { slug: "penseta-pedichiura-staleks-pro-podo", name: "Pensetă pedichiură Staleks Pro Podo", description: "Pentru îndepărtarea elementelor unghiilor încarnate din pliurile laterale și bătăturilor subunghiale.", price: 6500, category: "instrumente", subcategory: "instrumente-pedichiura", inStock: true, featured: false, imageUrl: "https://emmanails.ro/wp-content/uploads/2025/05/DSC_8284.jpg", images: ["https://emmanails.ro/wp-content/uploads/2025/05/DSC_8284.jpg", "https://emmanails.ro/wp-content/uploads/2025/05/DSC_8285.jpg"] },
 
-  // ─── POLYGEL ──────────────────────────────────────
+  // ═══════════════════════════════════════════════════════════
+  // POLYGEL (19 products — unchanged)
+  // ═══════════════════════════════════════════════════════════
   { slug: "polygel-emma-nails", name: "Polygel Emma Nails", description: "Cel mai top produs ever! Cu formulă revoluționară, foarte rezistent și ideal pentru construcția unghiilor pe tips/șablon/la întreținere cu schimbarea arhitecturii/french interior.", price: 8000, category: "polygel", subcategory: "polygel-clasic", size: "30g", inStock: true, featured: true, imageUrl: "https://emmanails.ro/wp-content/uploads/2025/04/29.jpg", images: ["https://emmanails.ro/wp-content/uploads/2025/04/29.jpg"] },
   { slug: "polygel-verde", name: "Polygel Verde", description: "PolyGel verde — culoare vibrantă. Cu formulă revoluționară.", price: 3100, category: "polygel", subcategory: "polygel-color", size: "30g", inStock: true, featured: false, imageUrl: "https://emmanails.ro/wp-content/uploads/2025/04/29.jpg", images: ["https://emmanails.ro/wp-content/uploads/2025/04/29.jpg"] },
   { slug: "polygel-emma-nails-color-01-60g", name: "Polygel Emma Nails Color 01, 60g", description: "Cu o formulă revoluționară, foarte rezistent. Format economic 60g.", price: 14000, category: "polygel", subcategory: "polygel-color", size: "60g", inStock: true, featured: true, imageUrl: "https://emmanails.ro/wp-content/uploads/2025/05/1.jpg", images: ["https://emmanails.ro/wp-content/uploads/2025/05/1.jpg"] },
@@ -31,54 +116,127 @@ export const products = [
   { slug: "reflective-polygel-emma-nails-color-24-30g", name: "Reflective Polygel Emma Nails Color 24, 30g", description: "PolyGel reflectiv cu efect holografic.", price: 8000, category: "polygel", subcategory: "polygel-reflective", size: "30g", inStock: true, featured: false, imageUrl: "https://emmanails.ro/wp-content/uploads/2025/05/25.jpg", images: ["https://emmanails.ro/wp-content/uploads/2025/05/25.jpg"] },
   { slug: "reflective-polygel-emma-nails-color-25-30g", name: "Reflective Polygel Emma Nails Color 25, 30g", description: "PolyGel reflectiv cu efect fascinant.", price: 8000, category: "polygel", subcategory: "polygel-reflective", size: "30g", inStock: true, featured: false, imageUrl: "https://emmanails.ro/wp-content/uploads/2025/05/25.jpg", images: ["https://emmanails.ro/wp-content/uploads/2025/05/25.jpg"] },
 
-  // ─── ACRYLIC LIQUID ─────────────────────────────────
-  { slug: "acrylic-liquid-soft-nude", name: "Acrylic Extension Liquid — Soft Nude, 30g", description: "Acrylic Liquid Emma Nails — material de înaltă performanță pentru tehnicienii care solicită durabilitate extremă. Formula avansată permite o modelare fluidă, transformând amestecul de pudră acrilică într-o masă omogenă, ușor de sculptat. Timp de lucru optimizat, aderență chimică superioară, rezistență UV și anti-îngălbenire. Nuanța Soft Nude — camuflaj natural perfect.", price: 9500, category: "acrylic-liquid", subcategory: "acrylic-liquid", size: "30g", inStock: true, featured: true, colorHex: "#DCBFA8", imageUrl: "/acrylic-soft-nude.jpg", images: ["/acrylic-soft-nude.jpg"] },
-  { slug: "acrylic-liquid-soft-lilac", name: "Acrylic Extension Liquid — Soft Lilac, 30g", description: "Acrylic Liquid Emma Nails — material de înaltă performanță cu formulă avansată ce permite o modelare fluidă și control absolut. Aderență chimică superioară, rezistență UV și structură de densitate înaltă. Nuanța Soft Lilac — eleganță discretă cu reflexe liliac.", price: 9500, category: "acrylic-liquid", subcategory: "acrylic-liquid", size: "30g", inStock: true, featured: false, colorHex: "#C4A0BE", imageUrl: "/acrylic-soft-lilac.jpg", images: ["/acrylic-soft-lilac.jpg"] },
-  { slug: "acrylic-liquid-pink-luna", name: "Acrylic Extension Liquid — Pink Luna, 30g", description: "Acrylic Liquid Emma Nails — material de înaltă performanță cu formulă avansată. Control absolut al materialului, finit de precizie și versatilitate structurală. Ideal pentru extensii pe șablon, protecția unghiei naturale sau utilizare în tips. Nuanța Pink Luna — roz delicat și feminin.", price: 9500, category: "acrylic-liquid", subcategory: "acrylic-liquid", size: "30g", inStock: true, featured: false, colorHex: "#E8A0B0", imageUrl: "/acrylic-pink-luna.jpg", images: ["/acrylic-pink-luna.jpg"] },
-  { slug: "acrylic-liquid-mood-nude", name: "Acrylic Extension Liquid — Mood Nude, 30g", description: "Acrylic Liquid Emma Nails — material de înaltă performanță. Timp de lucru optimizat, aderență chimică superioară și rezistență UV anti-îngălbenire. Manichiură robustă, subțire și cu o duritate remarcabilă. Nuanța Mood Nude — nude cald și sofisticat.", price: 9500, category: "acrylic-liquid", subcategory: "acrylic-liquid", size: "30g", inStock: true, featured: false, colorHex: "#D4AA90", imageUrl: "/acrylic-mood-nude.jpg", images: ["/acrylic-mood-nude.jpg"] },
-  { slug: "acrylic-liquid-ivory-silk", name: "Acrylic Extension Liquid — Ivory Silk, 30g", description: "Acrylic Liquid Emma Nails — material de înaltă performanță cu formulă avansată. Consistența lichidului permite o îmbibare uniformă a pudrei, evitând formarea bulelor de aer. Finit de precizie, se pilește cu ușurință. Nuanța Ivory Silk — alb crem delicat ca mătasea.", price: 9500, category: "acrylic-liquid", subcategory: "acrylic-liquid", size: "30g", inStock: true, featured: false, colorHex: "#F0E2D4", imageUrl: "/acrylic-ivory-silk.jpg", images: ["/acrylic-ivory-silk.jpg"] },
-  { slug: "acrylic-liquid-blush-nude", name: "Acrylic Extension Liquid — Blush Nude, 30g", description: "Acrylic Liquid Emma Nails — material de înaltă performanță. Formula avansată oferă modelare fluidă și control absolut. Structură de densitate înaltă — manichiură robustă, ideală și pentru formele lungi. Nuanța Blush Nude — nude roz, camuflaj impecabil.", price: 9500, category: "acrylic-liquid", subcategory: "acrylic-liquid", size: "30g", inStock: true, featured: false, colorHex: "#E0BAA8", imageUrl: "/acrylic-blush-nude.jpg", images: ["/acrylic-blush-nude.jpg"] },
-  { slug: "acrylic-liquid-amme-touch", name: "Acrylic Extension Liquid — Amme Touch, 30g", description: "Acrylic Liquid Emma Nails — material de înaltă performanță. Inginerie tehnică pentru manichiuri sculptate cu măiestrie. Eficiență maximă și stabilitate cromatică garantată. Nuanța Amme Touch — nude ambrat cald.", price: 9500, category: "acrylic-liquid", subcategory: "acrylic-liquid", size: "30g", inStock: true, featured: false, colorHex: "#D8B498", imageUrl: "/acrylic-amme-touch.jpg", images: ["/acrylic-amme-touch.jpg"] },
+  // ═══════════════════════════════════════════════════════════
+  // ACRYLIC LIQUID (7 products — colors from PDF)
+  // ═══════════════════════════════════════════════════════════
+  { ...al("Soft Nude",   "#DCBFA8"), featured: true },
+  al("Soft Lilac",  "#C4A0BE"),
+  al("Pink Luna",   "#E8A0B0"),
+  al("Amme Touch",  "#D8B498"),
+  al("Ivory Silk",  "#F0E2D4"),
+  al("Blush Nude",  "#E0BAA8"),
+  al("Mood Nude",   "#D4AA90"),
 
-  // ─── BAZE RUBBER ──────────────────────────────────
-  { slug: "rubber-base-coat-12ml", name: "Rubber Base Coat, 12ml", description: "Rubber Base Emma Nails — fundamentul esențial pentru o manichiură tehnică de succes. Concepută special pentru unghiile subțiri, casante sau problematice, oferă aderență magnetică și flexibilitate rezistentă. Vâscozitate inteligentă, tehnologie \"Shock-Absorb\" ce absoarbe șocurile mecanice, autonivelare high-definition și camuflaj sofisticat. Economie de timp — înlocuiește aplicarea culorii, reducând durata procedurii cu până la 20 de minute. Garantează manichiură intactă peste 4 săptămâni.", price: 6500, category: "baze-rubber", subcategory: "rubber-base", size: "12ml", inStock: true, featured: false, imageUrl: "/rubber-base-coat-front.jpg", images: ["/rubber-base-coat-front.jpg", "/rubber-base-coat-back.jpg"] },
-  { slug: "glitter-rubber-base-coat-12ml", name: "Glitter Rubber Base Coat, 12ml", description: "Glitter Rubber Base Emma Nails — soluția 2-în-1 care combină rezistența unei baze elastice cu estetica prețioasă a sclipiciului fin. Efect \"Jewel-Tone\" cu particule de sclipici de înaltă densitate, suspendate într-o formulă autonivelantă. Aderență magnetică pe unghiile subțiri, camuflaj și design din aplicare unică. Economie de timp — înlocuiește aplicarea culorii. Rezistență 4 săptămâni — menține strălucirea particulelor fără a se mătui.", price: 7000, category: "baze-rubber", subcategory: "glitter-rubber-base", size: "12ml", inStock: true, featured: false, imageUrl: "/glitter-rubber-base-front.jpg", images: ["/glitter-rubber-base-front.jpg", "/glitter-rubber-base-back.jpg"] },
+  // ═══════════════════════════════════════════════════════════
+  // BAZE RUBBER — Rubber Base Coat (7 shades from PDF)
+  // ═══════════════════════════════════════════════════════════
+  rb("Nude On Point",    "#D4978A"),
+  rb("Lilac Mist",      "#C09CC8"),
+  rb("Moon Dust",        "#7A6878"),
+  rb("White No Limits",  "#F0ECE6"),
+  rb("Sand That's Hot",  "#D0AC8C"),
+  rb("Rose Heartbeat",   "#D06880"),
+  rb("Pink Queen Mode",  "#E07898"),
 
-  // ─── GEL CONSTRUCȚIE — Liquids ─────────────────────
-  { slug: "self-leveling-fit-gel-12ml", name: "Self-leveling Fit Gel, 12ml", description: "Builder Liquid Emma Nails — gel de construcție \"la sticluță\" ce redefinește eficiența în salon. Textură inovatoare care se autonivelează instantaneu, formează o legătură moleculară puternică și minimizează degajarea de căldură la polimerizare. Aplicare directă cu pensula din sticlă, necesită pilire minimă sau deloc. Perfect pentru protecția unghiilor naturale medii sau lungi.", price: 7000, category: "gel-constructie", subcategory: "gel-liquid", size: "12ml", inStock: true, featured: false, imageUrl: "/self-leveling-fit-gel-front.jpg", images: ["/self-leveling-fit-gel-front.jpg", "/self-leveling-fit-gel-back.jpg"] },
-  { slug: "balance-builder-liquid-12ml", name: "Balance Builder Liquid, 12ml", description: "Builder Liquid Emma Nails — inovația care redefinește eficiența în salon. Densitatea necesară pentru întărirea unghiei naturale și fluiditatea ideală pentru tehnica fără pilire. Formula optimizată minimizează degajarea de căldură, fiind ideală pentru unghii sensibile. Aplicare directă cu pensula din sticlă. Controlul unui gel, simplitatea unei baze.", price: 7000, category: "gel-constructie", subcategory: "gel-liquid", size: "12ml", inStock: true, featured: false, imageUrl: "/balance-builder-liquid-front.jpg", images: ["/balance-builder-liquid-front.jpg", "/balance-builder-liquid-back.jpg"] },
+  // ═══════════════════════════════════════════════════════════
+  // BAZE RUBBER — Glitter Rubber Base (31 shades from PDF)
+  // ═══════════════════════════════════════════════════════════
+  grb("White Keep Shining", "#EDE6DE"),
+  grb("Velvet Dream",       "#7A5870"),
+  grb("Bronze Moment",      "#A07858"),
+  grb("White No Limits",    "#E8E2DA"),
+  grb("White Manifest",     "#E6DED6"),
+  grb("Anto's Love",        "#CCA098"),
+  grb("Blush Mirage",       "#B08098"),
+  grb("Blue Drip Queen",    "#6888A8"),
+  grb("Silver Luxe",        "#B8B4BC"),
+  grb("Kiwi Influence",     "#908068"),
+  grb("White Vision",       "#ECE6E2"),
+  grb("Lecel Up Nude",      "#D0B498"),
+  grb("Money Mood",         "#BCA068"),
+  grb("White Grace",        "#ECEAE6"),
+  grb("Green Mirage",       "#88A078"),
+  grb("Desert Glow",        "#CCA084"),
+  grb("Grey On Repeat",     "#A09898"),
+  grb("Pink Hug",           "#E0ACB4"),
+  grb("Sunset Bronze",      "#B88868"),
+  grb("Pearl Kiss",         "#E4D4CC"),
+  grb("Nude Reflection",    "#CDB8A8"),
+  grb("Rose Affection",     "#D08890"),
+  grb("Turcoaz Pearl",      "#78B0B0"),
+  grb("Platinum Poise",     "#C0B8BC"),
+  grb("Shine Up",           "#D4C088"),
+  grb("Adore Gold",         "#C4A058"),
+  grb("Sun Kiss",           "#CCA868"),
+  grb("White Bliss",        "#E8E4DE"),
+  grb("Gold Power",         "#B89848"),
+  grb("Vero Rose",          "#C07888"),
+  grb("Ice Lilac",          "#C4B4CC"),
 
-  // ─── GEL CONSTRUCȚIE — Builder Gel ──────────────────
-  { slug: "builder-gel-white-wonder", name: "Builder Gel — White Wonder, 30g", description: "Harmony Builder Gel (HEMA – TPO FREE). Structură rigidă cu polimerizare la rece, confort maxim și durabilitate peste 4 săptămâni. Proprietăți excelente de autonivelare — reduce timpul de finisare cu 30%. Culori stabile, fără îngălbenire. Nuanța White Wonder — alb pur luminos.", price: 9500, category: "gel-constructie", subcategory: "builder-gel", size: "30g", inStock: true, featured: false, colorHex: "#F5F0EB", imageUrl: "/builder-gel-white-wonder.jpg", images: ["/builder-gel-white-wonder.jpg"] },
-  { slug: "builder-gel-still-white", name: "Builder Gel — Still White, 30g", description: "Mood Cover Builder Gel (HEMA – TPO FREE). Structură rigidă, polimerizare la rece. Vâscozitate optimizată care nu curge, ideal pentru extensii lungi și forme extreme cu precizie milimetrică. Nuanța Still White — alb cremos, camuflaj impecabil.", price: 9500, category: "gel-constructie", subcategory: "builder-gel", size: "30g", inStock: true, featured: false, colorHex: "#F2EDE8", imageUrl: "/builder-gel-still-white.jpg", images: ["/builder-gel-still-white.jpg"] },
-  { slug: "builder-gel-soul-sisters", name: "Builder Gel — Soul Sisters, 30g", description: "Glow Moment Builder Gel (ODORLESS, HEMA – TPO FREE). Structură moleculară densă ce previne ruperea sau crăparea. Permite modelarea prelungită fără migrare spre cuticulă. Nuanța Soul Sisters — shimmer iridescent delicat.", price: 9500, category: "gel-constructie", subcategory: "builder-gel", size: "30g", inStock: true, featured: false, colorHex: "#E5DCE8", imageUrl: "/builder-gel-soul-sisters.jpg", images: ["/builder-gel-soul-sisters.jpg"] },
-  { slug: "builder-gel-pink-promise", name: "Builder Gel — Pink Promise, 30g", description: "Fairy Kiss Builder Gel (HEMA – TPO FREE). Autonivelare excelentă, reduce timpul de finisare cu 30%. Culori stabile fără îngălbenire, aspect natural sau camuflaj perfect. Nuanța Pink Promise — roz promisiune, feminin și delicat.", price: 9500, category: "gel-constructie", subcategory: "builder-gel", size: "30g", inStock: true, featured: false, colorHex: "#F0A8BC", imageUrl: "/builder-gel-pink-promise.jpg", images: ["/builder-gel-pink-promise.jpg"] },
-  { slug: "builder-gel-pink-filter", name: "Builder Gel — Pink Filter, 30g", description: "Pearl Soft Mode Builder Gel (TPO FREE). Proprietăți excelente de autonivelare. Modelarea prelungită fără migrare spre cuticulă — ideal pentru începători și profesioniști. Nuanța Pink Filter — roz filtrat, efect \"glass skin\" pe unghie.", price: 9500, category: "gel-constructie", subcategory: "builder-gel", size: "30g", inStock: true, featured: false, colorHex: "#ECA8B8", imageUrl: "/builder-gel-pink-filter.jpg", images: ["/builder-gel-pink-filter.jpg"] },
-  { slug: "builder-gel-pearl-touch", name: "Builder Gel — Pearl Touch, 30g", description: "Fairy Kiss Builder Gel (HEMA – TPO FREE). Structură rigidă, confort maxim la purtare. Polimerizare la rece — minimizează disconfortul. Nuanța Pearl Touch — perlat delicat cu reflexe calde.", price: 9500, category: "gel-constructie", subcategory: "builder-gel", size: "30g", inStock: true, featured: false, colorHex: "#EDE4DA", imageUrl: "/builder-gel-pearl-touch.jpg", images: ["/builder-gel-pearl-touch.jpg"] },
-  { slug: "builder-gel-nude-soft", name: "Builder Gel — Nude Soft, 30g", description: "Harmony Builder Gel (HEMA – TPO FREE). Durabilitate peste 4 săptămâni, vâscozitate optimizată care nu curge. Culori stabile fără îngălbenire. Nuanța Nude Soft — nude clasic, camuflaj natural.", price: 9500, category: "gel-constructie", subcategory: "builder-gel", size: "30g", inStock: true, featured: false, colorHex: "#D8C0AD", imageUrl: "/builder-gel-nude-soft.jpg", images: ["/builder-gel-nude-soft.jpg"] },
-  { slug: "builder-gel-my-alma", name: "Builder Gel — My Alma, 30g", description: "Pearl Soft Mode Builder Gel (TPO FREE). Autonivelare superbă, reduce finisarea cu 30%. Ideal atât pentru tehnicieni rapizi cât și pentru începători. Nuanța My Alma — nude cald cu suflet perlat.", price: 9500, category: "gel-constructie", subcategory: "builder-gel", size: "30g", inStock: true, featured: false, colorHex: "#D4AE98", imageUrl: "/builder-gel-my-alma.jpg", images: ["/builder-gel-my-alma.jpg"] },
-  { slug: "builder-gel-moon-shimmer", name: "Builder Gel — Moon Shimmer, 30g", description: "Glow Moment Builder Gel (ODORLESS, HEMA – TPO FREE). Structură moleculară densă, previne ruperea și pierderea curbei C. Modelare prelungită fără migrare. Nuanța Moon Shimmer — shimmer selenar cu reflexe subtile.", price: 9500, category: "gel-constructie", subcategory: "builder-gel", size: "30g", inStock: true, featured: false, colorHex: "#E0D8E4", imageUrl: "/builder-gel-moon-shimmer.jpg", images: ["/builder-gel-moon-shimmer.jpg"] },
-  { slug: "builder-gel-metal-bloom", name: "Builder Gel — Metal Bloom, 30g", description: "Diamond Boss Builder Gel (HEMA – TOP FREE). Structură rigidă de elită, polimerizare la rece. Vâscozitate optimizată pentru extensii lungi și forme extreme. Nuanța Metal Bloom — metalic cu inflorescentă roz-argintie.", price: 9500, category: "gel-constructie", subcategory: "builder-gel", size: "30g", inStock: true, featured: false, colorHex: "#C0B8C4", imageUrl: "/builder-gel-metal-bloom.jpg", images: ["/builder-gel-metal-bloom.jpg"] },
-  { slug: "builder-gel-lilac-anne", name: "Builder Gel — Lilac Anne, 30g", description: "Fairy Kiss Builder Gel (HEMA – TPO FREE). Autonivelare excelentă, culori stabile fără îngălbenire. Aspect natural sau camuflaj perfect. Nuanța Lilac Anne — liliac romantic cu profunzime.", price: 9500, category: "gel-constructie", subcategory: "builder-gel", size: "30g", inStock: true, featured: false, colorHex: "#C8A8C8", imageUrl: "/builder-gel-lilac-anne.jpg", images: ["/builder-gel-lilac-anne.jpg"] },
-  { slug: "builder-gel-lara-glow", name: "Builder Gel — Lara Glow, 30g", description: "Pearl Soft Mode Builder Gel (TPO FREE). Proprietăți excelente de autonivelare, modelarea prelungită fără migrare. Nuanța Lara Glow — nude cald cu strălucire subtilă.", price: 9500, category: "gel-constructie", subcategory: "builder-gel", size: "30g", inStock: true, featured: false, colorHex: "#D8BCAA", imageUrl: "/builder-gel-lara-glow.jpg", images: ["/builder-gel-lara-glow.jpg"] },
-  { slug: "builder-gel-cosmic-chrome", name: "Builder Gel — Cosmic Chrome, 30g", description: "Diamond Boss Builder Gel (HEMA – TOP FREE). Structură rigidă de elită cu polimerizare la rece. Confort maxim la purtare și durabilitate peste 4 săptămâni. Nuanța Cosmic Chrome — efect cromat cosmic cu reflexe multidimensionale.", price: 9500, category: "gel-constructie", subcategory: "builder-gel", size: "30g", inStock: true, featured: false, colorHex: "#B8B8C8", imageUrl: "/builder-gel-cosmic-chrome.jpg", images: ["/builder-gel-cosmic-chrome.jpg"] },
-  { slug: "builder-gel-blue-chill", name: "Builder Gel — Blue Chill, 30g", description: "Pearl Soft Mode Builder Gel (TPO FREE). Autonivelare superbă, reduce finisarea cu 30%. Versatilitate HEMA-Free pentru unghii sensibile. Nuanța Blue Chill — albastru rece cu personalitate.", price: 9500, category: "gel-constructie", subcategory: "builder-gel", size: "30g", inStock: true, featured: false, colorHex: "#A4BCD6", imageUrl: "/builder-gel-blue-chill.jpg", images: ["/builder-gel-blue-chill.jpg"] },
-  { slug: "builder-gel-beige-cuddle", name: "Builder Gel — Beige Cuddle, 30g", description: "Pearl Soft Mode Builder Gel (TPO FREE). Proprietăți excelente de autonivelare. Culori stabile fără îngălbenire. Nuanța Beige Cuddle — bej cald, îmbrățișare de culoare.", price: 9500, category: "gel-constructie", subcategory: "builder-gel", size: "30g", inStock: true, featured: false, colorHex: "#D8C4A8", imageUrl: "/builder-gel-beige-cuddle.jpg", images: ["/builder-gel-beige-cuddle.jpg"] },
-  { slug: "builder-gel-alle-vibes", name: "Builder Gel — Allè Vibes, 30g", description: "Diamond Boss Builder Gel (HEMA – TOP FREE). Structură moleculară densă, previne ruperea, crăparea sau pierderea formei pe toată durata purtării. Nuanța Allè Vibes — vibrații metalice sofisticate.", price: 9500, category: "gel-constructie", subcategory: "builder-gel", size: "30g", inStock: true, featured: false, colorHex: "#C4B4CC", imageUrl: "/builder-gel-alle-vibes.jpg", images: ["/builder-gel-alle-vibes.jpg"] },
+  // ═══════════════════════════════════════════════════════════
+  // GEL CONSTRUCȚIE — Self-leveling Fit Gel (1 shade)
+  // ═══════════════════════════════════════════════════════════
+  { slug: "self-leveling-fit-gel-12ml", name: "Self-leveling Fit Gel — Clear Promise, 12ml", description: `${DESC.builderLiquid} Nuanța Clear Promise — transparență cristalină.`, price: 7000, category: "gel-constructie", subcategory: "gel-liquid", size: "12ml", inStock: true, featured: false, colorHex: "#E6DED4", imageUrl: "/self-leveling-fit-gel-front.jpg", images: ["/self-leveling-fit-gel-front.jpg", "/self-leveling-fit-gel-back.jpg"] },
 
-  // ─── GEL CONSTRUCȚIE — Jelly ──────────────────────
-  { slug: "jelly-gel-nude-in-control", name: "Jelly Builder Gel — Nude In Control, 30g", description: "Tender Crush Jelly Builder Gel (HEMA – TPO FREE). Consistență densă de tip jeleu — materialul rămâne exact unde este plasat, fără a migra spre cuticule. Odorless & HEMA-Free, reduce riscul de alergii. Barieră extrem de dură care nu se fisurează. Nuanța Nude In Control — nude controlat cu căldură.", price: 9500, category: "gel-constructie", subcategory: "jelly", size: "30g", inStock: true, featured: false, colorHex: "#D8A0AC", imageUrl: "/jelly-gel-nude-in-control.jpg", images: ["/jelly-gel-nude-in-control.jpg"] },
-  { slug: "jelly-gel-nude-delight", name: "Jelly Builder Gel — Nude Delight, 30g", description: "Tender Crush Jelly Builder Gel (HEMA – TPO FREE). Control total — gelul nu se prelinge în șanțurile periunghiale. Camuflaj perfect între unghia naturală și extensie. Nuanța Nude Delight — bucuria nude-ului luminos.", price: 9500, category: "gel-constructie", subcategory: "jelly", size: "30g", inStock: true, featured: false, colorHex: "#E0C4B2", imageUrl: "/jelly-gel-nude-delight.jpg", images: ["/jelly-gel-nude-delight.jpg"] },
-  { slug: "jelly-gel-liliac-sand", name: "Jelly Builder Gel — Liliac Sand, 30g", description: "Tender Crush Jelly Builder Gel (HEMA – TPO FREE). Consistență densă de tip jeleu, Odorless & HEMA-Free. Precizie milimetrică la construcție, barieră dură fără fisuri. Nuanța Liliac Sand — nisip liliac cu reflexe misterioase.", price: 9500, category: "gel-constructie", subcategory: "jelly", size: "30g", inStock: true, featured: false, colorHex: "#C4A4B8", imageUrl: "/jelly-gel-liliac-sand.jpg", images: ["/jelly-gel-liliac-sand.jpg"] },
-  { slug: "jelly-gel-jelly-rose", name: "Jelly Builder Gel — Jelly Rose, 30g", description: "Tender Crush Jelly Builder Gel (HEMA – TPO FREE). Materialul rămâne exact unde e plasat. Odorless, confort sporit la polimerizare. Camuflaj natural și elegant. Nuanța Jelly Rose — trandafir în jeleu.", price: 9500, category: "gel-constructie", subcategory: "jelly", size: "30g", inStock: true, featured: false, colorHex: "#E8A0AB", imageUrl: "/jelly-gel-jelly-rose.jpg", images: ["/jelly-gel-jelly-rose.jpg"] },
-  { slug: "jelly-gel-jelly-milk", name: "Jelly Builder Gel — Jelly Milk, 30g", description: "Tender Crush Jelly Builder Gel (HEMA – TPO FREE). Control total al plasării, nu migrează spre cuticule. Barieră extrem de dură după polimerizare. Nuanța Jelly Milk — alb lăptos, baza perfectă.", price: 9500, category: "gel-constructie", subcategory: "jelly", size: "30g", inStock: true, featured: false, colorHex: "#F0E8DF", imageUrl: "/jelly-gel-jelly-milk.jpg", images: ["/jelly-gel-jelly-milk.jpg"] },
+  // ═══════════════════════════════════════════════════════════
+  // GEL CONSTRUCȚIE — Balance Builder Liquid (5 shades from PDF)
+  // ═══════════════════════════════════════════════════════════
+  bl("White Please",  "#ECE6DE"),
+  bl("Nude Sandy",    "#D0A886"),
+  bl("Pink Gloss",    "#E08890"),
+  bl("Nude Forever",  "#D4A090"),
+  bl("Pink Boss",     "#E05878"),
 
-  // ─── TOP COAT ──────────────────────────────────────
-  { slug: "glitter-vibe-top-coat-12ml", name: "Glitter Vibe Top Coat, 12ml", description: "Glitter Vibe Top Coat Emma Nails — finisajul suprem \"No Wipe\" infuzat cu micro-particule strălucitoare într-o formulă ultra-lucioasă. Tehnologie No-Wipe cu luciu instantaneu de oglindă, densitate omogenă a sclipiciului, barieră anti-zgârieturi și filtru de protecție cromatică. Se aplică peste baze rubber, geluri de construcție sau oje semipermanente. Adaugă efect de \"praf de stele\" oricărei nuanțe.", price: 7000, category: "top-coat", subcategory: "glitter-vibe-top", size: "12ml", inStock: true, featured: false, imageUrl: "/glitter-vibe-top-coat-front.jpg", images: ["/glitter-vibe-top-coat-front.jpg", "/glitter-vibe-top-coat-back.jpg"] },
-  { slug: "clear-steel-top-coat-12ml", name: "Clear Steel Top Coat, 12ml", description: "Top Clear Steel Emma Nails — finisajul de elită \"No Wipe\" conceput pentru protecție îndelungată. Formulă inspirată de rezistența oțelului, cu scut protector ultra-rigid și luciu vitros impecabil. Imun la micro-zgârieturi, claritate superioară pe 4 săptămâni. Protejează împotriva decolorării și îngălbenirii. Aplicare ultra-subțire care se autonivelează perfect.", price: 7000, category: "top-coat", subcategory: "clear-steel-top", size: "12ml", inStock: true, featured: false, imageUrl: "/clear-steel-top-coat-front.jpg", images: ["/clear-steel-top-coat-front.jpg", "/clear-steel-top-coat-back.jpg"] },
-  { slug: "velvet-matte-top-coat-12ml", name: "Velvet Matte Top Coat, 12ml", description: "Top Velvet Matte Emma Nails — finisaj \"No Wipe\" cu efect mat absolut. Transformă orice manichiură într-o experiență vizuală și tactilă de lux. Textură fină asemănătoare catifelei, senzație catifelată la atingere, respinge praful și transferul de culoare. Aplicare uniformă fără dâre, nu modifică arhitectura apexului. Ideal pentru tehnici mixte (mat vs. lucios) și French modern.", price: 7000, category: "top-coat", subcategory: "velvet-matte-top", size: "12ml", inStock: true, featured: false, imageUrl: "/velvet-matte-top-coat-front.jpg", images: ["/velvet-matte-top-coat-front.jpg", "/velvet-matte-top-coat-back.jpg"] },
+  // ═══════════════════════════════════════════════════════════
+  // GEL CONSTRUCȚIE — Builder Gel (16 shades — fixed Lara Grace)
+  // ═══════════════════════════════════════════════════════════
+  bg("White Wonder",  "Harmony Builder Gel",          "#F5F0EB"),
+  bg("Nude Soft",     "Harmony Builder Gel",          "#D8C0AD"),
+  bg("Still White",   "Mood Cover Builder Gel",       "#F2EDE8"),
+  bg("Moon Shimmer",  "Glow Moment Builder Gel",      "#E0D8E4"),
+  bg("Soul Sisters",  "Glow Moment Builder Gel",      "#E5DCE8"),
+  bg("Pearl Touch",   "Fairy Kiss Builder Gel",       "#EDE4DA"),
+  bg("Pink Promise",  "Fairy Kiss Builder Gel",       "#F0A8BC"),
+  bg("Lilac Anne",    "Fairy Kiss Builder Gel",       "#C8A8C8"),
+  bg("Metal Bloom",   "Diamond Boss Builder Gel",     "#C0B8C4"),
+  bg("Allè Vibes",    "Diamond Boss Builder Gel",     "#C4B4CC"),
+  bg("Cosmic Chrome", "Diamond Boss Builder Gel",     "#B8B8C8"),
+  bg("Pink Filter",   "Pearl Soft Mode Builder Gel",  "#ECA8B8"),
+  bg("My Alma",       "Pearl Soft Mode Builder Gel",  "#D4AE98"),
+  bg("Beige Cuddle",  "Pearl Soft Mode Builder Gel",  "#D8C4A8"),
+  bg("Lara Grace",    "Pearl Soft Mode Builder Gel",  "#D8BCAA"),
+  bg("Blue Chill",    "Pearl Soft Mode Builder Gel",  "#A4BCD6"),
+
+  // ═══════════════════════════════════════════════════════════
+  // GEL CONSTRUCȚIE — Jelly Builder Gel (5 shades)
+  // ═══════════════════════════════════════════════════════════
+  jg("Jelly Milk",       "#F0E8DF"),
+  jg("Jelly Rose",       "#E8A0AB"),
+  jg("Nude In Control",  "#D8A0AC"),
+  jg("Nude Delight",     "#E0C4B2"),
+  jg("Liliac Sand",      "#C4A4B8"),
+
+  // ═══════════════════════════════════════════════════════════
+  // TOP COAT — Glitter Vibe (3 shades from PDF)
+  // ═══════════════════════════════════════════════════════════
+  { slug: "glitter-vibe-top-coat-true-silver-12ml", name: "Glitter Vibe Top Coat — True Silver, 12ml", description: `${DESC.topGlitter} Nuanța True Silver — argint strălucitor.`, price: 7000, category: "top-coat", subcategory: "glitter-vibe-top", size: "12ml", inStock: true, featured: false, colorHex: "#C0BCC4", imageUrl: "/glitter-vibe-top-coat-front.jpg", images: ["/glitter-vibe-top-coat-front.jpg", "/glitter-vibe-top-coat-back.jpg"] },
+  { slug: "glitter-vibe-top-coat-diamond-mist-12ml", name: "Glitter Vibe Top Coat — Diamond Mist, 12ml", description: `${DESC.topGlitter} Nuanța Diamond Mist — ceață de diamant.`, price: 7000, category: "top-coat", subcategory: "glitter-vibe-top", size: "12ml", inStock: true, featured: false, colorHex: "#D4CCD4", imageUrl: "/glitter-vibe-top-coat-front.jpg", images: ["/glitter-vibe-top-coat-front.jpg", "/glitter-vibe-top-coat-back.jpg"] },
+  { slug: "glitter-vibe-top-coat-moon-glow-12ml", name: "Glitter Vibe Top Coat — Moon Glow, 12ml", description: `${DESC.topGlitter} Nuanța Moon Glow — strălucire lunară.`, price: 7000, category: "top-coat", subcategory: "glitter-vibe-top", size: "12ml", inStock: true, featured: false, colorHex: "#D4CCC0", imageUrl: "/glitter-vibe-top-coat-front.jpg", images: ["/glitter-vibe-top-coat-front.jpg", "/glitter-vibe-top-coat-back.jpg"] },
+
+  // ═══════════════════════════════════════════════════════════
+  // TOP COAT — Clear Steel (1 shade)
+  // ═══════════════════════════════════════════════════════════
+  { slug: "clear-steel-top-coat-12ml", name: "Clear Steel Top Coat — Clear Touch, 12ml", description: `${DESC.topSteel} Nuanța Clear Touch — claritate absolută.`, price: 7000, category: "top-coat", subcategory: "clear-steel-top", size: "12ml", inStock: true, featured: false, colorHex: "#E4E0DC", imageUrl: "/clear-steel-top-coat-front.jpg", images: ["/clear-steel-top-coat-front.jpg", "/clear-steel-top-coat-back.jpg"] },
+
+  // ═══════════════════════════════════════════════════════════
+  // TOP COAT — Velvet Matte (1 shade)
+  // ═══════════════════════════════════════════════════════════
+  { slug: "velvet-matte-top-coat-12ml", name: "Velvet Matte Top Coat — Velvet Touch, 12ml", description: `${DESC.topMatte} Nuanța Velvet Touch — catifea pură.`, price: 7000, category: "top-coat", subcategory: "velvet-matte-top", size: "12ml", inStock: true, featured: false, colorHex: "#E6E0DA", imageUrl: "/velvet-matte-top-coat-front.jpg", images: ["/velvet-matte-top-coat-front.jpg", "/velvet-matte-top-coat-back.jpg"] },
 ];
 
+// ═══════════════════════════════════════════════════════════
+// COURSES (12 — unchanged)
+// ═══════════════════════════════════════════════════════════
 export const courses = [
   { slug: "curs-baza-stilist-protezist-unghii-nivel-1", name: "Curs bază stilist protezist unghii — Nivel 1", description: "Cursul ideal pentru începătoare. 5 zile intensive de teorie + practică pe model real.", priceFrom: 40000, priceTo: 270000, level: "incepator", duration: "5 zile", curriculum: ["Ziua 1: Teorie — Anatomia unghiei, patologie, norme de igienă","Ziua 1: Aplicarea ojei semipermanente în tehnica fără pilire","Ziua 2: Oval slim cu tipsuri full (fără apex) — design pietre","Ziua 3: Pătrat cu full tips & design pietre","Ziua 4: Migdală clasică pe șablon — Babyboomer","Ziua 5: French de suprafață & realizare portofoliu foto"], includes: ["Diplomă acreditată","Practică pe model real","Suport de curs","Consultanță post-curs"], dates: ["19-23 Ianuarie","9-13 Februarie","9-13 Martie","27 Aprilie-01 Mai","25-29 Mai","22-26 Iunie","20-24 Iulie","24-27 August"], hasAccreditation: true, featured: true, imageUrl: "https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2025-11-04-at-21.36.26.jpeg", images: ["https://academy.emmanails.ro/wp-content/uploads/2024/04/WhatsApp-Image-2025-06-09-at-11.19.42-1.webp","https://academy.emmanails.ro/wp-content/uploads/2024/04/WhatsApp-Image-2025-08-23-at-13.21.50.jpeg","https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2025-11-04-at-21.36.26.jpeg","https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2025-11-04-at-21.59.52-1-1.jpeg"] },
   { slug: "curs-perfectionare-gel-nivel-1", name: "Curs perfecționare gel — Nivel 1", description: "Perfecționare pentru cele care au terminat cursul de bază.", priceFrom: 25000, priceTo: 180000, level: "mediu", duration: "2-3 zile", curriculum: ["Ziua 1: Oval slim cu tipsuri full (fără apex)","Ziua 2: Pătrat natural cu tipsuri smart","Ziua 3: Migdală clasică pe șablon — Babyboomer"], includes: ["Diplomă","Practică pe model real"], dates: ["20-21 Ianuarie","10-12 Februarie","10-12 Martie","28-30 Aprilie","26-28 Mai","23-25 Iunie","21-23 Iulie","25-26 August"], hasAccreditation: false, featured: true, imageUrl: "https://academy.emmanails.ro/wp-content/uploads/2024/04/WhatsApp-Image-2024-04-16-at-10.32.35-1.jpeg", images: ["https://academy.emmanails.ro/wp-content/uploads/2024/04/WhatsApp-Image-2024-04-16-at-10.32.35-1.jpeg","https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2024-06-07-at-16.27.57.jpeg","https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2025-09-21-at-08.46.02-2.jpeg"] },
