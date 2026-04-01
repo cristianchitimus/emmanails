@@ -45,8 +45,8 @@ const bg = (name: string, line: string, hex: string) => ({
   description: `${line} (HEMA – TPO FREE). ${DESC.builderGel} Nuanța ${name}.`,
   price: 9500, category: "gel-constructie", subcategory: "builder-gel", size: "30g",
   inStock: true, featured: false, colorHex: hex,
-  imageUrl: `/builder-gel-${slug(name)}.jpg`,
-  images: [`/builder-gel-${slug(name)}.jpg`],
+  imageUrl: "/emma-nails-jar-front.jpg",
+  images: ["/emma-nails-jar-front.jpg"],
 });
 
 const bl = (name: string, hex: string) => ({
@@ -65,8 +65,8 @@ const jg = (name: string, hex: string) => ({
   description: `${DESC.jellyGel} Nuanța ${name}.`,
   price: 9500, category: "gel-constructie", subcategory: "jelly", size: "30g",
   inStock: true, featured: false, colorHex: hex,
-  imageUrl: `/jelly-gel-${slug(name)}.jpg`,
-  images: [`/jelly-gel-${slug(name)}.jpg`],
+  imageUrl: "/emma-nails-jar-front.jpg",
+  images: ["/emma-nails-jar-front.jpg"],
 });
 
 const al = (name: string, hex: string) => ({
@@ -75,8 +75,8 @@ const al = (name: string, hex: string) => ({
   description: `${DESC.acrylicLiquid} Nuanța ${name}.`,
   price: 9500, category: "acrylic-liquid", subcategory: "acrylic-liquid", size: "30g",
   inStock: true, featured: false, colorHex: hex,
-  imageUrl: `/acrylic-${slug(name)}.jpg`,
-  images: [`/acrylic-${slug(name)}.jpg`],
+  imageUrl: "/emma-nails-jar-front.jpg",
+  images: ["/emma-nails-jar-front.jpg"],
 });
 
 export const products = [
