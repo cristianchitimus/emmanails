@@ -246,6 +246,78 @@ export default async function HomePage() {
       <GlowLine />
 
       {/* ═══════════════════════════════════════════════════════
+          TESTIMONIALS
+      ═══════════════════════════════════════════════════════ */}
+      <section className="py-16 md:py-24 relative overflow-hidden" style={{ background: "linear-gradient(180deg, #ffffff 0%, #fef8fa 50%, #ffffff 100%)" }}>
+        <div className="absolute top-10 left-10 w-72 h-72 rounded-full blur-3xl" style={{ background: "radial-gradient(circle, rgba(212,83,126,0.06) 0%, transparent 70%)" }} />
+        <div className="absolute bottom-10 right-10 w-60 h-60 rounded-full blur-3xl" style={{ background: "radial-gradient(circle, rgba(248,187,208,0.08) 0%, transparent 70%)" }} />
+        <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+          <ScrollReveal animation="fade-up">
+            <div className="text-center mb-12">
+              <p className="section-label mb-3"><TextWipe>Ce spun cursantele</TextWipe></p>
+              <h2 className="font-display text-3xl md:text-5xl font-medium leading-tight">
+                Testimoniale <span className="italic text-pink">reale</span>
+              </h2>
+            </div>
+          </ScrollReveal>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+            {[
+              {
+                name: "Denisa Olaru",
+                text: "Am fost extrem de mulțumită de felul în care îmi era explicată fiecare etapă pentru a realiza o manichiură reușită. Emma are un caracter frumos. E înzestrată cu multă răbdare și este o persoană foarte plăcută! Cu siguranță voi mai reveni să învăț tehnici noi.",
+                course: "Curs bază manichiură",
+              },
+              {
+                name: "Ecaterina Tanasache",
+                text: "În aceste 6 zile ale cursului susținut de Emma, m-a făcut să îmi dau seama că meseria cea mai grea, dificilă și cea în care trebuie să ai răbdare de fier este aceasta de manichiurist. Îți mulțumesc frumos, Emma, pentru tot sprijinul — ești foarte răbdătoare, nu am mai văzut un om așa răbdător și cald.",
+                course: "Curs perfecționare gel",
+              },
+              {
+                name: "Paula Pintilie",
+                text: "Emma\u2026 o persoană dedicată total în ceea ce face, nici o secundă nu ți se pare că muncești pentru că totul e făcut din pasiune. A fost cea mai frumoasă experiență, chiar dacă în prima zi mă întrebam \u00ABoare ce mi-a trebuit?!\u00BB La finalul cursului am rămas cu multe informații, o pasiune nou descoperită și o prietenie cu fetele participante la curs.",
+                course: "Curs bază nivel 1",
+              },
+              {
+                name: "Mihaela Radu",
+                text: "Nu există persoană mai perfectă în acest domeniu decât Emma! O recomand cu drag, este o persoană excelentă, dedicată, caldă, minunată, calmă! N-aveți cum să nu învățați să faceți unghii perfecte atâta timp cât vă învață Emma! Dacă vreți cursuri perfecte, unghii perfecte le găsiți doar la Emma!",
+                course: "Cursantă",
+              },
+            ].map((t, i) => (
+              <ScrollReveal key={i} animation="fade-up" delay={i * 100}>
+                <div className="bg-white rounded-2xl p-6 md:p-8 border border-neutral-100 shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
+                  {/* Stars */}
+                  <div className="flex gap-1 mb-4">
+                    {[...Array(5)].map((_, s) => (
+                      <svg key={s} className="w-4 h-4 text-pink" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    ))}
+                  </div>
+                  {/* Quote */}
+                  <p className="font-body text-sm text-dark-400 leading-relaxed flex-1">
+                    &ldquo;{t.text}&rdquo;
+                  </p>
+                  {/* Author */}
+                  <div className="mt-5 pt-4 border-t border-neutral-100 flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-pink/20 to-pink/40 flex items-center justify-center flex-shrink-0">
+                      <span className="font-display text-sm font-bold text-pink">{t.name.split(" ").map(n => n[0]).join("")}</span>
+                    </div>
+                    <div>
+                      <p className="font-body text-sm font-semibold text-dark">{t.name}</p>
+                      <p className="font-body text-[11px] text-dark-400">{t.course}</p>
+                    </div>
+                  </div>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <GlowLine />
+
+      {/* ═══════════════════════════════════════════════════════
           STATS BAR
       ═══════════════════════════════════════════════════════ */}
       <section className="py-12 md:py-16 relative overflow-hidden" style={{ background: "linear-gradient(135deg, #f8bbd0 0%, #fce4ec 40%, #f3e5f5 100%)" }}>
