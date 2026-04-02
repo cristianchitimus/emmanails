@@ -5,15 +5,96 @@
 
 // ─── DESCRIPTIONS (from docx files) ───────────────────────
 const DESC = {
-  rubberBase: "Rubber Base Emma Nails — fundamentul esențial pentru o manichiură tehnică de succes. Concepută special pentru unghiile subțiri, casante sau problematice. Vâscozitate inteligentă ce permite modelarea apexului fără scurgeri. Tehnologie \"Shock-Absorb\" — structură elastică ce absoarbe șocurile mecanice, prevenind fisurile. Autonivelare High-Definition ce corectează denivelările unghiei naturale. Economie de timp: înlocuiește aplicarea culorii, reducând durata procedurii cu până la 20 de minute. Garantează manichiură intactă peste 4 săptămâni.",
-  glitterRubber: "Glitter Rubber Base Emma Nails — soluția 2-în-1 care combină rezistența unei baze elastice cu estetica prețioasă a sclipiciului fin. Efect \"Jewel-Tone\" cu particule de sclipici de înaltă densitate, suspendate într-o formulă autonivelantă pentru o reflexie uniformă a luminii. Aderență magnetică cu unghia naturală, eliminând riscul de lifting chiar și pe unghiile subțiri. Micro-particulele sunt integrate perfect în bază, lăsând unghia fină la atingere. Rezistență 4 săptămâni — menține strălucirea particulelor pe toată durata purtării.",
-  builderGel: "Builder Gel Emma Nails — pilonul de rezistență în manichiura tehnică modernă. Vâscozitate optimizată care nu curge, permițând realizarea extensiilor lungi cu precizie milimetrică. Tehnologie de polimerizare la rece, minimizând degajarea de căldură. Structură moleculară densă ce previne ruperea sau pierderea formei. Proprietăți excelente de autonivelare — reduce timpul de finisare cu 30%. Culori stabile, fără îngălbenire. HEMA-Free: opțiuni sigure pentru unghii sensibile.",
-  builderLiquid: "Builder Liquid Emma Nails — inovația care redefinește eficiența în salon. Gel de construcție \"la sticluță\" cu densitatea necesară pentru întărirea unghiei naturale și fluiditatea ideală pentru tehnica fără pilire. Textură inovatoare care se autonivelează instantaneu, formând o legătură moleculară puternică. Formulă optimizată pentru a minimiza degajarea de căldură, ideală pentru unghii sensibile. Aplicare directă cu pensula din sticlă — elimină necesitatea pensulelor separate.",
-  jellyGel: "Jelly Builder Gel Emma Nails — control, stabilitate, arhitectură. Consistență densă de tip jeleu — materialul rămâne exact unde este plasat, fără a migra spre cuticule, indiferent de temperatură. Permite construirea unghiei cu acuratețe milimetrică. Odorless & HEMA-Free: formulă prietenoasă, fără miros puternic, reduce riscul de alergii. Barieră extrem de dură care nu se fisurează, disponibil în nuanțe de camuflaj cu aspect natural și elegant.",
-  acrylicLiquid: "Acrylic Extension Liquid Emma Nails — sculptură, densitate, control. Material de înaltă performanță cu formulă avansată ce permite modelare fluidă. Timp de lucru optimizat, aderență chimică superioară, rezistență UV și anti-îngălbenire. Structură de densitate înaltă — manichiură robustă, subțire, cu duritate remarcabilă, ideală și pentru formele lungi. Control absolut al materialului, finit de precizie.",
-  topGlitter: "Glitter Vibe Top Coat Emma Nails — finisajul suprem \"No Wipe\" infuzat cu micro-particule strălucitoare într-o formulă ultra-lucioasă. Tehnologie No-Wipe cu luciu instantaneu de oglindă. Densitate omogenă a sclipiciului — acoperire uniformă la o singură pensulare. Barieră anti-zgârieturi și filtru de protecție cromatică. Se autonivelează impecabil, lăsând unghia fină la atingere.",
-  topSteel: "Top Clear Steel Emma Nails — sigilare, rezistență, claritate. Finisaj de elită \"No Wipe\" cu formulă inspirată de rezistența oțelului. Scut protector ultra-rigid, luciu vitros impecabil chiar și în condiții de uzură intensă. Imun la micro-zgârieturile zilnice, reflexie a luminii de o claritate superioară care nu pierde intensitatea pe parcursul celor 4 săptămâni. Protejează pigmenții culorii împotriva decolorării și îngălbenirii.",
-  topMatte: "Top Velvet Matte Emma Nails — senzorialitate, eleganță, profunzime. Finisaj \"No Wipe\" cu efect mat absolut, eliminând orice reflexie. Textură fină asemănătoare catifelei prețioase, extrem de rezistentă la uzura zilnică. Respinge praful și transferul de culoare de pe haine, menținând manichiura curată 4 săptămâni. Pigmenți de matifiere suspendați într-o formulă stabilă care se aplică uniform, fără dâre.",
+  // 1. BUILDER LIQUID GEL
+  builderLiquid: `Builder Liquid Emma Nails este inovația care redefinește eficiența în salon. Acest gel de construcție "la sticluță" oferă densitatea necesară pentru a întări unghia naturală și fluiditatea ideală pentru tehnica fără pilire, reducând considerabil timpul de lucru fără a sacrifica durabilitatea.
+
+ATRIBUTE TEHNICE: O textură inovatoare care se autonivelează instantaneu. Formează o legătură moleculară puternică, prevenind liftingul materialului la cuticulă sau la marginea liberă. Formulă optimizată pentru a minimiza degajarea de căldură în timpul polimerizării, fiind ideală pentru unghii sensibile.
+
+AVANTAJE DE LUCRU: Aplicarea directă cu pensula din sticlă elimină necesitatea utilizării pensulelor separate de gel și scurtează procesul de modelare. Datorită capacității excepționale de nivelare, produsul necesită pilire minimă sau deloc. Perfect pentru protecția unghiilor naturale medii sau lungi care necesită un suport mai rigid decât o bază rubber clasică.
+
+PROTOCOL DE APLICARE: Modelare — Aplică un strat de alunecare, apoi dozează bula de material pentru apex sau se poate utiliza inclusiv în tipsuri reutilizabile. Polimerizare: 60-90s în lampă LED. Finalizare: Sigilează cu un Top Coat lucios/matte Emma's Nails.
+
+METODA DE ÎNDEPĂRTARE: Se recomandă îndepărtarea cu freza electrică, utilizând bitul de abrazivitate roșie sau verde, lăsând un strat milimetric de protecție pe unghie. Procedura trebuie efectuată exclusiv de către profesioniști cu studii de specialitate în domeniu.`,
+
+  // 2. TOP CLEAR STEEL
+  topSteel: `Top Clear Steel Emma Nails — Sigilare. Rezistență. Claritate. Finisajul de elită conceput pentru manichiurile care necesită o protecție îndelungată. Cu o formulă inspirată de rezistența oțelului, acest top coat "No Wipe" creează un scut protector ultra-rigid, capabil să mențină un luciu vitros impecabil chiar și în condiții de uzură intensă.
+
+ATRIBUTE TEHNICE: Suprafața polimerizată devine extrem de dură, fiind imună la micro-zgârieturile zilnice care mătuiesc în mod normal manichiura. Oferă o reflexie a luminii de o claritate superioară, care nu își pierde intensitatea pe parcursul celor 4 săptămâni de purtare. Protejează pigmenții culorii împotriva decolorării și îngălbenirii, păstrând puritatea albului și vivacitatea nuanțelor aprinse.
+
+AVANTAJE DE LUCRU: Permite o aplicare extrem de subțire care nu încarcă unghia, dar care se autonivelează perfect, corectând ultimele micro-imperfecțiuni. Nu curge spre cuticule, facilitând o aplicare curată și rapidă. Ideal pentru sigilarea unghiilor tehnice (gel, acril, polygel), dar și pentru manichiura cu ojă semipermanentă pe unghii naturale rezistente.
+
+PROTOCOL DE APLICARE: Finalizează manichiura și asigură-te că suprafața este complet lipsită de praf sau reziduuri. Aplică un strat uniform de Top Clear Steel, acoperind cu atenție marginile libere pentru o protecție totală. Polimerizare: 60s LED / 120s UV.`,
+
+  // 3. TOP VELVET MATTE
+  topMatte: `Top Velvet Matte Emma Nails — Senzorialitate. Eleganță. Profunzime. Acest finisaj "No Wipe" oferă un efect mat absolut, eliminând orice reflexie a luminii și oferind unghiilor o textură fină, asemănătoare catifelei prețioase sau satinului dens.
+
+ATRIBUTE TEHNICE: Garantează o suprafață complet mată, fără urme de luciu sau pete inestetice, evidențiind profunzimea culorilor închise și delicatețea nuanțelor pastel. Formula inovatoare lasă în urmă o senzație catifelată la atingere, fiind în același timp extrem de rezistentă la uzura zilnică. Pelicula polimerizată respinge praful și transferul de culoare de pe haine, menținând manichiura curată timp de 4 săptămâni. Fără Strat de Dispersie (No-Wipe): Se polimerizează complet în lampă, eliminând riscul de a mătui neuniform suprafața în timpul degresării.
+
+AVANTAJE DE LUCRU: Pigmenții de matifiere sunt suspendați într-o formulă stabilă care se aplică uniform, fără a lăsa dâre sau acumulări de material. Permite o aplicare subțire care nu modifică arhitectura apexului, păstrând aspectul natural al unghiei. Ideal pentru tehnici mixte (mat vs. lucios), pictură pe unghii sau pentru a oferi un aspect modern manichiurii French.
+
+PROTOCOL DE APLICARE: Asigură-te că suprafața este lipsită de praf. Agită ușor sticluța înainte de utilizare pentru a omogeniza particulele de matifiere. Aplică un strat uniform de Top Velvet Matte. Polimerizare: 60-90s LED / 120s UV.`,
+
+  // 4. GLITTER VIBE TOP COAT
+  topGlitter: `Glitter Vibe Top Coat Emma Nails — Sigilare. Vibrație. Efect. Finisajul suprem pentru manichiurile care doresc să iasă din anonimat. Acest top coat "No Wipe" infuzat cu micro-particule strălucitoare suspendate într-o formulă ultra-lucioasă, transformă orice culoare sau bază într-o declarație de stil plină de profunzime și lumină.
+
+ATRIBUTE TEHNICE: Tehnologie No-Wipe — Se polimerizează complet fără strat de dispersie, oferind un luciu instantaneu de oglindă care nu necesită degresare. Densitate Omogenă a Sclipiciului — Particulele sunt distribuite perfect în masa gelului, asigurând o acoperire uniformă la o singură pensulare, fără a se aglomera. Barieră Anti-Zgârieturi — Formulă dură care sigilează designul și protejează împotriva mătuirii, zgârieturilor mecanice sau a agenților chimici casnici. Filtru de Protecție Cromatică — Previne îngălbenirea culorilor și păstrează strălucirea particulelor intactă până la 4 săptămâni.
+
+AVANTAJE DE LUCRU: Poate fi aplicat peste baze rubber, geluri de construcție sau oje semipermanente pentru a adăuga un efect de "praf de stele" oricărei nuanțe. Se autonivelează impecabil, lăsând unghia fină la atingere, fără proeminențe. Adaugă valoare estetică manichiurii în ultimul pas, economisind timpul necesar aplicării sclipiciului liber sau a altor decoruri.
+
+PROTOCOL DE APLICARE: Aplică un strat uniform de Glitter Vibe Top Coat, sigilând cu atenție marginea liberă a unghiei. Polimerizare: 60-90s LED / 120s UV. Sfat: După polimerizare, așteaptă 30 de secunde înainte de a aplica ulei de cuticule. Nu necesită degresare cu cleaner.`,
+
+  // 5. JELLY BUILDER GEL
+  jellyGel: `Jelly Builder Gel Emma Nails — Control. Stabilitate. Arhitectură. Cu o consistență densă, de tip jeleu, acest gel este conceput pentru tehnicienii care doresc control total: materialul rămâne exact unde este plasat, fără a migra spre cuticule, indiferent de temperatura ambientală sau timpul de lucru.
+
+ATRIBUTE TEHNICE: Permite construirea unghiei cu o acuratețe milimetrică, fiind produsul preferat pentru această tehnică datorită modului în care se așază pe unghie. Odorless & HEMA-Free: Formule prietenoase, fără miros puternic, dezvoltate pentru a reduce riscul de alergii și pentru a oferi un confort sporit în timpul polimerizării.
+
+AVANTAJE DE LUCRU: Poți lucra eficient — gelul nu se prelinge în șanțurile periunghiale. Odată polimerizat, devine o barieră extrem de dură care nu se fisurează, păstrând manichiura intactă pe tot parcursul purtării. Disponibil în nuanțe de camuflaj care acoperă perfect trecerea dintre unghia naturală și extensie, oferind un aspect natural și elegant.
+
+PROTOCOL DE APLICARE: Modelare — Aplică un strat de alunecare, apoi dozează bula de material pentru apex sau se poate utiliza inclusiv în tipsuri reutilizabile. Polimerizare: 60-90s în lampă LED. Finalizare: Sigilează cu un Top Coat lucios/matte Emma's Nails.
+
+METODA DE ÎNDEPĂRTARE: Se recomandă îndepărtarea cu freza electrică, utilizând bitul de abrazivitate roșie sau verde, lăsând un strat milimetric de protecție pe unghie. Procedura trebuie efectuată exclusiv de către profesioniști cu studii de specialitate în domeniu.`,
+
+  // 6. BUILDER GEL COLLECTION
+  builderGel: `Builder Gel Emma Nails — Arhitectură. Rezistență. Durabilitate. Reprezintă pilonul de rezistență în manichiura tehnică modernă. Formulele noastre sunt dezvoltate pentru a oferi o structură rigidă, garantând un confort maxim la purtare și o durabilitate de peste 4 săptămâni.
+
+ATRIBUTE TEHNICE: Vâscozitate optimizată care nu curge (inclusiv variantele Jelly), permițând realizarea extensiilor lungi și a formelor extreme cu precizie milimetrică. Tehnologie de polimerizare la rece, concepută pentru a minimiza degajarea de căldură și disconfortul clientei în lampă. O structură moleculară densă care previne ruperea, crăparea sau pierderea formei (curba C) pe toată durata purtării. Versatilitate (HEMA-Free): Opțiuni sigure pentru unghii sensibile, oferind o aderență superioară fără a sacrifica integritatea unghiei naturale.
+
+AVANTAJE DE LUCRU: Proprietăți excelente de autonivelare care permit obținerea unei suprafețe netede, reducând timpul de finisare cu până la 30%. Permite modelarea prelungită fără ca materialul să migreze spre cuticulă, fiind ideal atât pentru tehnicienii rapizi, cât și pentru începători. Culori stabile care nu se îngălbenesc și nu își pierd densitatea, oferind un aspect natural sau un camuflaj perfect.
+
+PROTOCOL DE APLICARE: Modelare — Aplică un strat de alunecare, apoi dozează bula de material pentru apex sau se poate utiliza inclusiv în tipsuri reutilizabile. Polimerizare: 60-90s în lampă LED. Finalizare: Sigilează cu un Top Coat lucios/matte Emma's Nails.
+
+METODA DE ÎNDEPĂRTARE: Se recomandă îndepărtarea cu freza electrică, utilizând bitul de abrazivitate roșie sau verde, lăsând un strat milimetric de protecție pe unghie. Procedura trebuie efectuată exclusiv de către profesioniști cu studii de specialitate în domeniu.`,
+
+  // 7. RUBBER BASE COAT
+  rubberBase: `Rubber Base Emma Nails — Rezistență. Elasticitate. Aderență. Fundamentul esențial pentru o manichiură tehnică de succes. Concepută special pentru unghiile subțiri, casante sau problematice, această bază hibridă oferă o aderență magnetică și o flexibilitate rezistentă.
+
+ATRIBUTE TEHNICE: Vâscozitate Inteligentă — Consistență medie care permite modelarea apexului fără scurgeri în zona cuticulei. Tehnologie "Shock-Absorb" — Structură elastică ce absoarbe șocurile mecanice, prevenind fisurile și exfolierea la vârfuri. Autonivelare High-Definition — Corectează instantaneu denivelările unghiei naturale, oferind o suprafață netedă, gata pentru culoare. Camuflaj Sofisticat — Pigmentație optimă care estompează imperfecțiunile estetice oferind un aspect sănătos și uniform.
+
+AVANTAJE DE LUCRU: Economie de Timp — Înlocuiește aplicarea culorii, reducând durata procedurii cu până la 20 de minute. Timp de Purtare Extins — Garantează o manichiură intactă timp de peste 4 săptămâni, fără pierderea aderenței la marginea liberă. Control Total — Formula stabilă permite tehnicianului să lucreze cu precizie, reducând timpul necesar pentru pilirea finală.
+
+PROTOCOL DE APLICARE: Modelare — Aplică un strat de alunecare, apoi dozează bula de material pentru apex. Polimerizare: 60-90s în lampă LED. Finalizare: Sigilează cu un Top Coat lucios/matte Emma's Nails pentru rezistență îndelungată.
+
+METODA DE ÎNDEPĂRTARE: Se recomandă utilizarea unei freze electrice cu bit roșu pentru o îndepărtare rapidă și sigură.`,
+
+  // 8. GLITTER RUBBER BASE
+  glitterRubber: `Glitter Rubber Base Emma Nails — Strălucire. Structură. Eficiență. Soluția 2-în-1 care combină rezistența unei baze elastice cu estetica prețioasă a sclipiciului fin. Concepută pentru a scurta timpul de lucru în salon, această bază oferă o acoperire impecabilă și un efect vizual sofisticat dintr-o singură aplicare.
+
+ATRIBUTE TEHNICE: Efect "Jewel-Tone" — Particule de sclipici de înaltă densitate, suspendate într-o formulă autonivelantă pentru o reflexie uniformă a luminii. Vâscozitate Medie-Ridicată — Consistența ideală pentru formarea apexului; particulele de sclipici rămân omogene, fără a se depune la baza unghiei. Aderență Magnetică — Tehnologia Rubber asigură o legătură flexibilă cu unghia naturală, eliminând riscul de lifting chiar și pe unghiile subțiri. Camuflaj & Design — Pigmentația optimă acoperă imperfecțiunile, oferind în același timp un fundal radiant, perfect pentru manichiuri rapide sau tehnici de "babyboomer" cu sclipici.
+
+AVANTAJE DE LUCRU: Economie de Timp — Înlocuiește aplicarea culorii, reducând durata procedurii cu până la 20 de minute. Suprafață Neteză — Micro-particulele sunt integrate perfect în bază, lăsând unghia fină la atingere, fără a necesita pilire suplimentară după polimerizare. Rezistență 4 Săptămâni — Menține integritatea structurii și strălucirea particulelor pe toată durata purtării, fără a se mătui.
+
+PROTOCOL DE APLICARE: Modelare — Aplică un strat de alunecare, apoi dozează bula de material pentru apex. Polimerizare: 60-90s în lampă LED. Finalizare: Sigilează cu un Top Coat lucios Emma's Nails pentru a intensifica reflexiile particulelor.`,
+
+  // 9. ACRYLIC EXTENSION LIQUID
+  acrylicLiquid: `Acrylic Extension Liquid Emma Nails — Sculptură. Densitate. Control. Un material de înaltă performanță, dezvoltat pentru tehnicienii care solicită durabilitate extremă. Formula sa avansată permite o modelare fluidă, transformând amestecul de pudră acrilică într-o masă omogenă, ușor de sculptat și extrem de rezistentă.
+
+ATRIBUTE TEHNICE: Timp de Lucru Optimizat — Oferă un echilibru perfect pentru timpul de modelare. Aderență Chimică Superioară — Formează o legătură moleculară stabilă cu unghia naturală, reducând riscul de lifting la zero. Rezistență UV & Anti-Îngălbenire — Menține puritatea culorii și transparența cristalizată a construcției, chiar și după expunerea prelungită la soare. Structură de Densitate Înaltă — Rezultatul este o manichiură robustă, subțire și cu o duritate remarcabilă, ideală și pentru formele lungi.
+
+AVANTAJE DE LUCRU: Control Absolut al materialului — Consistența lichidului permite o îmbibare uniformă a pudrei, evitând formarea bulelor de aer sau a zonelor neomogene. Finit de Precizie — După uscare, materialul se pilește cu ușurință. Versatilitate Structurală — Ideal pentru extensii pe șablon, protecția unghiei naturale sau utilizare în tips.
+
+PROTOCOL DE APLICARE: Modelare — Aplică un strat de alunecare, apoi dozează bula de material pentru apex. Polimerizare: 60-90s în lampă LED. Finalizare: Sigilează cu un Top Coat lucios/matte Emma's Nails.
+
+RECOMANDARE ÎNDEPĂRTARE: Se recomandă îndepărtarea cu freza electrică, utilizând bit de abrazivitate albastru sau verde, exclusiv de către personal specializat.`,
 };
 
 const slug = (s: string) => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
