@@ -67,7 +67,7 @@ export default async function AcademiePage() {
             </div>
             <div className="relative h-[350px] md:h-[450px] rounded-2xl overflow-hidden hidden lg:block">
               <Image
-                src="https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2024-07-10-at-13.46.40-1.jpeg"
+                src="/uploads/academy-WhatsApp-Image-2024-07-10-at-13.46.40-1.jpeg"
                 alt="Emma Nails Academy"
                 fill
                 className="object-cover"

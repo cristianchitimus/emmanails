@@ -82,7 +82,7 @@ export default function RegisterPage() {
         <div className="text-center mb-8">
           <Link href="/">
             <Image
-              src="https://emmanails.ro/wp-content/uploads/2025/04/logo3.45.png"
+              src="/uploads/site-logo3.45.png"
               alt="Emma Nails"
               width={140}
               height={50}

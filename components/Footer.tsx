@@ -10,7 +10,7 @@ export function Footer() {
           <div className="md:col-span-1">
             <Link href="/">
               <Image
-                src="https://emmanails.ro/wp-content/uploads/2025/04/logo3.45.png"
+                src="/uploads/site-logo3.45.png"
                 alt="Emma Nails"
                 width={120}
                 height={40}

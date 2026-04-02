@@ -67,7 +67,7 @@ const MEGA_MENU_DATA = {
       title: "BEST SELLER",
       product: "PolyGel Cover Light",
       href: "/produse/polygel-emma-nails-cover-light-30g",
-      imageUrl: "https://emmanails.ro/wp-content/uploads/2024/10/polygel-cover-light-30g.png",
+      imageUrl: "/emma-nails-jar-front.jpg",
     },
   },
   academie: {
@@ -96,7 +96,7 @@ const MEGA_MENU_DATA = {
       title: "MASTERCLASS",
       product: "Masterclass cu Emma",
       href: "/academie/masterclass-emma-nails",
-      imageUrl: "https://emmanails.ro/wp-content/uploads/2025/04/image.jpg",
+      imageUrl: "/uploads/site-image.jpg",
     },
   },
 };
@@ -187,7 +187,7 @@ export function Navbar() {
           {/* Center: Logo */}
           <Link href="/" className="absolute left-1/2 -translate-x-1/2 lg:relative lg:left-0 lg:translate-x-0">
             <Image
-              src="https://emmanails.ro/wp-content/uploads/2025/04/logo3.45.png"
+              src="/uploads/site-logo3.45.png"
               alt="Emma Nails"
               width={140}
               height={50}

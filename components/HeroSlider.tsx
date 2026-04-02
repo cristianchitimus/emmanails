@@ -16,7 +16,7 @@ interface Slide {
 
 const SLIDES: Slide[] = [
   {
-    image: "https://emmanails.ro/wp-content/uploads/2025/05/1.jpg",
+    image: "/uploads/site-1.jpg",
     badge: "BESTSELLER",
     title: "PolyGel\nEmma Nails",
     subtitle: "Formulă originală cu auto-nivelare\nexcelentă și durabilitate de salon",
@@ -25,7 +25,7 @@ const SLIDES: Slide[] = [
     align: "left",
   },
   {
-    image: "https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2025-11-04-at-21.36.26.jpeg",
+    image: "/uploads/academy-WhatsApp-Image-2025-11-04-at-21.36.26.jpeg",
     badge: "ACADEMIE",
     title: "Cursuri\nProfesionale",
     subtitle: "Diplomă acreditată și practică pe model\nPeste 500 de cursante formate",
@@ -34,7 +34,7 @@ const SLIDES: Slide[] = [
     align: "left",
   },
   {
-    image: "https://emmanails.ro/wp-content/uploads/2025/05/DSC_8271.jpg",
+    image: "/uploads/site-DSC_8271.jpg",
     badge: "INSTRUMENTE",
     title: "Instrumente\nPremium",
     subtitle: "Dietter Baumann, Staleks, Maniprof\nOțel chirurgical de cea mai înaltă calitate",

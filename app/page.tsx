@@ -12,15 +12,15 @@ import { whatsappLink } from "@/lib/utils";
 
 export const revalidate = 60;
 
-const EMMA_PORTRAIT = "https://emmanails.ro/wp-content/uploads/2025/04/image.jpg";
+const EMMA_PORTRAIT = "/uploads/site-image.jpg";
 
 const GALLERY = [
-  "https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2024-07-10-at-13.46.40-1.jpeg",
-  "https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2024-04-16-at-11.33.22.jpeg",
-  "https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2025-06-09-at-10.41.15-1.webp",
-  "https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2025-06-09-at-11.47.16-1.webp",
-  "https://academy.emmanails.ro/wp-content/uploads/2024/12/WhatsApp-Image-2025-06-03-at-11.51.08-7.jpeg",
-  "https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2024-04-25-at-22.00.14.jpeg",
+  "/uploads/academy-WhatsApp-Image-2024-07-10-at-13.46.40-1.jpeg",
+  "/uploads/academy-WhatsApp-Image-2024-04-16-at-11.33.22.jpeg",
+  "/uploads/academy-WhatsApp-Image-2025-06-09-at-10.41.15-1.webp",
+  "/uploads/academy-WhatsApp-Image-2025-06-09-at-11.47.16-1.webp",
+  "/uploads/academy-WhatsApp-Image-2025-06-03-at-11.51.08-7.jpeg",
+  "/uploads/academy-WhatsApp-Image-2024-04-25-at-22.00.14.jpeg",
 ];
 
 export default async function HomePage() {
@@ -55,10 +55,10 @@ export default async function HomePage() {
         <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
             {[
-              { title: "SHOP POLYGEL", img: "https://emmanails.ro/wp-content/uploads/2025/05/1.jpg", href: "/produse?categorie=polygel" },
+              { title: "SHOP POLYGEL", img: "/uploads/site-1.jpg", href: "/produse?categorie=polygel" },
               { title: "ACRYLIC LIQUID", img: "/acrylic-soft-nude.jpg", href: "/produse?categorie=acrylic-liquid" },
-              { title: "INSTRUMENTE", img: "https://emmanails.ro/wp-content/uploads/2025/05/DSC_8271.jpg", href: "/produse?categorie=instrumente" },
-              { title: "ACADEMIE", img: "https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2025-11-04-at-21.36.26.jpeg", href: "/academie" },
+              { title: "INSTRUMENTE", img: "/uploads/site-DSC_8271.jpg", href: "/produse?categorie=instrumente" },
+              { title: "ACADEMIE", img: "/uploads/academy-WhatsApp-Image-2025-11-04-at-21.36.26.jpeg", href: "/academie" },
             ].map((cat, i) => (
               <ScrollReveal key={i} animation="fade-up" delay={i * 120}>
                 <Link

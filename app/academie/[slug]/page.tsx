@@ -199,7 +199,7 @@ export default async function CourseDetailPage({ params }: Props) {
               <div className="flex items-center gap-4 border-t border-dark-100 pt-6">
                 <div className="relative w-14 h-14 rounded-full overflow-hidden bg-neutral-200 flex-shrink-0">
                   <Image
-                    src="https://emmanails.ro/wp-content/uploads/2025/04/image.jpg"
+                    src="/uploads/site-image.jpg"
                     alt="Emma Răileanu"
                     fill
                     className="object-cover object-top"

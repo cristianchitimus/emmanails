@@ -4,11 +4,11 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 
 const SLIDES = [
-  "https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2025-11-04-at-21.36.26.jpeg",
-  "https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2025-09-21-at-08.46.02-2.jpeg",
-  "https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2025-11-04-at-21.05.20.jpeg",
-  "https://academy.emmanails.ro/wp-content/uploads/2024/12/WhatsApp-Image-2025-06-03-at-11.51.08-7.jpeg",
-  "https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2025-06-09-at-10.41.15-1.webp",
+  "/uploads/academy-WhatsApp-Image-2025-11-04-at-21.36.26.jpeg",
+  "/uploads/academy-WhatsApp-Image-2025-09-21-at-08.46.02-2.jpeg",
+  "/uploads/academy-WhatsApp-Image-2025-11-04-at-21.05.20.jpeg",
+  "/uploads/academy-WhatsApp-Image-2025-06-03-at-11.51.08-7.jpeg",
+  "/uploads/academy-WhatsApp-Image-2025-06-09-at-10.41.15-1.webp",
 ];
 
 export function HeroCarousel() {

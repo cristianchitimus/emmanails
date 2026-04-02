@@ -8,11 +8,11 @@ export const metadata: Metadata = {
   description: "Emma — nail instructor cu peste 15 ani de experiență. Iași, România.",
 };
 
-const EMMA_PORTRAIT = "https://emmanails.ro/wp-content/uploads/2025/04/image.jpg";
+const EMMA_PORTRAIT = "/uploads/site-image.jpg";
 const WORK_PHOTOS = [
-  "https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2024-07-10-at-13.46.40-1.jpeg",
-  "https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2025-11-04-at-21.36.26.jpeg",
-  "https://academy.emmanails.ro/wp-content/uploads/2024/05/WhatsApp-Image-2025-09-21-at-08.46.02-2.jpeg",
+  "/uploads/academy-WhatsApp-Image-2024-07-10-at-13.46.40-1.jpeg",
+  "/uploads/academy-WhatsApp-Image-2025-11-04-at-21.36.26.jpeg",
+  "/uploads/academy-WhatsApp-Image-2025-09-21-at-08.46.02-2.jpeg",
 ];
 
 export default function DesprePage() {
