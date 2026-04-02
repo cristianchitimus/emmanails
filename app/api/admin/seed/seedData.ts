@@ -5,15 +5,15 @@
 
 // ─── DESCRIPTIONS (from docx files) ───────────────────────
 const DESC = {
-  rubberBase: "Rubber Base Emma Nails — fundamentul esențial pentru o manichiură tehnică de succes. Concepută special pentru unghiile subțiri, casante sau problematice, oferă aderență magnetică și flexibilitate rezistentă. Vâscozitate inteligentă, tehnologie \"Shock-Absorb\", autonivelare high-definition și camuflaj sofisticat. Garantează manichiură intactă peste 4 săptămâni.",
-  glitterRubber: "Glitter Rubber Base Emma Nails — soluția 2-în-1 care combină rezistența unei baze elastice cu estetica prețioasă a sclipiciului fin. Efect \"Jewel-Tone\" cu particule de sclipici de înaltă densitate, suspendate într-o formulă autonivelantă. Aderență magnetică, camuflaj și design din aplicare unică. Rezistență 4 săptămâni.",
-  builderGel: "Builder Gel Emma Nails — structură rigidă cu polimerizare la rece, confort maxim și durabilitate peste 4 săptămâni. Proprietăți excelente de autonivelare — reduce timpul de finisare cu 30%. Culori stabile, fără îngălbenire.",
-  builderLiquid: "Builder Liquid Emma Nails — gel de construcție \"la sticluță\" ce redefinește eficiența în salon. Textură inovatoare care se autonivelează instantaneu, formează o legătură moleculară puternică. Aplicare directă cu pensula din sticlă, necesită pilire minimă sau deloc.",
-  jellyGel: "Tender Crush Jelly Builder Gel (HEMA – TPO FREE). Consistență densă de tip jeleu — materialul rămâne exact unde este plasat, fără a migra spre cuticule. Odorless & HEMA-Free, reduce riscul de alergii. Barieră extrem de dură după polimerizare.",
-  acrylicLiquid: "Acrylic Liquid Emma Nails — material de înaltă performanță cu formulă avansată. Timp de lucru optimizat, aderență chimică superioară, rezistență UV și anti-îngălbenire. Control absolut al materialului, finit de precizie și versatilitate structurală.",
-  topGlitter: "Glitter Vibe Top Coat Emma Nails — finisajul suprem \"No Wipe\" infuzat cu micro-particule strălucitoare într-o formulă ultra-lucioasă. Tehnologie No-Wipe cu luciu instantaneu de oglindă, densitate omogenă a sclipiciului, barieră anti-zgârieturi.",
-  topSteel: "Top Clear Steel Emma Nails — finisajul de elită \"No Wipe\" conceput pentru protecție îndelungată. Formulă inspirată de rezistența oțelului, scut protector ultra-rigid și luciu vitros impecabil. Imun la micro-zgârieturi.",
-  topMatte: "Top Velvet Matte Emma Nails — finisaj \"No Wipe\" cu efect mat absolut. Textură fină asemănătoare catifelei, senzație catifelată la atingere, respinge praful și transferul de culoare.",
+  rubberBase: "Rubber Base Emma Nails — fundamentul esențial pentru o manichiură tehnică de succes. Concepută special pentru unghiile subțiri, casante sau problematice. Vâscozitate inteligentă ce permite modelarea apexului fără scurgeri. Tehnologie \"Shock-Absorb\" — structură elastică ce absoarbe șocurile mecanice, prevenind fisurile. Autonivelare High-Definition ce corectează denivelările unghiei naturale. Economie de timp: înlocuiește aplicarea culorii, reducând durata procedurii cu până la 20 de minute. Garantează manichiură intactă peste 4 săptămâni.",
+  glitterRubber: "Glitter Rubber Base Emma Nails — soluția 2-în-1 care combină rezistența unei baze elastice cu estetica prețioasă a sclipiciului fin. Efect \"Jewel-Tone\" cu particule de sclipici de înaltă densitate, suspendate într-o formulă autonivelantă pentru o reflexie uniformă a luminii. Aderență magnetică cu unghia naturală, eliminând riscul de lifting chiar și pe unghiile subțiri. Micro-particulele sunt integrate perfect în bază, lăsând unghia fină la atingere. Rezistență 4 săptămâni — menține strălucirea particulelor pe toată durata purtării.",
+  builderGel: "Builder Gel Emma Nails — pilonul de rezistență în manichiura tehnică modernă. Vâscozitate optimizată care nu curge, permițând realizarea extensiilor lungi cu precizie milimetrică. Tehnologie de polimerizare la rece, minimizând degajarea de căldură. Structură moleculară densă ce previne ruperea sau pierderea formei. Proprietăți excelente de autonivelare — reduce timpul de finisare cu 30%. Culori stabile, fără îngălbenire. HEMA-Free: opțiuni sigure pentru unghii sensibile.",
+  builderLiquid: "Builder Liquid Emma Nails — inovația care redefinește eficiența în salon. Gel de construcție \"la sticluță\" cu densitatea necesară pentru întărirea unghiei naturale și fluiditatea ideală pentru tehnica fără pilire. Textură inovatoare care se autonivelează instantaneu, formând o legătură moleculară puternică. Formulă optimizată pentru a minimiza degajarea de căldură, ideală pentru unghii sensibile. Aplicare directă cu pensula din sticlă — elimină necesitatea pensulelor separate.",
+  jellyGel: "Jelly Builder Gel Emma Nails — control, stabilitate, arhitectură. Consistență densă de tip jeleu — materialul rămâne exact unde este plasat, fără a migra spre cuticule, indiferent de temperatură. Permite construirea unghiei cu acuratețe milimetrică. Odorless & HEMA-Free: formulă prietenoasă, fără miros puternic, reduce riscul de alergii. Barieră extrem de dură care nu se fisurează, disponibil în nuanțe de camuflaj cu aspect natural și elegant.",
+  acrylicLiquid: "Acrylic Extension Liquid Emma Nails — sculptură, densitate, control. Material de înaltă performanță cu formulă avansată ce permite modelare fluidă. Timp de lucru optimizat, aderență chimică superioară, rezistență UV și anti-îngălbenire. Structură de densitate înaltă — manichiură robustă, subțire, cu duritate remarcabilă, ideală și pentru formele lungi. Control absolut al materialului, finit de precizie.",
+  topGlitter: "Glitter Vibe Top Coat Emma Nails — finisajul suprem \"No Wipe\" infuzat cu micro-particule strălucitoare într-o formulă ultra-lucioasă. Tehnologie No-Wipe cu luciu instantaneu de oglindă. Densitate omogenă a sclipiciului — acoperire uniformă la o singură pensulare. Barieră anti-zgârieturi și filtru de protecție cromatică. Se autonivelează impecabil, lăsând unghia fină la atingere.",
+  topSteel: "Top Clear Steel Emma Nails — sigilare, rezistență, claritate. Finisaj de elită \"No Wipe\" cu formulă inspirată de rezistența oțelului. Scut protector ultra-rigid, luciu vitros impecabil chiar și în condiții de uzură intensă. Imun la micro-zgârieturile zilnice, reflexie a luminii de o claritate superioară care nu pierde intensitatea pe parcursul celor 4 săptămâni. Protejează pigmenții culorii împotriva decolorării și îngălbenirii.",
+  topMatte: "Top Velvet Matte Emma Nails — senzorialitate, eleganță, profunzime. Finisaj \"No Wipe\" cu efect mat absolut, eliminând orice reflexie. Textură fină asemănătoare catifelei prețioase, extrem de rezistentă la uzura zilnică. Respinge praful și transferul de culoare de pe haine, menținând manichiura curată 4 săptămâni. Pigmenți de matifiere suspendați într-o formulă stabilă care se aplică uniform, fără dâre.",
 };
 
 const slug = (s: string) => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
@@ -33,7 +33,7 @@ const grb = (name: string, hex: string) => ({
   slug: `glitter-rubber-base-${slug(name)}-12ml`,
   name: `Glitter Rubber Base — ${name}, 12ml`,
   description: `${DESC.glitterRubber} Nuanța ${name}.`,
-  price: 7000, category: "baze-rubber", subcategory: "glitter-rubber-base", size: "12ml",
+  price: 7000, category: "baze-rubber-efect", subcategory: "glitter-rubber-base", size: "12ml",
   inStock: true, featured: false, colorHex: hex,
   imageUrl: "/glitter-rubber-base-front.jpg",
   images: ["/glitter-rubber-base-front.jpg", "/glitter-rubber-base-back.jpg"],
@@ -43,7 +43,7 @@ const bg = (name: string, line: string, hex: string) => ({
   slug: `builder-gel-${slug(name)}`,
   name: `Builder Gel — ${name}, 30g`,
   description: `${line} (HEMA – TPO FREE). ${DESC.builderGel} Nuanța ${name}.`,
-  price: 9500, category: "gel-constructie", subcategory: "builder-gel", size: "30g",
+  price: 9500, category: "geluri", subcategory: "builder", size: "30g",
   inStock: true, featured: false, colorHex: hex,
   imageUrl: "/emma-nails-jar-front.jpg",
   images: ["/emma-nails-jar-front.jpg"],
@@ -53,7 +53,7 @@ const bl = (name: string, hex: string) => ({
   slug: `balance-builder-liquid-${slug(name)}-12ml`,
   name: `Balance Builder Liquid — ${name}, 12ml`,
   description: `${DESC.builderLiquid} Nuanța ${name}.`,
-  price: 7000, category: "gel-constructie", subcategory: "gel-liquid", size: "12ml",
+  price: 7000, category: "geluri", subcategory: "liquid", size: "12ml",
   inStock: true, featured: false, colorHex: hex,
   imageUrl: "/balance-builder-liquid-front.jpg",
   images: ["/balance-builder-liquid-front.jpg", "/balance-builder-liquid-back.jpg"],
@@ -63,7 +63,7 @@ const jg = (name: string, hex: string) => ({
   slug: `jelly-gel-${slug(name)}`,
   name: `Jelly Builder Gel — ${name}, 30g`,
   description: `${DESC.jellyGel} Nuanța ${name}.`,
-  price: 9500, category: "gel-constructie", subcategory: "jelly", size: "30g",
+  price: 9500, category: "geluri", subcategory: "jelly", size: "30g",
   inStock: true, featured: false, colorHex: hex,
   imageUrl: "/emma-nails-jar-front.jpg",
   images: ["/emma-nails-jar-front.jpg"],
@@ -73,7 +73,7 @@ const al = (name: string, hex: string) => ({
   slug: `acrylic-liquid-${slug(name)}`,
   name: `Acrylic Extension Liquid — ${name}, 30g`,
   description: `${DESC.acrylicLiquid} Nuanța ${name}.`,
-  price: 9500, category: "acrylic-liquid", subcategory: "acrylic-liquid", size: "30g",
+  price: 9500, category: "acrygel-liquid", subcategory: "acrygel-liquid", size: "30g",
   inStock: true, featured: false, colorHex: hex,
   imageUrl: "/emma-nails-jar-front.jpg",
   images: ["/emma-nails-jar-front.jpg"],
@@ -117,7 +117,7 @@ export const products = [
   { slug: "reflective-polygel-emma-nails-color-25-30g", name: "Reflective Polygel Emma Nails Color 25, 30g", description: "PolyGel reflectiv cu efect fascinant.", price: 8000, category: "polygel", subcategory: "polygel-reflective", size: "30g", inStock: true, featured: false, imageUrl: "/uploads/site-25.jpg", images: ["/uploads/site-25.jpg"] },
 
   // ═══════════════════════════════════════════════════════════
-  // ACRYLIC LIQUID (7 products — colors from PDF)
+  // ACRYGEL LIQUID (7 products — colors from PDF)
   // ═══════════════════════════════════════════════════════════
   { ...al("Soft Nude",   "#F0C4B8"), featured: true },
   al("Soft Lilac",  "#E0C4DC"),
@@ -174,12 +174,12 @@ export const products = [
   grb("Ice Lilac",          "#C8B8D0"),
 
   // ═══════════════════════════════════════════════════════════
-  // GEL CONSTRUCȚIE — Self-leveling Fit Gel (1 shade)
+  // GELURI — Self-leveling Fit Gel (1 shade)
   // ═══════════════════════════════════════════════════════════
-  { slug: "self-leveling-fit-gel-12ml", name: "Self-leveling Fit Gel — Clear Promise, 12ml", description: `${DESC.builderLiquid} Nuanța Clear Promise — transparență cristalină.`, price: 7000, category: "gel-constructie", subcategory: "gel-liquid", size: "12ml", inStock: true, featured: false, colorHex: "#E6DED4", imageUrl: "/self-leveling-fit-gel-front.jpg", images: ["/self-leveling-fit-gel-front.jpg", "/self-leveling-fit-gel-back.jpg"] },
+  { slug: "self-leveling-fit-gel-12ml", name: "Self-leveling Fit Gel — Clear Promise, 12ml", description: `${DESC.builderLiquid} Nuanța Clear Promise — transparență cristalină.`, price: 7000, category: "geluri", subcategory: "liquid", size: "12ml", inStock: true, featured: false, colorHex: "#E6DED4", imageUrl: "/self-leveling-fit-gel-front.jpg", images: ["/self-leveling-fit-gel-front.jpg", "/self-leveling-fit-gel-back.jpg"] },
 
   // ═══════════════════════════════════════════════════════════
-  // GEL CONSTRUCȚIE — Balance Builder Liquid (5 shades from PDF)
+  // GELURI — Balance Builder Liquid (5 shades from PDF)
   // ═══════════════════════════════════════════════════════════
   bl("White Please",  "#ECE6DE"),
   bl("Nude Sandy",    "#D4A888"),
@@ -188,7 +188,7 @@ export const products = [
   bl("Pink Boss",     "#E06080"),
 
   // ═══════════════════════════════════════════════════════════
-  // GEL CONSTRUCȚIE — Builder Gel (16 shades — fixed Lara Grace)
+  // GELURI — Builder Gel (16 shades — fixed Lara Grace)
   // ═══════════════════════════════════════════════════════════
   bg("White Wonder",  "Harmony Builder Gel",          "#EAE2DA"),
   bg("Nude Soft",     "Harmony Builder Gel",          "#E4CEC0"),
@@ -208,7 +208,7 @@ export const products = [
   bg("Blue Chill",    "Pearl Soft Mode Builder Gel",  "#B8C8C4"),
 
   // ═══════════════════════════════════════════════════════════
-  // GEL CONSTRUCȚIE — Jelly Builder Gel (5 shades)
+  // GELURI — Jelly Builder Gel (5 shades)
   // ═══════════════════════════════════════════════════════════
   jg("Jelly Milk",       "#F0E8DF"),
   jg("Jelly Rose",       "#E8A8B0"),
@@ -217,21 +217,21 @@ export const products = [
   jg("Liliac Sand",      "#C4A8C0"),
 
   // ═══════════════════════════════════════════════════════════
-  // TOP COAT — Glitter Vibe (3 shades from PDF)
+  // TOPURI — Glitter Vibe (3 shades from PDF)
   // ═══════════════════════════════════════════════════════════
-  { slug: "glitter-vibe-top-coat-true-silver-12ml", name: "Glitter Vibe Top Coat — True Silver, 12ml", description: `${DESC.topGlitter} Nuanța True Silver — argint strălucitor.`, price: 7000, category: "top-coat", subcategory: "glitter-vibe-top", size: "12ml", inStock: true, featured: false, colorHex: "#C0BCC4", imageUrl: "/glitter-vibe-top-coat-front.jpg", images: ["/glitter-vibe-top-coat-front.jpg", "/glitter-vibe-top-coat-back.jpg"] },
-  { slug: "glitter-vibe-top-coat-diamond-mist-12ml", name: "Glitter Vibe Top Coat — Diamond Mist, 12ml", description: `${DESC.topGlitter} Nuanța Diamond Mist — ceață de diamant.`, price: 7000, category: "top-coat", subcategory: "glitter-vibe-top", size: "12ml", inStock: true, featured: false, colorHex: "#D4CCD4", imageUrl: "/glitter-vibe-top-coat-front.jpg", images: ["/glitter-vibe-top-coat-front.jpg", "/glitter-vibe-top-coat-back.jpg"] },
-  { slug: "glitter-vibe-top-coat-moon-glow-12ml", name: "Glitter Vibe Top Coat — Moon Glow, 12ml", description: `${DESC.topGlitter} Nuanța Moon Glow — strălucire lunară.`, price: 7000, category: "top-coat", subcategory: "glitter-vibe-top", size: "12ml", inStock: true, featured: false, colorHex: "#D4CCC0", imageUrl: "/glitter-vibe-top-coat-front.jpg", images: ["/glitter-vibe-top-coat-front.jpg", "/glitter-vibe-top-coat-back.jpg"] },
+  { slug: "glitter-vibe-top-coat-true-silver-12ml", name: "Glitter Vibe Top Coat — True Silver, 12ml", description: `${DESC.topGlitter} Nuanța True Silver — argint strălucitor.`, price: 7000, category: "topuri", subcategory: "glitter-vibe-top", size: "12ml", inStock: true, featured: false, colorHex: "#C0BCC4", imageUrl: "/glitter-vibe-top-coat-front.jpg", images: ["/glitter-vibe-top-coat-front.jpg", "/glitter-vibe-top-coat-back.jpg"] },
+  { slug: "glitter-vibe-top-coat-diamond-mist-12ml", name: "Glitter Vibe Top Coat — Diamond Mist, 12ml", description: `${DESC.topGlitter} Nuanța Diamond Mist — ceață de diamant.`, price: 7000, category: "topuri", subcategory: "glitter-vibe-top", size: "12ml", inStock: true, featured: false, colorHex: "#D4CCD4", imageUrl: "/glitter-vibe-top-coat-front.jpg", images: ["/glitter-vibe-top-coat-front.jpg", "/glitter-vibe-top-coat-back.jpg"] },
+  { slug: "glitter-vibe-top-coat-moon-glow-12ml", name: "Glitter Vibe Top Coat — Moon Glow, 12ml", description: `${DESC.topGlitter} Nuanța Moon Glow — strălucire lunară.`, price: 7000, category: "topuri", subcategory: "glitter-vibe-top", size: "12ml", inStock: true, featured: false, colorHex: "#D4CCC0", imageUrl: "/glitter-vibe-top-coat-front.jpg", images: ["/glitter-vibe-top-coat-front.jpg", "/glitter-vibe-top-coat-back.jpg"] },
 
   // ═══════════════════════════════════════════════════════════
-  // TOP COAT — Clear Steel (1 shade)
+  // TOPURI — Clear Steel (1 shade)
   // ═══════════════════════════════════════════════════════════
-  { slug: "clear-steel-top-coat-12ml", name: "Clear Steel Top Coat — Clear Touch, 12ml", description: `${DESC.topSteel} Nuanța Clear Touch — claritate absolută.`, price: 7000, category: "top-coat", subcategory: "clear-steel-top", size: "12ml", inStock: true, featured: false, colorHex: "#E4E0DC", imageUrl: "/clear-steel-top-coat-front.jpg", images: ["/clear-steel-top-coat-front.jpg", "/clear-steel-top-coat-back.jpg"] },
+  { slug: "clear-steel-top-coat-12ml", name: "Clear Steel Top Coat — Clear Touch, 12ml", description: `${DESC.topSteel} Nuanța Clear Touch — claritate absolută.`, price: 7000, category: "topuri", subcategory: "clear-steel-top", size: "12ml", inStock: true, featured: false, colorHex: "#E4E0DC", imageUrl: "/clear-steel-top-coat-front.jpg", images: ["/clear-steel-top-coat-front.jpg", "/clear-steel-top-coat-back.jpg"] },
 
   // ═══════════════════════════════════════════════════════════
-  // TOP COAT — Velvet Matte (1 shade)
+  // TOPURI — Velvet Matte (1 shade)
   // ═══════════════════════════════════════════════════════════
-  { slug: "velvet-matte-top-coat-12ml", name: "Velvet Matte Top Coat — Velvet Touch, 12ml", description: `${DESC.topMatte} Nuanța Velvet Touch — catifea pură.`, price: 7000, category: "top-coat", subcategory: "velvet-matte-top", size: "12ml", inStock: true, featured: false, colorHex: "#E6E0DA", imageUrl: "/velvet-matte-top-coat-front.jpg", images: ["/velvet-matte-top-coat-front.jpg", "/velvet-matte-top-coat-back.jpg"] },
+  { slug: "velvet-matte-top-coat-12ml", name: "Velvet Matte Top Coat — Velvet Touch, 12ml", description: `${DESC.topMatte} Nuanța Velvet Touch — catifea pură.`, price: 7000, category: "topuri", subcategory: "velvet-matte-top", size: "12ml", inStock: true, featured: false, colorHex: "#E6E0DA", imageUrl: "/velvet-matte-top-coat-front.jpg", images: ["/velvet-matte-top-coat-front.jpg", "/velvet-matte-top-coat-back.jpg"] },
 ];
 
 // ═══════════════════════════════════════════════════════════

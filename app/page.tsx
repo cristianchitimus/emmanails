@@ -56,7 +56,7 @@ export default async function HomePage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
             {[
               { title: "SHOP POLYGEL", img: "/uploads/site-1.jpg", href: "/produse?categorie=polygel" },
-              { title: "ACRYLIC LIQUID", img: "/acrylic-soft-nude.jpg", href: "/produse?categorie=acrylic-liquid" },
+              { title: "ACRYGEL LIQUID", img: "/acrylic-soft-nude.jpg", href: "/produse?categorie=acrygel-liquid" },
               { title: "INSTRUMENTE", img: "/uploads/site-DSC_8271.jpg", href: "/produse?categorie=instrumente" },
               { title: "ACADEMIE", img: "/uploads/academy-WhatsApp-Image-2025-11-04-at-21.36.26.jpeg", href: "/academie" },
             ].map((cat, i) => (

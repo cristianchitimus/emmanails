@@ -7,8 +7,13 @@ interface CatTree {
 }
 
 const CAT_LABELS: Record<string, string> = {
-  polygel: "PolyGel", instrumente: "Instrumente", "acrylic-liquid": "Acrylic Liquid",
-  "baze-rubber": "Baze Rubber", "gel-constructie": "Gel Construcție", "top-coat": "Top Coat",
+  polygel: "PolyGel",
+  instrumente: "Instrumente",
+  "acrygel-liquid": "Acrygel Liquid",
+  "baze-rubber": "Baze Rubber",
+  "baze-rubber-efect": "Baze Rubber cu Efect",
+  geluri: "Geluri",
+  topuri: "Topuri",
 };
 
 export default function AdminCategoriiPage() {

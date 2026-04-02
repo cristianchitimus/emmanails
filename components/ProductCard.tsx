@@ -10,10 +10,11 @@ import { isGlitterProduct } from "@/lib/glitter";
 const CATEGORY_LABELS: Record<string, string> = {
   polygel: "PolyGel",
   instrumente: "Instrumente",
-  "acrylic-liquid": "Acrylic Liquid",
+  "acrygel-liquid": "Acrygel Liquid",
   "baze-rubber": "Baze Rubber",
-  "gel-constructie": "Gel Construcție",
-  "top-coat": "Top Coat",
+  "baze-rubber-efect": "Baze Rubber cu Efect",
+  geluri: "Geluri",
+  topuri: "Topuri",
 };
 
 interface ProductCardProps {

@@ -32,34 +32,38 @@ const MEGA_MENU_DATA = {
         ],
       },
       {
-        title: "Acrylic Liquid",
+        title: "Acrygel Liquid",
         links: [
-          { label: "Toate nuanțele", href: "/produse?categorie=acrylic-liquid" },
+          { label: "Toate nuanțele", href: "/produse?categorie=acrygel-liquid" },
         ],
       },
       {
         title: "Baze Rubber",
         links: [
           { label: "Toate bazele", href: "/produse?categorie=baze-rubber" },
-          { label: "Rubber Base", href: "/produse?categorie=baze-rubber&sub=rubber-base" },
-          { label: "Glitter Rubber Base", href: "/produse?categorie=baze-rubber&sub=glitter-rubber-base" },
         ],
       },
       {
-        title: "Gel De Construcție",
+        title: "Baze Rubber cu Efect",
         links: [
-          { label: "Toate gelurile", href: "/produse?categorie=gel-constructie" },
-          { label: "Gel Liquid", href: "/produse?categorie=gel-constructie&sub=gel-liquid" },
-          { label: "Builder Gel", href: "/produse?categorie=gel-constructie&sub=builder-gel" },
-          { label: "Jelly Builder Gel", href: "/produse?categorie=gel-constructie&sub=jelly" },
+          { label: "Toate nuanțele", href: "/produse?categorie=baze-rubber-efect" },
         ],
       },
       {
-        title: "Top Coat",
+        title: "Geluri",
         links: [
-          { label: "Glitter Vibe Top", href: "/produse?categorie=top-coat&sub=glitter-vibe-top" },
-          { label: "Clear Steel Top", href: "/produse?categorie=top-coat&sub=clear-steel-top" },
-          { label: "Velvet Matte Top", href: "/produse?categorie=top-coat&sub=velvet-matte-top" },
+          { label: "Toate gelurile", href: "/produse?categorie=geluri" },
+          { label: "Builder Liquid", href: "/produse?categorie=geluri&sub=liquid" },
+          { label: "Builder Gel", href: "/produse?categorie=geluri&sub=builder" },
+          { label: "Jelly Builder Gel", href: "/produse?categorie=geluri&sub=jelly" },
+        ],
+      },
+      {
+        title: "Topuri",
+        links: [
+          { label: "Glitter Vibe Top", href: "/produse?categorie=topuri&sub=glitter-vibe-top" },
+          { label: "Clear Steel Top", href: "/produse?categorie=topuri&sub=clear-steel-top" },
+          { label: "Velvet Matte Top", href: "/produse?categorie=topuri&sub=velvet-matte-top" },
         ],
       },
     ],
