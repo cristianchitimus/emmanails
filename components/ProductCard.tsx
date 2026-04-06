@@ -29,6 +29,7 @@ interface ProductCardProps {
     size?: string | null;
     colorHex?: string | null;
     imageUrl?: string | null;
+    images?: string[];
     inStock: boolean;
   };
 }
@@ -39,19 +40,34 @@ export function ProductCard({ product }: ProductCardProps) {
   const hasDiscount = product.salePrice && product.salePrice < product.price;
   const glitter = isGlitterProduct(product);
 
+  // Primary image (swatch/gel drop) and secondary (bottle on hover)
+  const primaryImg = product.images?.[0] || product.imageUrl || null;
+  const hoverImg = product.images?.[1] || null;
+
   return (
     <div className="group relative">
       <Link href={`/produse/${product.slug}`} className="block">
-        {/* Image */}
+        {/* Image with hover swap */}
         <div className="relative aspect-square bg-neutral-50 rounded-2xl overflow-hidden mb-3">
-          {product.imageUrl ? (
-            <Image
-              src={product.imageUrl}
-              alt={product.name}
-              fill
-              className="object-cover group-hover:scale-105 transition-transform duration-500"
-              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-            />
+          {primaryImg ? (
+            <>
+              <Image
+                src={primaryImg}
+                alt={product.name}
+                fill
+                className={`object-cover transition-opacity duration-500 ${hoverImg ? "group-hover:opacity-0" : "group-hover:scale-105 transition-transform duration-500"}`}
+                sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+              />
+              {hoverImg && (
+                <Image
+                  src={hoverImg}
+                  alt={`${product.name} — sticluță`}
+                  fill
+                  className="object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                />
+              )}
+            </>
           ) : (
             <div className="flex items-center justify-center h-full">
               <span className="font-display text-3xl font-bold text-pink/20">EN</span>
@@ -59,7 +75,7 @@ export function ProductCard({ product }: ProductCardProps) {
           )}
 
           {/* Badges */}
-          <div className="absolute top-3 left-3 flex flex-col gap-1.5">
+          <div className="absolute top-3 left-3 flex flex-col gap-1.5 z-10">
             {hasDiscount && (
               <span className="bg-pink text-white font-body text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full">
                 Reducere
@@ -74,7 +90,7 @@ export function ProductCard({ product }: ProductCardProps) {
 
           {/* Heart swatch in top-right corner */}
           {product.colorHex && (
-            <div className="absolute top-3 right-3 drop-shadow-sm">
+            <div className="absolute top-3 right-3 drop-shadow-sm z-10">
               <HeartSwatch color={product.colorHex} size={26} glitter={glitter} />
             </div>
           )}
@@ -93,7 +109,7 @@ export function ProductCard({ product }: ProductCardProps) {
                   imageUrl: product.imageUrl || undefined,
                 });
               }}
-              className="absolute bottom-3 left-3 right-3 bg-dark text-white font-body text-[11px] font-semibold uppercase tracking-[0.15em] py-2.5 rounded-full text-center opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 hover:bg-pink"
+              className="absolute bottom-3 left-3 right-3 bg-dark text-white font-body text-[11px] font-semibold uppercase tracking-[0.15em] py-2.5 rounded-full text-center opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 hover:bg-pink z-10"
             >
               Adaugă în coș
             </button>

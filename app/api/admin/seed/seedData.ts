@@ -223,7 +223,7 @@ export const products = [
   rb("Moon Dust",        "#A8A0B0"),
   rb("White No Limits",  "#E8E4E0"),
   rb("Sand That's Hot",  "#D4BCA0"),
-  rb("Rose Heartbeat",   "#D88898"),
+  { ...rb("Rose Heartbeat",   "#D88898"), imageUrl: "/uploads/gel-swatch-pink-test.jpg", images: ["/uploads/gel-swatch-pink-test.jpg", "/rubber-base-front.jpg", "/rubber-base-back.jpg"] },
   rb("Pink Queen Mode",  "#CC6888"),
 
   // ═══════════════════════════════════════════════════════════
