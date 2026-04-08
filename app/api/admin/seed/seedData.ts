@@ -156,15 +156,21 @@ const jg = (name: string, hex: string) => ({
   images: ["/emma-nails-jar-front.jpg"],
 });
 
-const al = (name: string, hex: string) => ({
-  slug: `acrylic-liquid-${slug(name)}`,
-  name: `Acrylic Extension Liquid — ${name}, 30g`,
-  description: `${DESC.acrylicLiquid} Nuanța ${name}.`,
-  price: 9500, category: "acrygel-liquid", subcategory: "acrygel-liquid", size: "30g",
-  inStock: true, featured: false, colorHex: hex,
-  imageUrl: "/emma-nails-jar-front.jpg",
-  images: ["/emma-nails-jar-front.jpg"],
-});
+const AL_SWATCHES = new Set(["pink-luna","blush-nude","mood-nude","soft-nude","amme-touch"]);
+const al = (name: string, hex: string) => {
+  const s = slug(name);
+  const hasSwatch = AL_SWATCHES.has(s);
+  const swatch = `/uploads/al-${s}.jpeg`;
+  return {
+    slug: `acrylic-liquid-${s}`,
+    name: `Acrylic Extension Liquid — ${name}, 30g`,
+    description: `${DESC.acrylicLiquid} Nuanța ${name}.`,
+    price: 9500, category: "acrygel-liquid", subcategory: "acrygel-liquid", size: "30g",
+    inStock: true, featured: false, colorHex: hex,
+    imageUrl: hasSwatch ? swatch : "/emma-nails-jar-front.jpg",
+    images: hasSwatch ? [swatch, "/emma-nails-jar-front.jpg"] : ["/emma-nails-jar-front.jpg"],
+  };
+};
 
 export const products = [
   // ═══════════════════════════════════════════════════════════
