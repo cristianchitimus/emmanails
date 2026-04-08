@@ -126,25 +126,37 @@ const grb = (name: string, hex: string) => {
   };
 };
 
-const bg = (name: string, line: string, hex: string) => ({
-  slug: `builder-gel-${slug(name)}`,
-  name: `Builder Gel — ${name}, 30g`,
-  description: `${line} (HEMA – TPO FREE). ${DESC.builderGel} Nuanța ${name}.`,
-  price: 9500, category: "geluri", subcategory: "builder", size: "30g",
-  inStock: true, featured: false, colorHex: hex,
-  imageUrl: "/emma-nails-jar-front.jpg",
-  images: ["/emma-nails-jar-front.jpg"],
-});
+const BG_SWATCHES = new Set(["white-wonder","nude-soft","still-white","moon-shimmer","soul-sisters","pearl-touch","pink-promise","lilac-anne","pink-filter","beige-cuddle","blue-chill"]);
+const bg = (name: string, line: string, hex: string) => {
+  const s = slug(name);
+  const hasSwatch = BG_SWATCHES.has(s);
+  const swatch = `/uploads/bg-${s}.jpeg`;
+  return {
+    slug: `builder-gel-${s}`,
+    name: `Builder Gel — ${name}, 30g`,
+    description: `${line} (HEMA – TPO FREE). ${DESC.builderGel} Nuanța ${name}.`,
+    price: 9500, category: "geluri", subcategory: "builder", size: "30g",
+    inStock: true, featured: false, colorHex: hex,
+    imageUrl: hasSwatch ? swatch : "/emma-nails-jar-front.jpg",
+    images: hasSwatch ? [swatch, "/emma-nails-jar-front.jpg"] : ["/emma-nails-jar-front.jpg"],
+  };
+};
 
-const bl = (name: string, hex: string) => ({
-  slug: `balance-builder-liquid-${slug(name)}-12ml`,
-  name: `Balance Builder Liquid — ${name}, 12ml`,
-  description: `${DESC.builderLiquid} Nuanța ${name}.`,
-  price: 7000, category: "geluri", subcategory: "liquid", size: "12ml",
-  inStock: true, featured: false, colorHex: hex,
-  imageUrl: "/balance-builder-liquid-front.jpg",
-  images: ["/balance-builder-liquid-front.jpg", "/balance-builder-liquid-back.jpg"],
-});
+const BL_SWATCHES = new Set(["white-please","nude-sandy","pink-boss"]);
+const bl = (name: string, hex: string) => {
+  const s = slug(name);
+  const hasSwatch = BL_SWATCHES.has(s);
+  const swatch = `/uploads/bl-${s}.jpeg`;
+  return {
+    slug: `balance-builder-liquid-${s}-12ml`,
+    name: `Balance Builder Liquid — ${name}, 12ml`,
+    description: `${DESC.builderLiquid} Nuanța ${name}.`,
+    price: 7000, category: "geluri", subcategory: "liquid", size: "12ml",
+    inStock: true, featured: false, colorHex: hex,
+    imageUrl: hasSwatch ? swatch : "/balance-builder-liquid-front.jpg",
+    images: hasSwatch ? [swatch, "/balance-builder-liquid-front.jpg"] : ["/balance-builder-liquid-front.jpg", "/balance-builder-liquid-back.jpg"],
+  };
+};
 
 const jg = (name: string, hex: string) => ({
   slug: `jelly-gel-${slug(name)}`,
@@ -156,7 +168,7 @@ const jg = (name: string, hex: string) => ({
   images: ["/emma-nails-jar-front.jpg"],
 });
 
-const AL_SWATCHES = new Set(["pink-luna","blush-nude","mood-nude","soft-nude","amme-touch"]);
+const AL_SWATCHES = new Set(["pink-luna","blush-nude","mood-nude","soft-nude","amme-touch","soft-lilac"]);
 const al = (name: string, hex: string) => {
   const s = slug(name);
   const hasSwatch = AL_SWATCHES.has(s);
