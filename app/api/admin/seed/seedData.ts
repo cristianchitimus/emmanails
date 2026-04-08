@@ -158,15 +158,21 @@ const bl = (name: string, hex: string) => {
   };
 };
 
-const jg = (name: string, hex: string) => ({
-  slug: `jelly-gel-${slug(name)}`,
-  name: `Jelly Builder Gel — ${name}, 30g`,
-  description: `${DESC.jellyGel} Nuanța ${name}.`,
-  price: 9500, category: "geluri", subcategory: "jelly", size: "30g",
-  inStock: true, featured: false, colorHex: hex,
-  imageUrl: "/emma-nails-jar-front.jpg",
-  images: ["/emma-nails-jar-front.jpg"],
-});
+const JG_SWATCHES = new Set(["jelly-milk","jelly-rose","nude-in-control","nude-delight"]);
+const jg = (name: string, hex: string) => {
+  const s = slug(name);
+  const hasSwatch = JG_SWATCHES.has(s);
+  const swatch = `/uploads/jg-${s}.jpeg`;
+  return {
+    slug: `jelly-gel-${s}`,
+    name: `Jelly Builder Gel — ${name}, 30g`,
+    description: `${DESC.jellyGel} Nuanța ${name}.`,
+    price: 9500, category: "geluri", subcategory: "jelly", size: "30g",
+    inStock: true, featured: false, colorHex: hex,
+    imageUrl: hasSwatch ? swatch : "/emma-nails-jar-front.jpg",
+    images: hasSwatch ? [swatch, "/emma-nails-jar-front.jpg"] : ["/emma-nails-jar-front.jpg"],
+  };
+};
 
 const AL_SWATCHES = new Set(["pink-luna","blush-nude","mood-nude","soft-nude","amme-touch","soft-lilac"]);
 const al = (name: string, hex: string) => {
