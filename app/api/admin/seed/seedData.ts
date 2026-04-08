@@ -110,15 +110,21 @@ const rb = (name: string, hex: string) => ({
   images: ["/rubber-base-front.jpg", "/rubber-base-back.jpg"],
 });
 
-const grb = (name: string, hex: string) => ({
-  slug: `glitter-rubber-base-${slug(name)}-12ml`,
-  name: `Glitter Rubber Base — ${name}, 12ml`,
-  description: `${DESC.glitterRubber} Nuanța ${name}.`,
-  price: 7000, category: "baze-rubber-efect", subcategory: "glitter-rubber-base", size: "12ml",
-  inStock: true, featured: false, colorHex: hex,
-  imageUrl: "/glitter-rubber-base-front.jpg",
-  images: ["/glitter-rubber-base-front.jpg", "/glitter-rubber-base-back.jpg"],
-});
+const GRB_SWATCHES = new Set(["grey-on-repeat","money-mood","white-no-limits","sunset-bronze","white-manifest","blue-drip-queen","sun-kiss","gold-power","adore-gold","lecel-up-nude","white-vision","shine-up","bronze-moment","green-mirage","white-bliss","ice-lilac"]);
+const grb = (name: string, hex: string) => {
+  const s = slug(name);
+  const hasSwatch = GRB_SWATCHES.has(s);
+  const swatch = `/uploads/grb-${s}.jpeg`;
+  return {
+    slug: `glitter-rubber-base-${s}-12ml`,
+    name: `Glitter Rubber Base — ${name}, 12ml`,
+    description: `${DESC.glitterRubber} Nuanța ${name}.`,
+    price: 7000, category: "baze-rubber-efect", subcategory: "glitter-rubber-base", size: "12ml",
+    inStock: true, featured: false, colorHex: hex,
+    imageUrl: hasSwatch ? swatch : "/glitter-rubber-base-front.jpg",
+    images: hasSwatch ? [swatch, "/glitter-rubber-base-front.jpg"] : ["/glitter-rubber-base-front.jpg", "/glitter-rubber-base-back.jpg"],
+  };
+};
 
 const bg = (name: string, line: string, hex: string) => ({
   slug: `builder-gel-${slug(name)}`,
