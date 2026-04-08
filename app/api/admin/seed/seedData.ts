@@ -126,7 +126,7 @@ const grb = (name: string, hex: string) => {
   };
 };
 
-const BG_SWATCHES = new Set(["white-wonder","nude-soft","still-white","moon-shimmer","soul-sisters","pearl-touch","pink-promise","lilac-anne","pink-filter","beige-cuddle","blue-chill"]);
+const BG_SWATCHES = new Set(["white-wonder","nude-soft","still-white","moon-shimmer","soul-sisters","pearl-touch","pink-promise","lilac-anne","pink-filter","beige-cuddle","blue-chill","metal-bloom","cosmic-chrome","alle-vibes"]);
 const bg = (name: string, line: string, hex: string) => {
   const s = slug(name);
   const hasSwatch = BG_SWATCHES.has(s);
