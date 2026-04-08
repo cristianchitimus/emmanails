@@ -100,15 +100,21 @@ RECOMANDARE ÎNDEPĂRTARE: Se recomandă îndepărtarea cu freza electrică, uti
 const slug = (s: string) => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 
 // Helper to make rubber base products
-const rb = (name: string, hex: string) => ({
-  slug: `rubber-base-${slug(name)}-12ml`,
-  name: `Rubber Base Coat — ${name}, 12ml`,
-  description: `${DESC.rubberBase} Nuanța ${name}.`,
-  price: 6500, category: "baze-rubber", subcategory: "rubber-base", size: "12ml",
-  inStock: true, featured: false, colorHex: hex,
-  imageUrl: "/rubber-base-front.jpg",
-  images: ["/rubber-base-front.jpg", "/rubber-base-back.jpg"],
-});
+const RB_SWATCHES = new Set(["sand-that-s-hot","lilac-mist","white-no-limits","nude-on-point","moon-dust","pink-queen-mode"]);
+const rb = (name: string, hex: string) => {
+  const s = slug(name);
+  const hasSwatch = RB_SWATCHES.has(s);
+  const swatch = `/uploads/rb-${s}.jpeg`;
+  return {
+    slug: `rubber-base-${s}-12ml`,
+    name: `Rubber Base Coat — ${name}, 12ml`,
+    description: `${DESC.rubberBase} Nuanța ${name}.`,
+    price: 6500, category: "baze-rubber", subcategory: "rubber-base", size: "12ml",
+    inStock: true, featured: false, colorHex: hex,
+    imageUrl: hasSwatch ? swatch : "/rubber-base-front.jpg",
+    images: hasSwatch ? [swatch, "/rubber-base-front.jpg"] : ["/rubber-base-front.jpg", "/rubber-base-back.jpg"],
+  };
+};
 
 const GRB_SWATCHES = new Set(["grey-on-repeat","money-mood","white-no-limits","sunset-bronze","white-manifest","blue-drip-queen","sun-kiss","gold-power","adore-gold","lecel-up-nude","white-vision","shine-up","bronze-moment","green-mirage","white-bliss","ice-lilac","blush-mirage","kiwi-influence","silver-luxe","pearl-kiss","nude-reflection","anto-s-love","white-grace","white-keep-shining","velvet-dream","rose-affection","platinum-poise","vero-rose","turcoaz-pearl","desert-glow"]);
 const grb = (name: string, hex: string) => {

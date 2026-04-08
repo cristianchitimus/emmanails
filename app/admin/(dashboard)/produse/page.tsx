@@ -231,9 +231,9 @@ export default function AdminProductsPage() {
                           </div>
                         ) : (
                           <div className="flex gap-1">
-                            <button onClick={() => startEdit(p)} className="font-body text-[10px] font-semibold uppercase px-2.5 py-1.5 bg-neutral-100 text-dark-400 rounded-lg hover:bg-neutral-200">
+                            <Link href={`/admin/produse/${p.id}`} className="font-body text-[10px] font-semibold uppercase px-2.5 py-1.5 bg-neutral-100 text-dark-400 rounded-lg hover:bg-neutral-200">
                               Editează
-                            </button>
+                            </Link>
                             <button onClick={() => deleteProduct(p.id, p.name)} disabled={saving === p.id}
                               className="font-body text-[10px] font-semibold uppercase px-2 py-1.5 bg-red-50 text-red-400 rounded-lg hover:bg-red-100 disabled:opacity-50">
                               ×
