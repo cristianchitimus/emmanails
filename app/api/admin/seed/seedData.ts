@@ -110,7 +110,7 @@ const rb = (name: string, hex: string) => ({
   images: ["/rubber-base-front.jpg", "/rubber-base-back.jpg"],
 });
 
-const GRB_SWATCHES = new Set(["grey-on-repeat","money-mood","white-no-limits","sunset-bronze","white-manifest","blue-drip-queen","sun-kiss","gold-power","adore-gold","lecel-up-nude","white-vision","shine-up","bronze-moment","green-mirage","white-bliss","ice-lilac"]);
+const GRB_SWATCHES = new Set(["grey-on-repeat","money-mood","white-no-limits","sunset-bronze","white-manifest","blue-drip-queen","sun-kiss","gold-power","adore-gold","lecel-up-nude","white-vision","shine-up","bronze-moment","green-mirage","white-bliss","ice-lilac","blush-mirage","kiwi-influence","silver-luxe","pearl-kiss","nude-reflection","anto-s-love","white-grace","white-keep-shining","velvet-dream","rose-affection","platinum-poise","vero-rose","turcoaz-pearl","desert-glow"]);
 const grb = (name: string, hex: string) => {
   const s = slug(name);
   const hasSwatch = GRB_SWATCHES.has(s);
