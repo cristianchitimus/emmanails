@@ -31,7 +31,7 @@ export function Footer() {
             <ul className="space-y-2">
               {[
                 { href: "/produse", label: "Toate produsele" },
-                { href: "/produse?categorie=polygel", label: "PolyGel" },
+                { href: "/produse?categorie=polygel", label: "Polygel" },
                 { href: "/produse?categorie=instrumente", label: "Instrumente" },
               ].map((link) => (
                 <li key={link.href}>

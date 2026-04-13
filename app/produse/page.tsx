@@ -49,7 +49,7 @@ export default async function ProdusePage({ searchParams }: Props) {
           <CategoryFilter
             categories={categories.map((c) => ({
               value: c.category,
-              label: ({ "polygel": "PolyGel", "acrygel-liquid": "Acrygel Liquid", "baze-rubber": "Baze Rubber", "baze-rubber-efect": "Baze Rubber cu Efect", "geluri": "Geluri", "topuri": "Topuri", "instrumente": "Instrumente" })[c.category] || c.category,
+              label: ({ "polygel": "Polygel", "baza-rubber": "Bază Rubber", "geluri-uv": "Geluri UV", "top-coat": "Top Coat", "pile-buffere": "Pile & Buffere", "produse-pedichiura": "Produse Pedichiură", "produsele-amme": "Produsele Amme", "instrumente": "Instrumente" })[c.category] || c.category,
               count: c._count.id,
             }))}
           />

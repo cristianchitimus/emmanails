@@ -7,7 +7,7 @@ export function isGlitterProduct(product: {
   const name = (product.name || "").toLowerCase();
   
   // Glitter subcategories
-  if (sub === "glitter-rubber-base") return true;
+  if (sub === "baza-rubber-cu-efect") return true;
   if (sub === "glitter-vibe-top") return true;
   
   // Glitter/shimmer product lines (by name)

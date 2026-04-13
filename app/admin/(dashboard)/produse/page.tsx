@@ -21,13 +21,14 @@ interface Product {
 }
 
 const CAT_LABELS: Record<string, string> = {
-  polygel: "PolyGel",
+  "baza-rubber": "Bază Rubber",
+  "geluri-uv": "Geluri UV",
+  polygel: "Polygel",
+  "top-coat": "Top Coat",
+  "pile-buffere": "Pile & Buffere",
+  "produse-pedichiura": "Produse Pedichiură",
+  "produsele-amme": "Produsele Amme",
   instrumente: "Instrumente",
-  "acrygel-liquid": "Acrygel Liquid",
-  "baze-rubber": "Baze Rubber",
-  "baze-rubber-efect": "Baze Rubber cu Efect",
-  geluri: "Geluri",
-  topuri: "Topuri",
 };
 
 function formatPrice(bani: number) { return (bani / 100).toFixed(2); }

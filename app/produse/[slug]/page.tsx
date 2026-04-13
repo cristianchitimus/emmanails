@@ -10,13 +10,14 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 const CATEGORY_LABELS: Record<string, string> = {
-  polygel: "PolyGel",
+  polygel: "Polygel",
   instrumente: "Instrumente",
-  "acrygel-liquid": "Acrygel Liquid",
-  "baze-rubber": "Baze Rubber",
-  "baze-rubber-efect": "Baze Rubber cu Efect",
-  geluri: "Geluri",
-  topuri: "Topuri",
+  "baza-rubber": "Bază Rubber",
+  "geluri-uv": "Geluri UV",
+  "top-coat": "Top Coat",
+  "pile-buffere": "Pile & Buffere",
+  "produse-pedichiura": "Produse Pedichiură",
+  "produsele-amme": "Produsele Amme",
 };
 
 interface Props { params: { slug: string } }

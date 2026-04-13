@@ -46,8 +46,8 @@ export default async function HomePage() {
         <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
             {[
-              { title: "BAZE & GELURI", img: "/uploads/brand-Foto_031.jpg", href: "/produse?categorie=baze-rubber" },
-              { title: "ACRYGEL LIQUID", img: "/uploads/brand-Foto_043.jpg", href: "/produse?categorie=acrygel-liquid" },
+              { title: "BAZĂ RUBBER", img: "/uploads/brand-Foto_031.jpg", href: "/produse?categorie=baza-rubber" },
+              { title: "GELURI UV", img: "/uploads/brand-Foto_043.jpg", href: "/produse?categorie=geluri-uv" },
               { title: "INSTRUMENTE", img: "/uploads/site-DSC_8271.jpg", href: "/produse?categorie=instrumente" },
               { title: "ACADEMIE", img: "/uploads/portfolio-WhatsApp_Image_2026-04-07_at_17_58_35__4_.jpeg", href: "/academie" },
             ].map((cat, i) => (

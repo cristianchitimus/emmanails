@@ -11,67 +11,54 @@ const MEGA_MENU_DATA = {
     label: "Shop",
     columns: [
       {
-        title: "PolyGel",
+        title: "Bază Rubber",
         links: [
-          { label: "Toate produsele PolyGel", href: "/produse?categorie=polygel" },
-          { label: "Nude & Cover", href: "/produse?categorie=polygel&sub=polygel-nude" },
-          { label: "Clear & Clasic", href: "/produse?categorie=polygel&sub=polygel-clasic" },
-          { label: "Color KD", href: "/produse?categorie=polygel&sub=polygel-color" },
-          { label: "Reflective", href: "/produse?categorie=polygel&sub=polygel-reflective" },
-          { label: "Builder Gel", href: "/produse?categorie=polygel&sub=polygel-builder" },
+          { label: "Bază rubber simple", href: "/produse?categorie=baza-rubber&sub=baza-rubber-simple" },
+          { label: "Bază rubber cu efect", href: "/produse?categorie=baza-rubber&sub=baza-rubber-cu-efect" },
+        ],
+      },
+      {
+        title: "Geluri UV",
+        links: [
+          { label: "Gel autonivelant", href: "/produse?categorie=geluri-uv&sub=gel-autonivelant" },
+          { label: "Gel builder", href: "/produse?categorie=geluri-uv&sub=gel-builder" },
+          { label: "Gel Jelly", href: "/produse?categorie=geluri-uv&sub=gel-jelly" },
+        ],
+      },
+      {
+        title: "Polygel",
+        links: [
+          { label: "Toate produsele Polygel", href: "/produse?categorie=polygel" },
+        ],
+      },
+      {
+        title: "Top Coat",
+        links: [
+          { label: "Toate topurile", href: "/produse?categorie=top-coat" },
         ],
       },
       {
         title: "Instrumente",
         links: [
-          { label: "Toate instrumentele", href: "/produse?categorie=instrumente" },
-          { label: "Aparatură", href: "/produse?categorie=instrumente&sub=instrumente-aparatura" },
-          { label: "Instrumente manichiură", href: "/produse?categorie=instrumente&sub=instrumente-manichiura" },
-          { label: "Pensule", href: "/produse?categorie=instrumente&sub=instrumente-pensule" },
-          { label: "Consumabile", href: "/produse?categorie=instrumente&sub=instrumente-consumabile" },
+          { label: "Instrumentele", href: "/produse?categorie=instrumente&sub=instrumentele" },
+          { label: "Capete freză", href: "/produse?categorie=instrumente&sub=capete-freza" },
+          { label: "Consumabile", href: "/produse?categorie=instrumente&sub=consumabile" },
         ],
       },
       {
-        title: "Acrygel Liquid",
+        title: "Alte categorii",
         links: [
-          { label: "Toate nuanțele", href: "/produse?categorie=acrygel-liquid" },
-        ],
-      },
-      {
-        title: "Baze Rubber",
-        links: [
-          { label: "Toate bazele", href: "/produse?categorie=baze-rubber" },
-        ],
-      },
-      {
-        title: "Baze Rubber cu Efect",
-        links: [
-          { label: "Toate nuanțele", href: "/produse?categorie=baze-rubber-efect" },
-        ],
-      },
-      {
-        title: "Geluri",
-        links: [
-          { label: "Toate gelurile", href: "/produse?categorie=geluri" },
-          { label: "Builder Liquid", href: "/produse?categorie=geluri&sub=liquid" },
-          { label: "Builder Gel", href: "/produse?categorie=geluri&sub=builder" },
-          { label: "Jelly Builder Gel", href: "/produse?categorie=geluri&sub=jelly" },
-        ],
-      },
-      {
-        title: "Topuri",
-        links: [
-          { label: "Glitter Vibe Top", href: "/produse?categorie=topuri&sub=glitter-vibe-top" },
-          { label: "Clear Steel Top", href: "/produse?categorie=topuri&sub=clear-steel-top" },
-          { label: "Velvet Matte Top", href: "/produse?categorie=topuri&sub=velvet-matte-top" },
+          { label: "Pile & Buffere", href: "/produse?categorie=pile-buffere" },
+          { label: "Produse pedichiură", href: "/produse?categorie=produse-pedichiura" },
+          { label: "Produsele Amme", href: "/produse?categorie=produsele-amme" },
         ],
       },
     ],
     featured: {
       title: "BEST SELLER",
-      product: "PolyGel Cover Light",
-      href: "/produse/polygel-emma-nails-cover-light-30g",
-      imageUrl: "/emma-nails-jar-front.jpg",
+      product: "Glitter Rubber Base",
+      href: "/produse?categorie=baza-rubber&sub=baza-rubber-cu-efect",
+      imageUrl: "/uploads/brand-Foto_043.jpg",
     },
   },
   academie: {
