@@ -2,131 +2,149 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useEffect, useRef } from "react";
+import { useRef, useEffect } from "react";
 
-const VIDEOS = ["/hero-video-1.mp4", "/hero-video-2.mp4", "/hero-video-3.mp4"];
-
-const RIGHT_IMAGES = [
-  "/emma-cursuri.jpg",
-  "/uploads/academy-WhatsApp-Image-2025-11-04-at-21.36.26.jpeg",
-  "/uploads/academy-WhatsApp-Image-2025-09-21-at-08.46.02-2.jpeg",
-  "/uploads/academy-WhatsApp-Image-2025-11-04-at-21.05.20.jpeg",
-  "/uploads/academy-WhatsApp-Image-2025-06-09-at-10.41.15-1.webp",
+const PRODUCT_IMAGES = [
+  "/uploads/brand-Foto_002.jpg",
+  "/uploads/brand-Foto_005.jpg",
+  "/uploads/brand-Foto_012.jpg",
+  "/uploads/brand-Foto_013.jpg",
+  "/uploads/brand-Foto_015.jpg",
+  "/uploads/brand-Foto_018.jpg",
+  "/uploads/brand-Foto_024.jpg",
+  "/uploads/brand-Foto_029.jpg",
+  "/uploads/brand-Foto_030.jpg",
+  "/uploads/brand-Foto_031.jpg",
+  "/uploads/brand-Foto_041.jpg",
+  "/uploads/brand-Foto_043.jpg",
 ];
 
-export function SplitVideoHero() {
-  const [rightIdx, setRightIdx] = useState(0);
-  const [leftIdx, setLeftIdx] = useState(0);
-  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+const ACADEMY_IMAGES = [
+  "/uploads/portfolio-WhatsApp_Image_2026-04-07_at_17_58_35__4_.jpeg",
+  "/uploads/portfolio-WhatsApp_Image_2026-04-07_at_17_58_33__2_.jpeg",
+  "/uploads/portfolio-WhatsApp_Image_2026-04-07_at_17_58_34.jpeg",
+  "/uploads/portfolio-WhatsApp_Image_2026-04-07_at_17_58_33.jpeg",
+  "/uploads/portfolio-WhatsApp_Image_2026-04-07_at_17_58_32.jpeg",
+  "/uploads/portfolio-WhatsApp_Image_2026-04-07_at_17_58_35__3_.jpeg",
+  "/uploads/portfolio-WhatsApp_Image_2026-04-07_at_17_58_35__2_.jpeg",
+  "/uploads/portfolio-WhatsApp_Image_2026-04-07_at_17_58_35__1_.jpeg",
+  "/uploads/portfolio-WhatsApp_Image_2026-04-07_at_17_58_34__2_.jpeg",
+  "/uploads/portfolio-WhatsApp_Image_2026-04-07_at_17_58_33__1_.jpeg",
+];
 
-  // Smooth cycle — just change index, CSS crossfade handles the rest
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setRightIdx((prev) => (prev + 1) % RIGHT_IMAGES.length);
-      setLeftIdx((prev) => (prev + 1) % VIDEOS.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, []);
+function HeroMarquee({ images, direction, speed = 25 }: { images: string[]; direction: "left" | "right"; speed?: number }) {
+  const ref = useRef<HTMLDivElement>(null);
 
-  // Play active video, pause others
   useEffect(() => {
-    videoRefs.current.forEach((v, i) => {
-      if (!v) return;
-      if (i === leftIdx) {
-        v.currentTime = 0;
-        v.play().catch(() => {});
+    const el = ref.current;
+    if (!el) return;
+    let animId: number;
+    let pos = 0;
+    const totalWidth = el.scrollWidth / 2;
+
+    if (direction === "right") pos = -totalWidth;
+
+    const step = () => {
+      if (direction === "left") {
+        pos -= speed / 60;
+        if (pos <= -totalWidth) pos += totalWidth;
       } else {
-        v.pause();
+        pos += speed / 60;
+        if (pos >= 0) pos -= totalWidth;
       }
-    });
-  }, [leftIdx]);
+      el.style.transform = `translate3d(${pos}px, 0, 0)`;
+      animId = requestAnimationFrame(step);
+    };
+    animId = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(animId);
+  }, [direction, speed]);
+
+  const doubled = [...images, ...images];
 
   return (
-    <section className="w-full grid grid-cols-2 h-[50vh] md:h-[85vh] lg:h-[90vh] md:max-h-[800px]">
-      {/* LEFT — Shop Produse (videos) */}
-      <Link href="/produse" className="relative overflow-hidden group cursor-pointer">
-        {/* All videos stacked — crossfade via opacity */}
-        {VIDEOS.map((src, i) => (
-          <video
-            key={src}
-            ref={(el) => { videoRefs.current[i] = el; }}
-            autoPlay={i === 0}
-            muted
-            loop
-            playsInline
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-[1200ms] ease-in-out ${
-              i === leftIdx ? "opacity-100 z-[1]" : "opacity-0 z-0"
-            }`}
-          >
-            <source src={src} type="video/mp4" />
-          </video>
-        ))}
-
-        <div className="absolute inset-0 z-[2] bg-gradient-to-t from-dark/70 via-dark/20 to-transparent group-hover:from-dark/80 transition-colors duration-500" />
-
-        <div className="relative z-10 h-full hidden md:flex flex-col items-start justify-end p-8 lg:p-14">
-          <span className="font-body text-[10px] font-bold uppercase tracking-[0.3em] text-white/60 mb-2">Magazin Online</span>
-          <h2 className="font-display text-3xl lg:text-5xl xl:text-6xl font-medium text-white leading-[1.05]">Produse<br />Profesionale</h2>
-          <p className="font-body text-sm text-white/60 leading-relaxed mt-3 max-w-xs">PolyGel cu formulă originală și instrumente premium.</p>
-          <div className="flex gap-5 mt-4">
-            {[{ num: "28", label: "Produse" }, { num: "2", label: "Categorii" }].map((s, i) => (
-              <div key={i}>
-                <span className="font-display text-xl lg:text-2xl font-bold text-white">{s.num}</span>
-                <p className="font-body text-[8px] uppercase tracking-[0.2em] text-white/40 mt-0.5">{s.label}</p>
-              </div>
-            ))}
+    <div className="absolute inset-0 overflow-hidden">
+      <div ref={ref} className="flex gap-2 will-change-transform h-full" style={{ width: "max-content" }}>
+        {doubled.map((img, i) => (
+          <div key={i} className="relative flex-shrink-0 h-full" style={{ width: "clamp(300px, 28vw, 480px)" }}>
+            <Image
+              src={img}
+              alt=""
+              fill
+              className="object-cover"
+              sizes="480px"
+              priority={i < 4}
+            />
           </div>
-          <div className="mt-6">
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export function SplitVideoHero() {
+  return (
+    <section className="w-full flex flex-col">
+      {/* TOP — Produse Profesionale (photos swipe LEFT) */}
+      <Link href="/produse" className="relative overflow-hidden group cursor-pointer h-[45vh] md:h-[50vh] lg:h-[55vh]">
+        <HeroMarquee images={PRODUCT_IMAGES} direction="left" speed={20} />
+        <div className="absolute inset-0 z-[2] bg-gradient-to-r from-dark/80 via-dark/40 to-dark/20 group-hover:from-dark/90 transition-all duration-500" />
+
+        <div className="relative z-10 h-full flex flex-col items-start justify-end p-6 md:p-10 lg:p-14 max-w-[1400px] mx-auto w-full">
+          <span className="font-body text-[10px] font-bold uppercase tracking-[0.3em] text-white/60 mb-2">Magazin Online</span>
+          <h2 className="font-display text-3xl md:text-5xl lg:text-6xl font-medium text-white leading-[1.05]">
+            Produse<br />Profesionale
+          </h2>
+          <p className="font-body text-sm text-white/60 leading-relaxed mt-3 max-w-sm">
+            Geluri, baze, topuri și instrumente profesionale — dezvoltate din 15+ ani de experiență în salon.
+          </p>
+          <div className="flex gap-5 mt-4">
+            <div>
+              <span className="font-display text-xl lg:text-2xl font-bold text-white">110+</span>
+              <p className="font-body text-[8px] uppercase tracking-[0.2em] text-white/40 mt-0.5">Produse</p>
+            </div>
+            <div>
+              <span className="font-display text-xl lg:text-2xl font-bold text-white">7</span>
+              <p className="font-body text-[8px] uppercase tracking-[0.2em] text-white/40 mt-0.5">Categorii</p>
+            </div>
+          </div>
+          <div className="mt-5">
             <span className="inline-flex items-center gap-2 font-body text-[11px] font-semibold uppercase tracking-[0.2em] text-white border border-white/30 px-6 py-3 rounded-full group-hover:bg-white group-hover:text-dark transition-all duration-500">
               Shop Acum
               <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
             </span>
           </div>
         </div>
-
-        <div className="relative z-10 h-full flex md:hidden items-end justify-center pb-6">
-          <span className="inline-block font-body text-[10px] font-bold uppercase tracking-[0.2em] text-white bg-white/20 backdrop-blur-sm px-5 py-2.5 rounded-full border border-white/30">Shop</span>
-        </div>
       </Link>
 
-      {/* RIGHT — Academie & Cursuri */}
-      <Link href="/academie" className="relative overflow-hidden group cursor-pointer">
-        {/* All images stacked — crossfade via opacity */}
-        {RIGHT_IMAGES.map((src, i) => (
-          <div
-            key={src}
-            className={`absolute inset-0 transition-opacity duration-[1200ms] ease-in-out ${
-              i === rightIdx ? "opacity-100 z-[1]" : "opacity-0 z-0"
-            }`}
-          >
-            <Image src={src} alt="Emma Nails Academy" fill className="object-cover object-top" sizes="50vw" priority={i === 0} />
-          </div>
-        ))}
+      {/* BOTTOM — Emma Nails Academy (photos swipe RIGHT) */}
+      <Link href="/academie" className="relative overflow-hidden group cursor-pointer h-[45vh] md:h-[50vh] lg:h-[55vh]">
+        <HeroMarquee images={ACADEMY_IMAGES} direction="right" speed={18} />
+        <div className="absolute inset-0 z-[2] bg-gradient-to-l from-dark/80 via-dark/40 to-dark/20 group-hover:from-dark/90 transition-all duration-500" />
 
-        <div className="absolute inset-0 z-[2] bg-gradient-to-t from-dark/70 via-dark/20 to-transparent group-hover:from-dark/80 transition-colors duration-500" />
-
-        <div className="relative z-10 h-full hidden md:flex flex-col items-start justify-end p-8 lg:p-14">
+        <div className="relative z-10 h-full flex flex-col items-end justify-end p-6 md:p-10 lg:p-14 max-w-[1400px] mx-auto w-full text-right">
           <span className="font-body text-[10px] font-bold uppercase tracking-[0.3em] text-white/60 mb-2">Cursuri Acreditate</span>
-          <h2 className="font-display text-3xl lg:text-5xl xl:text-6xl font-medium text-white leading-[1.05]">Emma Nails<br />Academy</h2>
-          <p className="font-body text-sm text-white/60 leading-relaxed mt-3 max-w-xs">Peste 15 ani de experiență. Diplomă acreditată, practică pe model real.</p>
+          <h2 className="font-display text-3xl md:text-5xl lg:text-6xl font-medium text-white leading-[1.05]">
+            Emma Nails<br />Academy
+          </h2>
+          <p className="font-body text-sm text-white/60 leading-relaxed mt-3 max-w-sm">
+            Peste 15 ani de experiență. Diplomă acreditată, practică pe model real.
+          </p>
           <div className="flex gap-5 mt-4">
-            {[{ num: "15+", label: "Ani" }, { num: "500+", label: "Cursante" }].map((s, i) => (
-              <div key={i}>
-                <span className="font-display text-xl lg:text-2xl font-bold text-white">{s.num}</span>
-                <p className="font-body text-[8px] uppercase tracking-[0.2em] text-white/40 mt-0.5">{s.label}</p>
-              </div>
-            ))}
+            <div>
+              <span className="font-display text-xl lg:text-2xl font-bold text-white">15+</span>
+              <p className="font-body text-[8px] uppercase tracking-[0.2em] text-white/40 mt-0.5">Ani</p>
+            </div>
+            <div>
+              <span className="font-display text-xl lg:text-2xl font-bold text-white">500+</span>
+              <p className="font-body text-[8px] uppercase tracking-[0.2em] text-white/40 mt-0.5">Cursante</p>
+            </div>
           </div>
-          <div className="mt-6">
+          <div className="mt-5">
             <span className="inline-flex items-center gap-2 font-body text-[11px] font-semibold uppercase tracking-[0.2em] text-white border border-white/30 px-6 py-3 rounded-full group-hover:bg-white group-hover:text-dark transition-all duration-500">
               Vezi Cursurile
               <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
             </span>
           </div>
-        </div>
-
-        <div className="relative z-10 h-full flex md:hidden items-end justify-center pb-6">
-          <span className="inline-block font-body text-[10px] font-bold uppercase tracking-[0.2em] text-white bg-white/20 backdrop-blur-sm px-5 py-2.5 rounded-full border border-white/30">Cursuri</span>
         </div>
       </Link>
     </section>

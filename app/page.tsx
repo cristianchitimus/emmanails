@@ -8,28 +8,11 @@ import { ScrollReveal } from "@/components/ScrollReveal";
 import { TextWipe } from "@/components/TextWipe";
 import { GlowLine } from "@/components/GlowLine";
 import { CountUp } from "@/components/CountUp";
-import { PortfolioMarquee } from "@/components/PortfolioMarquee";
 import { whatsappLink } from "@/lib/utils";
 
 export const revalidate = 60;
 
 const EMMA_PORTRAIT = "/uploads/site-image.jpg";
-
-const PORTFOLIO_TOP = [
-  "/uploads/portfolio-WhatsApp_Image_2026-04-07_at_17_58_35__4_.jpeg",
-  "/uploads/portfolio-WhatsApp_Image_2026-04-07_at_17_58_33__2_.jpeg",
-  "/uploads/portfolio-WhatsApp_Image_2026-04-07_at_17_58_34.jpeg",
-  "/uploads/portfolio-WhatsApp_Image_2026-04-07_at_17_58_33.jpeg",
-  "/uploads/portfolio-WhatsApp_Image_2026-04-07_at_17_58_32.jpeg",
-];
-
-const PORTFOLIO_BOTTOM = [
-  "/uploads/portfolio-WhatsApp_Image_2026-04-07_at_17_58_35__3_.jpeg",
-  "/uploads/portfolio-WhatsApp_Image_2026-04-07_at_17_58_35__2_.jpeg",
-  "/uploads/portfolio-WhatsApp_Image_2026-04-07_at_17_58_35__1_.jpeg",
-  "/uploads/portfolio-WhatsApp_Image_2026-04-07_at_17_58_34__2_.jpeg",
-  "/uploads/portfolio-WhatsApp_Image_2026-04-07_at_17_58_33__1_.jpeg",
-];
 
 export default async function HomePage() {
   const [featuredProducts, featuredCourses, productCount, courseCount] =
@@ -63,10 +46,10 @@ export default async function HomePage() {
         <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
             {[
-              { title: "SHOP POLYGEL", img: "/uploads/site-1.jpg", href: "/produse?categorie=polygel" },
-              { title: "ACRYGEL LIQUID", img: "/acrylic-soft-nude.jpg", href: "/produse?categorie=acrygel-liquid" },
+              { title: "BAZE & GELURI", img: "/uploads/brand-Foto_031.jpg", href: "/produse?categorie=baze-rubber" },
+              { title: "ACRYGEL LIQUID", img: "/uploads/brand-Foto_043.jpg", href: "/produse?categorie=acrygel-liquid" },
               { title: "INSTRUMENTE", img: "/uploads/site-DSC_8271.jpg", href: "/produse?categorie=instrumente" },
-              { title: "ACADEMIE", img: "/uploads/academy-WhatsApp-Image-2025-11-04-at-21.36.26.jpeg", href: "/academie" },
+              { title: "ACADEMIE", img: "/uploads/portfolio-WhatsApp_Image_2026-04-07_at_17_58_35__4_.jpeg", href: "/academie" },
             ].map((cat, i) => (
               <ScrollReveal key={i} animation="fade-up" delay={i * 120}>
                 <Link
@@ -204,7 +187,7 @@ export default async function HomePage() {
         <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-8">
             {[
-              { icon: "✨", title: "Formulă Originală", desc: "Polygel dezvoltat din 15+ ani de experiență" },
+              { icon: "✨", title: "Formulă Originală", desc: "Produse dezvoltate din 15+ ani de experiență în salon" },
               { icon: "🎓", title: "Diplomă Acreditată", desc: "Certificare oficială recunoscută național" },
               { icon: "👩‍🏫", title: "Practică Reală", desc: "Fiecare cursantă lucrează pe model real" },
               { icon: "📦", title: "Livrare Rapidă", desc: "Comenzi procesate în 24h, toată România" },
@@ -224,26 +207,6 @@ export default async function HomePage() {
       </section>
 
       <GlowLine />
-
-      {/* ═══════════════════════════════════════════════════════
-          PORTFOLIO — 2 stacked wide marquees, opposite directions
-      ═══════════════════════════════════════════════════════ */}
-      <section className="py-16 md:py-24 relative overflow-hidden" style={{ background: "linear-gradient(180deg, #fce4ec 0%, #ffffff 40%, #fef8fa 100%)" }}>
-        <div className="relative z-10">
-          <ScrollReveal animation="fade-up">
-            <div className="text-center mb-10 md:mb-14 px-4">
-              <p className="section-label mb-3"><TextWipe>@emmanails</TextWipe></p>
-              <h2 className="font-display text-4xl md:text-5xl font-medium">
-                <TextWipe delay={200}>Lucrări <span className="italic text-pink">reale</span></TextWipe>
-              </h2>
-            </div>
-          </ScrollReveal>
-          <div className="space-y-3 md:space-y-4">
-            <PortfolioMarquee images={PORTFOLIO_TOP} direction="left" speed={30} />
-            <PortfolioMarquee images={PORTFOLIO_BOTTOM} direction="right" speed={25} />
-          </div>
-        </div>
-      </section>
 
       <GlowLine />
 
