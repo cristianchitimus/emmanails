@@ -17,16 +17,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export const revalidate = 60;
 
-const levelLabels: Record<string, string> = { incepator: "Începător", mediu: "Mediu", avansat: "Avansat" };
-const levelColors: Record<string, string> = { incepator: "bg-emerald-50 text-emerald-700", mediu: "bg-amber-50 text-amber-700", avansat: "bg-purple-50 text-purple-700" };
-
 export default async function CourseDetailPage({ params }: Props) {
   const course = await prisma.course.findUnique({ where: { slug: params.slug } });
   if (!course) notFound();
 
   const relatedCourses = await prisma.course.findMany({
-    where: { level: course.level, id: { not: course.id } },
+    where: { id: { not: course.id } },
     take: 3,
+    orderBy: { createdAt: "asc" },
   });
 
   return (
@@ -46,11 +44,6 @@ export default async function CourseDetailPage({ params }: Props) {
             <span className="text-white/70 truncate max-w-[250px]">{course.name}</span>
           </nav>
           <div className="flex flex-wrap items-center gap-3 mb-4">
-            {course.level && (
-              <span className={`font-body text-[10px] font-semibold uppercase tracking-widest px-3 py-1.5 rounded-sm ${levelColors[course.level] || "bg-dark-50 text-dark-500"}`}>
-                {levelLabels[course.level] || course.level}
-              </span>
-            )}
             {course.duration && (
               <span className="font-body text-[11px] text-white/50 uppercase tracking-wider">Durată: {course.duration}</span>
             )}
@@ -177,13 +170,6 @@ export default async function CourseDetailPage({ params }: Props) {
                   <div>
                     <p className="font-body text-[10px] font-bold uppercase tracking-wider text-dark/40">Durată</p>
                     <p className="font-body text-sm font-medium mt-0.5">{course.duration || "—"}</p>
-                  </div>
-                </div>
-                <div className="border border-dark-100 rounded-sm p-4 flex items-start gap-3">
-                  <span className="text-lg">📊</span>
-                  <div>
-                    <p className="font-body text-[10px] font-bold uppercase tracking-wider text-dark/40">Nivel</p>
-                    <p className="font-body text-sm font-medium mt-0.5 capitalize">{course.level || "—"}</p>
                   </div>
                 </div>
                 <div className="border border-dark-100 rounded-sm p-4 flex items-start gap-3">

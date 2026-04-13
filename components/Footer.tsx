@@ -54,9 +54,6 @@ export function Footer() {
             <ul className="space-y-2">
               {[
                 { href: "/academie", label: "Toate cursurile" },
-                { href: "/academie?nivel=incepator", label: "Începător" },
-                { href: "/academie?nivel=mediu", label: "Mediu" },
-                { href: "/academie?nivel=avansat", label: "Avansat" },
               ].map((link) => (
                 <li key={link.href}>
                   <Link
