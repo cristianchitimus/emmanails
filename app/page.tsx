@@ -8,19 +8,27 @@ import { ScrollReveal } from "@/components/ScrollReveal";
 import { TextWipe } from "@/components/TextWipe";
 import { GlowLine } from "@/components/GlowLine";
 import { CountUp } from "@/components/CountUp";
+import { PortfolioMarquee } from "@/components/PortfolioMarquee";
 import { whatsappLink } from "@/lib/utils";
 
 export const revalidate = 60;
 
 const EMMA_PORTRAIT = "/uploads/site-image.jpg";
 
-const GALLERY = [
-  "/uploads/academy-WhatsApp-Image-2024-07-10-at-13.46.40-1.jpeg",
-  "/uploads/academy-WhatsApp-Image-2024-04-16-at-11.33.22.jpeg",
-  "/uploads/academy-WhatsApp-Image-2025-06-09-at-10.41.15-1.webp",
-  "/uploads/academy-WhatsApp-Image-2025-06-09-at-11.47.16-1.webp",
-  "/uploads/academy-WhatsApp-Image-2025-06-03-at-11.51.08-7.jpeg",
-  "/uploads/academy-WhatsApp-Image-2024-04-25-at-22.00.14.jpeg",
+const PORTFOLIO_TOP = [
+  "/uploads/portfolio-WhatsApp_Image_2026-04-07_at_17_58_35__4_.jpeg",
+  "/uploads/portfolio-WhatsApp_Image_2026-04-07_at_17_58_33__2_.jpeg",
+  "/uploads/portfolio-WhatsApp_Image_2026-04-07_at_17_58_34.jpeg",
+  "/uploads/portfolio-WhatsApp_Image_2026-04-07_at_17_58_33.jpeg",
+  "/uploads/portfolio-WhatsApp_Image_2026-04-07_at_17_58_32.jpeg",
+];
+
+const PORTFOLIO_BOTTOM = [
+  "/uploads/portfolio-WhatsApp_Image_2026-04-07_at_17_58_35__3_.jpeg",
+  "/uploads/portfolio-WhatsApp_Image_2026-04-07_at_17_58_35__2_.jpeg",
+  "/uploads/portfolio-WhatsApp_Image_2026-04-07_at_17_58_35__1_.jpeg",
+  "/uploads/portfolio-WhatsApp_Image_2026-04-07_at_17_58_34__2_.jpeg",
+  "/uploads/portfolio-WhatsApp_Image_2026-04-07_at_17_58_33__1_.jpeg",
 ];
 
 export default async function HomePage() {
@@ -218,27 +226,21 @@ export default async function HomePage() {
       <GlowLine />
 
       {/* ═══════════════════════════════════════════════════════
-          GALLERY — More spacing between photos
+          PORTFOLIO — 2 stacked wide marquees, opposite directions
       ═══════════════════════════════════════════════════════ */}
       <section className="py-16 md:py-24 relative overflow-hidden" style={{ background: "linear-gradient(180deg, #fce4ec 0%, #ffffff 40%, #fef8fa 100%)" }}>
-        <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10">
           <ScrollReveal animation="fade-up">
-            <div className="text-center mb-10 md:mb-14">
+            <div className="text-center mb-10 md:mb-14 px-4">
               <p className="section-label mb-3"><TextWipe>@emmanails</TextWipe></p>
               <h2 className="font-display text-4xl md:text-5xl font-medium">
                 <TextWipe delay={200}>Lucrări <span className="italic text-pink">reale</span></TextWipe>
               </h2>
             </div>
           </ScrollReveal>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-            {GALLERY.map((img, i) => (
-              <ScrollReveal key={i} animation="scale" delay={i * 80}>
-                <div className="relative aspect-square rounded-xl overflow-hidden group cursor-pointer hover-glow-pink">
-                  <Image src={img} alt={`Lucrare ${i + 1}`} fill className="object-cover img-zoom" sizes="(max-width: 768px) 50vw, 33vw" />
-                  <div className="absolute inset-0 bg-pink/0 group-hover:bg-pink/20 transition-colors duration-500" />
-                </div>
-              </ScrollReveal>
-            ))}
+          <div className="space-y-3 md:space-y-4">
+            <PortfolioMarquee images={PORTFOLIO_TOP} direction="left" speed={30} />
+            <PortfolioMarquee images={PORTFOLIO_BOTTOM} direction="right" speed={25} />
           </div>
         </div>
       </section>
