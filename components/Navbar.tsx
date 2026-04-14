@@ -65,15 +65,6 @@ const MEGA_MENU_DATA = {
     label: "Academie",
     columns: [
       {
-        title: "Cursuri după nivel",
-        links: [
-          { label: "Toate cursurile", href: "/academie" },
-          { label: "Începător", href: "/academie?nivel=incepator" },
-          { label: "Mediu", href: "/academie?nivel=mediu" },
-          { label: "Avansat", href: "/academie?nivel=avansat" },
-        ],
-      },
-      {
         title: "Cursuri populare",
         links: [
           { label: "Curs bază Nivel 1", href: "/academie/curs-baza-stilist-protezist-unghii-nivel-1" },
