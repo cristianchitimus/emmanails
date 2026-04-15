@@ -30,15 +30,14 @@ export default async function ProdusePage({ searchParams }: Props) {
 
   return (
     <>
-      {/* Hero — light pink, Glamnetic style */}
-      <section className="relative bg-gradient-to-br from-white via-pink-50/50 to-nude-100 py-16 md:py-24 overflow-hidden">
-        <div className="absolute -top-20 -right-20 w-80 h-80 bg-pink/5 rounded-full blur-3xl" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      {/* Header */}
+      <section className="pt-12 pb-6 md:pt-16 md:pb-8 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="section-label mb-3">Magazin</p>
-          <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-medium text-dark leading-tight">
+          <h1 className="font-display text-3xl md:text-4xl font-medium text-dark leading-tight">
             Produse <span className="italic text-pink">profesionale</span>
           </h1>
-          <p className="font-body text-base md:text-lg text-dark-400 mt-4 max-w-xl">
+          <p className="font-body text-base text-dark-400 mt-3 max-w-xl">
             Polygel Emma Nails cu formulă originală și instrumente premium pentru manichiură profesională.
           </p>
         </div>

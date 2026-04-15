@@ -11,13 +11,13 @@ export default function ContactPage() {
   return (
     <>
       {/* Header */}
-      <section className="bg-nude-200 py-16 md:py-24">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="pt-12 pb-6 md:pt-16 md:pb-8 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="section-label mb-3">Contact</p>
-          <h1 className="editorial-heading text-dark mb-5">
+          <h1 className="font-display text-3xl md:text-4xl font-medium text-dark leading-tight">
             Hai să <span className="italic text-pink">vorbim</span>
           </h1>
-          <p className="font-body text-base text-dark-500 max-w-lg mx-auto leading-relaxed">
+          <p className="font-body text-base text-dark-400 mt-3 max-w-xl">
             Fie că ai întrebări despre produse, cursuri sau dorești să te
             programezi, sunt aici pentru tine.
           </p>
