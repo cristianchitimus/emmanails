@@ -11,9 +11,29 @@ import { calculateShipping, FREE_SHIPPING_THRESHOLD } from "@/lib/constants";
 export default function CheckoutPage() {
   const router = useRouter();
   const { data: session } = useSession();
-  const { items, totalPrice, clearCart } = useCart();
+  const { items, totalPrice, clearCart, removeItem } = useCart();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [validating, setValidating] = useState(true);
+
+  // Validate cart items exist in database
+  useEffect(() => {
+    if (items.length === 0) { setValidating(false); return; }
+    (async () => {
+      try {
+        const res = await fetch("/api/cart/validate", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ ids: items.map((i) => i.id) }),
+        });
+        const data = await res.json();
+        if (data.invalid?.length > 0) {
+          for (const id of data.invalid) removeItem(id);
+        }
+      } catch {}
+      setValidating(false);
+    })();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Form state
   const [form, setForm] = useState({
@@ -143,6 +163,14 @@ export default function CheckoutPage() {
     }
   };
 
+  if (validating) return (
+    <div className="min-h-[60vh] flex items-center justify-center">
+      <div className="text-center space-y-3">
+        <div className="inline-block w-6 h-6 border-2 border-dark-200 border-t-pink rounded-full animate-spin" />
+        <p className="font-body text-xs uppercase tracking-widest text-dark-400">Se verifică produsele...</p>
+      </div>
+    </div>
+  );
   if (items.length === 0) return null;
 
   return (

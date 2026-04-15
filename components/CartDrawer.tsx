@@ -5,8 +5,28 @@ import { useCart } from "@/hooks/useCart";
 import { formatPrice } from "@/lib/utils";
 import { FREE_SHIPPING_THRESHOLD } from "@/lib/constants";
 
+import { useEffect } from "react";
+
 export function CartDrawer() {
   const { items, totalItems, totalPrice, isOpen, setIsOpen, removeItem, updateQuantity, clearCart } = useCart();
+
+  // Validate cart items when drawer opens
+  useEffect(() => {
+    if (!isOpen || items.length === 0) return;
+    (async () => {
+      try {
+        const res = await fetch("/api/cart/validate", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ ids: items.map((i) => i.id) }),
+        });
+        const data = await res.json();
+        if (data.invalid?.length > 0) {
+          for (const id of data.invalid) removeItem(id);
+        }
+      } catch {}
+    })();
+  }, [isOpen]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (!isOpen) return null;
 
