@@ -73,62 +73,82 @@ export function CinematicHero() {
       <div className="absolute inset-0 z-10 bg-gradient-to-t from-dark/80 via-dark/30 to-dark/10" />
       <div className="absolute inset-0 z-10 bg-gradient-to-r from-dark/50 via-transparent to-transparent" />
 
-      {/* ── Content ── */}
-      <div className="relative z-20 h-full flex flex-col justify-end max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-14 pb-12 md:pb-16 lg:pb-20">
-        {/* Top accent line */}
-        <div className="w-10 h-[2px] bg-pink mb-6 hidden md:block" />
+      {/* ── Content: Split layout ── */}
+      <div className="relative z-20 h-full max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-14">
+        {/* Vertical divider (desktop only) */}
+        <div className="hidden md:block absolute top-[15%] bottom-[15%] left-1/2 w-px bg-white/10 z-30" />
 
-        {/* Label */}
-        <p className="font-body text-[10px] md:text-[11px] font-bold uppercase tracking-[0.35em] text-white/50 mb-3 md:mb-4">
-          Produse Profesionale & Academie
-        </p>
-
-        {/* Title */}
-        <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-medium text-white leading-[0.95] tracking-tight">
-          <span className="block">Emma</span>
-          <span className="block mt-1">
-            <span className="italic text-pink/90">Nails</span>
-            <span className="hidden sm:inline text-white/30 font-light ml-3">—</span>
-            <span className="hidden sm:inline text-white/60 text-[0.45em] font-body font-normal tracking-normal align-middle ml-3">Iași, România</span>
-          </span>
-        </h1>
-
-        {/* Description */}
-        <p className="font-body text-sm md:text-base text-white/50 leading-relaxed mt-5 md:mt-6 max-w-md">
-          Formulă originală de polygel, geluri UV și baze rubber, dezvoltate din 15 ani de experiență. Cursuri acreditate cu diplomă.
-        </p>
-
-        {/* CTAs */}
-        <div className="flex flex-wrap gap-3 mt-7 md:mt-8">
-          <Link
-            href="/produse"
-            className="inline-flex items-center gap-2.5 font-body text-[11px] font-semibold uppercase tracking-[0.2em] bg-white text-dark px-7 py-3.5 rounded-full hover:bg-pink hover:text-white transition-all duration-400 group"
-          >
-            Shop
-            <svg className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+        <div className="h-full grid grid-cols-1 md:grid-cols-2 gap-0">
+          {/* ── LEFT: Academie ── */}
+          <Link href="/academie" className="group relative flex flex-col justify-end pb-10 md:pb-14 pr-0 md:pr-12 lg:pr-16">
+            <div className="w-10 h-[2px] bg-pink mb-5 hidden md:block" />
+            <p className="font-body text-[10px] md:text-[11px] font-bold uppercase tracking-[0.35em] text-white/50 mb-3">
+              Cursuri Acreditate
+            </p>
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium text-white leading-[0.95] tracking-tight">
+              Emma Nails<br /><span className="italic text-pink/90">Academy</span>
+            </h2>
+            <p className="font-body text-sm text-white/50 leading-relaxed mt-4 max-w-sm">
+              Peste 15 ani de experiență. Diplomă acreditată, practică pe model real.
+            </p>
+            <div className="flex gap-5 mt-4">
+              <div>
+                <span className="font-display text-xl lg:text-2xl font-bold text-white">15+</span>
+                <p className="font-body text-[8px] uppercase tracking-[0.2em] text-white/30 mt-0.5">Ani</p>
+              </div>
+              <div>
+                <span className="font-display text-xl lg:text-2xl font-bold text-white">500+</span>
+                <p className="font-body text-[8px] uppercase tracking-[0.2em] text-white/30 mt-0.5">Cursante</p>
+              </div>
+            </div>
+            <div className="mt-6">
+              <span className="inline-flex items-center gap-2.5 font-body text-[11px] font-semibold uppercase tracking-[0.2em] text-white border border-white/30 px-7 py-3.5 rounded-full group-hover:bg-white group-hover:text-dark transition-all duration-500">
+                Vezi Cursurile
+                <svg className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+              </span>
+            </div>
           </Link>
-          <Link
-            href="/academie"
-            className="inline-flex items-center gap-2.5 font-body text-[11px] font-semibold uppercase tracking-[0.2em] text-white border border-white/30 px-7 py-3.5 rounded-full hover:bg-white hover:text-dark transition-all duration-400 group"
-          >
-            Cursuri
-            <svg className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+
+          {/* ── RIGHT: Produse ── */}
+          <Link href="/produse" className="group relative hidden md:flex flex-col justify-end pb-14 pl-12 lg:pl-16">
+            <div className="w-10 h-[2px] bg-white/30 mb-5" />
+            <p className="font-body text-[10px] md:text-[11px] font-bold uppercase tracking-[0.35em] text-white/50 mb-3">
+              Magazin Online
+            </p>
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium text-white leading-[0.95] tracking-tight">
+              Produse<br /><span className="italic text-pink/90">Profesionale</span>
+            </h2>
+            <p className="font-body text-sm text-white/50 leading-relaxed mt-4 max-w-sm">
+              Geluri, baze, topuri și instrumente — formulă originală, dezvoltate din experiență în salon.
+            </p>
+            <div className="flex gap-5 mt-4">
+              <div>
+                <span className="font-display text-xl lg:text-2xl font-bold text-white">110+</span>
+                <p className="font-body text-[8px] uppercase tracking-[0.2em] text-white/30 mt-0.5">Produse</p>
+              </div>
+              <div>
+                <span className="font-display text-xl lg:text-2xl font-bold text-white">7</span>
+                <p className="font-body text-[8px] uppercase tracking-[0.2em] text-white/30 mt-0.5">Categorii</p>
+              </div>
+            </div>
+            <div className="mt-6">
+              <span className="inline-flex items-center gap-2.5 font-body text-[11px] font-semibold uppercase tracking-[0.2em] bg-white text-dark px-7 py-3.5 rounded-full group-hover:bg-pink group-hover:text-white transition-all duration-500">
+                Shop Acum
+                <svg className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+              </span>
+            </div>
           </Link>
         </div>
 
-        {/* ── Bottom stats bar ── */}
-        <div className="flex items-center gap-6 md:gap-10 mt-10 md:mt-14 pt-6 border-t border-white/10">
-          {[
-            { value: "110+", label: "Produse" },
-            { value: "15+", label: "Ani Experiență" },
-            { value: "500+", label: "Cursante" },
-            { value: "8", label: "Cursuri" },
-          ].map((stat, i) => (
-            <div key={i} className="min-w-0">
-              <span className="font-display text-lg md:text-2xl font-bold text-white">{stat.value}</span>
-              <p className="font-body text-[8px] md:text-[9px] uppercase tracking-[0.2em] text-white/30 mt-0.5">{stat.label}</p>
-            </div>
-          ))}
+        {/* Mobile: second CTA for Produse */}
+        <div className="md:hidden absolute bottom-10 right-5 z-30">
+          <Link
+            href="/produse"
+            className="inline-flex items-center gap-2 font-body text-[10px] font-bold uppercase tracking-[0.2em] text-white bg-white/15 backdrop-blur-sm px-5 py-2.5 rounded-full border border-white/20"
+          >
+            Shop
+            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+          </Link>
         </div>
       </div>
 
