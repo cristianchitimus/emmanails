@@ -3,7 +3,7 @@ import Image from "next/image";
 import { prisma } from "@/lib/db";
 import { ProductCard } from "@/components/ProductCard";
 import { CourseCard } from "@/components/CourseCard";
-import { CinematicHero } from "@/components/CinematicHero";
+import { BentoHero } from "@/components/BentoHero";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { TextWipe } from "@/components/TextWipe";
 import { GlowLine } from "@/components/GlowLine";
@@ -37,7 +37,7 @@ export default async function HomePage() {
           HERO — Split video: Academie (left) + Produse (right)
           Videos cycle with flash-cut effect
       ═══════════════════════════════════════════════════════ */}
-      <CinematicHero />
+      <BentoHero />
 
       {/* ═══════════════════════════════════════════════════════
           CATEGORY BANNERS — 3 full-width, more spacing
