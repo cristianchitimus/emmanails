@@ -48,7 +48,7 @@ export default async function CourseDetailPage({ params }: Props) {
               <span className="font-body text-[11px] text-white/50 uppercase tracking-wider">Durată: {course.duration}</span>
             )}
           </div>
-          <h1 className="font-display text-4xl md:text-6xl font-medium leading-tight text-white max-w-3xl">{course.name}</h1>
+          <h1 className="font-display text-3xl md:text-4xl font-medium leading-tight text-white max-w-3xl">{course.name}</h1>
         </div>
       </section>
 

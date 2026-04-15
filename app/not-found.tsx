@@ -5,7 +5,7 @@ export default function NotFound() {
     <section className="py-24 md:py-36">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <p className="section-label mb-3">404</p>
-        <h1 className="font-display text-5xl md:text-7xl font-medium text-dark mb-4">
+        <h1 className="font-display text-3xl md:text-5xl font-medium text-dark mb-4">
           Pagina nu a fost{" "}
           <span className="italic text-pink">găsită</span>
         </h1>

@@ -24,7 +24,7 @@ export default async function AcademiePage() {
       <section className="pt-12 pb-6 md:pt-16 md:pb-8 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="section-label mb-3">Emma Nails Academy</p>
-          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-medium text-dark leading-tight">
+          <h1 className="font-display text-3xl md:text-4xl font-medium text-dark leading-tight">
             Toate <span className="italic text-pink">cursurile</span>
           </h1>
           <p className="font-body text-base text-dark-400 mt-3 max-w-xl">
@@ -53,7 +53,7 @@ export default async function AcademiePage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
             <div>
               <p className="section-label mb-3">Înscrie-te acum</p>
-              <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-medium text-dark leading-tight">
+              <h2 className="font-display text-3xl md:text-4xl font-medium text-dark leading-tight">
                 Cursuri de <span className="italic text-pink">manichiură</span>
               </h2>
               <p className="font-body text-base md:text-lg text-dark-400 mt-5 max-w-xl leading-relaxed">
@@ -108,7 +108,7 @@ export default async function AcademiePage() {
           <div className="absolute top-0 left-1/4 w-60 h-60 bg-white rounded-full blur-3xl" />
         </div>
         <div className="relative z-10 max-w-3xl mx-auto px-4 text-center">
-          <h2 className="font-display text-3xl md:text-5xl font-medium text-white mb-4">
+          <h2 className="font-display text-2xl md:text-3xl lg:text-4xl font-medium text-white mb-4">
             Nu ești sigură ce curs ți se potrivește?
           </h2>
           <p className="font-body text-base text-white/70 mb-8">Scrie-mi pe WhatsApp și te ajut să alegi cursul potrivit.</p>

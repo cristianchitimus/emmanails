@@ -35,7 +35,7 @@ export default async function ProdusePage({ searchParams }: Props) {
         <div className="absolute -top-20 -right-20 w-80 h-80 bg-pink/5 rounded-full blur-3xl" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <p className="section-label mb-3">Magazin</p>
-          <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-medium text-dark leading-tight">
+          <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-medium text-dark leading-tight">
             Produse <span className="italic text-pink">profesionale</span>
           </h1>
           <p className="font-body text-base md:text-lg text-dark-400 mt-4 max-w-xl">

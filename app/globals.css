@@ -61,7 +61,7 @@
     @apply font-body text-[11px] font-semibold uppercase tracking-[0.25em] text-pink;
   }
   .editorial-heading {
-    @apply font-display text-5xl md:text-6xl lg:text-7xl font-medium leading-[1.05];
+    @apply font-display text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.05];
   }
   .card-hover {
     @apply transition-all duration-700 hover:-translate-y-1.5;

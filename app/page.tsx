@@ -80,7 +80,7 @@ export default async function HomePage() {
           <ScrollReveal animation="fade-up">
             <div className="text-center mb-10 md:mb-14">
               <p className="section-label mb-3"><TextWipe>Academie</TextWipe></p>
-              <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-medium">
+              <h2 className="font-display text-3xl md:text-4xl font-medium">
                 <TextWipe delay={200}>Cursuri <span className="italic text-pink">profesionale</span></TextWipe>
               </h2>
             </div>
@@ -122,7 +122,7 @@ export default async function HomePage() {
             <ScrollReveal animation="fade-left" delay={200}>
               <div className="max-w-md">
                 <p className="section-label mb-4">Despre Emma</p>
-                <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-medium leading-tight">
+                <h2 className="font-display text-2xl md:text-3xl lg:text-4xl font-medium leading-tight">
                   <TextWipe>Pasiune, <span className="italic text-pink">dedicare</span> și excelență</TextWipe>
                 </h2>
                 <p className="font-body text-base text-dark-400 leading-relaxed mt-5">
@@ -181,7 +181,7 @@ export default async function HomePage() {
           <ScrollReveal animation="fade-up">
             <div className="text-center mb-12">
               <p className="section-label mb-3"><TextWipe>Ce spun cursantele</TextWipe></p>
-              <h2 className="font-display text-3xl md:text-5xl font-medium leading-tight">
+              <h2 className="font-display text-2xl md:text-3xl lg:text-4xl font-medium leading-tight">
                 Testimoniale <span className="italic text-pink">reale</span>
               </h2>
             </div>
@@ -274,7 +274,7 @@ export default async function HomePage() {
         <div className="absolute bottom-0 left-0 w-72 h-72 rounded-full blur-3xl" style={{ background: "radial-gradient(circle, rgba(217,173,177,0.2) 0%, transparent 70%)" }} />
         <div className="relative z-10 max-w-3xl mx-auto px-4 text-center">
           <ScrollReveal animation="scale">
-            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-medium leading-tight">
+            <h2 className="font-display text-3xl md:text-4xl font-medium leading-tight">
               <TextWipe>Hai să <span className="italic text-pink">vorbim</span></TextWipe>
             </h2>
             <p className="font-body text-base md:text-lg text-dark-400 mt-5 max-w-lg mx-auto">

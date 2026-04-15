@@ -26,7 +26,7 @@ export default function DesprePage() {
         <div className="flex items-center bg-nude-200 px-8 md:px-16 lg:px-20 py-16 md:py-20">
           <div className="max-w-lg">
             <p className="section-label mb-4">Despre Emma</p>
-            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-medium leading-tight">
+            <h1 className="font-display text-3xl md:text-4xl font-medium leading-tight">
               Pasiune, <span className="italic text-pink">dedicare</span> și excelență
             </h1>
             <p className="font-body text-base text-dark-500 leading-relaxed mt-6">
@@ -103,7 +103,7 @@ export default function DesprePage() {
       {/* CTA */}
       <section className="py-20 md:py-28">
         <div className="max-w-3xl mx-auto px-4 text-center">
-          <h2 className="font-display text-3xl md:text-5xl font-medium mb-4">Hai să <span className="italic text-pink">colaborăm</span></h2>
+          <h2 className="font-display text-2xl md:text-3xl lg:text-4xl font-medium mb-4">Hai să <span className="italic text-pink">colaborăm</span></h2>
           <p className="font-body text-base text-dark-500 mb-8 max-w-lg mx-auto">
             Fie că ești interesată de produse sau de cursuri, sunt aici să te ajut.
           </p>

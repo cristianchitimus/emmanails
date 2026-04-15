@@ -73,7 +73,7 @@ function LargeCard({ card }: { card: (typeof CARDS)[0] }) {
         <span className="font-body text-[10px] md:text-[11px] font-bold uppercase tracking-[0.3em] text-white/50 mb-2">
           {card.label}
         </span>
-        <h2 className="font-display text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-medium text-white leading-[0.95]">
+        <h2 className="font-display text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-medium text-white leading-[0.95]">
           {card.title}<br />
           <span className="italic text-pink/90">{card.titleAccent}</span>
         </h2>
