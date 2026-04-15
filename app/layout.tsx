@@ -38,8 +38,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ro">
-      <body className="min-h-screen flex flex-col">
+    <html lang="ro" style={{ colorScheme: "light" }} className="light">
+      <head>
+        <meta name="color-scheme" content="light only" />
+        <meta name="supported-color-schemes" content="light only" />
+      </head>
+      <body className="min-h-screen flex flex-col bg-white text-dark">
         <SessionProvider>
           <CartProvider>
             <div data-site-chrome>

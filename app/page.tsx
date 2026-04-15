@@ -40,45 +40,6 @@ export default async function HomePage() {
       <BentoHero />
 
       {/* ═══════════════════════════════════════════════════════
-          CATEGORY BANNERS — 3 full-width, more spacing
-      ═══════════════════════════════════════════════════════ */}
-      <section className="py-6 md:py-8 relative overflow-hidden" style={{ background: "linear-gradient(180deg, #ffffff 0%, #fdf6f3 100%)" }}>
-        <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
-            {[
-              { title: "BAZĂ RUBBER", img: "/uploads/brand-Foto_031.jpg", href: "/produse?categorie=baza-rubber" },
-              { title: "GELURI UV", img: "/uploads/brand-Foto_043.jpg", href: "/produse?categorie=geluri-uv" },
-              { title: "INSTRUMENTE", img: "/uploads/site-DSC_8271.jpg", href: "/produse?categorie=instrumente" },
-              { title: "ACADEMIE", img: "/uploads/portfolio-WhatsApp_Image_2026-04-07_at_17_58_35__4_.jpeg", href: "/academie" },
-            ].map((cat, i) => (
-              <ScrollReveal key={i} animation="fade-up" delay={i * 120}>
-                <Link
-                  href={cat.href}
-                  className="group relative overflow-hidden rounded-xl aspect-[4/5] md:aspect-[3/4] block hover-glow-pink"
-                >
-                  <Image
-                    src={cat.img}
-                    alt={cat.title}
-                    fill
-                    className="object-cover img-zoom"
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-dark/60 via-dark/10 to-transparent group-hover:from-pink/40 transition-all duration-700" />
-                  <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
-                    <h3 className="font-body text-sm md:text-base font-semibold text-white uppercase tracking-[0.2em] group-hover:tracking-[0.3em] transition-all duration-500">
-                      {cat.title}
-                    </h3>
-                  </div>
-                </Link>
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <GlowLine />
-
-      {/* ═══════════════════════════════════════════════════════
           BEST SELLERS — 4 equal large cards, more spacing
       ═══════════════════════════════════════════════════════ */}
       <section className="py-16 md:py-24 relative overflow-hidden" style={{ background: "linear-gradient(180deg, #fdf6f3 0%, #ffffff 50%, #faf3f0 100%)" }}>
