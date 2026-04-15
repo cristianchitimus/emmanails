@@ -45,7 +45,7 @@ export function CinematicHero() {
   }, [animating, next]);
 
   return (
-    <section className="relative w-full h-[55vh] md:h-[75vh] lg:h-[80vh] max-h-[720px] overflow-hidden bg-dark">
+    <section className="relative w-full h-[60vh] md:h-[80vh] lg:h-[85vh] max-h-[780px] overflow-hidden bg-dark">
       {/* ── Background images with Ken Burns + crossfade ── */}
       {HERO_IMAGES.map((src, i) => (
         <div
