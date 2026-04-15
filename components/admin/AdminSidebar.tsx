@@ -11,6 +11,7 @@ const NAV_ITEMS = [
   { href: "/admin/categorii", label: "Categorii", icon: "📁" },
   { href: "/admin/cursuri", label: "Cursuri & Înscrieri", icon: "🎓" },
   { href: "/admin/coduri", label: "Coduri Reducere", icon: "🎟️" },
+  { href: "/admin/emailuri", label: "Emailuri & Campanii", icon: "📧" },
 ];
 
 export function AdminSidebar() {

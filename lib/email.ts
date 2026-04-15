@@ -229,3 +229,131 @@ export async function sendOrderStatusEmail(
     console.error("Failed to send status email:", err);
   }
 }
+
+// ─── CAMPAIGN EMAILS ─────────────────────────────────────
+
+const CAMPAIGN_TEMPLATES: Record<string, (name: string, extra?: string) => { subject: string; html: string }> = {
+  reengagement: (name: string) => ({
+    subject: "Ne-ai lipsit! ✨ Revino cu un discount special",
+    html: emailWrapper(`
+      <h2>Bună ${name}! 👋</h2>
+      <p>A trecut ceva timp de când ai fost pe la noi și ne-am gândit la tine.</p>
+      <p>Avem produse noi și am pregătit ceva special pentru clienții noștri fideli.</p>
+
+      <div class="highlight">
+        <p style="text-align:center;font-size:20px;font-weight:600;color:#B76E79;margin:8px 0;">
+          10% REDUCERE
+        </p>
+        <p style="text-align:center;font-size:13px;color:#777;">
+          Folosește codul <strong style="color:#1a1a1a;">REVINO10</strong> la următoarea comandă
+        </p>
+      </div>
+
+      <p style="text-align:center;">
+        <a href="${SITE_URL}/produse" class="btn">Vezi produsele noi</a>
+      </p>
+
+      <p>Cu drag,<br><strong>Emma</strong> 💕</p>
+    `),
+  }),
+
+  new_products: (name: string) => ({
+    subject: "Produse noi Emma Nails — vezi colecția! 🎀",
+    html: emailWrapper(`
+      <h2>Bună ${name}!</h2>
+      <p>Am adăugat produse noi în magazin și suntem nerăbdătoare să le vezi!</p>
+
+      <div class="highlight">
+        <p><strong>✨ Baze rubber noi</strong> — nuanțe fresh pentru sezon</p>
+        <p><strong>✨ Geluri UV</strong> — formulă îmbunătățită</p>
+        <p><strong>✨ Instrumente premium</strong> — calitate profesională</p>
+      </div>
+
+      <p style="text-align:center;">
+        <a href="${SITE_URL}/produse" class="btn">Descoperă colecția</a>
+      </p>
+
+      <p>Cu drag,<br><strong>Emma</strong> 💕</p>
+    `),
+  }),
+
+  course_promo: (name: string) => ({
+    subject: "Locuri disponibile la cursuri — Înscrie-te acum! 🎓",
+    html: emailWrapper(`
+      <h2>Bună ${name}!</h2>
+      <p>Avem locuri disponibile la cursurile noastre acreditate!</p>
+
+      <div class="highlight">
+        <p><strong>🎓 Cursuri cu diplomă</strong> — acreditate ANC</p>
+        <p><strong>👩‍🏫 Practică pe model real</strong> — nu pe manechin</p>
+        <p><strong>🏆 15+ ani experiență</strong> — cu Emma personal</p>
+      </div>
+
+      <p>Locurile sunt limitate — nu rata ocazia de a învăța de la cei mai buni!</p>
+
+      <p style="text-align:center;">
+        <a href="${SITE_URL}/academie" class="btn">Vezi cursurile</a>
+      </p>
+
+      <p>Cu drag,<br><strong>Emma</strong> 💕</p>
+    `),
+  }),
+
+  discount: (name: string, extra?: string) => ({
+    subject: "Ofertă specială doar pentru tine! 🎁",
+    html: emailWrapper(`
+      <h2>Bună ${name}!</h2>
+      <p>Am pregătit o ofertă specială pentru clienții noștri:</p>
+
+      <div class="highlight">
+        <p style="text-align:center;font-size:20px;font-weight:600;color:#B76E79;margin:8px 0;">
+          ${extra || "OFERTĂ SPECIALĂ"}
+        </p>
+        <p style="text-align:center;font-size:13px;color:#777;">
+          Oferta este valabilă pentru o perioadă limitată
+        </p>
+      </div>
+
+      <p style="text-align:center;">
+        <a href="${SITE_URL}/produse" class="btn">Profită acum</a>
+      </p>
+
+      <p>Cu drag,<br><strong>Emma</strong> 💕</p>
+    `),
+  }),
+
+  custom: (name: string, extra?: string) => ({
+    subject: "Vești de la Emma Nails ✨",
+    html: emailWrapper(`
+      <h2>Bună ${name}!</h2>
+      ${extra || "<p>Avem vești noi pentru tine!</p>"}
+      <p style="text-align:center;">
+        <a href="${SITE_URL}" class="btn">Vizitează site-ul</a>
+      </p>
+      <p>Cu drag,<br><strong>Emma</strong> 💕</p>
+    `),
+  }),
+};
+
+export function getCampaignEmail(
+  template: string,
+  name: string,
+  extra?: string
+): { subject: string; html: string } {
+  const fn = CAMPAIGN_TEMPLATES[template] || CAMPAIGN_TEMPLATES.custom;
+  return fn(name, extra);
+}
+
+export async function sendCampaignEmail(
+  to: string,
+  subject: string,
+  html: string
+): Promise<boolean> {
+  try {
+    await resend.emails.send({ from: FROM, to, subject, html });
+    return true;
+  } catch (err) {
+    console.error(`Campaign email failed for ${to}:`, err);
+    return false;
+  }
+}

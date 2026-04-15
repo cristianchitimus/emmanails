@@ -150,3 +150,19 @@ model DiscountCode {
   expiresAt     DateTime?
   createdAt     DateTime  @default(now())
 }
+
+// ─── EMAIL CAMPAIGNS ───────────────────────────────────────
+
+model EmailCampaign {
+  id          String   @id @default(cuid())
+  name        String
+  subject     String
+  template    String   // "reengagement" | "new_products" | "course_promo" | "discount" | "custom"
+  segment     String   // "all" | "orders" | "courses" | "registered"
+  bodyHtml    String?  // custom body content (optional)
+  sentCount   Int      @default(0)
+  failedCount Int      @default(0)
+  status      String   @default("draft") // "draft" | "sending" | "sent" | "failed"
+  createdAt   DateTime @default(now())
+  sentAt      DateTime?
+}
