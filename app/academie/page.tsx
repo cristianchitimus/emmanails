@@ -36,7 +36,7 @@ export default async function AcademiePage() {
       {/* All courses — flat grid, seed order */}
       <section className="pb-14 md:pb-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-5">
             {courses.map((course) => (
               <CourseCard key={course.id} course={course} />
             ))}

@@ -86,7 +86,7 @@ export default async function HomePage() {
             </div>
           </ScrollReveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5">
             {featuredCourses.map((course, i) => (
               <ScrollReveal key={course.id} animation={i % 2 === 0 ? "fade-right" : "fade-left"} delay={i * 100}>
                 <CourseCard course={course} />
