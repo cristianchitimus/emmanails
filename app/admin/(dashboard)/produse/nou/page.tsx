@@ -180,10 +180,10 @@ export default function AdminNewProductPage() {
           <div className="flex items-center gap-4">
             <div className="flex-1">
               <div className="flex gap-2">
-                <input type="color" value={form.colorHex || "#D4537E"} onChange={(e) => setForm({ ...form, colorHex: e.target.value })}
+                <input type="color" value={form.colorHex || "#B76E79"} onChange={(e) => setForm({ ...form, colorHex: e.target.value })}
                   className="w-12 h-11 border border-neutral-200 rounded-lg cursor-pointer p-0.5" />
                 <input type="text" value={form.colorHex} onChange={(e) => setForm({ ...form, colorHex: e.target.value })}
-                  placeholder="#D4537E (opțional)"
+                  placeholder="#B76E79 (opțional)"
                   className="flex-1 px-4 py-3 border border-neutral-200 rounded-xl font-body text-sm font-mono focus:ring-2 focus:ring-pink/30 focus:border-pink" />
               </div>
             </div>

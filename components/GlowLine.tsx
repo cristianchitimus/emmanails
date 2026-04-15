@@ -29,13 +29,13 @@ export function GlowLine() {
         style={{
           transform: "scaleX(0)",
           transition: "transform 1.2s cubic-bezier(0.16, 1, 0.3, 1)",
-          background: "linear-gradient(90deg, transparent, rgba(212,83,126,0.3), rgba(212,83,126,0.6), rgba(212,83,126,0.3), transparent)",
+          background: "linear-gradient(90deg, transparent, rgba(183,110,121,0.3), rgba(183,110,121,0.6), rgba(183,110,121,0.3), transparent)",
         }}
       >
         <div
           className="absolute top-0 h-full w-[60%]"
           style={{
-            background: "linear-gradient(90deg, transparent, #D4537E, transparent)",
+            background: "linear-gradient(90deg, transparent, #B76E79, transparent)",
             animation: "glowSweep 3s ease-in-out infinite",
             left: "-60%",
           }}

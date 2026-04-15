@@ -25,17 +25,17 @@
 @layer components {
   .btn-primary {
     @apply inline-flex items-center justify-center px-10 py-4 text-white font-body text-[13px] font-medium uppercase tracking-[0.2em] rounded-full transition-all duration-500 hover:scale-[1.03] hover:shadow-lg hover:shadow-pink/25;
-    background: linear-gradient(135deg, #D4537E 0%, #e06d97 100%);
+    background: linear-gradient(135deg, #B76E79 0%, #c88d93 100%);
   }
   .btn-primary:hover {
-    background: linear-gradient(135deg, #c0426d 0%, #D4537E 100%);
+    background: linear-gradient(135deg, #9e5561 0%, #B76E79 100%);
   }
   .btn-pink {
     @apply inline-flex items-center justify-center px-10 py-4 text-white font-body text-[13px] font-medium uppercase tracking-[0.2em] rounded-full transition-all duration-500 hover:scale-[1.03] hover:shadow-lg hover:shadow-pink/25;
-    background: linear-gradient(135deg, #D4537E 0%, #e06d97 100%);
+    background: linear-gradient(135deg, #B76E79 0%, #c88d93 100%);
   }
   .btn-pink:hover {
-    background: linear-gradient(135deg, #c0426d 0%, #D4537E 100%);
+    background: linear-gradient(135deg, #9e5561 0%, #B76E79 100%);
   }
   .btn-secondary {
     @apply inline-flex items-center justify-center px-10 py-4 border border-dark text-dark font-body text-[13px] font-medium uppercase tracking-[0.2em] rounded-full hover:bg-dark hover:text-white transition-all duration-500;
@@ -144,7 +144,7 @@
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: #d4d4d4; border-radius: 999px; }
-::-webkit-scrollbar-thumb:hover { background: #D4537E; }
+::-webkit-scrollbar-thumb:hover { background: #B76E79; }
 
 /* Horizontal scroll snap */
 .snap-x-container {
@@ -186,19 +186,19 @@
 
 /* ─── GRADIENT BACKGROUNDS ─── */
 .gradient-pink {
-  background: linear-gradient(135deg, #D4537E 0%, #e8789e 50%, #f0a0b8 100%);
+  background: linear-gradient(135deg, #B76E79 0%, #c88d93 50%, #d9adb1 100%);
 }
 .gradient-rose {
-  background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 50%, #fce4ec 100%);
+  background: linear-gradient(135deg, #f5e8e5 0%, #e8cec5 50%, #f5e8e5 100%);
 }
 .gradient-dark {
   background: linear-gradient(135deg, #1A1A1A 0%, #2d2d2d 50%, #3a3a3a 100%);
 }
 .gradient-pink-dark {
-  background: linear-gradient(135deg, #D4537E 0%, #1A1A1A 100%);
+  background: linear-gradient(135deg, #B76E79 0%, #1A1A1A 100%);
 }
 .gradient-blush {
-  background: linear-gradient(135deg, #fce4ec 0%, #f3e5f5 50%, #fce4ec 100%);
+  background: linear-gradient(135deg, #f5e8e5 0%, #f3e5f5 50%, #f5e8e5 100%);
 }
 
 /* ─── PARALLAX-LIKE SMOOTH ─── */

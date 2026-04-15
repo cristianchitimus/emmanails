@@ -42,7 +42,7 @@ export default async function HomePage() {
       {/* ═══════════════════════════════════════════════════════
           CATEGORY BANNERS — 3 full-width, more spacing
       ═══════════════════════════════════════════════════════ */}
-      <section className="py-6 md:py-8 relative overflow-hidden" style={{ background: "linear-gradient(180deg, #ffffff 0%, #fef8fa 100%)" }}>
+      <section className="py-6 md:py-8 relative overflow-hidden" style={{ background: "linear-gradient(180deg, #ffffff 0%, #fdf6f3 100%)" }}>
         <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
             {[
@@ -81,7 +81,7 @@ export default async function HomePage() {
       {/* ═══════════════════════════════════════════════════════
           BEST SELLERS — 4 equal large cards, more spacing
       ═══════════════════════════════════════════════════════ */}
-      <section className="py-16 md:py-24 relative overflow-hidden" style={{ background: "linear-gradient(180deg, #fef8fa 0%, #ffffff 50%, #fef5f8 100%)" }}>
+      <section className="py-16 md:py-24 relative overflow-hidden" style={{ background: "linear-gradient(180deg, #fdf6f3 0%, #ffffff 50%, #faf3f0 100%)" }}>
         <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal animation="fade-up">
             <div className="text-center mb-10 md:mb-14">
@@ -114,7 +114,7 @@ export default async function HomePage() {
       {/* ═══════════════════════════════════════════════════════
           COURSES — Large cards, more spacing
       ═══════════════════════════════════════════════════════ */}
-      <section className="py-16 md:py-24 relative overflow-hidden" style={{ background: "linear-gradient(180deg, #fce4ec 0%, #ffeef5 30%, #ffffff 100%)" }}>
+      <section className="py-16 md:py-24 relative overflow-hidden" style={{ background: "linear-gradient(180deg, #f5e8e5 0%, #f7ece7 30%, #ffffff 100%)" }}>
         <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal animation="fade-up">
             <div className="text-center mb-10 md:mb-14">
@@ -157,7 +157,7 @@ export default async function HomePage() {
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
           </ScrollReveal>
-          <div className="flex items-center px-8 md:px-16 lg:px-20 py-16 md:py-20 relative overflow-hidden" style={{ background: "linear-gradient(135deg, #fce4ec 0%, #f8bbd0 30%, #fce4ec 60%, #fff5f8 100%)" }}>
+          <div className="flex items-center px-8 md:px-16 lg:px-20 py-16 md:py-20 relative overflow-hidden" style={{ background: "linear-gradient(135deg, #f5e8e5 0%, #e8cec5 30%, #f5e8e5 60%, #faf3f0 100%)" }}>
             <ScrollReveal animation="fade-left" delay={200}>
               <div className="max-w-md">
                 <p className="section-label mb-4">Despre Emma</p>
@@ -183,7 +183,7 @@ export default async function HomePage() {
       {/* ═══════════════════════════════════════════════════════
           BENEFITS — 4 icons
       ═══════════════════════════════════════════════════════ */}
-      <section className="py-16 md:py-20 relative overflow-hidden" style={{ background: "linear-gradient(180deg, #ffffff 0%, #fef5f8 50%, #fce4ec 100%)" }}>
+      <section className="py-16 md:py-20 relative overflow-hidden" style={{ background: "linear-gradient(180deg, #ffffff 0%, #faf3f0 50%, #f5e8e5 100%)" }}>
         <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-8">
             {[
@@ -194,7 +194,7 @@ export default async function HomePage() {
             ].map((item, i) => (
               <ScrollReveal key={i} animation="fade-up" delay={i * 100}>
                 <div className="text-center group">
-                  <div className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-all duration-500" style={{ background: "linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%)" }}>
+                  <div className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-all duration-500" style={{ background: "linear-gradient(135deg, #f5e8e5 0%, #e8cec5 100%)" }}>
                     <span className="text-xl">{item.icon}</span>
                   </div>
                   <h3 className="font-body text-sm font-semibold uppercase tracking-wider mb-1">{item.title}</h3>
@@ -213,9 +213,9 @@ export default async function HomePage() {
       {/* ═══════════════════════════════════════════════════════
           TESTIMONIALS
       ═══════════════════════════════════════════════════════ */}
-      <section className="py-16 md:py-24 relative overflow-hidden" style={{ background: "linear-gradient(180deg, #ffffff 0%, #fef8fa 50%, #ffffff 100%)" }}>
-        <div className="absolute top-10 left-10 w-72 h-72 rounded-full blur-3xl" style={{ background: "radial-gradient(circle, rgba(212,83,126,0.06) 0%, transparent 70%)" }} />
-        <div className="absolute bottom-10 right-10 w-60 h-60 rounded-full blur-3xl" style={{ background: "radial-gradient(circle, rgba(248,187,208,0.08) 0%, transparent 70%)" }} />
+      <section className="py-16 md:py-24 relative overflow-hidden" style={{ background: "linear-gradient(180deg, #ffffff 0%, #fdf6f3 50%, #ffffff 100%)" }}>
+        <div className="absolute top-10 left-10 w-72 h-72 rounded-full blur-3xl" style={{ background: "radial-gradient(circle, rgba(183,110,121,0.06) 0%, transparent 70%)" }} />
+        <div className="absolute bottom-10 right-10 w-60 h-60 rounded-full blur-3xl" style={{ background: "radial-gradient(circle, rgba(217,173,177,0.08) 0%, transparent 70%)" }} />
         <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal animation="fade-up">
             <div className="text-center mb-12">
@@ -285,7 +285,7 @@ export default async function HomePage() {
       {/* ═══════════════════════════════════════════════════════
           STATS BAR
       ═══════════════════════════════════════════════════════ */}
-      <section className="py-12 md:py-16 relative overflow-hidden" style={{ background: "linear-gradient(135deg, #f8bbd0 0%, #fce4ec 40%, #f3e5f5 100%)" }}>
+      <section className="py-12 md:py-16 relative overflow-hidden" style={{ background: "linear-gradient(135deg, #e8cec5 0%, #f5e8e5 40%, #f3e5f5 100%)" }}>
         <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
             {[
@@ -308,9 +308,9 @@ export default async function HomePage() {
       {/* ═══════════════════════════════════════════════════════
           FINAL CTA
       ═══════════════════════════════════════════════════════ */}
-      <section className="py-20 md:py-28 relative overflow-hidden" style={{ background: "linear-gradient(180deg, #fef8fa 0%, #ffffff 40%, #fce4ec 100%)" }}>
-        <div className="absolute top-0 right-0 w-96 h-96 rounded-full blur-3xl" style={{ background: "radial-gradient(circle, rgba(212,83,126,0.12) 0%, transparent 70%)" }} />
-        <div className="absolute bottom-0 left-0 w-72 h-72 rounded-full blur-3xl" style={{ background: "radial-gradient(circle, rgba(248,187,208,0.2) 0%, transparent 70%)" }} />
+      <section className="py-20 md:py-28 relative overflow-hidden" style={{ background: "linear-gradient(180deg, #fdf6f3 0%, #ffffff 40%, #f5e8e5 100%)" }}>
+        <div className="absolute top-0 right-0 w-96 h-96 rounded-full blur-3xl" style={{ background: "radial-gradient(circle, rgba(183,110,121,0.12) 0%, transparent 70%)" }} />
+        <div className="absolute bottom-0 left-0 w-72 h-72 rounded-full blur-3xl" style={{ background: "radial-gradient(circle, rgba(217,173,177,0.2) 0%, transparent 70%)" }} />
         <div className="relative z-10 max-w-3xl mx-auto px-4 text-center">
           <ScrollReveal animation="scale">
             <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-medium leading-tight">

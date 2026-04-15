@@ -17,7 +17,7 @@ function emailWrapper(content: string) {
 <style>
   body { margin: 0; padding: 0; background: #f8f4f6; font-family: 'Helvetica Neue', Arial, sans-serif; }
   .container { max-width: 560px; margin: 0 auto; background: #fff; border-radius: 16px; overflow: hidden; margin-top: 24px; margin-bottom: 24px; }
-  .header { background: linear-gradient(135deg, #D4537E 0%, #e891ae 100%); padding: 32px; text-align: center; }
+  .header { background: linear-gradient(135deg, #B76E79 0%, #d0a0a7 100%); padding: 32px; text-align: center; }
   .header h1 { color: #fff; font-size: 24px; margin: 0; font-weight: 300; letter-spacing: 2px; }
   .header p { color: rgba(255,255,255,0.85); font-size: 12px; margin: 6px 0 0; letter-spacing: 3px; text-transform: uppercase; }
   .body { padding: 32px; color: #1a1a1a; }
@@ -29,8 +29,8 @@ function emailWrapper(content: string) {
   .items-table th { text-align: left; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: #999; padding: 8px 0; border-bottom: 1px solid #eee; }
   .items-table td { font-size: 14px; padding: 10px 0; border-bottom: 1px solid #f5f5f5; }
   .items-table .price { text-align: right; font-weight: 600; }
-  .total-row { font-size: 18px; font-weight: 600; color: #D4537E; }
-  .btn { display: inline-block; background: #D4537E; color: #fff !important; text-decoration: none; padding: 14px 32px; border-radius: 50px; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; margin: 8px 0; }
+  .total-row { font-size: 18px; font-weight: 600; color: #B76E79; }
+  .btn { display: inline-block; background: #B76E79; color: #fff !important; text-decoration: none; padding: 14px 32px; border-radius: 50px; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; margin: 8px 0; }
   .footer { padding: 24px 32px; text-align: center; border-top: 1px solid #f0f0f0; }
   .footer p { font-size: 11px; color: #aaa; margin: 4px 0; }
   .status-badge { display: inline-block; padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
@@ -43,7 +43,7 @@ function emailWrapper(content: string) {
   <div class="body">${content}</div>
   <div class="footer">
     <p>Emma Nails — Str. Anton Crihan 9, Iași</p>
-    <p><a href="${SITE_URL}" style="color:#D4537E;text-decoration:none;">emmanails.ro</a> · <a href="https://wa.me/40747906311" style="color:#D4537E;text-decoration:none;">WhatsApp</a></p>
+    <p><a href="${SITE_URL}" style="color:#B76E79;text-decoration:none;">emmanails.ro</a> · <a href="https://wa.me/40747906311" style="color:#B76E79;text-decoration:none;">WhatsApp</a></p>
   </div>
 </div>
 </body></html>`;
@@ -74,7 +74,7 @@ export async function sendWelcomeEmail(email: string, name?: string | null) {
           <a href="${SITE_URL}/produse" class="btn">Descoperă produsele</a>
         </p>
 
-        <p>Dacă ai întrebări, ne poți scrie oricând pe <a href="https://wa.me/40747906311" style="color:#D4537E;">WhatsApp</a>.</p>
+        <p>Dacă ai întrebări, ne poți scrie oricând pe <a href="https://wa.me/40747906311" style="color:#B76E79;">WhatsApp</a>.</p>
         <p>Cu drag,<br><strong>Emma</strong> 💕</p>
       `),
     });
@@ -135,8 +135,8 @@ export async function sendOrderConfirmationEmail(data: OrderEmailData) {
               <td class="price" style="color:#999;">${formatPrice(data.subtotal)}</td>
             </tr>
             ${data.discount > 0 ? `<tr>
-              <td style="color:#D4537E;">Discount${data.discountCode ? ` (${data.discountCode})` : ""}</td>
-              <td class="price" style="color:#D4537E;">-${formatPrice(data.discount)}</td>
+              <td style="color:#B76E79;">Discount${data.discountCode ? ` (${data.discountCode})` : ""}</td>
+              <td class="price" style="color:#B76E79;">-${formatPrice(data.discount)}</td>
             </tr>` : ""}
             <tr>
               <td style="color:#999;">Livrare</td>
