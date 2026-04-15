@@ -61,26 +61,6 @@ const MEGA_MENU_DATA = {
       imageUrl: "/uploads/brand-Foto_043.jpg",
     },
   },
-  academie: {
-    label: "Academie",
-    columns: [
-      {
-        title: "Cursuri populare",
-        links: [
-          { label: "Curs bază Nivel 1", href: "/academie/curs-baza-stilist-protezist-unghii-nivel-1" },
-          { label: "Perfecționare PolyGel", href: "/academie/curs-perfectionare-polygel" },
-          { label: "Nail Art Avansat", href: "/academie/curs-nail-art-avansat" },
-          { label: "Masterclass Emma", href: "/academie/masterclass-emma-nails" },
-        ],
-      },
-    ],
-    featured: {
-      title: "MASTERCLASS",
-      product: "Masterclass cu Emma",
-      href: "/academie/masterclass-emma-nails",
-      imageUrl: "/uploads/site-image.jpg",
-    },
-  },
 };
 
 type MenuKey = keyof typeof MEGA_MENU_DATA;
@@ -110,6 +90,7 @@ export function Navbar() {
   }, []);
 
   const simpleLinks = [
+    { href: "/academie", label: "Academie" },
     { href: "/despre", label: "Despre" },
     { href: "/contact", label: "Contact" },
   ];
