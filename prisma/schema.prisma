@@ -166,3 +166,11 @@ model EmailCampaign {
   createdAt   DateTime @default(now())
   sentAt      DateTime?
 }
+
+// ─── SITE SETTINGS ─────────────────────────────────────────
+
+model SiteSetting {
+  key       String   @id
+  value     String
+  updatedAt DateTime @default(now()) @updatedAt
+}

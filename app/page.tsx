@@ -15,7 +15,7 @@ export const revalidate = 60;
 const EMMA_PORTRAIT = "/uploads/site-image.jpg";
 
 export default async function HomePage() {
-  const [featuredProducts, featuredCourses, productCount, courseCount] =
+  const [featuredProducts, featuredCourses, productCount, courseCount, heroSettings] =
     await Promise.all([
       prisma.product.findMany({
         where: { featured: true },
@@ -29,7 +29,13 @@ export default async function HomePage() {
       }),
       prisma.product.count(),
       prisma.course.count(),
+      prisma.siteSetting.findMany({
+        where: { key: { in: ["hero_left_image", "hero_right_top_image", "hero_right_bottom_image"] } },
+      }),
     ]);
+
+  const heroImages: Record<string, string> = {};
+  for (const s of heroSettings) heroImages[s.key] = s.value;
 
   return (
     <>
@@ -37,7 +43,11 @@ export default async function HomePage() {
           HERO — Split video: Academie (left) + Produse (right)
           Videos cycle with flash-cut effect
       ═══════════════════════════════════════════════════════ */}
-      <BentoHero />
+      <BentoHero
+        heroLeftImage={heroImages.hero_left_image}
+        heroRightTopImage={heroImages.hero_right_top_image}
+        heroRightBottomImage={heroImages.hero_right_bottom_image}
+      />
 
       {/* ═══════════════════════════════════════════════════════
           BEST SELLERS — 4 equal large cards, more spacing
