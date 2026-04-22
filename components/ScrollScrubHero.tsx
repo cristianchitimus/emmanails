@@ -12,10 +12,11 @@ interface ScrollScrubHeroProps {
   heroRightBottomImage?: string;
 }
 
-/* How many WebP frames live at /public/videos/frames/f001.webp … f120.webp
-   Source video is 10s, resampled to 12fps for the sequence = 120 frames.
-   Total payload ≈ 2.6 MB (less than the MP4 we replaced). */
-const FRAME_COUNT = 120;
+/* How many WebP frames live at /public/videos/frames/f001.webp … f240.webp
+   Source video is 5s at 24fps, motion-interpolated to 48fps for the sequence
+   = 240 frames. 2x frame density (vs the previous 120) halves the scroll-
+   distance-per-frame and gives noticeably more fluid motion during scrub. */
+const FRAME_COUNT = 240;
 const FRAME_URL = (i: number) =>
   `/videos/frames/f${String(i + 1).padStart(3, "0")}.webp`;
 // Mobile fallback: MP4 loop, no scrubbing (iOS Safari is unreliable for this)
