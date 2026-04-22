@@ -3,18 +3,26 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 
-/* Note: card images have been removed — the cards are now transparent
-   glass panels over the scroll-scrubbed video. Props are kept (and ignored)
-   to avoid breaking the SSR call site that still passes hero image settings. */
+/* Note: card images have been removed — cards are transparent text-only panels
+   over the scroll-scrubbed background. Props are kept (and ignored) to avoid
+   breaking any SSR call site that still passes hero image settings. */
 interface ScrollScrubHeroProps {
   heroLeftImage?: string;
   heroRightTopImage?: string;
   heroRightBottomImage?: string;
 }
 
+/* How many WebP frames live at /public/videos/frames/f001.webp … f120.webp
+   Source video is 10s, resampled to 12fps for the sequence = 120 frames.
+   Total payload ≈ 2.6 MB (less than the MP4 we replaced). */
+const FRAME_COUNT = 120;
+const FRAME_URL = (i: number) =>
+  `/videos/frames/f${String(i + 1).padStart(3, "0")}.webp`;
+// Mobile fallback: MP4 loop, no scrubbing (iOS Safari is unreliable for this)
+const MOBILE_VIDEO_SRC = "/videos/hero.mp4";
+
 /* ════════════════════════════════════════════════════
-   HERO CARD — transparent text-only panel over video
-   Used for both the Academy and Produse cards (equal size).
+   HERO CARD — transparent text-only panel over bg
    ════════════════════════════════════════════════════ */
 function HeroCard({ href, label, title, titleAccent, description, stats, cta }: {
   href: string;
@@ -30,7 +38,6 @@ function HeroCard({ href, label, title, titleAccent, description, stats, cta }: 
       href={href}
       className="group relative block h-full min-h-[320px] md:min-h-0 rounded-2xl"
     >
-      {/* No background — fully transparent. Text carries drop-shadow for legibility. */}
       <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8 lg:p-10">
         <div className="hidden md:block [&_*]:[text-shadow:0_2px_20px_rgba(0,0,0,0.6)]">
           <span className="font-body text-[11px] font-bold uppercase tracking-[0.3em] text-white/80 mb-2 block">
@@ -67,19 +74,23 @@ function HeroCard({ href, label, title, titleAccent, description, stats, cta }: 
 
 /* ════════════════════════════════════════════════════
    MAIN COMPONENT
-   Scroll track (250vh) contains a sticky 100vh hero.
-   Video is scrubbed via currentTime based on scroll
-   progress. Lerp smoothing for fluid playback.
+   Desktop: canvas-based image sequence scrubbing.
+     - All frames preloaded as <img> once on mount.
+     - On scroll, the corresponding frame index is drawn to canvas.
+     - Zero video decoding during scrub — buttery smooth.
+   Mobile: video loop (scrubbing is unreliable on iOS Safari).
    ════════════════════════════════════════════════════ */
 export function ScrollScrubHero(_props: ScrollScrubHeroProps = {}) {
-
   const trackRef = useRef<HTMLDivElement>(null);
   const stickyRef = useRef<HTMLDivElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [isMobile, setIsMobile] = useState(false);
-  const [videoReady, setVideoReady] = useState(false);
+  const framesRef = useRef<HTMLImageElement[]>([]);
 
-  // Detect mobile (iOS Safari is flaky with scroll-scrubbing)
+  const [isMobile, setIsMobile] = useState(false);
+  const [framesReady, setFramesReady] = useState(false);
+
+  // Detect mobile (sub-md breakpoint → video fallback)
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
     check();
@@ -87,47 +98,117 @@ export function ScrollScrubHero(_props: ScrollScrubHeroProps = {}) {
     return () => window.removeEventListener("resize", check);
   }, []);
 
-  // Scroll-scrubbing: only on desktop
+  // ─── Preload all frames as Image objects (desktop only) ──────────────
   useEffect(() => {
     if (isMobile) return;
+    let cancelled = false;
+    const images: HTMLImageElement[] = new Array(FRAME_COUNT);
+    framesRef.current = images;
+
+    let done = 0;
+    // Ready as soon as the first frame decodes — user sees the hero immediately.
+    // Remaining frames continue loading in parallel in the background.
+    let firstReady = false;
+
+    const onSettle = () => {
+      if (cancelled) return;
+      done++;
+      if (done === FRAME_COUNT) {
+        // Full sequence ready — nothing more to signal.
+      }
+    };
+
+    for (let i = 0; i < FRAME_COUNT; i++) {
+      const img = new Image();
+      img.decoding = "async";
+      img.onload = () => {
+        if (cancelled) return;
+        if (!firstReady && i === 0) {
+          firstReady = true;
+          setFramesReady(true);
+        }
+        onSettle();
+      };
+      img.onerror = onSettle;
+      img.src = FRAME_URL(i);
+      images[i] = img;
+    }
+
+    return () => {
+      cancelled = true;
+    };
+  }, [isMobile]);
+
+  // ─── Draw helper — mimics object-cover on canvas ─────────────────────
+  const drawFrame = (index: number) => {
+    const canvas = canvasRef.current;
+    const frames = framesRef.current;
+    if (!canvas || !frames.length) return;
+    const clamped = Math.max(0, Math.min(frames.length - 1, index));
+    const img = frames[clamped];
+    if (!img || !img.complete || img.naturalWidth === 0) {
+      // This frame isn't decoded yet — walk backwards to find the closest one
+      // that is. Keeps the canvas populated even during initial background loading.
+      for (let j = clamped - 1; j >= 0; j--) {
+        const prev = frames[j];
+        if (prev && prev.complete && prev.naturalWidth > 0) {
+          return paint(canvas, prev);
+        }
+      }
+      for (let j = clamped + 1; j < frames.length; j++) {
+        const nxt = frames[j];
+        if (nxt && nxt.complete && nxt.naturalWidth > 0) {
+          return paint(canvas, nxt);
+        }
+      }
+      return;
+    }
+    paint(canvas, img);
+  };
+
+  const paint = (canvas: HTMLCanvasElement, img: HTMLImageElement) => {
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    // Keep canvas backing store matched to display size × DPR (capped at 2)
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const w = Math.floor(canvas.clientWidth * dpr);
+    const h = Math.floor(canvas.clientHeight * dpr);
+    if (w === 0 || h === 0) return;
+    if (canvas.width !== w) canvas.width = w;
+    if (canvas.height !== h) canvas.height = h;
+
+    // object-cover: crop source to match canvas aspect, centered
+    const imgAR = img.naturalWidth / img.naturalHeight;
+    const canvasAR = w / h;
+    let sx: number, sy: number, sw: number, sh: number;
+    if (imgAR > canvasAR) {
+      sh = img.naturalHeight;
+      sw = sh * canvasAR;
+      sx = (img.naturalWidth - sw) / 2;
+      sy = 0;
+    } else {
+      sw = img.naturalWidth;
+      sh = sw / canvasAR;
+      sx = 0;
+      sy = (img.naturalHeight - sh) / 2;
+    }
+    ctx.drawImage(img, sx, sy, sw, sh, 0, 0, w, h);
+  };
+
+  // ─── Scroll-scrubbed rAF loop (desktop) ──────────────────────────────
+  useEffect(() => {
+    if (isMobile || !framesReady) return;
 
     const track = trackRef.current;
     const sticky = stickyRef.current;
-    const video = videoRef.current;
-    if (!track || !sticky || !video) return;
-
-    // Prevent autoplay loop — we control currentTime manually
-    video.pause();
+    if (!track || !sticky) return;
 
     let rafId = 0;
-    let targetTime = 0;
-    let currentTime = 0;
+    let targetIndex = 0;
+    let currentIndex = 0;
+    let lastDrawnIndex = -1;
     let running = true;
-
-    const writeProgress = () => {
-      const duration = video.duration;
-      if (!duration || !isFinite(duration)) return;
-      // Use the *smoothed* currentTime so the text animation stays perfectly
-      // in sync with what's visible on screen (video is lerped, not instant).
-      const smoothed = Math.max(0, Math.min(1, currentTime / duration));
-      sticky.style.setProperty("--hero-progress", String(smoothed));
-    };
-
-    const tick = () => {
-      if (!running) return;
-      // Only update if the difference is perceivable — avoids setting currentTime every frame with no change
-      const diff = targetTime - currentTime;
-      if (Math.abs(diff) > 0.005) {
-        currentTime += diff * 0.18; // lerp factor — higher = more responsive, lower = smoother
-        try {
-          video.currentTime = currentTime;
-        } catch {
-          // Some browsers throw if not ready yet — ignore
-        }
-        writeProgress();
-      }
-      rafId = requestAnimationFrame(tick);
-    };
 
     const computeProgress = () => {
       const rect = track.getBoundingClientRect();
@@ -139,33 +220,45 @@ export function ScrollScrubHero(_props: ScrollScrubHeroProps = {}) {
     };
 
     const updateTarget = () => {
-      const duration = video.duration;
-      if (!duration || !isFinite(duration)) return;
       const progress = computeProgress();
-      // Clamp slightly below duration to avoid the "ended" state resetting to 0
-      targetTime = Math.max(0, Math.min(duration - 0.05, progress * duration));
+      targetIndex = progress * (FRAME_COUNT - 1);
     };
 
-    const onReady = () => {
-      setVideoReady(true);
-      // Snap immediately to avoid a pop at load
-      updateTarget();
-      currentTime = targetTime;
-      try {
-        video.currentTime = currentTime;
-      } catch {}
-      writeProgress();
+    const tick = () => {
+      if (!running) return;
+      const diff = targetIndex - currentIndex;
+      if (Math.abs(diff) > 0.01) {
+        currentIndex += diff * 0.18;
+        const i = Math.round(currentIndex);
+        if (i !== lastDrawnIndex) {
+          drawFrame(i);
+          lastDrawnIndex = i;
+        }
+        const progress = currentIndex / (FRAME_COUNT - 1);
+        sticky.style.setProperty(
+          "--hero-progress",
+          String(Math.max(0, Math.min(1, progress))),
+        );
+      }
       rafId = requestAnimationFrame(tick);
     };
 
-    const onScroll = () => updateTarget();
-    const onResize = () => updateTarget();
+    // Initial: snap, paint, start loop
+    updateTarget();
+    currentIndex = targetIndex;
+    drawFrame(Math.round(currentIndex));
+    lastDrawnIndex = Math.round(currentIndex);
+    sticky.style.setProperty(
+      "--hero-progress",
+      String(Math.max(0, Math.min(1, currentIndex / (FRAME_COUNT - 1)))),
+    );
+    rafId = requestAnimationFrame(tick);
 
-    if (video.readyState >= 2) {
-      onReady();
-    } else {
-      video.addEventListener("loadeddata", onReady, { once: true });
-    }
+    const onScroll = () => updateTarget();
+    const onResize = () => {
+      updateTarget();
+      drawFrame(Math.round(currentIndex));
+    };
 
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onResize, { passive: true });
@@ -175,47 +268,53 @@ export function ScrollScrubHero(_props: ScrollScrubHeroProps = {}) {
       cancelAnimationFrame(rafId);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onResize);
-      video.removeEventListener("loadeddata", onReady);
     };
-  }, [isMobile]);
+    // drawFrame is stable (uses refs), safe to omit from deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isMobile, framesReady]);
 
-  // On mobile, let the video autoplay/loop — scrubbing is unreliable
+  // ─── Mobile: plain looping video, no canvas ──────────────────────────
   useEffect(() => {
     if (!isMobile) return;
     const video = videoRef.current;
     if (!video) return;
     video.loop = true;
     video.muted = true;
-    video.play().catch(() => {
-      // Autoplay blocked — that's fine, first frame will show as poster
-    });
+    video.play().catch(() => {});
   }, [isMobile]);
 
   return (
     <section
       ref={trackRef}
-      // Desktop: tall scroll track so there's runway for the video to scrub through.
-      // Mobile: single viewport — video just loops in background.
       className="relative w-full bg-dark md:h-[250vh]"
     >
       <div
         ref={stickyRef}
         className="sticky top-0 h-screen w-full overflow-hidden"
       >
-        {/* ────── Video background ────── */}
-        <video
-          ref={videoRef}
-          src="/videos/hero.mp4"
-          muted
-          playsInline
-          preload="auto"
-          disableRemotePlayback
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
-            videoReady || isMobile ? "opacity-100" : "opacity-0"
-          }`}
-        />
+        {/* ────── Background: canvas on desktop, video on mobile ────── */}
+        {!isMobile && (
+          <canvas
+            ref={canvasRef}
+            className={`absolute inset-0 w-full h-full transition-opacity duration-700 ${
+              framesReady ? "opacity-100" : "opacity-0"
+            }`}
+            aria-hidden="true"
+          />
+        )}
+        {isMobile && (
+          <video
+            ref={videoRef}
+            src={MOBILE_VIDEO_SRC}
+            muted
+            playsInline
+            preload="auto"
+            disableRemotePlayback
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        )}
 
-        {/* ────── Cinematic overlay: darken + subtle vignette for card legibility ────── */}
+        {/* ────── Cinematic overlay ────── */}
         <div className="absolute inset-0 bg-dark/30 pointer-events-none" />
         <div
           className="absolute inset-0 pointer-events-none"
@@ -225,8 +324,8 @@ export function ScrollScrubHero(_props: ScrollScrubHeroProps = {}) {
           }}
         />
 
-        {/* ────── Initial backdrop while video loads (hidden once ready) ────── */}
-        {!videoReady && !isMobile && (
+        {/* ────── Initial backdrop while first frame decodes ────── */}
+        {!framesReady && !isMobile && (
           <div
             className="absolute inset-0 pointer-events-none"
             style={{
@@ -236,16 +335,13 @@ export function ScrollScrubHero(_props: ScrollScrubHeroProps = {}) {
           />
         )}
 
-        {/* ────── Bento grid — floats over video, rises + fades as video progresses ────── */}
+        {/* ────── Bento grid — rises + fades with scroll progress ────── */}
         <div
           className="relative z-10 h-full flex items-center px-3 md:px-6 py-4 md:py-6 will-change-transform"
           style={{
-            // Drift upward as the video plays, fade out in the last ~25% of the scrub.
-            // Both are keyed to --hero-progress (0 → 1) set in the scroll tick.
             transform:
               "translate3d(0, calc(var(--hero-progress, 0) * -120px), 0)",
-            opacity:
-              "calc((1 - var(--hero-progress, 0)) * 4)",
+            opacity: "calc((1 - var(--hero-progress, 0)) * 4)",
           }}
         >
           <div className="w-full max-w-[1400px] mx-auto">
@@ -279,12 +375,10 @@ export function ScrollScrubHero(_props: ScrollScrubHeroProps = {}) {
           </div>
         </div>
 
-        {/* ────── Scroll indicator — fades faster so it's gone early ────── */}
+        {/* ────── Scroll indicator ────── */}
         <div
           className="hidden md:flex absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex-col items-center gap-2 text-white/70 pointer-events-none"
-          style={{
-            opacity: "calc(1 - var(--hero-progress, 0) * 6)",
-          }}
+          style={{ opacity: "calc(1 - var(--hero-progress, 0) * 6)" }}
         >
           <span className="font-body text-[10px] uppercase tracking-[0.3em]">Scroll</span>
           <svg className="w-4 h-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
