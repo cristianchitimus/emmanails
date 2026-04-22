@@ -108,15 +108,16 @@ export function ScrollScrubHero(_props: ScrollScrubHeroProps = {}) {
     return () => window.removeEventListener("resize", check);
   }, []);
 
-  // Delayed fade-in: wait until background is ready, then give it a beat before
-  // the text materializes. On mobile the video starts instantly, so shorter delay.
+  // Deliberate delayed fade-in: give the video a full beat to establish itself
+  // before the text materializes. User sees the scene for ~1.2s first, then
+  // text fades in gradually over 2.5s.
   useEffect(() => {
     if (framesReady) {
-      const t = setTimeout(() => setTextVisible(true), 500);
+      const t = setTimeout(() => setTextVisible(true), 1200);
       return () => clearTimeout(t);
     }
     if (isMobile) {
-      const t = setTimeout(() => setTextVisible(true), 700);
+      const t = setTimeout(() => setTextVisible(true), 1400);
       return () => clearTimeout(t);
     }
   }, [framesReady, isMobile]);
@@ -200,6 +201,12 @@ export function ScrollScrubHero(_props: ScrollScrubHeroProps = {}) {
     if (w === 0 || h === 0) return;
     if (canvas.width !== w) canvas.width = w;
     if (canvas.height !== h) canvas.height = h;
+
+    // Request highest-quality resampling for the upscale.
+    // On DPR-2 Retina + 1920p source we're drawing into a 3840-wide canvas —
+    // 'high' uses bicubic/lanczos-like; 'low' (the default) looks soft/blocky.
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = "high";
 
     // object-cover: crop source to match canvas aspect, centered
     const imgAR = img.naturalWidth / img.naturalHeight;
@@ -356,16 +363,23 @@ export function ScrollScrubHero(_props: ScrollScrubHeroProps = {}) {
           className={`absolute inset-0 z-10 transition-opacity ease-out ${
             textVisible ? "opacity-100" : "opacity-0"
           }`}
-          style={{ transitionDuration: "1400ms" }}
+          style={{ transitionDuration: "2500ms" }}
         >
           {/* Inner wrapper handles the scroll-driven transform + opacity.
-              Kept separate from the outer fade-in so the two opacities multiply cleanly. */}
+              Kept separate from the outer fade-in so the two opacities multiply cleanly.
+              
+              Rise: 0 → -70vh. At progress=1 the cards are ~70vh above their start,
+              which on any normal viewport puts them visibly OFF the top edge.
+              
+              Opacity: stays at 1 for the first 67% of scroll, then fades to 0 by 100%.
+              This gives the cards time to actually travel up through the viewport
+              before they start disappearing. */}
           <div
             className="relative h-full flex items-center px-3 md:px-6 py-4 md:py-6 will-change-transform"
             style={{
               transform:
-                "translate3d(0, calc(var(--hero-progress, 0) * -120px), 0)",
-              opacity: "calc((1 - var(--hero-progress, 0)) * 4)",
+                "translate3d(0, calc(var(--hero-progress, 0) * -70vh), 0)",
+              opacity: "calc((1 - var(--hero-progress, 0)) * 3)",
             }}
           >
             <div className="w-full max-w-[1400px] mx-auto">
