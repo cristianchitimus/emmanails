@@ -15,14 +15,21 @@ import { useSectionProgress } from "./FadeStack";
    - On mobile and on browsers that don't signal readiness (or if the user
      reaches the section before frames finish loading) we render a looping
      <video> fallback instead of the canvas.
-───────────────────────────────────────────────────────────────────────── */
 
-/* Source video is 5s at 24fps = 120 native frames, extracted at 1920x1080.
-   We intentionally DO NOT motion-interpolate: at 4x density the interpolator
-   produces visible warping artifacts on organic motion (face, hands, hair).
-   Perceptual smoothness instead comes from the canvas cross-fading between
-   the two frames bracketing the fractional progress (see draw step). */
-const FRAME_COUNT = 120;
+   Smoothing strategy (matches ScrollScrubHero):
+   - Source video is 5s at 24fps, motion-interpolated to 48fps for the sequence
+     = 240 frames. 2x frame density vs native halves the scroll-distance-per-
+     frame.
+   - Rendering runs in a requestAnimationFrame loop with lerp easing
+     (currentIndex follows targetIndex with factor 0.12 per tick). This is the
+     critical bit: a sharp scroll input that jumps targetIndex by +20 frames
+     plays out as ~20 sequential frames over ~250ms instead of one discrete
+     drawImage jump. Without this, the scrub looks "framey" no matter how
+     many frames you have. progress from React context is read via a ref
+     inside the rAF loop so we never depend on render cycles for animation.
+─────────────────────────────────────────────────────────────────────────── */
+
+const FRAME_COUNT = 240;
 const frameSrc = (i: number) =>
   `/videos/emma-frames/e${String(i + 1).padStart(3, "0")}.webp`;
 
@@ -32,6 +39,12 @@ export function DespreEmmaScrub() {
   const [framesReady, setFramesReady] = useState(false);
   const imagesRef = useRef<HTMLImageElement[]>([]);
   const [isMobile, setIsMobile] = useState(false);
+  // Mirror progress into a ref so the rAF loop reads the latest value without
+  // having React re-renders drive the animation.
+  const progressRef = useRef(0);
+  useEffect(() => {
+    progressRef.current = progress;
+  }, [progress]);
 
   // Detect mobile once — canvas scrubbing is desktop-only for perf reasons
   // (mobile gets the looping mp4 fallback, same pattern as ScrollScrubHero).
@@ -86,76 +99,86 @@ export function DespreEmmaScrub() {
     };
   }, [isMobile]);
 
-  // Redraw whenever progress changes.
+  // Scroll-scrubbed rAF loop with lerp easing. Identical strategy to
+  // ScrollScrubHero — see the file header comment for why this matters.
+  // The animation is driven entirely by rAF, never by React re-renders.
   useEffect(() => {
-    if (isMobile) return;
+    if (isMobile || !framesReady) return;
     const canvas = canvasRef.current;
     const images = imagesRef.current;
     if (!canvas || !images || images.length === 0) return;
 
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    const w = Math.floor(canvas.clientWidth * dpr);
-    const h = Math.floor(canvas.clientHeight * dpr);
-    if (w === 0 || h === 0) return;
-    if (canvas.width !== w) canvas.width = w;
-    if (canvas.height !== h) canvas.height = h;
+    let rafId = 0;
+    let currentIndex = progressRef.current * (FRAME_COUNT - 1);
+    let lastDrawnIndex = -1;
+    let running = true;
 
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
+    const drawFrame = (rawIdx: number) => {
+      const idx = Math.min(FRAME_COUNT - 1, Math.max(0, rawIdx));
+      const img = images[idx];
+      if (!img || !img.complete || img.naturalWidth === 0) return;
 
-    ctx.imageSmoothingEnabled = true;
-    ctx.imageSmoothingQuality = "high";
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const w = Math.floor(canvas.clientWidth * dpr);
+      const h = Math.floor(canvas.clientHeight * dpr);
+      if (w === 0 || h === 0) return;
+      if (canvas.width !== w) canvas.width = w;
+      if (canvas.height !== h) canvas.height = h;
 
-    // Fractional position across the frame sequence — the integer part picks
-    // the primary frame, the fractional part is the cross-fade weight to the
-    // NEXT frame. Drawing base at alpha=1 then overlay at alpha=frac gives a
-    // perceptual smoothness roughly equivalent to 2x–3x frame density, but
-    // without the warping you get from motion-interpolated synthetic frames.
-    const posFloat = progress * (FRAME_COUNT - 1);
-    const baseIdxRaw = Math.floor(posFloat);
-    const frac = posFloat - baseIdxRaw;
+      const ctx = canvas.getContext("2d");
+      if (!ctx) return;
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = "high";
 
-    // Walk backward to the nearest already-loaded frame if the target isn't in
-    // yet — avoids a blank canvas on early scroll (only relevant pre-ready).
-    let baseIdx = Math.min(FRAME_COUNT - 1, Math.max(0, baseIdxRaw));
-    while (baseIdx > 0 && !images[baseIdx]?.complete) baseIdx--;
-    const nextIdx = Math.min(FRAME_COUNT - 1, baseIdx + 1);
+      // object-cover geometry
+      const imgAR = img.naturalWidth / img.naturalHeight;
+      const canvasAR = w / h;
+      let sx: number, sy: number, sw: number, sh: number;
+      if (imgAR > canvasAR) {
+        sh = img.naturalHeight;
+        sw = sh * canvasAR;
+        sx = (img.naturalWidth - sw) / 2;
+        sy = 0;
+      } else {
+        sw = img.naturalWidth;
+        sh = sw / canvasAR;
+        sx = 0;
+        sy = (img.naturalHeight - sh) / 2;
+      }
+      ctx.drawImage(img, sx, sy, sw, sh, 0, 0, w, h);
+    };
 
-    const baseImg = images[baseIdx];
-    if (!baseImg || !baseImg.complete || baseImg.naturalWidth === 0) return;
-    const nextImg = images[nextIdx];
-    const canBlend =
-      nextIdx !== baseIdx &&
-      nextImg &&
-      nextImg.complete &&
-      nextImg.naturalWidth !== 0 &&
-      frac > 0;
+    const tick = () => {
+      if (!running) return;
+      const target = progressRef.current * (FRAME_COUNT - 1);
+      const diff = target - currentIndex;
+      if (Math.abs(diff) > 0.01) {
+        currentIndex += diff * 0.12; // lerp factor — matches hero
+        const i = Math.round(currentIndex);
+        if (i !== lastDrawnIndex) {
+          drawFrame(i);
+          lastDrawnIndex = i;
+        }
+      }
+      rafId = requestAnimationFrame(tick);
+    };
 
-    // object-cover geometry (computed once from base frame dimensions — all
-    // frames share the same native resolution so geometry is reusable).
-    const imgAR = baseImg.naturalWidth / baseImg.naturalHeight;
-    const canvasAR = w / h;
-    let sx: number, sy: number, sw: number, sh: number;
-    if (imgAR > canvasAR) {
-      sh = baseImg.naturalHeight;
-      sw = sh * canvasAR;
-      sx = (baseImg.naturalWidth - sw) / 2;
-      sy = 0;
-    } else {
-      sw = baseImg.naturalWidth;
-      sh = sw / canvasAR;
-      sx = 0;
-      sy = (baseImg.naturalHeight - sh) / 2;
-    }
+    // Initial paint at exact target so we never start with a stale frame
+    currentIndex = progressRef.current * (FRAME_COUNT - 1);
+    const startIdx = Math.round(currentIndex);
+    drawFrame(startIdx);
+    lastDrawnIndex = startIdx;
+    rafId = requestAnimationFrame(tick);
 
-    ctx.globalAlpha = 1;
-    ctx.drawImage(baseImg, sx, sy, sw, sh, 0, 0, w, h);
-    if (canBlend) {
-      ctx.globalAlpha = frac;
-      ctx.drawImage(nextImg!, sx, sy, sw, sh, 0, 0, w, h);
-      ctx.globalAlpha = 1;
-    }
-  }, [progress, framesReady, isMobile]);
+    const onResize = () => drawFrame(Math.round(currentIndex));
+    window.addEventListener("resize", onResize, { passive: true });
+
+    return () => {
+      running = false;
+      cancelAnimationFrame(rafId);
+      window.removeEventListener("resize", onResize);
+    };
+  }, [isMobile, framesReady]);
 
   // Text reveal: rise + fade driven by the section's first ~40%.
   const textOpacity = useMemo(() => {
