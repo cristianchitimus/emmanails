@@ -51,11 +51,18 @@ export function DespreEmmaScrub() {
     const images: HTMLImageElement[] = new Array(FRAME_COUNT);
     imagesRef.current = images;
     let done = 0;
+    let readyFlipped = false;
+
+    const flipReady = () => {
+      if (readyFlipped || cancelled) return;
+      readyFlipped = true;
+      setFramesReady(true);
+    };
 
     const onOne = () => {
       if (cancelled) return;
       done++;
-      if (done === FRAME_COUNT) setFramesReady(true);
+      if (done >= FRAME_COUNT) flipReady();
     };
 
     for (let i = 0; i < FRAME_COUNT; i++) {
@@ -68,8 +75,14 @@ export function DespreEmmaScrub() {
       images[i] = img;
     }
 
+    // Safety: regardless of network/cache weirdness, reveal the canvas after
+    // 6s — at that point most frames will be in, and the draw step's own
+    // walk-backward guard handles any remaining gaps gracefully.
+    const safetyId = window.setTimeout(flipReady, 6000);
+
     return () => {
       cancelled = true;
+      window.clearTimeout(safetyId);
     };
   }, [isMobile]);
 
@@ -159,24 +172,38 @@ export function DespreEmmaScrub() {
       <div className="grid grid-cols-1 lg:grid-cols-2 w-full h-full">
         {/* ─── Left: scrubbed portrait ─── */}
         <div className="relative w-full h-full overflow-hidden bg-[#ece2dc]">
-          {/* Fallback: looping video.
-              - On mobile: always shown (no scrub, perf reasons).
-              - On desktop: shown UNDER the canvas until all frames preload,
-                then the canvas fades in over it. Keeping it mounted means
-                the user never sees an empty panel while ~4MB of WebPs load. */}
-          <video
-            src="/videos/emma.mp4"
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-          {!isMobile && (
-            <canvas
-              ref={canvasRef}
-              className="absolute inset-0 w-full h-full"
-              style={{ opacity: framesReady ? 1 : 0, transition: "opacity 400ms ease-out" }}
+          {!isMobile ? (
+            <>
+              {/* Desktop: static poster (first frame) shown UNDER the canvas
+                  while the rest of the frames preload. The canvas is the ONLY
+                  thing that animates — fades in over the poster once ready
+                  and is fully driven by scroll progress (no autoplay video,
+                  which would otherwise look like the page was animating on
+                  its own and ignore upward scroll). */}
+              <img
+                src={frameSrc(0)}
+                alt=""
+                aria-hidden
+                className="absolute inset-0 w-full h-full object-cover select-none pointer-events-none"
+                draggable={false}
+              />
+              <canvas
+                ref={canvasRef}
+                className="absolute inset-0 w-full h-full"
+                style={{
+                  opacity: framesReady ? 1 : 0,
+                  transition: "opacity 400ms ease-out",
+                }}
+              />
+            </>
+          ) : (
+            <video
+              src="/videos/emma.mp4"
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover"
             />
           )}
           {/* Subtle vignette on the right edge to smooth the seam into the text panel */}
