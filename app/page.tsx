@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { prisma } from "@/lib/db";
 import { ProductCard } from "@/components/ProductCard";
 import { CourseCard } from "@/components/CourseCard";
@@ -69,15 +70,31 @@ export default async function HomePage() {
   const testimonials = [
     {
       name: "Denisa Olaru",
+      photo: "/uploads/testimoniale/denisa-olaru.png",
       text:
-        "Am fost extrem de mulțumită de felul în care îmi era explicată fiecare etapă pentru a realiza o manichiură reușită. Emma are un caracter frumos, e înzestrată cu multă răbdare. Cu siguranță voi mai reveni.",
-      course: "Curs bază manichiură",
+        "Am fost extrem de mulțumită de felul în care îmi era explicată fiecare etapă pentru a realiza o manichiură reușită. Emma are un caracter frumos, e înzestrată cu multă răbdare și este o persoană foarte plăcută! Cu siguranță voi mai reveni să învăț tehnici noi. Te îmbrățișez!",
+      course: "Cursantă",
     },
     {
       name: "Ecaterina Tanasache",
+      photo: "/uploads/testimoniale/ecaterina-tanasache.png",
       text:
-        "În aceste 6 zile ale cursului susținut de Emma, m-a făcut să îmi dau seama că meseria de manichiurist cere răbdare de fier. Îți mulțumesc, Emma — ești foarte răbdătoare și caldă.",
-      course: "Curs perfecționare gel",
+        "În aceste 6 zile ale cursului — basic gel — susținut de Emma, m-a făcut să îmi dau seama că meseria cea mai grea, dificilă și cea în care trebuie să ai răbdare de fier este aceasta de manichiurist. Îți mulțumesc frumos, Emma, pentru tot sprijinul și să știi că ești foarte răbdătoare — nu am mai văzut un om așa răbdător și cald.",
+      course: "Cursantă",
+    },
+    {
+      name: "Paula Pintilie",
+      photo: "/uploads/testimoniale/paula-pintilie.png",
+      text:
+        "Emma… o persoană dedicată total în ceea ce face, nici o secundă nu ți se pare că muncești pentru că totul e făcut din pasiune. A fost cea mai frumoasă experiență — chiar dacă în prima zi mă întrebam „oare ce mi-a trebuit?!”, la finalul cursului am rămas cu multe informații, o pasiune nou descoperită și o prietenie cu fetele participante. Mulțumesc, Emma! Ești deosebită!",
+      course: "Cursantă",
+    },
+    {
+      name: "Mihaela Radu",
+      photo: "/uploads/testimoniale/mihaela-radu.jpg",
+      text:
+        "Nu există persoană mai perfectă în acest domeniu decât Emma!!! O recomand cu drag — este o persoană excelentă, dedicată, caldă, minunată, calmă!!! N-aveți cum să nu învățați să faceți unghii perfecte atâta timp cât vă învață Emma!! Dacă vreți cursuri perfecte, unghii perfecte, le găsiți doar la Emma!!",
+      course: "Cursantă",
     },
   ];
 
@@ -266,7 +283,7 @@ export default async function HomePage() {
               Testimoniale <span className="italic text-pink">reale</span>
             </h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6 relative">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6 relative">
             {testimonials.map((t) => (
               <div
                 key={t.name}
@@ -288,13 +305,14 @@ export default async function HomePage() {
                   &ldquo;{t.text}&rdquo;
                 </p>
                 <div className="mt-4 pt-3 border-t border-neutral-100 flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-pink/20 to-pink/40 flex items-center justify-center flex-shrink-0">
-                    <span className="font-display text-sm font-bold text-pink">
-                      {t.name
-                        .split(" ")
-                        .map((n) => n[0])
-                        .join("")}
-                    </span>
+                  <div className="relative w-11 h-11 rounded-full overflow-hidden flex-shrink-0 ring-1 ring-pink/20 bg-pink/10">
+                    <Image
+                      src={t.photo}
+                      alt={t.name}
+                      fill
+                      sizes="44px"
+                      className="object-cover"
+                    />
                   </div>
                   <div>
                     <p className="font-body text-sm font-semibold text-dark">
