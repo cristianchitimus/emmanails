@@ -3,7 +3,7 @@ import Image from "next/image";
 import { prisma } from "@/lib/db";
 import { ProductCard } from "@/components/ProductCard";
 import { CourseCard } from "@/components/CourseCard";
-import { BentoHero } from "@/components/BentoHero";
+import { ScrollScrubHero } from "@/components/ScrollScrubHero";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { TextWipe } from "@/components/TextWipe";
 import { GlowLine } from "@/components/GlowLine";
@@ -40,10 +40,9 @@ export default async function HomePage() {
   return (
     <>
       {/* ═══════════════════════════════════════════════════════
-          HERO — Split video: Academie (left) + Produse (right)
-          Videos cycle with flash-cut effect
+          HERO — Full-viewport sticky bento over scroll-scrubbed video
       ═══════════════════════════════════════════════════════ */}
-      <BentoHero
+      <ScrollScrubHero
         heroLeftImage={heroImages.hero_left_image}
         heroRightTopImage={heroImages.hero_right_top_image}
         heroRightBottomImage={heroImages.hero_right_bottom_image}
