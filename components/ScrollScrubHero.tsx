@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { LetterReveal } from "./LetterReveal";
 
 /* Note: card images have been removed — cards are transparent text-only panels
    over the scroll-scrubbed background. Props are kept (and ignored) to avoid
@@ -54,8 +55,23 @@ function HeroCard({ href, label, title, titleAccent, description, stats, cta }: 
             {label}
           </span>
           <h2 className="font-display text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-medium text-white leading-[0.95]">
-            {title}<br />
-            <span className="italic text-pink/95">{titleAccent}</span>
+            <LetterReveal
+              text={title}
+              immediate
+              staggerMs={45}
+              durationMs={700}
+              className="text-white"
+            />
+            <br />
+            <LetterReveal
+              text={titleAccent}
+              immediate
+              // Wait until the main title finishes before the accent starts.
+              delay={title.length * 45 + 120}
+              staggerMs={55}
+              durationMs={700}
+              className="italic text-pink/95"
+            />
           </h2>
           <p className="font-body text-sm text-white/80 leading-relaxed mt-3 max-w-sm">
             {description}

@@ -70,6 +70,7 @@ export function Navbar() {
   const { data: session } = useSession();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState<MenuKey | null>(null);
+  const [scrolled, setScrolled] = useState(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const navRef = useRef<HTMLElement>(null);
 
@@ -82,10 +83,16 @@ export function Navbar() {
     timeoutRef.current = setTimeout(() => setActiveMenu(null), 200);
   };
 
-  // Close mega menu on scroll
+  // Close mega menu on scroll AND track scroll position so the navbar can flip
+  // from fully transparent (over the hero) to a frosted white pill once the
+  // user has scrolled past the first viewport-ish.
   useEffect(() => {
-    const handleScroll = () => setActiveMenu(null);
-    window.addEventListener("scroll", handleScroll);
+    const handleScroll = () => {
+      setActiveMenu(null);
+      setScrolled(window.scrollY > 60);
+    };
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -96,8 +103,14 @@ export function Navbar() {
   ];
 
   return (
-    <header ref={navRef} className="sticky top-0 z-50 bg-white border-b border-neutral-100">
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <header
+      ref={navRef}
+      className={`sticky top-0 z-50 transition-[background-color,backdrop-filter,border-color,box-shadow] duration-300 ${
+        scrolled
+          ? "bg-white/85 backdrop-blur-md border-b border-neutral-100 shadow-[0_1px_0_rgba(0,0,0,0.02)]"
+          : "bg-transparent border-b border-transparent"
+      }`}
+    >  <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Left: Mobile hamburger + Desktop nav links */}
           <div className="flex items-center gap-8">
