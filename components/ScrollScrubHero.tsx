@@ -19,36 +19,34 @@ function LargeCard() {
   return (
     <Link
       href="/academie"
-      className="group relative overflow-hidden rounded-2xl block h-full min-h-[320px] md:min-h-0 ring-1 ring-white/20 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)]"
+      className="group relative block h-full min-h-[320px] md:min-h-0 rounded-2xl"
     >
-      {/* Transparent — lets the video show through. Subtle gradient at the bottom for text legibility only. */}
-      <div className="absolute inset-0 bg-gradient-to-t from-dark/75 via-dark/20 to-transparent group-hover:from-dark/85 transition-all duration-500" />
-
+      {/* No background — fully transparent. Text carries drop-shadow for legibility. */}
       <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8 lg:p-10">
-        <div className="hidden md:block">
-          <span className="font-body text-[11px] font-bold uppercase tracking-[0.3em] text-white/60 mb-2 block">
+        <div className="hidden md:block [&_*]:[text-shadow:0_2px_20px_rgba(0,0,0,0.6)]">
+          <span className="font-body text-[11px] font-bold uppercase tracking-[0.3em] text-white/80 mb-2 block">
             Cursuri Acreditate
           </span>
           <h2 className="font-display text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-medium text-white leading-[0.95]">
             Emma Nails<br />
             <span className="italic text-pink/95">Academy</span>
           </h2>
-          <p className="font-body text-sm text-white/60 leading-relaxed mt-3 max-w-sm">
+          <p className="font-body text-sm text-white/80 leading-relaxed mt-3 max-w-sm">
             Peste 15 ani de experiență. Diplomă acreditată, practică pe model real.
           </p>
           <div className="flex gap-5 mt-3">
             <div>
               <span className="font-display text-xl lg:text-2xl font-bold text-white">15+</span>
-              <p className="font-body text-[8px] uppercase tracking-[0.2em] text-white/40 mt-0.5">Ani</p>
+              <p className="font-body text-[8px] uppercase tracking-[0.2em] text-white/60 mt-0.5">Ani</p>
             </div>
             <div>
               <span className="font-display text-xl lg:text-2xl font-bold text-white">500+</span>
-              <p className="font-body text-[8px] uppercase tracking-[0.2em] text-white/40 mt-0.5">Cursante</p>
+              <p className="font-body text-[8px] uppercase tracking-[0.2em] text-white/60 mt-0.5">Cursante</p>
             </div>
           </div>
         </div>
         <div className="mt-0 md:mt-5">
-          <span className="inline-flex items-center gap-2 font-body text-[11px] font-semibold uppercase tracking-[0.15em] text-white border border-white/30 px-6 py-3 rounded-full group-hover:bg-white group-hover:text-dark transition-all duration-500 backdrop-blur-sm bg-white/5">
+          <span className="inline-flex items-center gap-2 font-body text-[11px] font-semibold uppercase tracking-[0.15em] text-white border border-white/50 px-6 py-3 rounded-full group-hover:bg-white group-hover:text-dark transition-all duration-500 backdrop-blur-md bg-black/20 shadow-[0_8px_30px_rgba(0,0,0,0.3)]">
             Vezi Cursurile
             <svg className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -75,34 +73,32 @@ function SmallCard({ href, label, title, titleAccent, description, stats, cta }:
   return (
     <Link
       href={href}
-      className="group relative overflow-hidden rounded-2xl block h-full min-h-[150px] md:min-h-0 ring-1 ring-white/20 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)]"
+      className="group relative block h-full min-h-[150px] md:min-h-0 rounded-2xl"
     >
-      {/* Transparent — lets the video show through */}
-      <div className="absolute inset-0 bg-gradient-to-t from-dark/80 via-dark/25 to-transparent group-hover:from-dark/90 transition-all duration-500" />
-
+      {/* No background — fully transparent. Text carries drop-shadow for legibility. */}
       <div className="absolute inset-0 flex flex-col justify-end p-4 md:p-6 lg:p-7">
-        <div className="hidden md:block">
-          <span className="font-body text-[10px] font-bold uppercase tracking-[0.3em] text-white/60 mb-1.5 block">
+        <div className="hidden md:block [&_*]:[text-shadow:0_2px_20px_rgba(0,0,0,0.6)]">
+          <span className="font-body text-[10px] font-bold uppercase tracking-[0.3em] text-white/80 mb-1.5 block">
             {label}
           </span>
           <h2 className="font-display text-3xl lg:text-4xl font-medium text-white leading-[0.95]">
             {title}<br />
             <span className="italic text-pink/95">{titleAccent}</span>
           </h2>
-          <p className="font-body text-xs text-white/55 leading-relaxed mt-1.5 max-w-xs">
+          <p className="font-body text-xs text-white/75 leading-relaxed mt-1.5 max-w-xs">
             {description}
           </p>
           <div className="flex gap-3 mt-2">
             {stats.map((s, i) => (
               <div key={i}>
                 <span className="font-display text-lg font-bold text-white">{s.value}</span>
-                <p className="font-body text-[7px] uppercase tracking-[0.2em] text-white/40 mt-0.5">{s.label}</p>
+                <p className="font-body text-[7px] uppercase tracking-[0.2em] text-white/60 mt-0.5">{s.label}</p>
               </div>
             ))}
           </div>
         </div>
         <div className="mt-0 md:mt-3">
-          <span className="inline-flex items-center gap-1.5 font-body text-[9px] md:text-[10px] font-semibold uppercase tracking-[0.15em] text-white border border-white/30 px-4 md:px-5 py-2 md:py-2.5 rounded-full group-hover:bg-white group-hover:text-dark transition-all duration-500 backdrop-blur-sm bg-white/5">
+          <span className="inline-flex items-center gap-1.5 font-body text-[9px] md:text-[10px] font-semibold uppercase tracking-[0.15em] text-white border border-white/50 px-4 md:px-5 py-2 md:py-2.5 rounded-full group-hover:bg-white group-hover:text-dark transition-all duration-500 backdrop-blur-md bg-black/20 shadow-[0_8px_30px_rgba(0,0,0,0.3)]">
             {cta}
             <svg className="w-2.5 h-2.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
