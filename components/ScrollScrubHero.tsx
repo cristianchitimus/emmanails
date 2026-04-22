@@ -13,55 +13,10 @@ interface ScrollScrubHeroProps {
 }
 
 /* ════════════════════════════════════════════════════
-   LARGE CARD (left) — transparent, lets video through
+   HERO CARD — transparent text-only panel over video
+   Used for both the Academy and Produse cards (equal size).
    ════════════════════════════════════════════════════ */
-function LargeCard() {
-  return (
-    <Link
-      href="/academie"
-      className="group relative block h-full min-h-[320px] md:min-h-0 rounded-2xl"
-    >
-      {/* No background — fully transparent. Text carries drop-shadow for legibility. */}
-      <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8 lg:p-10">
-        <div className="hidden md:block [&_*]:[text-shadow:0_2px_20px_rgba(0,0,0,0.6)]">
-          <span className="font-body text-[11px] font-bold uppercase tracking-[0.3em] text-white/80 mb-2 block">
-            Cursuri Acreditate
-          </span>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-medium text-white leading-[0.95]">
-            Emma Nails<br />
-            <span className="italic text-pink/95">Academy</span>
-          </h2>
-          <p className="font-body text-sm text-white/80 leading-relaxed mt-3 max-w-sm">
-            Peste 15 ani de experiență. Diplomă acreditată, practică pe model real.
-          </p>
-          <div className="flex gap-5 mt-3">
-            <div>
-              <span className="font-display text-xl lg:text-2xl font-bold text-white">15+</span>
-              <p className="font-body text-[8px] uppercase tracking-[0.2em] text-white/60 mt-0.5">Ani</p>
-            </div>
-            <div>
-              <span className="font-display text-xl lg:text-2xl font-bold text-white">500+</span>
-              <p className="font-body text-[8px] uppercase tracking-[0.2em] text-white/60 mt-0.5">Cursante</p>
-            </div>
-          </div>
-        </div>
-        <div className="mt-0 md:mt-5">
-          <span className="inline-flex items-center gap-2 font-body text-[11px] font-semibold uppercase tracking-[0.15em] text-white border border-white/50 px-6 py-3 rounded-full group-hover:bg-white group-hover:text-dark transition-all duration-500 backdrop-blur-md bg-black/20 shadow-[0_8px_30px_rgba(0,0,0,0.3)]">
-            Vezi Cursurile
-            <svg className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </span>
-        </div>
-      </div>
-    </Link>
-  );
-}
-
-/* ════════════════════════════════════════════════════
-   SMALL CARD (right) — 2 stacked
-   ════════════════════════════════════════════════════ */
-function SmallCard({ href, label, title, titleAccent, description, stats, cta }: {
+function HeroCard({ href, label, title, titleAccent, description, stats, cta }: {
   href: string;
   label: string;
   title: string;
@@ -73,34 +28,34 @@ function SmallCard({ href, label, title, titleAccent, description, stats, cta }:
   return (
     <Link
       href={href}
-      className="group relative block h-full min-h-[150px] md:min-h-0 rounded-2xl"
+      className="group relative block h-full min-h-[320px] md:min-h-0 rounded-2xl"
     >
       {/* No background — fully transparent. Text carries drop-shadow for legibility. */}
-      <div className="absolute inset-0 flex flex-col justify-end p-4 md:p-6 lg:p-7">
+      <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8 lg:p-10">
         <div className="hidden md:block [&_*]:[text-shadow:0_2px_20px_rgba(0,0,0,0.6)]">
-          <span className="font-body text-[10px] font-bold uppercase tracking-[0.3em] text-white/80 mb-1.5 block">
+          <span className="font-body text-[11px] font-bold uppercase tracking-[0.3em] text-white/80 mb-2 block">
             {label}
           </span>
-          <h2 className="font-display text-3xl lg:text-4xl font-medium text-white leading-[0.95]">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-medium text-white leading-[0.95]">
             {title}<br />
             <span className="italic text-pink/95">{titleAccent}</span>
           </h2>
-          <p className="font-body text-xs text-white/75 leading-relaxed mt-1.5 max-w-xs">
+          <p className="font-body text-sm text-white/80 leading-relaxed mt-3 max-w-sm">
             {description}
           </p>
-          <div className="flex gap-3 mt-2">
+          <div className="flex gap-5 mt-3">
             {stats.map((s, i) => (
               <div key={i}>
-                <span className="font-display text-lg font-bold text-white">{s.value}</span>
-                <p className="font-body text-[7px] uppercase tracking-[0.2em] text-white/60 mt-0.5">{s.label}</p>
+                <span className="font-display text-xl lg:text-2xl font-bold text-white">{s.value}</span>
+                <p className="font-body text-[8px] uppercase tracking-[0.2em] text-white/60 mt-0.5">{s.label}</p>
               </div>
             ))}
           </div>
         </div>
-        <div className="mt-0 md:mt-3">
-          <span className="inline-flex items-center gap-1.5 font-body text-[9px] md:text-[10px] font-semibold uppercase tracking-[0.15em] text-white border border-white/50 px-4 md:px-5 py-2 md:py-2.5 rounded-full group-hover:bg-white group-hover:text-dark transition-all duration-500 backdrop-blur-md bg-black/20 shadow-[0_8px_30px_rgba(0,0,0,0.3)]">
+        <div className="mt-0 md:mt-5">
+          <span className="inline-flex items-center gap-2 font-body text-[11px] font-semibold uppercase tracking-[0.15em] text-white border border-white/50 px-6 py-3 rounded-full group-hover:bg-white group-hover:text-dark transition-all duration-500 backdrop-blur-md bg-black/20 shadow-[0_8px_30px_rgba(0,0,0,0.3)]">
             {cta}
-            <svg className="w-2.5 h-2.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </span>
@@ -269,23 +224,22 @@ export function ScrollScrubHero(_props: ScrollScrubHeroProps = {}) {
         <div className="relative z-10 h-full flex items-center px-3 md:px-6 py-4 md:py-6">
           <div className="w-full max-w-[1400px] mx-auto">
             <div
-              className="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-4"
+              className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4"
               style={{ height: "calc(100vh - 2rem)" }}
             >
-              <div className="md:col-span-7 min-h-[320px] md:min-h-0">
-                <LargeCard />
-              </div>
-              <div className="md:col-span-5 grid grid-cols-2 md:grid-cols-1 gap-3 md:gap-4 min-h-[300px] md:min-h-0">
-                <SmallCard
+              <div className="min-h-[320px] md:min-h-0">
+                <HeroCard
                   href="/academie"
-                  label="Masterclass"
-                  title="Învață cu"
-                  titleAccent="Emma"
-                  description="Grupuri mici, atmosferă caldă."
-                  stats={[{ value: "8", label: "Cursuri" }, { value: "12", label: "Sesiuni" }]}
-                  cta="Academie"
+                  label="Cursuri Acreditate"
+                  title="Emma Nails"
+                  titleAccent="Academy"
+                  description="Peste 15 ani de experiență. Diplomă acreditată, practică pe model real."
+                  stats={[{ value: "15+", label: "Ani" }, { value: "500+", label: "Cursante" }]}
+                  cta="Vezi Cursurile"
                 />
-                <SmallCard
+              </div>
+              <div className="min-h-[320px] md:min-h-0">
+                <HeroCard
                   href="/produse"
                   label="Magazin Online"
                   title="Produse"
