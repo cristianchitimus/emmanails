@@ -17,10 +17,12 @@ import { useSectionProgress } from "./FadeStack";
      <video> fallback instead of the canvas.
 ───────────────────────────────────────────────────────────────────────── */
 
-/* Source video is 5s at 24fps, motion-interpolated to 96fps for the sequence
-   = 480 frames. 4x frame density (vs the original 120) quarters the scroll-
-   distance-per-frame and gives visibly smoother scrub on long sections. */
-const FRAME_COUNT = 480;
+/* Source video is 5s at 24fps = 120 native frames, extracted at 1920x1080.
+   We intentionally DO NOT motion-interpolate: at 4x density the interpolator
+   produces visible warping artifacts on organic motion (face, hands, hair).
+   Perceptual smoothness instead comes from the canvas cross-fading between
+   the two frames bracketing the fractional progress (see draw step). */
+const FRAME_COUNT = 120;
 const frameSrc = (i: number) =>
   `/videos/emma-frames/e${String(i + 1).padStart(3, "0")}.webp`;
 
@@ -40,7 +42,9 @@ export function DespreEmmaScrub() {
     return () => window.removeEventListener("resize", check);
   }, []);
 
-  // Preload all 480 frames on mount.
+  // Preload all 120 frames on mount. Wait for ALL to load before marking
+  // ready so scroll-scrub never lands on an unloaded frame (which would
+  // force the "walk backward" fallback and create a stuttery, broken look).
   useEffect(() => {
     if (isMobile) return;
     let cancelled = false;
@@ -51,10 +55,7 @@ export function DespreEmmaScrub() {
     const onOne = () => {
       if (cancelled) return;
       done++;
-      // As soon as the first frame is in we can start drawing something —
-      // the rest stream in the background. FadeStack only becomes visually
-      // active a couple of seconds into the scroll anyway.
-      if (done === 1) setFramesReady(true);
+      if (done === FRAME_COUNT) setFramesReady(true);
     };
 
     for (let i = 0; i < FRAME_COUNT; i++) {
@@ -92,31 +93,55 @@ export function DespreEmmaScrub() {
     ctx.imageSmoothingEnabled = true;
     ctx.imageSmoothingQuality = "high";
 
-    const targetIdx = Math.round(progress * (FRAME_COUNT - 1));
+    // Fractional position across the frame sequence — the integer part picks
+    // the primary frame, the fractional part is the cross-fade weight to the
+    // NEXT frame. Drawing base at alpha=1 then overlay at alpha=frac gives a
+    // perceptual smoothness roughly equivalent to 2x–3x frame density, but
+    // without the warping you get from motion-interpolated synthetic frames.
+    const posFloat = progress * (FRAME_COUNT - 1);
+    const baseIdxRaw = Math.floor(posFloat);
+    const frac = posFloat - baseIdxRaw;
+
     // Walk backward to the nearest already-loaded frame if the target isn't in
-    // yet — avoids a blank canvas on early scroll.
-    let idx = Math.min(FRAME_COUNT - 1, Math.max(0, targetIdx));
-    while (idx > 0 && !images[idx]?.complete) idx--;
+    // yet — avoids a blank canvas on early scroll (only relevant pre-ready).
+    let baseIdx = Math.min(FRAME_COUNT - 1, Math.max(0, baseIdxRaw));
+    while (baseIdx > 0 && !images[baseIdx]?.complete) baseIdx--;
+    const nextIdx = Math.min(FRAME_COUNT - 1, baseIdx + 1);
 
-    const img = images[idx];
-    if (!img || !img.complete || img.naturalWidth === 0) return;
+    const baseImg = images[baseIdx];
+    if (!baseImg || !baseImg.complete || baseImg.naturalWidth === 0) return;
+    const nextImg = images[nextIdx];
+    const canBlend =
+      nextIdx !== baseIdx &&
+      nextImg &&
+      nextImg.complete &&
+      nextImg.naturalWidth !== 0 &&
+      frac > 0;
 
-    // object-cover
-    const imgAR = img.naturalWidth / img.naturalHeight;
+    // object-cover geometry (computed once from base frame dimensions — all
+    // frames share the same native resolution so geometry is reusable).
+    const imgAR = baseImg.naturalWidth / baseImg.naturalHeight;
     const canvasAR = w / h;
     let sx: number, sy: number, sw: number, sh: number;
     if (imgAR > canvasAR) {
-      sh = img.naturalHeight;
+      sh = baseImg.naturalHeight;
       sw = sh * canvasAR;
-      sx = (img.naturalWidth - sw) / 2;
+      sx = (baseImg.naturalWidth - sw) / 2;
       sy = 0;
     } else {
-      sw = img.naturalWidth;
+      sw = baseImg.naturalWidth;
       sh = sw / canvasAR;
       sx = 0;
-      sy = (img.naturalHeight - sh) / 2;
+      sy = (baseImg.naturalHeight - sh) / 2;
     }
-    ctx.drawImage(img, sx, sy, sw, sh, 0, 0, w, h);
+
+    ctx.globalAlpha = 1;
+    ctx.drawImage(baseImg, sx, sy, sw, sh, 0, 0, w, h);
+    if (canBlend) {
+      ctx.globalAlpha = frac;
+      ctx.drawImage(nextImg!, sx, sy, sw, sh, 0, 0, w, h);
+      ctx.globalAlpha = 1;
+    }
   }, [progress, framesReady, isMobile]);
 
   // Text reveal: rise + fade driven by the section's first ~40%.
@@ -134,20 +159,24 @@ export function DespreEmmaScrub() {
       <div className="grid grid-cols-1 lg:grid-cols-2 w-full h-full">
         {/* ─── Left: scrubbed portrait ─── */}
         <div className="relative w-full h-full overflow-hidden bg-[#ece2dc]">
-          {!isMobile ? (
+          {/* Fallback: looping video.
+              - On mobile: always shown (no scrub, perf reasons).
+              - On desktop: shown UNDER the canvas until all frames preload,
+                then the canvas fades in over it. Keeping it mounted means
+                the user never sees an empty panel while ~4MB of WebPs load. */}
+          <video
+            src="/videos/emma.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          {!isMobile && (
             <canvas
               ref={canvasRef}
               className="absolute inset-0 w-full h-full"
-              style={{ opacity: framesReady ? 1 : 0, transition: "opacity 600ms ease-out" }}
-            />
-          ) : (
-            <video
-              src="/videos/emma.mp4"
-              autoPlay
-              muted
-              loop
-              playsInline
-              className="absolute inset-0 w-full h-full object-cover"
+              style={{ opacity: framesReady ? 1 : 0, transition: "opacity 400ms ease-out" }}
             />
           )}
           {/* Subtle vignette on the right edge to smooth the seam into the text panel */}
