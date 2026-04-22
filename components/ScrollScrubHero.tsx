@@ -2,39 +2,27 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 
+/* Note: card images have been removed — the cards are now transparent
+   glass panels over the scroll-scrubbed video. Props are kept (and ignored)
+   to avoid breaking the SSR call site that still passes hero image settings. */
 interface ScrollScrubHeroProps {
   heroLeftImage?: string;
   heroRightTopImage?: string;
   heroRightBottomImage?: string;
 }
 
-const DEFAULT_IMAGES = {
-  left: "/uploads/portfolio-WhatsApp_Image_2026-04-07_at_17_58_35__4_.jpeg",
-  rightTop: "/uploads/site-image.jpg",
-  rightBottom: "/uploads/brand-Foto_031.jpg",
-};
-
 /* ════════════════════════════════════════════════════
    LARGE CARD (left) — transparent, lets video through
    ════════════════════════════════════════════════════ */
-function LargeCard({ image }: { image: string }) {
+function LargeCard() {
   return (
     <Link
       href="/academie"
-      className="group relative overflow-hidden rounded-2xl block h-full min-h-[320px] md:min-h-0 ring-1 ring-white/15 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)]"
+      className="group relative overflow-hidden rounded-2xl block h-full min-h-[320px] md:min-h-0 ring-1 ring-white/20 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)]"
     >
-      <Image
-        src={image}
-        alt="Emma Nails Academy"
-        fill
-        className="object-cover img-zoom"
-        sizes="(max-width: 768px) 100vw, 58vw"
-        priority
-      />
-      {/* Stronger gradient — cards need to pop over the video */}
-      <div className="absolute inset-0 bg-gradient-to-t from-dark/85 via-dark/40 to-dark/10 group-hover:from-dark/90 transition-all duration-500" />
+      {/* Transparent — lets the video show through. Subtle gradient at the bottom for text legibility only. */}
+      <div className="absolute inset-0 bg-gradient-to-t from-dark/75 via-dark/20 to-transparent group-hover:from-dark/85 transition-all duration-500" />
 
       <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8 lg:p-10">
         <div className="hidden md:block">
@@ -75,8 +63,7 @@ function LargeCard({ image }: { image: string }) {
 /* ════════════════════════════════════════════════════
    SMALL CARD (right) — 2 stacked
    ════════════════════════════════════════════════════ */
-function SmallCard({ image, href, label, title, titleAccent, description, stats, cta }: {
-  image: string;
+function SmallCard({ href, label, title, titleAccent, description, stats, cta }: {
   href: string;
   label: string;
   title: string;
@@ -88,18 +75,10 @@ function SmallCard({ image, href, label, title, titleAccent, description, stats,
   return (
     <Link
       href={href}
-      className="group relative overflow-hidden rounded-2xl block h-full min-h-[150px] md:min-h-0 ring-1 ring-white/15 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)]"
+      className="group relative overflow-hidden rounded-2xl block h-full min-h-[150px] md:min-h-0 ring-1 ring-white/20 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)]"
     >
-      <Image
-        src={image}
-        alt={title}
-        fill
-        className="object-cover img-zoom"
-        style={{ objectPosition: href === "/academie" ? "center 30%" : "center" }}
-        sizes="(max-width: 768px) 50vw, 42vw"
-        priority
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-dark/90 via-dark/45 to-dark/15 group-hover:from-dark/95 transition-all duration-500" />
+      {/* Transparent — lets the video show through */}
+      <div className="absolute inset-0 bg-gradient-to-t from-dark/80 via-dark/25 to-transparent group-hover:from-dark/90 transition-all duration-500" />
 
       <div className="absolute inset-0 flex flex-col justify-end p-4 md:p-6 lg:p-7">
         <div className="hidden md:block">
@@ -141,14 +120,7 @@ function SmallCard({ image, href, label, title, titleAccent, description, stats,
    Video is scrubbed via currentTime based on scroll
    progress. Lerp smoothing for fluid playback.
    ════════════════════════════════════════════════════ */
-export function ScrollScrubHero({
-  heroLeftImage,
-  heroRightTopImage,
-  heroRightBottomImage,
-}: ScrollScrubHeroProps) {
-  const leftImg = heroLeftImage || DEFAULT_IMAGES.left;
-  const rightTopImg = heroRightTopImage || DEFAULT_IMAGES.rightTop;
-  const rightBottomImg = heroRightBottomImage || DEFAULT_IMAGES.rightBottom;
+export function ScrollScrubHero(_props: ScrollScrubHeroProps = {}) {
 
   const trackRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -305,11 +277,10 @@ export function ScrollScrubHero({
               style={{ height: "calc(100vh - 2rem)" }}
             >
               <div className="md:col-span-7 min-h-[320px] md:min-h-0">
-                <LargeCard image={leftImg} />
+                <LargeCard />
               </div>
               <div className="md:col-span-5 grid grid-cols-2 md:grid-cols-1 gap-3 md:gap-4 min-h-[300px] md:min-h-0">
                 <SmallCard
-                  image={rightTopImg}
                   href="/academie"
                   label="Masterclass"
                   title="Învață cu"
@@ -319,7 +290,6 @@ export function ScrollScrubHero({
                   cta="Academie"
                 />
                 <SmallCard
-                  image={rightBottomImg}
                   href="/produse"
                   label="Magazin Online"
                   title="Produse"
