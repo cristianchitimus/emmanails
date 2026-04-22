@@ -39,7 +39,16 @@ function HeroCard({ href, label, title, titleAccent, description, stats, cta }: 
       className="group relative block h-full min-h-[320px] md:min-h-0 rounded-2xl"
     >
       <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8 lg:p-10">
-        <div className="hidden md:block [&_*]:[text-shadow:0_2px_20px_rgba(0,0,0,0.6)]">
+        <div
+          className="hidden md:block"
+          style={{
+            // Two-layer shadow: tight dark edge for crispness, wide soft halo for depth.
+            // Applied to all descendants via the trick of setting it on the block root
+            // (inherits via `text-shadow` on every text node).
+            textShadow:
+              "0 2px 6px rgba(0,0,0,0.9), 0 8px 40px rgba(0,0,0,0.55)",
+          }}
+        >
           <span className="font-body text-[11px] font-bold uppercase tracking-[0.3em] text-white/80 mb-2 block">
             {label}
           </span>
@@ -89,6 +98,7 @@ export function ScrollScrubHero(_props: ScrollScrubHeroProps = {}) {
 
   const [isMobile, setIsMobile] = useState(false);
   const [framesReady, setFramesReady] = useState(false);
+  const [textVisible, setTextVisible] = useState(false);
 
   // Detect mobile (sub-md breakpoint → video fallback)
   useEffect(() => {
@@ -97,6 +107,19 @@ export function ScrollScrubHero(_props: ScrollScrubHeroProps = {}) {
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
   }, []);
+
+  // Delayed fade-in: wait until background is ready, then give it a beat before
+  // the text materializes. On mobile the video starts instantly, so shorter delay.
+  useEffect(() => {
+    if (framesReady) {
+      const t = setTimeout(() => setTextVisible(true), 500);
+      return () => clearTimeout(t);
+    }
+    if (isMobile) {
+      const t = setTimeout(() => setTextVisible(true), 700);
+      return () => clearTimeout(t);
+    }
+  }, [framesReady, isMobile]);
 
   // ─── Preload all frames as Image objects (desktop only) ──────────────
   useEffect(() => {
@@ -314,15 +337,8 @@ export function ScrollScrubHero(_props: ScrollScrubHeroProps = {}) {
           />
         )}
 
-        {/* ────── Cinematic overlay ────── */}
-        <div className="absolute inset-0 bg-dark/30 pointer-events-none" />
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.35) 100%)",
-          }}
-        />
+        {/* No overlays — video shows at full generated brightness.
+            Text legibility is carried by per-text-node drop-shadows instead. */}
 
         {/* ────── Initial backdrop while first frame decodes ────── */}
         {!framesReady && !isMobile && (
@@ -335,55 +351,68 @@ export function ScrollScrubHero(_props: ScrollScrubHeroProps = {}) {
           />
         )}
 
-        {/* ────── Bento grid — rises + fades with scroll progress ────── */}
+        {/* ────── Text layer: fades in once, then scroll-driven rise + fade out ────── */}
         <div
-          className="relative z-10 h-full flex items-center px-3 md:px-6 py-4 md:py-6 will-change-transform"
-          style={{
-            transform:
-              "translate3d(0, calc(var(--hero-progress, 0) * -120px), 0)",
-            opacity: "calc((1 - var(--hero-progress, 0)) * 4)",
-          }}
+          className={`absolute inset-0 z-10 transition-opacity ease-out ${
+            textVisible ? "opacity-100" : "opacity-0"
+          }`}
+          style={{ transitionDuration: "1400ms" }}
         >
-          <div className="w-full max-w-[1400px] mx-auto">
-            <div
-              className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4"
-              style={{ height: "calc(100vh - 2rem)" }}
-            >
-              <div className="min-h-[320px] md:min-h-0">
-                <HeroCard
-                  href="/academie"
-                  label="Cursuri Acreditate"
-                  title="Emma Nails"
-                  titleAccent="Academy"
-                  description="Peste 15 ani de experiență. Diplomă acreditată, practică pe model real."
-                  stats={[{ value: "15+", label: "Ani" }, { value: "500+", label: "Cursante" }]}
-                  cta="Vezi Cursurile"
-                />
-              </div>
-              <div className="min-h-[320px] md:min-h-0">
-                <HeroCard
-                  href="/produse"
-                  label="Magazin Online"
-                  title="Produse"
-                  titleAccent="Profesionale"
-                  description="Geluri, baze, topuri și instrumente — formulă originală."
-                  stats={[{ value: "110+", label: "Produse" }, { value: "7", label: "Categorii" }]}
-                  cta="Shop"
-                />
+          {/* Inner wrapper handles the scroll-driven transform + opacity.
+              Kept separate from the outer fade-in so the two opacities multiply cleanly. */}
+          <div
+            className="relative h-full flex items-center px-3 md:px-6 py-4 md:py-6 will-change-transform"
+            style={{
+              transform:
+                "translate3d(0, calc(var(--hero-progress, 0) * -120px), 0)",
+              opacity: "calc((1 - var(--hero-progress, 0)) * 4)",
+            }}
+          >
+            <div className="w-full max-w-[1400px] mx-auto">
+              <div
+                className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4"
+                style={{ height: "calc(100vh - 2rem)" }}
+              >
+                <div className="min-h-[320px] md:min-h-0">
+                  <HeroCard
+                    href="/academie"
+                    label="Cursuri Acreditate"
+                    title="Emma Nails"
+                    titleAccent="Academy"
+                    description="Peste 15 ani de experiență. Diplomă acreditată, practică pe model real."
+                    stats={[{ value: "15+", label: "Ani" }, { value: "500+", label: "Cursante" }]}
+                    cta="Vezi Cursurile"
+                  />
+                </div>
+                <div className="min-h-[320px] md:min-h-0">
+                  <HeroCard
+                    href="/produse"
+                    label="Magazin Online"
+                    title="Produse"
+                    titleAccent="Profesionale"
+                    description="Geluri, baze, topuri și instrumente — formulă originală."
+                    stats={[{ value: "110+", label: "Produse" }, { value: "7", label: "Categorii" }]}
+                    cta="Shop"
+                  />
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* ────── Scroll indicator ────── */}
-        <div
-          className="hidden md:flex absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex-col items-center gap-2 text-white/70 pointer-events-none"
-          style={{ opacity: "calc(1 - var(--hero-progress, 0) * 6)" }}
-        >
-          <span className="font-body text-[10px] uppercase tracking-[0.3em]">Scroll</span>
-          <svg className="w-4 h-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-          </svg>
+          {/* ────── Scroll indicator (inside fade-in wrapper so it appears with the text) ────── */}
+          <div
+            className="hidden md:flex absolute bottom-6 left-1/2 -translate-x-1/2 flex-col items-center gap-2 text-white/80 pointer-events-none"
+            style={{
+              opacity: "calc(1 - var(--hero-progress, 0) * 6)",
+              textShadow:
+                "0 2px 6px rgba(0,0,0,0.9), 0 8px 40px rgba(0,0,0,0.55)",
+            }}
+          >
+            <span className="font-body text-[10px] uppercase tracking-[0.3em]">Scroll</span>
+            <svg className="w-4 h-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
+          </div>
         </div>
       </div>
     </section>
