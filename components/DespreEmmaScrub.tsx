@@ -17,10 +17,10 @@ import { useSectionProgress } from "./FadeStack";
      <video> fallback instead of the canvas.
 ───────────────────────────────────────────────────────────────────────── */
 
-/* Source video is 5s at 24fps, motion-interpolated to 48fps for the sequence
-   = 240 frames. 2x frame density (vs the previous 120) halves the scroll-
-   distance-per-frame and gives noticeably more fluid motion during scrub. */
-const FRAME_COUNT = 240;
+/* Source video is 5s at 24fps, motion-interpolated to 96fps for the sequence
+   = 480 frames. 4x frame density (vs the original 120) quarters the scroll-
+   distance-per-frame and gives visibly smoother scrub on long sections. */
+const FRAME_COUNT = 480;
 const frameSrc = (i: number) =>
   `/videos/emma-frames/e${String(i + 1).padStart(3, "0")}.webp`;
 
@@ -40,7 +40,7 @@ export function DespreEmmaScrub() {
     return () => window.removeEventListener("resize", check);
   }, []);
 
-  // Preload all 240 frames on mount.
+  // Preload all 480 frames on mount.
   useEffect(() => {
     if (isMobile) return;
     let cancelled = false;
