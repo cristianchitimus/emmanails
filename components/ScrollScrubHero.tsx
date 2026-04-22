@@ -74,6 +74,7 @@ function HeroCard({ href, label, title, titleAccent, description, stats, cta }: 
 export function ScrollScrubHero(_props: ScrollScrubHeroProps = {}) {
 
   const trackRef = useRef<HTMLDivElement>(null);
+  const stickyRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isMobile, setIsMobile] = useState(false);
   const [videoReady, setVideoReady] = useState(false);
@@ -91,8 +92,9 @@ export function ScrollScrubHero(_props: ScrollScrubHeroProps = {}) {
     if (isMobile) return;
 
     const track = trackRef.current;
+    const sticky = stickyRef.current;
     const video = videoRef.current;
-    if (!track || !video) return;
+    if (!track || !sticky || !video) return;
 
     // Prevent autoplay loop — we control currentTime manually
     video.pause();
@@ -101,6 +103,15 @@ export function ScrollScrubHero(_props: ScrollScrubHeroProps = {}) {
     let targetTime = 0;
     let currentTime = 0;
     let running = true;
+
+    const writeProgress = () => {
+      const duration = video.duration;
+      if (!duration || !isFinite(duration)) return;
+      // Use the *smoothed* currentTime so the text animation stays perfectly
+      // in sync with what's visible on screen (video is lerped, not instant).
+      const smoothed = Math.max(0, Math.min(1, currentTime / duration));
+      sticky.style.setProperty("--hero-progress", String(smoothed));
+    };
 
     const tick = () => {
       if (!running) return;
@@ -113,6 +124,7 @@ export function ScrollScrubHero(_props: ScrollScrubHeroProps = {}) {
         } catch {
           // Some browsers throw if not ready yet — ignore
         }
+        writeProgress();
       }
       rafId = requestAnimationFrame(tick);
     };
@@ -142,6 +154,7 @@ export function ScrollScrubHero(_props: ScrollScrubHeroProps = {}) {
       try {
         video.currentTime = currentTime;
       } catch {}
+      writeProgress();
       rafId = requestAnimationFrame(tick);
     };
 
@@ -185,7 +198,10 @@ export function ScrollScrubHero(_props: ScrollScrubHeroProps = {}) {
       // Mobile: single viewport — video just loops in background.
       className="relative w-full bg-dark md:h-[250vh]"
     >
-      <div className="sticky top-0 h-screen w-full overflow-hidden">
+      <div
+        ref={stickyRef}
+        className="sticky top-0 h-screen w-full overflow-hidden"
+      >
         {/* ────── Video background ────── */}
         <video
           ref={videoRef}
@@ -220,8 +236,18 @@ export function ScrollScrubHero(_props: ScrollScrubHeroProps = {}) {
           />
         )}
 
-        {/* ────── Bento grid — same split as before, now floating over video ────── */}
-        <div className="relative z-10 h-full flex items-center px-3 md:px-6 py-4 md:py-6">
+        {/* ────── Bento grid — floats over video, rises + fades as video progresses ────── */}
+        <div
+          className="relative z-10 h-full flex items-center px-3 md:px-6 py-4 md:py-6 will-change-transform"
+          style={{
+            // Drift upward as the video plays, fade out in the last ~25% of the scrub.
+            // Both are keyed to --hero-progress (0 → 1) set in the scroll tick.
+            transform:
+              "translate3d(0, calc(var(--hero-progress, 0) * -120px), 0)",
+            opacity:
+              "calc((1 - var(--hero-progress, 0)) * 4)",
+          }}
+        >
           <div className="w-full max-w-[1400px] mx-auto">
             <div
               className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4"
@@ -253,8 +279,13 @@ export function ScrollScrubHero(_props: ScrollScrubHeroProps = {}) {
           </div>
         </div>
 
-        {/* ────── Scroll indicator — only desktop, fades once you start scrolling ────── */}
-        <div className="hidden md:flex absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex-col items-center gap-2 text-white/70 pointer-events-none">
+        {/* ────── Scroll indicator — fades faster so it's gone early ────── */}
+        <div
+          className="hidden md:flex absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex-col items-center gap-2 text-white/70 pointer-events-none"
+          style={{
+            opacity: "calc(1 - var(--hero-progress, 0) * 6)",
+          }}
+        >
           <span className="font-body text-[10px] uppercase tracking-[0.3em]">Scroll</span>
           <svg className="w-4 h-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
