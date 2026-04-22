@@ -96,114 +96,148 @@ export default async function HomePage() {
           FADE STACK — every section below becomes a pinned, crossfading panel
       ═══════════════════════════════════════════════════════════════════ */}
       <FadeStack heightPerSectionVh={120} overlap={0.35}>
-        {/* ─── 1. Best sellers ─── */}
+        {/* ─── 1. Shop + Academie combined (one scroll reveals both) ─── */}
         <Panel
           style={{
             background:
-              "linear-gradient(180deg, #fdf6f3 0%, #ffffff 50%, #faf3f0 100%)",
+              "linear-gradient(180deg, #fdf6f3 0%, #ffffff 50%, #f5e8e5 100%)",
           }}
         >
-          <div className="text-center mb-8 md:mb-10">
-            <h2 className="font-body text-base md:text-lg font-semibold uppercase tracking-[0.25em] text-dark">
-              <TextWipe>CELE MAI POPULARE</TextWipe>
-            </h2>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-8">
-            {featuredProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-          <div className="text-center mt-8 md:mt-10">
-            <Link href="/produse" className="btn-secondary">
-              Vezi toate {productCount} produse
-            </Link>
+          <div className="space-y-6 md:space-y-10">
+            {/* Shop row */}
+            <div>
+              <div className="flex items-center justify-between gap-4 mb-4 md:mb-6">
+                <h2 className="font-body text-xs md:text-sm font-semibold uppercase tracking-[0.25em] text-dark">
+                  <TextWipe>Cele mai populare</TextWipe>
+                </h2>
+                <Link
+                  href="/produse"
+                  className="font-body text-xs md:text-sm font-semibold uppercase tracking-[0.2em] text-pink hover:text-dark transition-colors whitespace-nowrap"
+                >
+                  Vezi toate {productCount} →
+                </Link>
+              </div>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6">
+                {featuredProducts.map((product) => (
+                  <ProductCard key={product.id} product={product} />
+                ))}
+              </div>
+            </div>
+
+            {/* Divider */}
+            <div className="h-px bg-gradient-to-r from-transparent via-pink/30 to-transparent" />
+
+            {/* Academie row */}
+            <div>
+              <div className="flex items-center justify-between gap-4 mb-4 md:mb-6">
+                <div>
+                  <p className="font-body text-[10px] md:text-xs font-semibold uppercase tracking-[0.25em] text-pink mb-1">
+                    <TextWipe>Academie</TextWipe>
+                  </p>
+                  <h2 className="font-display text-xl md:text-2xl lg:text-3xl font-medium leading-tight">
+                    <TextWipe delay={150}>
+                      Cursuri <span className="italic text-pink">profesionale</span>
+                    </TextWipe>
+                  </h2>
+                </div>
+                <Link
+                  href="/academie"
+                  className="font-body text-xs md:text-sm font-semibold uppercase tracking-[0.2em] text-pink hover:text-dark transition-colors whitespace-nowrap"
+                >
+                  Toate cele {courseCount} →
+                </Link>
+              </div>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5">
+                {featuredCourses.map((course) => (
+                  <CourseCard key={course.id} course={course} />
+                ))}
+              </div>
+            </div>
           </div>
         </Panel>
 
-        {/* ─── 2. Cursuri ─── */}
-        <Panel
-          style={{
-            background:
-              "linear-gradient(180deg, #f5e8e5 0%, #f7ece7 30%, #ffffff 100%)",
-          }}
-        >
-          <div className="text-center mb-8 md:mb-10">
-            <p className="section-label mb-3">
-              <TextWipe>Academie</TextWipe>
-            </p>
-            <h2 className="font-display text-3xl md:text-4xl font-medium">
-              <TextWipe delay={200}>
-                Cursuri <span className="italic text-pink">profesionale</span>
-              </TextWipe>
-            </h2>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5">
-            {featuredCourses.map((course) => (
-              <CourseCard key={course.id} course={course} />
-            ))}
-          </div>
-          <div className="text-center mt-8 md:mt-10">
-            <Link href="/academie" className="btn-primary">
-              Toate cele {courseCount} cursuri
-            </Link>
-          </div>
-        </Panel>
-
-        {/* ─── 3. Despre Emma — video scrub + fading text ─── */}
+        {/* ─── 2. Despre Emma — video scrub + fading text ─── */}
         <DespreEmmaScrub />
 
-        {/* ─── 4. Benefits ─── */}
+        {/* ─── 3. Benefits + Stats combined (one scroll reveals both) ─── */}
         <Panel
           style={{
             background:
               "linear-gradient(180deg, #ffffff 0%, #faf3f0 50%, #f5e8e5 100%)",
           }}
         >
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-8">
-            {[
-              {
-                icon: "✨",
-                title: "Formulă Originală",
-                desc: "Produse dezvoltate din 15+ ani de experiență în salon",
-              },
-              {
-                icon: "🎓",
-                title: "Diplomă Acreditată",
-                desc: "Certificare oficială recunoscută național",
-              },
-              {
-                icon: "👩‍🏫",
-                title: "Practică Reală",
-                desc: "Fiecare cursantă lucrează pe model real",
-              },
-              {
-                icon: "📦",
-                title: "Livrare Rapidă",
-                desc: "Comenzi procesate în 24h, toată România",
-              },
-            ].map((item) => (
-              <div key={item.title} className="text-center group">
-                <div
-                  className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-all duration-500"
-                  style={{
-                    background:
-                      "linear-gradient(135deg, #f5e8e5 0%, #e8cec5 100%)",
-                  }}
-                >
-                  <span className="text-xl">{item.icon}</span>
+          <div className="space-y-8 md:space-y-12">
+            {/* Benefits row */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-8">
+              {[
+                {
+                  icon: "✨",
+                  title: "Formulă Originală",
+                  desc: "Produse dezvoltate din 15+ ani de experiență în salon",
+                },
+                {
+                  icon: "🎓",
+                  title: "Diplomă Acreditată",
+                  desc: "Certificare oficială recunoscută național",
+                },
+                {
+                  icon: "👩‍🏫",
+                  title: "Practică Reală",
+                  desc: "Fiecare cursantă lucrează pe model real",
+                },
+                {
+                  icon: "📦",
+                  title: "Livrare Rapidă",
+                  desc: "Comenzi procesate în 24h, toată România",
+                },
+              ].map((item) => (
+                <div key={item.title} className="text-center group">
+                  <div
+                    className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-all duration-500"
+                    style={{
+                      background:
+                        "linear-gradient(135deg, #f5e8e5 0%, #e8cec5 100%)",
+                    }}
+                  >
+                    <span className="text-xl">{item.icon}</span>
+                  </div>
+                  <h3 className="font-body text-sm font-semibold uppercase tracking-wider mb-1">
+                    {item.title}
+                  </h3>
+                  <p className="font-body text-xs text-dark-400 leading-relaxed">
+                    {item.desc}
+                  </p>
                 </div>
-                <h3 className="font-body text-sm font-semibold uppercase tracking-wider mb-1">
-                  {item.title}
-                </h3>
-                <p className="font-body text-xs text-dark-400 leading-relaxed">
-                  {item.desc}
-                </p>
-              </div>
-            ))}
+              ))}
+            </div>
+
+            {/* Divider */}
+            <div className="h-px bg-gradient-to-r from-transparent via-pink/30 to-transparent" />
+
+            {/* Stats row */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+              {[
+                { target: 15, suffix: "+", label: "Ani de Experiență" },
+                { target: productCount, suffix: "+", label: "Produse Profesionale" },
+                { target: 500, suffix: "+", label: "Cursante Formate" },
+                { target: courseCount, suffix: "", label: "Cursuri Disponibile" },
+              ].map((s) => (
+                <div key={s.label} className="text-center">
+                  <CountUp
+                    target={s.target}
+                    suffix={s.suffix}
+                    className="font-display text-3xl md:text-4xl font-bold text-pink"
+                  />
+                  <p className="font-body text-[11px] uppercase tracking-[0.2em] text-dark-400 mt-1">
+                    {s.label}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </Panel>
 
-        {/* ─── 5. Testimonials (trimmed to 2 to fit 100vh comfortably) ─── */}
+        {/* ─── 4. Testimonials (trimmed to 2 to fit 100vh comfortably) ─── */}
         <Panel
           style={{
             background:
@@ -276,35 +310,7 @@ export default async function HomePage() {
           </div>
         </Panel>
 
-        {/* ─── 6. Stats ─── */}
-        <Panel
-          style={{
-            background:
-              "linear-gradient(135deg, #e8cec5 0%, #f5e8e5 40%, #f3e5f5 100%)",
-          }}
-        >
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-            {[
-              { target: 15, suffix: "+", label: "Ani de Experiență" },
-              { target: productCount, suffix: "+", label: "Produse Profesionale" },
-              { target: 500, suffix: "+", label: "Cursante Formate" },
-              { target: courseCount, suffix: "", label: "Cursuri Disponibile" },
-            ].map((s) => (
-              <div key={s.label} className="text-center">
-                <CountUp
-                  target={s.target}
-                  suffix={s.suffix}
-                  className="font-display text-3xl md:text-4xl font-bold text-pink"
-                />
-                <p className="font-body text-[11px] uppercase tracking-[0.2em] text-dark-400 mt-1">
-                  {s.label}
-                </p>
-              </div>
-            ))}
-          </div>
-        </Panel>
-
-        {/* ─── 7. Final CTA ─── */}
+        {/* ─── 5. Final CTA ─── */}
         <Panel
           className="text-center"
           style={{

@@ -258,7 +258,7 @@ export function ScrollScrubHero(_props: ScrollScrubHeroProps = {}) {
       if (!running) return;
       const diff = targetIndex - currentIndex;
       if (Math.abs(diff) > 0.01) {
-        currentIndex += diff * 0.18;
+        currentIndex += diff * 0.12;
         const i = Math.round(currentIndex);
         if (i !== lastDrawnIndex) {
           drawFrame(i);
@@ -316,7 +316,7 @@ export function ScrollScrubHero(_props: ScrollScrubHeroProps = {}) {
   return (
     <section
       ref={trackRef}
-      className="relative w-full bg-dark md:h-[250vh]"
+      className="relative w-full bg-dark md:h-[400vh]"
     >
       <div
         ref={stickyRef}
