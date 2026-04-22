@@ -16,22 +16,24 @@ export function AnnouncementBar() {
 
   return (
     <div
-      className="overflow-hidden text-white"
+      className="overflow-hidden"
       style={{
-        // Rose gold band: deep rose → warm gold highlight in the middle → back.
-        // The 5-stop gradient gives it depth instead of looking like one flat colour.
+        // Rose silver: cool, light pinkish-silver. Mid stop is almost porcelain
+        // white with a faint rose flush; edges deepen into a desaturated mauve
+        // so the band reads as silver-with-rose-undertone, not pink.
         background:
-          "linear-gradient(90deg, #9c5563 0%, #b76e79 22%, #d4a574 50%, #b76e79 78%, #9c5563 100%)",
+          "linear-gradient(90deg, #c9b8bc 0%, #ddccd0 22%, #efe1e4 50%, #ddccd0 78%, #c9b8bc 100%)",
+        color: "#3a2a2d",
       }}
     >
       <div className="animate-marquee flex whitespace-nowrap py-2.5">
         {repeated.map((msg, i) => (
           <span
             key={i}
-            className="mx-6 text-[11px] font-body font-medium uppercase tracking-widest"
+            className="mx-6 text-[11px] font-body font-semibold uppercase tracking-widest"
             style={{
-              // Subtle dark shadow for legibility on the lighter midpoint of the gradient.
-              textShadow: "0 1px 2px rgba(80, 30, 40, 0.35)",
+              // Faint white halo lifts the dark mauve type off the silver mid-tone.
+              textShadow: "0 1px 0 rgba(255,255,255,0.45)",
             }}
           >
             {msg}

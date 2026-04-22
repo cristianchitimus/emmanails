@@ -112,7 +112,7 @@ export default async function HomePage() {
       {/* ═══════════════════════════════════════════════════════════════════
           FADE STACK — every section below becomes a pinned, crossfading panel
       ═══════════════════════════════════════════════════════════════════ */}
-      <FadeStack heightPerSectionVh={200} overlap={0.25}>
+      <FadeStack heightPerSectionVh={200} slideBand={0.4}>
         {/* ─── 1. Shop + Academie combined (one scroll reveals both) ─── */}
         <Panel
           style={{
