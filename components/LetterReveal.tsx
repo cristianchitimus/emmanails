@@ -24,6 +24,12 @@ interface LetterRevealProps {
   /** When true, animation runs once on mount (no IntersectionObserver). Use
       when the element is guaranteed to be in viewport on load (e.g. hero). */
   immediate?: boolean;
+  /** Externally-controlled trigger. When provided, takes precedence over both
+      `immediate` and the IntersectionObserver. Set to true to play the
+      animation, false to keep the text hidden. Useful inside FadeStack panels
+      where the section is always mounted but only logically "visible" when
+      its slice is active — pass `useSectionProgress() > threshold`. */
+  trigger?: boolean;
 }
 
 /* ─────────────────────────────────────────────────────────────────────────
@@ -49,16 +55,24 @@ export function LetterReveal({
   style,
   as: Tag = "span",
   immediate = false,
+  trigger,
 }: LetterRevealProps) {
   const ref = useRef<HTMLElement | null>(null);
-  const [visible, setVisible] = useState(false);
+  const [internalVisible, setInternalVisible] = useState(false);
+
+  // Three modes, in priority order:
+  //  1. Controlled (trigger prop is defined) — caller decides; no observer.
+  //  2. immediate=true — play once on mount (one rAF for the hidden→visible
+  //     transition to actually animate instead of being batched into the
+  //     initial paint).
+  //  3. default — IntersectionObserver, plays once when scrolled into view.
+  const controlled = trigger !== undefined;
+  const visible = controlled ? !!trigger : internalVisible;
 
   useEffect(() => {
+    if (controlled) return; // caller drives visibility
     if (immediate) {
-      // Defer one frame so the initial paint shows the hidden state, then we
-      // transition into the visible state — otherwise React may batch the
-      // initial render with the visible state and skip the transition.
-      const id = requestAnimationFrame(() => setVisible(true));
+      const id = requestAnimationFrame(() => setInternalVisible(true));
       return () => cancelAnimationFrame(id);
     }
     const el = ref.current;
@@ -66,7 +80,7 @@ export function LetterReveal({
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setVisible(true);
+          setInternalVisible(true);
           observer.unobserve(el);
         }
       },
@@ -74,7 +88,7 @@ export function LetterReveal({
     );
     observer.observe(el);
     return () => observer.disconnect();
-  }, [immediate]);
+  }, [immediate, controlled]);
 
   const chars = Array.from(text);
 

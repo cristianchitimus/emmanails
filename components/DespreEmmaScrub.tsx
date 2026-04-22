@@ -1,8 +1,9 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { useEffect, useMemo, useRef, useState } from "react";
 import { useSectionProgress } from "./FadeStack";
+import { LetterReveal } from "./LetterReveal";
 
 /* ─────────────────────────────────────────────────────────────────────────
    DespreEmmaScrub
@@ -180,15 +181,10 @@ export function DespreEmmaScrub() {
     };
   }, [isMobile, framesReady]);
 
-  // Text reveal: rise + fade driven by the section's first ~40%.
-  const textOpacity = useMemo(() => {
-    const p = Math.min(1, Math.max(0, progress / 0.35));
-    return p;
-  }, [progress]);
-  const textTranslate = useMemo(() => {
-    const p = Math.min(1, Math.max(0, progress / 0.35));
-    return (1 - p) * 30; // px rise
-  }, [progress]);
+  // The button keeps a soft opacity ramp tied to progress so it doesn't pop
+  // in instantly while the headline is still typing itself in. Computed inline
+  // below; no useMemo needed.
+  const buttonOpacity = Math.min(1, Math.max(0, (progress - 0.25) / 0.15));
 
   return (
     <div className="w-full h-full bg-white">
@@ -247,25 +243,56 @@ export function DespreEmmaScrub() {
               "linear-gradient(135deg, #f5e8e5 0%, #e8cec5 30%, #f5e8e5 60%, #faf3f0 100%)",
           }}
         >
-          <div
-            className="max-w-md"
-            style={{
-              opacity: textOpacity,
-              transform: `translateY(${textTranslate}px)`,
-              transition: "opacity 80ms linear, transform 80ms linear",
-              willChange: "opacity, transform",
-            }}
-          >
-            <p className="section-label mb-4">Despre Emma</p>
+          <div className="max-w-md">
+            <p className="section-label mb-4">
+              <LetterReveal
+                text="Despre Emma"
+                trigger={progress >= 0.05}
+                staggerMs={32}
+              />
+            </p>
             <h2 className="font-display text-2xl md:text-3xl lg:text-4xl font-medium leading-tight">
-              Pasiune, <span className="italic text-pink">dedicare</span> și excelență
+              <LetterReveal
+                text="Pasiune, "
+                trigger={progress >= 0.05}
+                delay={250}
+                staggerMs={42}
+              />
+              <LetterReveal
+                text="dedicare"
+                trigger={progress >= 0.05}
+                delay={250 + "Pasiune, ".length * 42 + 60}
+                staggerMs={42}
+                className="italic text-pink"
+              />
+              <LetterReveal
+                text=" și excelență"
+                trigger={progress >= 0.05}
+                delay={
+                  250 + "Pasiune, ".length * 42 + 60 + "dedicare".length * 42 + 60
+                }
+                staggerMs={42}
+              />
             </h2>
             <p className="font-body text-base text-dark-400 leading-relaxed mt-5">
-              Cu peste 15 ani de experiență în industria manichiurii, Emma a format
-              sute de profesioniști. Produsele Emma Nails sunt dezvoltate pe baza
-              nevoilor reale din salon.
+              {/* Body copy uses a tight stagger so it reads like a fast wash
+                  rather than a per-letter type-out (which would feel slow on
+                  3 lines of text). */}
+              <LetterReveal
+                text="Cu peste 15 ani de experiență în industria manichiurii, Emma a format sute de profesioniști. Produsele Emma Nails sunt dezvoltate pe baza nevoilor reale din salon."
+                trigger={progress >= 0.15}
+                staggerMs={10}
+                durationMs={400}
+              />
             </p>
-            <div className="flex flex-wrap gap-3 mt-8">
+            <div
+              className="flex flex-wrap gap-3 mt-8"
+              style={{
+                opacity: buttonOpacity,
+                transform: `translateY(${(1 - buttonOpacity) * 12}px)`,
+                transition: "opacity 200ms ease-out, transform 200ms ease-out",
+              }}
+            >
               <Link href="/despre" className="btn-primary">
                 Citește Povestea
               </Link>

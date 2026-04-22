@@ -5,6 +5,7 @@ import { ProductCard } from "@/components/ProductCard";
 import { CourseCard } from "@/components/CourseCard";
 import { ScrollScrubHero } from "@/components/ScrollScrubHero";
 import { TextWipe } from "@/components/TextWipe";
+import { PanelLetterReveal } from "@/components/PanelLetterReveal";
 import { CountUp } from "@/components/CountUp";
 import { FadeStack } from "@/components/FadeStack";
 import { DespreEmmaScrub } from "@/components/DespreEmmaScrub";
@@ -116,8 +117,11 @@ export default async function HomePage() {
         {/* ─── 1. Shop + Academie combined (one scroll reveals both) ─── */}
         <Panel
           style={{
+            // Match the rest of the panels (was a warmer #fdf6f3 → white →
+            // #f5e8e5 which read as gold-tinted vs the cooler cream the other
+            // sections use).
             background:
-              "linear-gradient(180deg, #fdf6f3 0%, #ffffff 50%, #f5e8e5 100%)",
+              "linear-gradient(180deg, #ffffff 0%, #faf3f0 50%, #f5e8e5 100%)",
           }}
         >
           <div className="space-y-6 md:space-y-10">
@@ -125,7 +129,7 @@ export default async function HomePage() {
             <div>
               <div className="flex items-center justify-between gap-4 mb-4 md:mb-6">
                 <h2 className="font-body text-xs md:text-sm font-semibold uppercase tracking-[0.25em] text-dark">
-                  <TextWipe>Cele mai populare</TextWipe>
+                  <PanelLetterReveal text="Cele mai populare" staggerMs={28} />
                 </h2>
                 <Link
                   href="/produse"
@@ -149,12 +153,16 @@ export default async function HomePage() {
               <div className="flex items-center justify-between gap-4 mb-4 md:mb-6">
                 <div>
                   <p className="font-body text-[10px] md:text-xs font-semibold uppercase tracking-[0.25em] text-pink mb-1">
-                    <TextWipe>Academie</TextWipe>
+                    <PanelLetterReveal text="Academie" staggerMs={32} />
                   </p>
                   <h2 className="font-display text-xl md:text-2xl lg:text-3xl font-medium leading-tight">
-                    <TextWipe delay={150}>
-                      Cursuri <span className="italic text-pink">profesionale</span>
-                    </TextWipe>
+                    <PanelLetterReveal text="Cursuri " delay={250} staggerMs={38} />
+                    <PanelLetterReveal
+                      text="profesionale"
+                      delay={250 + "Cursuri ".length * 38 + 60}
+                      staggerMs={38}
+                      className="italic text-pink"
+                    />
                   </h2>
                 </div>
                 <Link
@@ -207,7 +215,7 @@ export default async function HomePage() {
                   title: "Livrare Rapidă",
                   desc: "Comenzi procesate în 24h, toată România",
                 },
-              ].map((item) => (
+              ].map((item, idx) => (
                 <div key={item.title} className="text-center group">
                   <div
                     className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-all duration-500"
@@ -219,7 +227,13 @@ export default async function HomePage() {
                     <span className="text-xl">{item.icon}</span>
                   </div>
                   <h3 className="font-body text-sm font-semibold uppercase tracking-wider mb-1">
-                    {item.title}
+                    {/* Stagger items horizontally so they reveal left-to-right
+                        as a quartet rather than all four firing simultaneously. */}
+                    <PanelLetterReveal
+                      text={item.title}
+                      staggerMs={32}
+                      delay={idx * 120}
+                    />
                   </h3>
                   <p className="font-body text-xs text-dark-400 leading-relaxed">
                     {item.desc}
@@ -238,7 +252,7 @@ export default async function HomePage() {
                 { target: productCount, suffix: "+", label: "Produse Profesionale" },
                 { target: 500, suffix: "+", label: "Cursante Formate" },
                 { target: courseCount, suffix: "", label: "Cursuri Disponibile" },
-              ].map((s) => (
+              ].map((s, idx) => (
                 <div key={s.label} className="text-center">
                   <CountUp
                     target={s.target}
@@ -246,7 +260,13 @@ export default async function HomePage() {
                     className="font-display text-3xl md:text-4xl font-bold text-pink"
                   />
                   <p className="font-body text-[11px] uppercase tracking-[0.2em] text-dark-400 mt-1">
-                    {s.label}
+                    <PanelLetterReveal
+                      text={s.label}
+                      staggerMs={28}
+                      // Start the labels after the feature row has finished
+                      // its own stagger to keep the section's reveal coherent.
+                      delay={500 + idx * 100}
+                    />
                   </p>
                 </div>
               ))}
@@ -277,10 +297,16 @@ export default async function HomePage() {
           />
           <div className="text-center mb-8 md:mb-10 relative">
             <p className="section-label mb-3">
-              <TextWipe>Ce spun cursantele</TextWipe>
+              <PanelLetterReveal text="Ce spun cursantele" staggerMs={28} />
             </p>
             <h2 className="font-display text-2xl md:text-3xl lg:text-4xl font-medium leading-tight">
-              Testimoniale <span className="italic text-pink">reale</span>
+              <PanelLetterReveal text="Testimoniale " delay={300} staggerMs={42} />
+              <PanelLetterReveal
+                text="reale"
+                delay={300 + "Testimoniale ".length * 42 + 60}
+                staggerMs={48}
+                className="italic text-pink"
+              />
             </h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6 relative">
@@ -352,9 +378,13 @@ export default async function HomePage() {
           />
           <div className="relative max-w-3xl mx-auto">
             <h2 className="font-display text-3xl md:text-4xl font-medium leading-tight">
-              <TextWipe>
-                Hai să <span className="italic text-pink">vorbim</span>
-              </TextWipe>
+              <PanelLetterReveal text="Hai să " staggerMs={50} />
+              <PanelLetterReveal
+                text="vorbim"
+                delay={"Hai să ".length * 50 + 80}
+                staggerMs={55}
+                className="italic text-pink"
+              />
             </h2>
             <p className="font-body text-base md:text-lg text-dark-400 mt-5 max-w-lg mx-auto">
               Fie că ești interesată de produse sau de cursuri, suntem aici

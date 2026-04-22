@@ -18,11 +18,12 @@ export function AnnouncementBar() {
     <div
       className="overflow-hidden"
       style={{
-        // Rose silver: cool, light pinkish-silver. Mid stop is almost porcelain
-        // white with a faint rose flush; edges deepen into a desaturated mauve
-        // so the band reads as silver-with-rose-undertone, not pink.
+        // Match the page panel palette (#fdf6f3 / #ffffff / #f5e8e5) so the
+        // bar reads as part of the page background rather than as a separate
+        // band. Subtle horizontal variation keeps it from looking like a
+        // flat strip.
         background:
-          "linear-gradient(90deg, #c9b8bc 0%, #ddccd0 22%, #efe1e4 50%, #ddccd0 78%, #c9b8bc 100%)",
+          "linear-gradient(90deg, #f5e8e5 0%, #fdf6f3 25%, #ffffff 50%, #fdf6f3 75%, #f5e8e5 100%)",
         color: "#3a2a2d",
       }}
     >
@@ -32,8 +33,8 @@ export function AnnouncementBar() {
             key={i}
             className="mx-6 text-[11px] font-body font-semibold uppercase tracking-widest"
             style={{
-              // Faint white halo lifts the dark mauve type off the silver mid-tone.
-              textShadow: "0 1px 0 rgba(255,255,255,0.45)",
+              // Faint white halo softens the dark mauve type on the cream wash.
+              textShadow: "0 1px 0 rgba(255,255,255,0.55)",
             }}
           >
             {msg}
