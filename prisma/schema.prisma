@@ -120,6 +120,17 @@ model Order {
   shipping        Int         @default(0) // shipping in bani
   total           Int         // bani
   status          String      @default("pending") // "pending" | "processing" | "shipped" | "delivered" | "cancelled"
+  // Invoicing (all optional — only set when the buyer ticks "vreau factură").
+  // Persoană fizică: just needsInvoice + billingName/CNP optional. Persoană
+  // juridică: billingCompany + billingVatId + billingRegNumber + billingAddress.
+  needsInvoice     Boolean    @default(false)
+  billingType      String?    // "person" | "company"
+  billingName      String?    // name on invoice (may differ from shipping name)
+  billingCnp       String?    // for persoană fizică, optional
+  billingCompany   String?    // company name
+  billingVatId     String?    // CUI
+  billingRegNumber String?    // J…/…/… (Registrul Comerțului)
+  billingAddress   String?    // billing address (street/city/county/postal as one line)
   items           OrderItem[]
   createdAt       DateTime    @default(now())
   updatedAt       DateTime    @updatedAt

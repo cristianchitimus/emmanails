@@ -142,12 +142,11 @@ export function CourseEnrollment({ course }: CourseEnrollmentProps) {
                 }`}
               >
                 <span className="font-body text-sm font-semibold">{s.dateLabel}</span>
-                <span className={`font-body text-xs ${
-                  s.full ? "text-red-500 font-semibold" :
-                  s.spotsLeft <= 3 ? "text-yellow-600" : "text-emerald-600"
-                }`}>
-                  {s.full ? "COMPLET" : `${s.spotsLeft} locuri`}
-                </span>
+                {s.full && (
+                  <span className="font-body text-xs text-red-500 font-semibold">
+                    COMPLET
+                  </span>
+                )}
               </button>
             ))}
           </div>
@@ -244,7 +243,7 @@ export function CourseEnrollment({ course }: CourseEnrollmentProps) {
           </div>
           {selectedSession && (
             <p className="font-body text-xs text-dark/40 mt-2">
-              📅 {selectedSession.dateLabel} · {selectedSession.spotsLeft} locuri rămase
+              📅 {selectedSession.dateLabel}
             </p>
           )}
         </div>

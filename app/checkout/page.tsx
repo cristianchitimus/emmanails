@@ -44,6 +44,15 @@ export default function CheckoutPage() {
     city: "",
     county: "Iași",
     postalCode: "",
+    // Invoicing — all optional; shown only after the user ticks needsInvoice.
+    needsInvoice: false,
+    billingType: "person" as "person" | "company",
+    billingName: "",
+    billingCnp: "",
+    billingCompany: "",
+    billingVatId: "",
+    billingRegNumber: "",
+    billingAddress: "",
   });
 
   // Payment method
@@ -120,6 +129,16 @@ export default function CheckoutPage() {
       setError("Completează toate câmpurile obligatorii");
       setLoading(false);
       return;
+    }
+
+    // Invoice validation: mirrors the server — company invoices need at
+    // least the business name, CUI, and a billing address.
+    if (form.needsInvoice && form.billingType === "company") {
+      if (!form.billingCompany || !form.billingVatId || !form.billingAddress) {
+        setError("Pentru factură pe firmă completează denumirea, CUI și adresa de facturare");
+        setLoading(false);
+        return;
+      }
     }
 
     try {
@@ -301,6 +320,178 @@ export default function CheckoutPage() {
                     />
                   </div>
                 </div>
+              </div>
+
+              {/* Invoicing (Date de facturare) */}
+              <div className="bg-white rounded-2xl p-6 lg:p-8 shadow-sm">
+                <label className="flex items-start gap-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={form.needsInvoice}
+                    onChange={(e) =>
+                      setForm({ ...form, needsInvoice: e.target.checked })
+                    }
+                    className="accent-pink w-4 h-4 mt-1"
+                  />
+                  <div>
+                    <h2 className="font-display text-lg font-bold uppercase tracking-wider">
+                      Vreau factură
+                    </h2>
+                    <p className="font-body text-xs text-neutral-500 mt-1">
+                      Bifează dacă ai nevoie de factură fiscală pentru această
+                      comandă.
+                    </p>
+                  </div>
+                </label>
+
+                {form.needsInvoice && (
+                  <div className="mt-6 space-y-5">
+                    {/* Persoană fizică / juridică toggle */}
+                    <div>
+                      <label className="block font-body text-xs font-semibold uppercase tracking-wider text-neutral-500 mb-2">
+                        Tip factură
+                      </label>
+                      <div className="grid grid-cols-2 gap-2">
+                        {(
+                          [
+                            { value: "person", label: "Persoană fizică" },
+                            { value: "company", label: "Persoană juridică" },
+                          ] as const
+                        ).map((opt) => (
+                          <button
+                            key={opt.value}
+                            type="button"
+                            onClick={() =>
+                              setForm({ ...form, billingType: opt.value })
+                            }
+                            className={`px-4 py-3 rounded-xl border-2 font-body text-sm transition-all ${
+                              form.billingType === opt.value
+                                ? "border-pink bg-pink/5 text-dark"
+                                : "border-neutral-200 text-neutral-600 hover:border-neutral-300"
+                            }`}
+                          >
+                            {opt.label}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    {form.billingType === "person" ? (
+                      <>
+                        <div>
+                          <label className="block font-body text-xs font-semibold uppercase tracking-wider text-neutral-500 mb-1.5">
+                            Nume pe factură
+                          </label>
+                          <input
+                            type="text"
+                            value={form.billingName}
+                            onChange={(e) =>
+                              setForm({ ...form, billingName: e.target.value })
+                            }
+                            className="w-full px-4 py-3 rounded-xl border border-neutral-200 font-body text-sm focus:outline-none focus:border-pink focus:ring-1 focus:ring-pink/20 transition-colors"
+                            placeholder="Lasă gol pentru a folosi numele de livrare"
+                          />
+                        </div>
+                        <div>
+                          <label className="block font-body text-xs font-semibold uppercase tracking-wider text-neutral-500 mb-1.5">
+                            CNP <span className="text-neutral-400 normal-case">(opțional)</span>
+                          </label>
+                          <input
+                            type="text"
+                            inputMode="numeric"
+                            value={form.billingCnp}
+                            onChange={(e) =>
+                              setForm({ ...form, billingCnp: e.target.value })
+                            }
+                            className="w-full px-4 py-3 rounded-xl border border-neutral-200 font-body text-sm focus:outline-none focus:border-pink focus:ring-1 focus:ring-pink/20 transition-colors"
+                            placeholder="1234567890123"
+                          />
+                        </div>
+                        <div>
+                          <label className="block font-body text-xs font-semibold uppercase tracking-wider text-neutral-500 mb-1.5">
+                            Adresă de facturare <span className="text-neutral-400 normal-case">(dacă diferă de livrare)</span>
+                          </label>
+                          <input
+                            type="text"
+                            value={form.billingAddress}
+                            onChange={(e) =>
+                              setForm({ ...form, billingAddress: e.target.value })
+                            }
+                            className="w-full px-4 py-3 rounded-xl border border-neutral-200 font-body text-sm focus:outline-none focus:border-pink focus:ring-1 focus:ring-pink/20 transition-colors"
+                            placeholder="Strada, număr, oraș, județ, cod poștal"
+                          />
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <div>
+                          <label className="block font-body text-xs font-semibold uppercase tracking-wider text-neutral-500 mb-1.5">
+                            Denumire firmă *
+                          </label>
+                          <input
+                            type="text"
+                            value={form.billingCompany}
+                            onChange={(e) =>
+                              setForm({ ...form, billingCompany: e.target.value })
+                            }
+                            className="w-full px-4 py-3 rounded-xl border border-neutral-200 font-body text-sm focus:outline-none focus:border-pink focus:ring-1 focus:ring-pink/20 transition-colors"
+                            placeholder="ex. Emma Beauty S.R.L."
+                          />
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div>
+                            <label className="block font-body text-xs font-semibold uppercase tracking-wider text-neutral-500 mb-1.5">
+                              CUI *
+                            </label>
+                            <input
+                              type="text"
+                              value={form.billingVatId}
+                              onChange={(e) =>
+                                setForm({ ...form, billingVatId: e.target.value })
+                              }
+                              className="w-full px-4 py-3 rounded-xl border border-neutral-200 font-body text-sm focus:outline-none focus:border-pink focus:ring-1 focus:ring-pink/20 transition-colors"
+                              placeholder="RO12345678"
+                            />
+                          </div>
+                          <div>
+                            <label className="block font-body text-xs font-semibold uppercase tracking-wider text-neutral-500 mb-1.5">
+                              Nr. reg. comerțului
+                            </label>
+                            <input
+                              type="text"
+                              value={form.billingRegNumber}
+                              onChange={(e) =>
+                                setForm({
+                                  ...form,
+                                  billingRegNumber: e.target.value,
+                                })
+                              }
+                              className="w-full px-4 py-3 rounded-xl border border-neutral-200 font-body text-sm focus:outline-none focus:border-pink focus:ring-1 focus:ring-pink/20 transition-colors"
+                              placeholder="J22/123/2024"
+                            />
+                          </div>
+                        </div>
+                        <div>
+                          <label className="block font-body text-xs font-semibold uppercase tracking-wider text-neutral-500 mb-1.5">
+                            Adresă firmă *
+                          </label>
+                          <input
+                            type="text"
+                            value={form.billingAddress}
+                            onChange={(e) =>
+                              setForm({
+                                ...form,
+                                billingAddress: e.target.value,
+                              })
+                            }
+                            className="w-full px-4 py-3 rounded-xl border border-neutral-200 font-body text-sm focus:outline-none focus:border-pink focus:ring-1 focus:ring-pink/20 transition-colors"
+                            placeholder="Strada, număr, oraș, județ, cod poștal"
+                          />
+                        </div>
+                      </>
+                    )}
+                  </div>
+                )}
               </div>
 
               {/* Payment Method */}

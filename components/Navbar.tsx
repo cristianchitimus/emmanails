@@ -43,22 +43,27 @@ const MEGA_MENU_DATA = {
           { label: "Instrumentele", href: "/produse?categorie=instrumente&sub=instrumentele" },
           { label: "Capete freză", href: "/produse?categorie=instrumente&sub=capete-freza" },
           { label: "Consumabile", href: "/produse?categorie=instrumente&sub=consumabile" },
+          { label: "Pile & Buffere", href: "/produse?categorie=instrumente&sub=consumabile" },
+        ],
+      },
+      {
+        title: "Pedichiură",
+        links: [
+          { label: "Produse pedichiură", href: "/produse?categorie=produse-pedichiura" },
         ],
       },
       {
         title: "Alte categorii",
         links: [
-          { label: "Pile & Buffere", href: "/produse?categorie=pile-buffere" },
-          { label: "Produse pedichiură", href: "/produse?categorie=produse-pedichiura" },
           { label: "Produsele Amme", href: "/produse?categorie=produsele-amme" },
         ],
       },
     ],
     featured: {
       title: "BEST SELLER",
-      product: "Glitter Rubber Base",
-      href: "/produse?categorie=baza-rubber&sub=baza-rubber-cu-efect",
-      imageUrl: "/uploads/brand-Foto_043.jpg",
+      product: "Acrylic Liquid — Pink Luna",
+      href: "/produs/acrylic-liquid-pink-luna",
+      imageUrl: "/uploads/al-pink-luna.jpeg",
     },
   },
 };

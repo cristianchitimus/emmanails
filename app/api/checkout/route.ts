@@ -30,6 +30,17 @@ export async function POST(req: Request) {
       city,
       county,
       postalCode,
+      // Optional billing block — checkout sends these when the buyer ticks
+      // "Vreau factură". All 8 fields are optional; validation below treats
+      // needsInvoice=true + billingType=company as "company fields required".
+      needsInvoice,
+      billingType,
+      billingName,
+      billingCnp,
+      billingCompany,
+      billingVatId,
+      billingRegNumber,
+      billingAddress,
     } = body as {
       items: CheckoutItem[];
       paymentMethod: "stripe" | "ramburs";
@@ -42,6 +53,14 @@ export async function POST(req: Request) {
       city: string;
       county: string;
       postalCode?: string;
+      needsInvoice?: boolean;
+      billingType?: "person" | "company";
+      billingName?: string;
+      billingCnp?: string;
+      billingCompany?: string;
+      billingVatId?: string;
+      billingRegNumber?: string;
+      billingAddress?: string;
     };
 
     // Validate required fields
@@ -51,6 +70,36 @@ export async function POST(req: Request) {
         { status: 400 }
       );
     }
+
+    // Invoice validation: if the buyer wants a company invoice, require the
+    // minimum set needed to actually issue it (company name, CUI, address).
+    if (needsInvoice && billingType === "company") {
+      if (!billingCompany || !billingVatId || !billingAddress) {
+        return NextResponse.json(
+          {
+            error:
+              "Pentru factură pe firmă completează denumirea, CUI și adresa de facturare",
+          },
+          { status: 400 }
+        );
+      }
+    }
+
+    // Normalize billing block so the two Order.create calls below can just
+    // spread it without recomputing. When needsInvoice=false we store nothing.
+    const billingData = needsInvoice
+      ? {
+          needsInvoice: true,
+          billingType: billingType || "person",
+          billingName: billingName || name,
+          billingCnp: billingType === "person" ? billingCnp || null : null,
+          billingCompany: billingType === "company" ? billingCompany || null : null,
+          billingVatId: billingType === "company" ? billingVatId || null : null,
+          billingRegNumber:
+            billingType === "company" ? billingRegNumber || null : null,
+          billingAddress: billingAddress || null,
+        }
+      : { needsInvoice: false };
 
     // Verify products exist and get current prices
     const productIds = items.map((item) => item.id);
@@ -202,6 +251,7 @@ export async function POST(req: Request) {
           shipping,
           total,
           status: "pending",
+          ...billingData,
           items: { create: orderItemsData },
         },
       });
@@ -237,6 +287,7 @@ export async function POST(req: Request) {
           shipping,
           total,
           status: "pending",
+          ...billingData,
           items: { create: orderItemsData },
         },
       });

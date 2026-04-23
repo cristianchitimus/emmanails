@@ -279,7 +279,7 @@ export function DespreEmmaScrub() {
                   rather than a per-letter type-out (which would feel slow on
                   3 lines of text). */}
               <LetterReveal
-                text="Cu peste 15 ani de experiență în industria manichiurii, Emma a format sute de profesioniști. Produsele Emma Nails sunt dezvoltate pe baza nevoilor reale din salon."
+                text="Cu peste 15 ani de experiență în industria manichiurii, am format sute de profesioniști. Produsele Emma Nails sunt dezvoltate pe baza nevoilor reale din salon."
                 trigger={progress >= 0.15}
                 staggerMs={10}
                 durationMs={400}
