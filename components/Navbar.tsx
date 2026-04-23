@@ -62,7 +62,7 @@ const MEGA_MENU_DATA = {
     featured: {
       title: "BEST SELLER",
       product: "Acrylic Liquid — Pink Luna",
-      href: "/produs/acrylic-liquid-pink-luna",
+      href: "/produse/acrylic-liquid-pink-luna",
       imageUrl: "/uploads/al-pink-luna.jpeg",
     },
   },
