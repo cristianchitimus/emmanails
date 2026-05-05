@@ -41,7 +41,8 @@ export function AddToCartButton({
           imageUrl: product.imageUrl || undefined,
         });
       }}
-      className={`bg-pink text-white font-body font-semibold uppercase tracking-[0.2em] rounded-full hover:bg-dark transition-colors ${sizeClasses[size]} ${className}`}
+      className={`bg-dark text-white font-body font-semibold uppercase rounded hover:bg-pink transition-colors ${sizeClasses[size]} ${className}`}
+      style={{ letterSpacing: "0.14em" }}
     >
       Adaugă în coș
     </button>

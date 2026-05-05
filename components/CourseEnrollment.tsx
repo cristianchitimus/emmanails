@@ -137,7 +137,7 @@ export function CourseEnrollment({ course }: CourseEnrollmentProps) {
                   s.full
                     ? "border-neutral-200 bg-neutral-50 opacity-50 cursor-not-allowed"
                     : selectedSessionId === s.id
-                    ? "border-pink bg-pink/5"
+                    ? "border-dark bg-neutral-50"
                     : "border-dark-100 hover:border-dark-200"
                 }`}
               >
@@ -169,7 +169,7 @@ export function CourseEnrollment({ course }: CourseEnrollmentProps) {
                 onClick={() => { setAccreditation(opt.value); setError(""); }}
                 className={`p-3 rounded-sm border-2 text-left transition-all ${
                   accreditation === opt.value
-                    ? "border-pink bg-pink/5"
+                    ? "border-dark bg-neutral-50"
                     : "border-dark-100 hover:border-dark-200"
                 }`}
               >
@@ -190,7 +190,7 @@ export function CourseEnrollment({ course }: CourseEnrollmentProps) {
           <button
             onClick={() => { setPayment("avans"); setError(""); }}
             className={`p-3 rounded-sm border-2 text-left transition-all ${
-              payment === "avans" ? "border-pink bg-pink/5" : "border-dark-100 hover:border-dark-200"
+              payment === "avans" ? "border-dark bg-neutral-50" : "border-dark-100 hover:border-dark-200"
             }`}
           >
             <span className="font-body text-sm font-semibold block">Plătesc avans</span>
@@ -200,7 +200,7 @@ export function CourseEnrollment({ course }: CourseEnrollmentProps) {
           <button
             onClick={() => { setPayment("integral"); setError(""); }}
             className={`p-3 rounded-sm border-2 text-left transition-all ${
-              payment === "integral" ? "border-pink bg-pink/5" : "border-dark-100 hover:border-dark-200"
+              payment === "integral" ? "border-dark bg-neutral-50" : "border-dark-100 hover:border-dark-200"
             }`}
           >
             <span className="font-body text-sm font-semibold block">Plătesc integral</span>
@@ -256,9 +256,9 @@ export function CourseEnrollment({ course }: CourseEnrollmentProps) {
       <button
         onClick={handleEnroll}
         disabled={loading || !isComplete}
-        className={`w-full text-center font-body text-xs font-semibold uppercase tracking-[0.2em] py-3.5 rounded-full transition-all ${
+        className={`w-full text-center font-body text-xs font-semibold uppercase py-3.5 rounded transition-all ${
           isComplete
-            ? "bg-pink text-white hover:bg-dark"
+            ? "bg-dark text-white hover:bg-pink"
             : "bg-dark-100 text-dark/30 cursor-not-allowed"
         }`}
       >

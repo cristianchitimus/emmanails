@@ -76,7 +76,7 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-[80vh] flex items-center justify-center px-4 py-12">
+    <div className="shop-section-muted flex min-h-[80vh] items-center justify-center px-4">
       <div className="w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-8">
@@ -97,9 +97,9 @@ export default function RegisterPage() {
           </p>
         </div>
 
-        <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-neutral-100">
+        <div className="bg-white rounded border border-neutral-100 p-6 shadow-sm sm:p-8">
           {error && (
-            <div className="bg-red-50 text-red-600 font-body text-sm rounded-xl p-3 mb-4">
+            <div className="bg-red-50 text-red-600 font-body text-sm rounded p-3 mb-4">
               {error}
             </div>
           )}
@@ -113,7 +113,7 @@ export default function RegisterPage() {
                 type="text"
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
-                className="w-full px-4 py-3 rounded-xl border border-neutral-200 font-body text-sm focus:outline-none focus:border-pink focus:ring-1 focus:ring-pink/20 transition-colors"
+                className="w-full rounded border border-neutral-200 px-4 py-3 font-body text-sm transition-colors focus:border-dark focus:outline-none"
                 placeholder="Maria Popescu"
               />
             </div>
@@ -127,7 +127,7 @@ export default function RegisterPage() {
                 required
                 value={form.email}
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
-                className="w-full px-4 py-3 rounded-xl border border-neutral-200 font-body text-sm focus:outline-none focus:border-pink focus:ring-1 focus:ring-pink/20 transition-colors"
+                className="w-full rounded border border-neutral-200 px-4 py-3 font-body text-sm transition-colors focus:border-dark focus:outline-none"
                 placeholder="maria@email.com"
               />
             </div>
@@ -140,7 +140,7 @@ export default function RegisterPage() {
                 type="tel"
                 value={form.phone}
                 onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                className="w-full px-4 py-3 rounded-xl border border-neutral-200 font-body text-sm focus:outline-none focus:border-pink focus:ring-1 focus:ring-pink/20 transition-colors"
+                className="w-full rounded border border-neutral-200 px-4 py-3 font-body text-sm transition-colors focus:border-dark focus:outline-none"
                 placeholder="0740 000 000"
               />
             </div>
@@ -154,7 +154,7 @@ export default function RegisterPage() {
                 required
                 value={form.password}
                 onChange={(e) => setForm({ ...form, password: e.target.value })}
-                className="w-full px-4 py-3 rounded-xl border border-neutral-200 font-body text-sm focus:outline-none focus:border-pink focus:ring-1 focus:ring-pink/20 transition-colors"
+                className="w-full rounded border border-neutral-200 px-4 py-3 font-body text-sm transition-colors focus:border-dark focus:outline-none"
                 placeholder="Minim 6 caractere"
               />
             </div>
@@ -168,7 +168,7 @@ export default function RegisterPage() {
                 required
                 value={form.confirmPassword}
                 onChange={(e) => setForm({ ...form, confirmPassword: e.target.value })}
-                className="w-full px-4 py-3 rounded-xl border border-neutral-200 font-body text-sm focus:outline-none focus:border-pink focus:ring-1 focus:ring-pink/20 transition-colors"
+                className="w-full rounded border border-neutral-200 px-4 py-3 font-body text-sm transition-colors focus:border-dark focus:outline-none"
                 placeholder="Repetă parola"
               />
             </div>
@@ -176,7 +176,8 @@ export default function RegisterPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-pink text-white font-body text-xs font-semibold uppercase tracking-[0.2em] py-3.5 rounded-full hover:bg-dark transition-colors disabled:opacity-50"
+              className="w-full bg-dark text-white font-body text-xs font-semibold uppercase py-3.5 rounded hover:bg-pink transition-colors disabled:opacity-50"
+              style={{ letterSpacing: "0.14em" }}
             >
               {loading ? "Se creează contul..." : "Creează cont"}
             </button>

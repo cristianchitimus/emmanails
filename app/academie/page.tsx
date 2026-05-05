@@ -1,14 +1,13 @@
-import { prisma } from "@/lib/db";
 import Image from "next/image";
-import { CourseCard } from "@/components/CourseCard";
-import { GlowLine } from "@/components/GlowLine";
-import { whatsappLink } from "@/lib/utils";
 import Link from "next/link";
+import { prisma } from "@/lib/db";
+import { CourseCard } from "@/components/CourseCard";
+import { whatsappLink } from "@/lib/utils";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Academie — Cursuri Manichiură & Pedichiură",
-  description: "Cursuri profesionale acreditate de manichiură și pedichiură. Iași, România.",
+  title: "Academie - Cursuri Manichiura & Pedichiura",
+  description: "Cursuri profesionale acreditate de manichiura si pedichiura. Iasi, Romania.",
 };
 
 export const revalidate = 60;
@@ -20,23 +19,24 @@ export default async function AcademiePage() {
 
   return (
     <>
-      {/* Mini header */}
-      <section className="pt-12 pb-6 md:pt-16 md:pb-8 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="border-b border-neutral-100 bg-white py-10 md:py-14">
+        <div className="shop-container">
           <p className="section-label mb-3">Emma Nails Academy</p>
-          <h1 className="font-display text-3xl md:text-4xl font-medium text-dark leading-tight">
-            Toate <span className="italic text-pink">cursurile</span>
-          </h1>
-          <p className="font-body text-base text-dark-400 mt-3 max-w-xl">
-            Alege cursul potrivit nivelului tău. Fiecare include practică pe model real și diplomă.
-          </p>
+          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div>
+              <h1 className="shop-title">Cursuri profesionale</h1>
+              <p className="shop-copy mt-3 max-w-2xl">
+                Cursuri cu practica pe model real, materiale incluse si suport pentru fiecare cursanta.
+              </p>
+            </div>
+            <p className="font-body text-sm text-dark-400">{courses.length} cursuri</p>
+          </div>
         </div>
       </section>
 
-      {/* All courses — flat grid, seed order */}
-      <section className="pb-14 md:pb-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-5">
+      <section className="shop-section">
+        <div className="shop-container">
+          <div className="grid grid-cols-2 gap-x-3 gap-y-8 md:grid-cols-3 lg:grid-cols-4 md:gap-x-5 lg:gap-x-7">
             {courses.map((course) => (
               <CourseCard key={course.id} course={course} />
             ))}
@@ -44,77 +44,70 @@ export default async function AcademiePage() {
         </div>
       </section>
 
-      <GlowLine />
-
-      {/* Promotional hero — Cursuri de manichiură + image */}
-      <section className="relative bg-gradient-to-br from-white via-pink-50/50 to-nude-100 py-16 md:py-24 overflow-hidden">
-        <div className="absolute -top-20 -right-20 w-80 h-80 bg-pink/5 rounded-full blur-3xl" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-            <div>
-              <p className="section-label mb-3">Înscrie-te acum</p>
-              <h2 className="font-display text-3xl md:text-4xl font-medium text-dark leading-tight">
-                Cursuri de <span className="italic text-pink">manichiură</span>
-              </h2>
-              <p className="font-body text-base md:text-lg text-dark-400 mt-5 max-w-xl leading-relaxed">
-                Indiferent dacă ești începătoare sau profesionistă, avem cursuri adaptate nivelului tău. Toate includ diplomă acreditată.
-              </p>
-              <div className="mt-8">
-                <a href={whatsappLink("Bună! Aș dori informații despre cursuri.")} target="_blank" rel="noopener noreferrer" className="btn-primary">
-                  Programează-te acum
-                </a>
-              </div>
-            </div>
-            <div className="relative h-[350px] md:h-[450px] rounded-2xl overflow-hidden hidden lg:block">
+      <section className="shop-section-muted">
+        <div className="shop-container">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-center lg:gap-12">
+            <div className="relative aspect-[4/3] overflow-hidden rounded bg-white">
               <Image
                 src="/uploads/academy-WhatsApp-Image-2024-07-10-at-13.46.40-1.jpeg"
                 alt="Emma Nails Academy"
                 fill
                 className="object-cover"
-                sizes="50vw"
+                sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>
-          </div>
-        </div>
-      </section>
-
-      <GlowLine />
-
-      {/* Stats */}
-      <section className="py-12 bg-pink-50/50 border-y border-pink-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-3 gap-8 text-center">
-            <div>
-              <span className="font-display text-3xl md:text-4xl font-bold text-pink">15+</span>
-              <p className="font-body text-[11px] uppercase tracking-[0.2em] text-dark-400 mt-1">Ani Experiență</p>
-            </div>
-            <div>
-              <span className="font-display text-3xl md:text-4xl font-bold text-pink">{courses.length}</span>
-              <p className="font-body text-[11px] uppercase tracking-[0.2em] text-dark-400 mt-1">Cursuri</p>
-            </div>
-            <div>
-              <span className="font-display text-3xl md:text-4xl font-bold text-pink">500+</span>
-              <p className="font-body text-[11px] uppercase tracking-[0.2em] text-dark-400 mt-1">Cursante</p>
+            <div className="max-w-xl">
+              <p className="section-label mb-3">Inscrieri</p>
+              <h2 className="shop-title">Inveti pe model real, cu materiale profesionale</h2>
+              <p className="shop-copy mt-5">
+                Fiecare curs este construit pentru lucru practic: tehnici clare, corecturi pe loc si recomandari pentru produse, viteza si rezistenta.
+              </p>
+              <div className="mt-7 flex flex-wrap gap-3">
+                <a href={whatsappLink("Buna! As dori informatii despre cursuri.")} target="_blank" rel="noopener noreferrer" className="btn-primary">
+                  Programeaza-te
+                </a>
+                <Link href="/contact" className="btn-secondary">
+                  Contact
+                </Link>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <GlowLine />
-
-      {/* CTA — pink */}
-      <section className="py-20 md:py-28 bg-pink relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 left-1/4 w-60 h-60 bg-white rounded-full blur-3xl" />
+      <section className="border-y border-neutral-100 bg-white">
+        <div className="shop-container grid grid-cols-3 divide-x divide-neutral-100 py-8 text-center">
+          {[
+            { value: "15+", label: "Ani experienta" },
+            { value: String(courses.length), label: "Cursuri" },
+            { value: "500+", label: "Cursante" },
+          ].map((item) => (
+            <div key={item.label} className="px-3">
+              <p className="font-display text-3xl font-semibold text-dark md:text-4xl">{item.value}</p>
+              <p className="mt-2 font-body text-[11px] font-semibold uppercase text-dark-400" style={{ letterSpacing: "0.12em" }}>
+                {item.label}
+              </p>
+            </div>
+          ))}
         </div>
-        <div className="relative z-10 max-w-3xl mx-auto px-4 text-center">
-          <h2 className="font-display text-2xl md:text-3xl lg:text-4xl font-medium text-white mb-4">
-            Nu ești sigură ce curs ți se potrivește?
+      </section>
+
+      <section className="shop-section bg-dark text-white">
+        <div className="shop-container text-center">
+          <p className="mb-3 font-body text-[11px] font-semibold uppercase text-white/60" style={{ letterSpacing: "0.18em" }}>
+            Consultanta
+          </p>
+          <h2 className="mx-auto max-w-2xl font-display text-3xl font-semibold leading-tight md:text-4xl">
+            Nu esti sigura ce curs ti se potriveste?
           </h2>
-          <p className="font-body text-base text-white/70 mb-8">Scrie-mi pe WhatsApp și te ajut să alegi cursul potrivit.</p>
-          <a href={whatsappLink("Bună! Am nevoie de ajutor în alegerea unui curs.")} target="_blank" rel="noopener noreferrer" className="btn-white">
-            Scrie-mi pe WhatsApp
-          </a>
+          <p className="mx-auto mt-4 max-w-xl font-body text-sm leading-relaxed text-white/70 md:text-base">
+            Scrie-ne pe WhatsApp si iti recomandam cursul potrivit nivelului tau.
+          </p>
+          <div className="mt-8 flex justify-center">
+            <a href={whatsappLink("Buna! Am nevoie de ajutor in alegerea unui curs.")} target="_blank" rel="noopener noreferrer" className="btn-white">
+              Scrie pe WhatsApp
+            </a>
+          </div>
         </div>
       </section>
     </>

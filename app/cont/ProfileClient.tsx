@@ -91,7 +91,7 @@ export function ProfileClient({ user, recentOrders }: ProfileClientProps) {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Profile card */}
-          <div className="bg-white rounded-2xl p-6 shadow-sm">
+          <div className="bg-white rounded p-6 shadow-sm">
             <div className="flex items-center justify-between mb-6">
               <h2 className="font-display text-lg font-bold uppercase tracking-wider">
                 Date personale
@@ -105,7 +105,7 @@ export function ProfileClient({ user, recentOrders }: ProfileClientProps) {
             </div>
 
             {message && (
-              <div className={`font-body text-sm rounded-xl p-3 mb-4 ${message.includes("succes") ? "bg-green-50 text-green-600" : "bg-red-50 text-red-600"}`}>
+              <div className={`font-body text-sm rounded p-3 mb-4 ${message.includes("succes") ? "bg-green-50 text-green-600" : "bg-red-50 text-red-600"}`}>
                 {message}
               </div>
             )}
@@ -120,7 +120,7 @@ export function ProfileClient({ user, recentOrders }: ProfileClientProps) {
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl border border-neutral-200 font-body text-sm focus:outline-none focus:border-pink transition-colors"
+                    className="w-full px-4 py-3 rounded border border-neutral-200 font-body text-sm focus:outline-none focus:border-pink transition-colors"
                   />
                 </div>
                 <div>
@@ -131,13 +131,13 @@ export function ProfileClient({ user, recentOrders }: ProfileClientProps) {
                     type="tel"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl border border-neutral-200 font-body text-sm focus:outline-none focus:border-pink transition-colors"
+                    className="w-full px-4 py-3 rounded border border-neutral-200 font-body text-sm focus:outline-none focus:border-pink transition-colors"
                   />
                 </div>
                 <button
                   onClick={handleSave}
                   disabled={loading}
-                  className="bg-pink text-white font-body text-xs font-semibold uppercase tracking-[0.2em] px-6 py-3 rounded-full hover:bg-dark transition-colors disabled:opacity-50"
+                  className="bg-dark text-white font-body text-xs font-semibold uppercase tracking-[0.14em] px-6 py-3 rounded-full hover:bg-pink transition-colors disabled:opacity-50"
                 >
                   {loading ? "Se salvează..." : "Salvează"}
                 </button>
@@ -171,14 +171,14 @@ export function ProfileClient({ user, recentOrders }: ProfileClientProps) {
           </div>
 
           {/* Quick links */}
-          <div className="bg-white rounded-2xl p-6 shadow-sm">
+          <div className="bg-white rounded p-6 shadow-sm">
             <h2 className="font-display text-lg font-bold uppercase tracking-wider mb-6">
               Acțiuni rapide
             </h2>
             <div className="space-y-3">
               <Link
                 href="/cont/comenzi"
-                className="flex items-center justify-between p-4 rounded-xl border border-neutral-100 hover:border-pink/30 hover:bg-pink/5 transition-all group"
+                className="flex items-center justify-between p-4 rounded border border-neutral-100 hover:border-pink/30 hover:bg-pink/5 transition-all group"
               >
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-nude/40 rounded-full flex items-center justify-center">
@@ -198,7 +198,7 @@ export function ProfileClient({ user, recentOrders }: ProfileClientProps) {
 
               <Link
                 href="/produse"
-                className="flex items-center justify-between p-4 rounded-xl border border-neutral-100 hover:border-pink/30 hover:bg-pink/5 transition-all group"
+                className="flex items-center justify-between p-4 rounded border border-neutral-100 hover:border-pink/30 hover:bg-pink/5 transition-all group"
               >
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-nude/40 rounded-full flex items-center justify-center">
@@ -221,7 +221,7 @@ export function ProfileClient({ user, recentOrders }: ProfileClientProps) {
 
         {/* Recent orders */}
         {recentOrders.length > 0 && (
-          <div className="mt-6 bg-white rounded-2xl p-6 shadow-sm">
+          <div className="mt-6 bg-white rounded p-6 shadow-sm">
             <div className="flex items-center justify-between mb-6">
               <h2 className="font-display text-lg font-bold uppercase tracking-wider">
                 Comenzi recente
@@ -239,7 +239,7 @@ export function ProfileClient({ user, recentOrders }: ProfileClientProps) {
                 <Link
                   key={order.id}
                   href={`/cont/comenzi/${order.id}`}
-                  className="flex items-center justify-between p-4 rounded-xl border border-neutral-100 hover:border-pink/30 hover:bg-pink/5 transition-all"
+                  className="flex items-center justify-between p-4 rounded border border-neutral-100 hover:border-pink/30 hover:bg-pink/5 transition-all"
                 >
                   <div>
                     <p className="font-body text-sm font-semibold">{order.orderNumber}</p>

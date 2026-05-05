@@ -27,9 +27,10 @@
   }
   body {
     @apply font-body text-dark bg-white;
+    letter-spacing: 0;
   }
   h1, h2, h3, h4, h5, h6 {
-    @apply font-display;
+    @apply font-display tracking-normal;
   }
   ::selection {
     @apply bg-pink/20 text-dark;
@@ -38,33 +39,62 @@
 
 @layer components {
   .btn-primary {
-    @apply inline-flex items-center justify-center px-10 py-4 text-white font-body text-[13px] font-medium uppercase tracking-[0.2em] rounded-full transition-all duration-500 hover:scale-[1.03] hover:shadow-lg hover:shadow-pink/25;
-    background: linear-gradient(135deg, #B76E79 0%, #c88d93 100%);
+    @apply inline-flex items-center justify-center px-8 py-3.5 bg-dark text-white font-body text-[12px] font-semibold uppercase rounded transition-colors duration-200 hover:bg-pink;
+    letter-spacing: 0.14em;
   }
   .btn-primary:hover {
-    background: linear-gradient(135deg, #9e5561 0%, #B76E79 100%);
+    background: #B76E79;
   }
   .btn-pink {
-    @apply inline-flex items-center justify-center px-10 py-4 text-white font-body text-[13px] font-medium uppercase tracking-[0.2em] rounded-full transition-all duration-500 hover:scale-[1.03] hover:shadow-lg hover:shadow-pink/25;
-    background: linear-gradient(135deg, #B76E79 0%, #c88d93 100%);
+    @apply inline-flex items-center justify-center px-8 py-3.5 text-white font-body text-[12px] font-semibold uppercase rounded transition-colors duration-200;
+    letter-spacing: 0.14em;
+    background: #B76E79;
   }
   .btn-pink:hover {
-    background: linear-gradient(135deg, #9e5561 0%, #B76E79 100%);
+    background: #1A1A1A;
   }
   .btn-secondary {
-    @apply inline-flex items-center justify-center px-10 py-4 border border-dark text-dark font-body text-[13px] font-medium uppercase tracking-[0.2em] rounded-full hover:bg-dark hover:text-white transition-all duration-500;
+    @apply inline-flex items-center justify-center px-8 py-3.5 border border-dark text-dark font-body text-[12px] font-semibold uppercase rounded hover:bg-dark hover:text-white transition-colors duration-200;
+    letter-spacing: 0.14em;
   }
   .btn-white {
-    @apply inline-flex items-center justify-center px-10 py-4 bg-white text-dark font-body text-[13px] font-medium uppercase tracking-[0.2em] rounded-full hover:bg-nude-200 transition-all duration-500 hover:scale-[1.03];
+    @apply inline-flex items-center justify-center px-8 py-3.5 bg-white text-dark font-body text-[12px] font-semibold uppercase rounded hover:bg-neutral-100 transition-colors duration-200;
+    letter-spacing: 0.14em;
   }
   .section-label {
-    @apply font-body text-[11px] font-semibold uppercase tracking-[0.25em] text-pink;
+    @apply font-body text-[11px] font-semibold uppercase text-dark-400;
+    letter-spacing: 0.16em;
   }
   .editorial-heading {
-    @apply font-display text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.05];
+    @apply font-display text-3xl md:text-4xl lg:text-5xl font-semibold leading-[1.05];
   }
   .card-hover {
-    @apply transition-all duration-700 hover:-translate-y-1.5;
+    @apply transition-all duration-300 hover:-translate-y-0.5;
+  }
+  .shop-container {
+    @apply max-w-[1410px] mx-auto px-4 sm:px-6 lg:px-10;
+  }
+  .shop-section {
+    @apply py-12 md:py-16 lg:py-20 bg-white;
+  }
+  .shop-section-muted {
+    @apply py-12 md:py-16 lg:py-20 bg-neutral-50;
+  }
+  .shop-heading-row {
+    @apply flex flex-col gap-4 md:flex-row md:items-end md:justify-between mb-8 md:mb-10;
+  }
+  .shop-title {
+    @apply font-display text-2xl md:text-3xl lg:text-4xl font-semibold leading-tight text-dark;
+  }
+  .shop-copy {
+    @apply font-body text-sm md:text-base text-dark-400 leading-relaxed;
+  }
+  .shop-card {
+    @apply bg-white border border-neutral-100 rounded shadow-sm;
+  }
+  .shop-link {
+    @apply font-body text-xs font-semibold uppercase text-dark hover:text-pink transition-colors;
+    letter-spacing: 0.14em;
   }
 }
 

@@ -37,7 +37,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-[80vh] flex items-center justify-center px-4 py-12">
+    <div className="shop-section-muted flex min-h-[80vh] items-center justify-center px-4">
       <div className="w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-8">
@@ -50,7 +50,7 @@ export default function LoginPage() {
               className="h-12 w-auto mx-auto"
             />
           </Link>
-          <h1 className="font-display text-2xl font-bold uppercase tracking-wider mt-6">
+          <h1 className="font-display text-2xl font-semibold mt-6">
             Autentificare
           </h1>
           <p className="font-body text-sm text-neutral-500 mt-2">
@@ -58,9 +58,9 @@ export default function LoginPage() {
           </p>
         </div>
 
-        <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-neutral-100">
+        <div className="bg-white rounded border border-neutral-100 p-6 shadow-sm sm:p-8">
           {error && (
-            <div className="bg-red-50 text-red-600 font-body text-sm rounded-xl p-3 mb-4">
+            <div className="bg-red-50 text-red-600 font-body text-sm rounded p-3 mb-4">
               {error}
             </div>
           )}
@@ -75,7 +75,7 @@ export default function LoginPage() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-4 py-3 rounded-xl border border-neutral-200 font-body text-sm focus:outline-none focus:border-pink focus:ring-1 focus:ring-pink/20 transition-colors"
+                className="w-full rounded border border-neutral-200 px-4 py-3 font-body text-sm transition-colors focus:border-dark focus:outline-none"
                 placeholder="maria@email.com"
               />
             </div>
@@ -89,7 +89,7 @@ export default function LoginPage() {
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-4 py-3 rounded-xl border border-neutral-200 font-body text-sm focus:outline-none focus:border-pink focus:ring-1 focus:ring-pink/20 transition-colors"
+                className="w-full rounded border border-neutral-200 px-4 py-3 font-body text-sm transition-colors focus:border-dark focus:outline-none"
                 placeholder="••••••••"
               />
             </div>
@@ -97,7 +97,8 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-pink text-white font-body text-xs font-semibold uppercase tracking-[0.2em] py-3.5 rounded-full hover:bg-dark transition-colors disabled:opacity-50"
+              className="w-full bg-dark text-white font-body text-xs font-semibold uppercase py-3.5 rounded hover:bg-pink transition-colors disabled:opacity-50"
+              style={{ letterSpacing: "0.14em" }}
             >
               {loading ? "Se autentifică..." : "Intră în cont"}
             </button>

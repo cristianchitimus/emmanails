@@ -30,11 +30,12 @@ export function CategoryFilter({ categories, paramName = "categorie" }: Category
     <div className="flex flex-wrap gap-2">
       <button
         onClick={() => handleFilter("")}
-        className={`font-body text-xs font-semibold uppercase tracking-[0.15em] px-5 py-2 rounded-full transition-colors ${
+        className={`font-body text-[11px] font-semibold uppercase px-4 py-2 rounded border transition-colors ${
           !active
-            ? "bg-dark text-white"
-            : "bg-neutral-100 text-neutral-600 hover:bg-neutral-200"
+            ? "bg-dark border-dark text-white"
+            : "bg-white border-neutral-200 text-neutral-600 hover:border-dark"
         }`}
+        style={{ letterSpacing: "0.12em" }}
       >
         Toate
       </button>
@@ -42,11 +43,12 @@ export function CategoryFilter({ categories, paramName = "categorie" }: Category
         <button
           key={cat.value}
           onClick={() => handleFilter(cat.value)}
-          className={`font-body text-xs font-semibold uppercase tracking-[0.15em] px-5 py-2 rounded-full transition-colors ${
+          className={`font-body text-[11px] font-semibold uppercase px-4 py-2 rounded border transition-colors ${
             active === cat.value
-              ? "bg-pink text-white"
-              : "bg-neutral-100 text-neutral-600 hover:bg-neutral-200"
+              ? "bg-dark border-dark text-white"
+              : "bg-white border-neutral-200 text-neutral-600 hover:border-dark"
           }`}
+          style={{ letterSpacing: "0.12em" }}
         >
           {cat.label}
           {cat.count !== undefined && (

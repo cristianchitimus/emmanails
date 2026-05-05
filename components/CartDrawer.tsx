@@ -94,7 +94,7 @@ export function CartDrawer() {
               <Link
                 href="/produse"
                 onClick={() => setIsOpen(false)}
-                className="inline-block bg-dark text-white font-body text-xs font-semibold uppercase tracking-[0.2em] px-8 py-3 rounded-full hover:bg-pink transition-colors"
+                className="inline-block bg-dark text-white font-body text-xs font-semibold uppercase px-8 py-3 rounded hover:bg-pink transition-colors"
               >
                 Shop
               </Link>
@@ -170,7 +170,7 @@ export function CartDrawer() {
             <Link
               href="/checkout"
               onClick={() => setIsOpen(false)}
-              className="block w-full bg-pink text-white text-center font-body text-xs font-semibold uppercase tracking-[0.2em] py-3.5 rounded-full hover:bg-dark transition-colors"
+              className="block w-full bg-dark text-white text-center font-body text-xs font-semibold uppercase py-3.5 rounded hover:bg-pink transition-colors"
             >
               Finalizează comanda
             </Link>

@@ -2,19 +2,16 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <section className="py-24 md:py-36">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <section className="shop-section">
+      <div className="shop-container max-w-3xl text-center">
         <p className="section-label mb-3">404</p>
-        <h1 className="font-display text-3xl md:text-5xl font-medium text-dark mb-4">
-          Pagina nu a fost{" "}
-          <span className="italic text-pink">găsită</span>
-        </h1>
-        <p className="font-body text-base text-dark-400 mb-8">
-          Ne pare rău, dar pagina pe care o cauți nu există sau a fost mutată.
+        <h1 className="shop-title">Pagina nu a fost gasita</h1>
+        <p className="shop-copy mx-auto mb-8 mt-4 max-w-xl">
+          Pagina pe care o cauti nu exista sau a fost mutata.
         </p>
-        <div className="flex flex-wrap justify-center gap-4">
+        <div className="flex flex-wrap justify-center gap-3">
           <Link href="/" className="btn-primary">
-            Acasă
+            Acasa
           </Link>
           <Link href="/produse" className="btn-secondary">
             Produse

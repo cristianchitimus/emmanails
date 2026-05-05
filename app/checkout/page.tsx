@@ -185,7 +185,7 @@ export default function CheckoutPage() {
   if (validating) return (
     <div className="min-h-[60vh] flex items-center justify-center">
       <div className="text-center space-y-3">
-        <div className="inline-block w-6 h-6 border-2 border-dark-200 border-t-pink rounded-full animate-spin" />
+        <div className="inline-block w-6 h-6 border border-dark-200 border-t-pink rounded-full animate-spin" />
         <p className="font-body text-xs uppercase tracking-widest text-dark-400">Se verifică produsele...</p>
       </div>
     </div>
@@ -210,13 +210,13 @@ export default function CheckoutPage() {
             {/* ─── LEFT: Form ─── */}
             <div className="lg:col-span-7 space-y-8">
               {/* Contact & Shipping */}
-              <div className="bg-white rounded-2xl p-6 lg:p-8 shadow-sm">
+              <div className="bg-white rounded p-6 lg:p-8 shadow-sm">
                 <h2 className="font-display text-lg font-bold uppercase tracking-wider mb-6">
                   Date de livrare
                 </h2>
 
                 {!session && (
-                  <div className="bg-nude/30 rounded-xl p-4 mb-6">
+                  <div className="bg-nude/30 rounded p-4 mb-6">
                     <p className="font-body text-sm text-neutral-600">
                       Ai deja un cont?{" "}
                       <Link href="/cont/autentificare" className="text-pink font-semibold hover:underline">
@@ -237,7 +237,7 @@ export default function CheckoutPage() {
                       required
                       value={form.name}
                       onChange={(e) => setForm({ ...form, name: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-neutral-200 font-body text-sm focus:outline-none focus:border-pink focus:ring-1 focus:ring-pink/20 transition-colors"
+                      className="w-full px-4 py-3 rounded border border-neutral-200 font-body text-sm focus:outline-none focus:border-pink focus:ring-1 focus:ring-pink/20 transition-colors"
                       placeholder="Maria Popescu"
                     />
                   </div>
@@ -250,7 +250,7 @@ export default function CheckoutPage() {
                       required
                       value={form.email}
                       onChange={(e) => setForm({ ...form, email: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-neutral-200 font-body text-sm focus:outline-none focus:border-pink focus:ring-1 focus:ring-pink/20 transition-colors"
+                      className="w-full px-4 py-3 rounded border border-neutral-200 font-body text-sm focus:outline-none focus:border-pink focus:ring-1 focus:ring-pink/20 transition-colors"
                       placeholder="maria@email.com"
                     />
                   </div>
@@ -262,7 +262,7 @@ export default function CheckoutPage() {
                       type="tel"
                       value={form.phone}
                       onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-neutral-200 font-body text-sm focus:outline-none focus:border-pink focus:ring-1 focus:ring-pink/20 transition-colors"
+                      className="w-full px-4 py-3 rounded border border-neutral-200 font-body text-sm focus:outline-none focus:border-pink focus:ring-1 focus:ring-pink/20 transition-colors"
                       placeholder="0740 000 000"
                     />
                   </div>
@@ -275,7 +275,7 @@ export default function CheckoutPage() {
                       required
                       value={form.address}
                       onChange={(e) => setForm({ ...form, address: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-neutral-200 font-body text-sm focus:outline-none focus:border-pink focus:ring-1 focus:ring-pink/20 transition-colors"
+                      className="w-full px-4 py-3 rounded border border-neutral-200 font-body text-sm focus:outline-none focus:border-pink focus:ring-1 focus:ring-pink/20 transition-colors"
                       placeholder="Strada, număr, bloc, apartament"
                     />
                   </div>
@@ -288,7 +288,7 @@ export default function CheckoutPage() {
                       required
                       value={form.city}
                       onChange={(e) => setForm({ ...form, city: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-neutral-200 font-body text-sm focus:outline-none focus:border-pink focus:ring-1 focus:ring-pink/20 transition-colors"
+                      className="w-full px-4 py-3 rounded border border-neutral-200 font-body text-sm focus:outline-none focus:border-pink focus:ring-1 focus:ring-pink/20 transition-colors"
                       placeholder="Iași"
                     />
                   </div>
@@ -300,7 +300,7 @@ export default function CheckoutPage() {
                       required
                       value={form.county}
                       onChange={(e) => setForm({ ...form, county: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-neutral-200 font-body text-sm focus:outline-none focus:border-pink focus:ring-1 focus:ring-pink/20 transition-colors bg-white"
+                      className="w-full px-4 py-3 rounded border border-neutral-200 font-body text-sm focus:outline-none focus:border-pink focus:ring-1 focus:ring-pink/20 transition-colors bg-white"
                     >
                       {ROMANIAN_COUNTIES.map((c) => (
                         <option key={c} value={c}>{c}</option>
@@ -315,7 +315,7 @@ export default function CheckoutPage() {
                       type="text"
                       value={form.postalCode}
                       onChange={(e) => setForm({ ...form, postalCode: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-neutral-200 font-body text-sm focus:outline-none focus:border-pink focus:ring-1 focus:ring-pink/20 transition-colors"
+                      className="w-full px-4 py-3 rounded border border-neutral-200 font-body text-sm focus:outline-none focus:border-pink focus:ring-1 focus:ring-pink/20 transition-colors"
                       placeholder="700000"
                     />
                   </div>
@@ -323,7 +323,7 @@ export default function CheckoutPage() {
               </div>
 
               {/* Invoicing (Date de facturare) */}
-              <div className="bg-white rounded-2xl p-6 lg:p-8 shadow-sm">
+              <div className="bg-white rounded p-6 lg:p-8 shadow-sm">
                 <label className="flex items-start gap-3 cursor-pointer">
                   <input
                     type="checkbox"
@@ -364,7 +364,7 @@ export default function CheckoutPage() {
                             onClick={() =>
                               setForm({ ...form, billingType: opt.value })
                             }
-                            className={`px-4 py-3 rounded-xl border-2 font-body text-sm transition-all ${
+                            className={`px-4 py-3 rounded border-2 font-body text-sm transition-all ${
                               form.billingType === opt.value
                                 ? "border-pink bg-pink/5 text-dark"
                                 : "border-neutral-200 text-neutral-600 hover:border-neutral-300"
@@ -388,7 +388,7 @@ export default function CheckoutPage() {
                             onChange={(e) =>
                               setForm({ ...form, billingName: e.target.value })
                             }
-                            className="w-full px-4 py-3 rounded-xl border border-neutral-200 font-body text-sm focus:outline-none focus:border-pink focus:ring-1 focus:ring-pink/20 transition-colors"
+                            className="w-full px-4 py-3 rounded border border-neutral-200 font-body text-sm focus:outline-none focus:border-pink focus:ring-1 focus:ring-pink/20 transition-colors"
                             placeholder="Lasă gol pentru a folosi numele de livrare"
                           />
                         </div>
@@ -403,7 +403,7 @@ export default function CheckoutPage() {
                             onChange={(e) =>
                               setForm({ ...form, billingCnp: e.target.value })
                             }
-                            className="w-full px-4 py-3 rounded-xl border border-neutral-200 font-body text-sm focus:outline-none focus:border-pink focus:ring-1 focus:ring-pink/20 transition-colors"
+                            className="w-full px-4 py-3 rounded border border-neutral-200 font-body text-sm focus:outline-none focus:border-pink focus:ring-1 focus:ring-pink/20 transition-colors"
                             placeholder="1234567890123"
                           />
                         </div>
@@ -417,7 +417,7 @@ export default function CheckoutPage() {
                             onChange={(e) =>
                               setForm({ ...form, billingAddress: e.target.value })
                             }
-                            className="w-full px-4 py-3 rounded-xl border border-neutral-200 font-body text-sm focus:outline-none focus:border-pink focus:ring-1 focus:ring-pink/20 transition-colors"
+                            className="w-full px-4 py-3 rounded border border-neutral-200 font-body text-sm focus:outline-none focus:border-pink focus:ring-1 focus:ring-pink/20 transition-colors"
                             placeholder="Strada, număr, oraș, județ, cod poștal"
                           />
                         </div>
@@ -434,7 +434,7 @@ export default function CheckoutPage() {
                             onChange={(e) =>
                               setForm({ ...form, billingCompany: e.target.value })
                             }
-                            className="w-full px-4 py-3 rounded-xl border border-neutral-200 font-body text-sm focus:outline-none focus:border-pink focus:ring-1 focus:ring-pink/20 transition-colors"
+                            className="w-full px-4 py-3 rounded border border-neutral-200 font-body text-sm focus:outline-none focus:border-pink focus:ring-1 focus:ring-pink/20 transition-colors"
                             placeholder="ex. Emma Beauty S.R.L."
                           />
                         </div>
@@ -449,7 +449,7 @@ export default function CheckoutPage() {
                               onChange={(e) =>
                                 setForm({ ...form, billingVatId: e.target.value })
                               }
-                              className="w-full px-4 py-3 rounded-xl border border-neutral-200 font-body text-sm focus:outline-none focus:border-pink focus:ring-1 focus:ring-pink/20 transition-colors"
+                              className="w-full px-4 py-3 rounded border border-neutral-200 font-body text-sm focus:outline-none focus:border-pink focus:ring-1 focus:ring-pink/20 transition-colors"
                               placeholder="RO12345678"
                             />
                           </div>
@@ -466,7 +466,7 @@ export default function CheckoutPage() {
                                   billingRegNumber: e.target.value,
                                 })
                               }
-                              className="w-full px-4 py-3 rounded-xl border border-neutral-200 font-body text-sm focus:outline-none focus:border-pink focus:ring-1 focus:ring-pink/20 transition-colors"
+                              className="w-full px-4 py-3 rounded border border-neutral-200 font-body text-sm focus:outline-none focus:border-pink focus:ring-1 focus:ring-pink/20 transition-colors"
                               placeholder="J22/123/2024"
                             />
                           </div>
@@ -484,7 +484,7 @@ export default function CheckoutPage() {
                                 billingAddress: e.target.value,
                               })
                             }
-                            className="w-full px-4 py-3 rounded-xl border border-neutral-200 font-body text-sm focus:outline-none focus:border-pink focus:ring-1 focus:ring-pink/20 transition-colors"
+                            className="w-full px-4 py-3 rounded border border-neutral-200 font-body text-sm focus:outline-none focus:border-pink focus:ring-1 focus:ring-pink/20 transition-colors"
                             placeholder="Strada, număr, oraș, județ, cod poștal"
                           />
                         </div>
@@ -495,13 +495,13 @@ export default function CheckoutPage() {
               </div>
 
               {/* Payment Method */}
-              <div className="bg-white rounded-2xl p-6 lg:p-8 shadow-sm">
+              <div className="bg-white rounded p-6 lg:p-8 shadow-sm">
                 <h2 className="font-display text-lg font-bold uppercase tracking-wider mb-6">
                   Metodă de plată
                 </h2>
                 <div className="space-y-3">
                   <label
-                    className={`flex items-center gap-4 p-4 rounded-xl border-2 cursor-pointer transition-all ${
+                    className={`flex items-center gap-4 p-4 rounded border-2 cursor-pointer transition-all ${
                       paymentMethod === "stripe"
                         ? "border-pink bg-pink/5"
                         : "border-neutral-200 hover:border-neutral-300"
@@ -526,7 +526,7 @@ export default function CheckoutPage() {
                   </label>
 
                   <label
-                    className={`flex items-center gap-4 p-4 rounded-xl border-2 cursor-pointer transition-all ${
+                    className={`flex items-center gap-4 p-4 rounded border-2 cursor-pointer transition-all ${
                       paymentMethod === "ramburs"
                         ? "border-pink bg-pink/5"
                         : "border-neutral-200 hover:border-neutral-300"
@@ -554,7 +554,7 @@ export default function CheckoutPage() {
 
             {/* ─── RIGHT: Order Summary ─── */}
             <div className="lg:col-span-5">
-              <div className="bg-white rounded-2xl p-6 lg:p-8 shadow-sm sticky top-28">
+              <div className="bg-white rounded p-6 lg:p-8 shadow-sm sticky top-28">
                 <h2 className="font-display text-lg font-bold uppercase tracking-wider mb-6">
                   Sumar comandă
                 </h2>
@@ -594,13 +594,13 @@ export default function CheckoutPage() {
                         setDiscountResult(null);
                       }}
                       placeholder="Ex: WELCOME10"
-                      className="flex-1 px-4 py-2.5 rounded-xl border border-neutral-200 font-body text-sm focus:outline-none focus:border-pink transition-colors uppercase"
+                      className="flex-1 px-4 py-2.5 rounded border border-neutral-200 font-body text-sm focus:outline-none focus:border-pink transition-colors uppercase"
                     />
                     <button
                       type="button"
                       onClick={validateDiscount}
                       disabled={discountLoading || !discountCode.trim()}
-                      className="px-4 py-2.5 bg-dark text-white font-body text-xs font-semibold uppercase tracking-wider rounded-xl hover:bg-pink transition-colors disabled:opacity-50"
+                      className="px-4 py-2.5 bg-dark text-white font-body text-xs font-semibold uppercase tracking-wider rounded hover:bg-pink transition-colors disabled:opacity-50"
                     >
                       {discountLoading ? "..." : "Aplică"}
                     </button>
@@ -639,7 +639,7 @@ export default function CheckoutPage() {
 
                 {/* Error */}
                 {error && (
-                  <div className="bg-red-50 text-red-600 font-body text-sm rounded-xl p-3 mb-4">
+                  <div className="bg-red-50 text-red-600 font-body text-sm rounded p-3 mb-4">
                     {error}
                   </div>
                 )}
@@ -648,7 +648,7 @@ export default function CheckoutPage() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full bg-pink text-white font-body text-sm font-semibold uppercase tracking-[0.2em] py-4 rounded-full hover:bg-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full bg-dark text-white font-body text-sm font-semibold uppercase tracking-[0.14em] py-4 rounded-full hover:bg-pink transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {loading
                     ? "Se procesează..."

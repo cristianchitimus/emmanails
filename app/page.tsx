@@ -3,47 +3,88 @@ import Image from "next/image";
 import { prisma } from "@/lib/db";
 import { ProductCard } from "@/components/ProductCard";
 import { CourseCard } from "@/components/CourseCard";
-import { ScrollScrubHero } from "@/components/ScrollScrubHero";
-import { TextWipe } from "@/components/TextWipe";
-import { PanelLetterReveal } from "@/components/PanelLetterReveal";
-import { CountUp } from "@/components/CountUp";
-import { FadeStack } from "@/components/FadeStack";
-import { DespreEmmaScrub } from "@/components/DespreEmmaScrub";
 import { whatsappLink } from "@/lib/utils";
 
 export const revalidate = 60;
 
-/* Shared wrapper so every panel inside FadeStack fills the pinned stage
-   (100vh) and centers its content vertically. This is how the panels stop
-   being "scroll-reveal" sections and become "pinned/fading" panels. */
-function Panel({
-  children,
-  className = "",
-  style,
-}: {
-  children: React.ReactNode;
-  className?: string;
-  style?: React.CSSProperties;
-}) {
-  return (
-    <div
-      className={`relative w-full h-full overflow-hidden flex items-center ${className}`}
-      style={style}
-    >
-      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-        {children}
-      </div>
-    </div>
-  );
-}
+const categoryCards = [
+  {
+    title: "Polygel",
+    href: "/produse?categorie=polygel",
+    image: "/uploads/al-pink-luna.jpeg",
+  },
+  {
+    title: "Baza Rubber",
+    href: "/produse?categorie=baza-rubber",
+    image: "/uploads/grb-nude-reflection.jpeg",
+  },
+  {
+    title: "Geluri UV",
+    href: "/produse?categorie=geluri-uv",
+    image: "/uploads/bg-pink-promise.jpeg",
+  },
+  {
+    title: "Top Coat",
+    href: "/produse?categorie=top-coat",
+    image: "/velvet-matte-top-coat-front.jpg",
+  },
+  {
+    title: "Instrumente",
+    href: "/produse?categorie=instrumente",
+    image: "/uploads/brand-Foto_031.jpg",
+  },
+  {
+    title: "Academie",
+    href: "/academie",
+    image: "/uploads/academy-WhatsApp-Image-2024-07-10-at-13.46.40-1.jpeg",
+  },
+];
+
+const benefits = [
+  {
+    title: "Livrare gratuita",
+    text: "Beneficiezi de livrare gratuita pentru comenzile de peste 200 lei.",
+  },
+  {
+    title: "Produse profesionale",
+    text: "Gama Emma Nails este selectata pentru tehnicieni si saloane.",
+  },
+  {
+    title: "Cursuri acreditate",
+    text: "Academie cu practica pe model real si suport dupa curs.",
+  },
+  {
+    title: "Suport rapid",
+    text: "Raspundem pe WhatsApp pentru recomandari si comenzi.",
+  },
+];
+
+const testimonials = [
+  {
+    text: "Produsele sunt usor de lucrat, pigmentate si rezistente.",
+    name: "Alexandra, nail tech",
+  },
+  {
+    text: "Cursul a fost foarte practic si explicat clar de la inceput la final.",
+    name: "Denisa, cursanta",
+  },
+  {
+    text: "Comanda a ajuns rapid, iar nuantele arata exact ca in poze.",
+    name: "Mihaela, clienta",
+  },
+];
 
 export default async function HomePage() {
-  const [featuredProducts, featuredCourses, productCount, courseCount, heroSettings] =
+  const [featuredProducts, latestProducts, featuredCourses, productCount, courseCount] =
     await Promise.all([
       prisma.product.findMany({
         where: { featured: true },
         orderBy: { createdAt: "desc" },
-        take: 4,
+        take: 8,
+      }),
+      prisma.product.findMany({
+        orderBy: { createdAt: "desc" },
+        take: 8,
       }),
       prisma.course.findMany({
         where: { featured: true },
@@ -52,366 +93,219 @@ export default async function HomePage() {
       }),
       prisma.product.count(),
       prisma.course.count(),
-      prisma.siteSetting.findMany({
-        where: {
-          key: {
-            in: [
-              "hero_left_image",
-              "hero_right_top_image",
-              "hero_right_bottom_image",
-            ],
-          },
-        },
-      }),
     ]);
 
-  const heroImages: Record<string, string> = {};
-  for (const s of heroSettings) heroImages[s.key] = s.value;
-
-  const testimonials = [
-    {
-      name: "Denisa Olaru",
-      photo: "/uploads/testimoniale/denisa-olaru.png",
-      text:
-        "Am fost extrem de mulțumită de felul în care îmi era explicată fiecare etapă pentru a realiza o manichiură reușită. Emma are un caracter frumos, e înzestrată cu multă răbdare și este o persoană foarte plăcută! Cu siguranță voi mai reveni să învăț tehnici noi. Te îmbrățișez!",
-      course: "Cursantă",
-    },
-    {
-      name: "Ecaterina Tanasache",
-      photo: "/uploads/testimoniale/ecaterina-tanasache.png",
-      text:
-        "În aceste 6 zile ale cursului — basic gel — susținut de Emma, m-a făcut să îmi dau seama că meseria cea mai grea, dificilă și cea în care trebuie să ai răbdare de fier este aceasta de manichiurist. Îți mulțumesc frumos, Emma, pentru tot sprijinul și să știi că ești foarte răbdătoare — nu am mai văzut un om așa răbdător și cald.",
-      course: "Cursantă",
-    },
-    {
-      name: "Paula Pintilie",
-      photo: "/uploads/testimoniale/paula-pintilie.png",
-      text:
-        "Emma… o persoană dedicată total în ceea ce face, nici o secundă nu ți se pare că muncești pentru că totul e făcut din pasiune. A fost cea mai frumoasă experiență — chiar dacă în prima zi mă întrebam „oare ce mi-a trebuit?!”, la finalul cursului am rămas cu multe informații, o pasiune nou descoperită și o prietenie cu fetele participante. Mulțumesc, Emma! Ești deosebită!",
-      course: "Cursantă",
-    },
-    {
-      name: "Mihaela Radu",
-      photo: "/uploads/testimoniale/mihaela-radu.jpg",
-      text:
-        "Nu există persoană mai perfectă în acest domeniu decât Emma!!! O recomand cu drag — este o persoană excelentă, dedicată, caldă, minunată, calmă!!! N-aveți cum să nu învățați să faceți unghii perfecte atâta timp cât vă învață Emma!! Dacă vreți cursuri perfecte, unghii perfecte, le găsiți doar la Emma!!",
-      course: "Cursantă",
-    },
-  ];
+  const products = featuredProducts.length >= 4 ? featuredProducts : latestProducts;
 
   return (
     <>
-      {/* ═══════════════════════════════════════════════════════════════════
-          HERO — its own 250vh scroll-scrubbed pinned system (unchanged)
-      ═══════════════════════════════════════════════════════════════════ */}
-      <ScrollScrubHero
-        heroLeftImage={heroImages.hero_left_image}
-        heroRightTopImage={heroImages.hero_right_top_image}
-        heroRightBottomImage={heroImages.hero_right_bottom_image}
-      />
-
-      {/* ═══════════════════════════════════════════════════════════════════
-          FADE STACK — every section below becomes a pinned, crossfading panel
-      ═══════════════════════════════════════════════════════════════════ */}
-      <FadeStack heightPerSectionVh={200} slideBand={0.4}>
-        {/* ─── 1. Shop + Academie combined (one scroll reveals both) ─── */}
-        <Panel
-          style={{
-            // Match the rest of the panels (was a warmer #fdf6f3 → white →
-            // #f5e8e5 which read as gold-tinted vs the cooler cream the other
-            // sections use).
-            background:
-              "linear-gradient(180deg, #ffffff 0%, #faf3f0 50%, #f5e8e5 100%)",
-          }}
-        >
-          <div className="space-y-6 md:space-y-10">
-            {/* Shop row */}
-            <div>
-              <div className="flex items-center justify-between gap-4 mb-4 md:mb-6">
-                <h2 className="font-body text-xs md:text-sm font-semibold uppercase tracking-[0.25em] text-dark">
-                  <PanelLetterReveal text="Cele mai populare" staggerMs={28} />
-                </h2>
-                <Link
-                  href="/produse"
-                  className="font-body text-xs md:text-sm font-semibold uppercase tracking-[0.2em] text-pink hover:text-dark transition-colors whitespace-nowrap"
-                >
-                  Vezi toate {productCount} →
+      <section className="relative overflow-hidden bg-dark">
+        <div className="relative h-[540px] min-h-[62vh] max-h-[760px]">
+          <video
+            src="/videos/hero.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster="/videos/frames/f001.webp"
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/65 via-black/28 to-transparent" />
+          <div className="shop-container relative z-10 flex h-full items-end pb-10 md:pb-14">
+            <div className="max-w-xl text-white">
+              <p className="mb-4 font-body text-[11px] font-semibold uppercase text-white/80" style={{ letterSpacing: "0.18em" }}>
+                Emma Nails
+              </p>
+              <h1 className="font-display text-4xl font-semibold leading-[1.02] md:text-5xl lg:text-6xl">
+                Produse profesionale pentru manichiura si pedichiura
+              </h1>
+              <p className="mt-5 max-w-lg font-body text-sm leading-relaxed text-white/80 md:text-base">
+                Geluri, baze, topuri, instrumente si cursuri pentru tehnicieni care vor rezultate constante.
+              </p>
+              <div className="mt-7 flex flex-wrap gap-3">
+                <Link href="/produse" className="btn-white">
+                  Shop
+                </Link>
+                <Link href="/academie" className="inline-flex items-center justify-center rounded border border-white/70 px-8 py-3.5 font-body text-[12px] font-semibold uppercase text-white transition-colors hover:bg-white hover:text-dark" style={{ letterSpacing: "0.14em" }}>
+                  Academie
                 </Link>
               </div>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6">
-                {featuredProducts.map((product) => (
-                  <ProductCard key={product.id} product={product} />
-                ))}
-              </div>
             </div>
+          </div>
+        </div>
+      </section>
 
-            {/* Divider */}
-            <div className="h-px bg-gradient-to-r from-transparent via-pink/30 to-transparent" />
-
-            {/* Academie row */}
+      <section className="shop-section">
+        <div className="shop-container">
+          <div className="shop-heading-row">
             <div>
-              <div className="flex items-center justify-between gap-4 mb-4 md:mb-6">
-                <div>
-                  <p className="font-body text-[10px] md:text-xs font-semibold uppercase tracking-[0.25em] text-pink mb-1">
-                    <PanelLetterReveal text="Academie" staggerMs={32} />
-                  </p>
-                  <h2 className="font-display text-xl md:text-2xl lg:text-3xl font-medium leading-tight">
-                    <PanelLetterReveal text="Cursuri " delay={250} staggerMs={38} />
-                    <PanelLetterReveal
-                      text="profesionale"
-                      delay={250 + "Cursuri ".length * 38 + 60}
-                      staggerMs={38}
-                      className="italic text-pink"
-                    />
-                  </h2>
-                </div>
-                <Link
-                  href="/academie"
-                  className="font-body text-xs md:text-sm font-semibold uppercase tracking-[0.2em] text-pink hover:text-dark transition-colors whitespace-nowrap"
-                >
-                  Toate cele {courseCount} →
-                </Link>
-              </div>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5">
-                {featuredCourses.map((course) => (
-                  <CourseCard key={course.id} course={course} />
-                ))}
-              </div>
+              <p className="section-label mb-3">Noutati</p>
+              <h2 className="shop-title">Produse populare</h2>
             </div>
+            <Link href="/produse" className="shop-link">
+              Vezi toate {productCount}
+            </Link>
           </div>
-        </Panel>
-
-        {/* ─── 2. Despre Emma — video scrub + fading text ─── */}
-        <DespreEmmaScrub />
-
-        {/* ─── 3. Benefits + Stats combined (one scroll reveals both) ─── */}
-        <Panel
-          style={{
-            background:
-              "linear-gradient(180deg, #ffffff 0%, #faf3f0 50%, #f5e8e5 100%)",
-          }}
-        >
-          <div className="space-y-8 md:space-y-12">
-            {/* Benefits row */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-8">
-              {[
-                {
-                  icon: "✨",
-                  title: "Formulă Originală",
-                  desc: "Produse dezvoltate din 15+ ani de experiență în salon",
-                },
-                {
-                  icon: "🎓",
-                  title: "Diplomă Acreditată",
-                  desc: "Certificare oficială recunoscută național",
-                },
-                {
-                  icon: "👩‍🏫",
-                  title: "Practică Reală",
-                  desc: "Fiecare cursantă lucrează pe model real",
-                },
-                {
-                  icon: "📦",
-                  title: "Livrare Rapidă",
-                  desc: "Comenzi procesate în 24h, toată România",
-                },
-              ].map((item, idx) => (
-                <div key={item.title} className="text-center group">
-                  <div
-                    className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-all duration-500"
-                    style={{
-                      background:
-                        "linear-gradient(135deg, #f5e8e5 0%, #e8cec5 100%)",
-                    }}
-                  >
-                    <span className="text-xl">{item.icon}</span>
-                  </div>
-                  <h3 className="font-body text-sm font-semibold uppercase tracking-wider mb-1">
-                    {/* Stagger items horizontally so they reveal left-to-right
-                        as a quartet rather than all four firing simultaneously. */}
-                    <PanelLetterReveal
-                      text={item.title}
-                      staggerMs={32}
-                      delay={idx * 120}
-                    />
-                  </h3>
-                  <p className="font-body text-xs text-dark-400 leading-relaxed">
-                    {item.desc}
-                  </p>
-                </div>
-              ))}
-            </div>
-
-            {/* Divider */}
-            <div className="h-px bg-gradient-to-r from-transparent via-pink/30 to-transparent" />
-
-            {/* Stats row */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-              {[
-                { target: 15, suffix: "+", label: "Ani de Experiență" },
-                { target: productCount, suffix: "+", label: "Produse Profesionale" },
-                { target: 500, suffix: "+", label: "Cursante Formate" },
-                { target: courseCount, suffix: "", label: "Cursuri Disponibile" },
-              ].map((s, idx) => (
-                <div key={s.label} className="text-center">
-                  <CountUp
-                    target={s.target}
-                    suffix={s.suffix}
-                    className="font-display text-3xl md:text-4xl font-bold text-pink"
-                  />
-                  <p className="font-body text-[11px] uppercase tracking-[0.2em] text-dark-400 mt-1">
-                    <PanelLetterReveal
-                      text={s.label}
-                      staggerMs={28}
-                      // Start the labels after the feature row has finished
-                      // its own stagger to keep the section's reveal coherent.
-                      delay={500 + idx * 100}
-                    />
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </Panel>
-
-        {/* ─── 4. Testimonials (trimmed to 2 to fit 100vh comfortably) ─── */}
-        <Panel
-          style={{
-            background:
-              "linear-gradient(180deg, #ffffff 0%, #fdf6f3 50%, #ffffff 100%)",
-          }}
-        >
-          <div
-            className="absolute top-10 left-10 w-72 h-72 rounded-full blur-3xl"
-            style={{
-              background:
-                "radial-gradient(circle, rgba(183,110,121,0.06) 0%, transparent 70%)",
-            }}
-          />
-          <div
-            className="absolute bottom-10 right-10 w-60 h-60 rounded-full blur-3xl"
-            style={{
-              background:
-                "radial-gradient(circle, rgba(217,173,177,0.08) 0%, transparent 70%)",
-            }}
-          />
-          <div className="text-center mb-8 md:mb-10 relative">
-            <p className="section-label mb-3">
-              <PanelLetterReveal text="Ce spun cursantele" staggerMs={28} />
-            </p>
-            <h2 className="font-display text-2xl md:text-3xl lg:text-4xl font-medium leading-tight">
-              <PanelLetterReveal text="Testimoniale " delay={300} staggerMs={42} />
-              <PanelLetterReveal
-                text="reale"
-                delay={300 + "Testimoniale ".length * 42 + 60}
-                staggerMs={48}
-                className="italic text-pink"
-              />
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6 relative">
-            {testimonials.map((t) => (
-              <div
-                key={t.name}
-                className="bg-white rounded-2xl p-6 md:p-7 border border-neutral-100 shadow-sm h-full flex flex-col"
-              >
-                <div className="flex gap-1 mb-3">
-                  {[...Array(5)].map((_, s) => (
-                    <svg
-                      key={s}
-                      className="w-4 h-4 text-pink"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                  ))}
-                </div>
-                <p className="font-body text-sm text-dark-400 leading-relaxed flex-1">
-                  &ldquo;{t.text}&rdquo;
-                </p>
-                <div className="mt-4 pt-3 border-t border-neutral-100 flex items-center gap-3">
-                  <div className="relative w-11 h-11 rounded-full overflow-hidden flex-shrink-0 ring-1 ring-pink/20 bg-pink/10">
-                    <Image
-                      src={t.photo}
-                      alt={t.name}
-                      fill
-                      sizes="44px"
-                      className="object-cover"
-                    />
-                  </div>
-                  <div>
-                    <p className="font-body text-sm font-semibold text-dark">
-                      {t.name}
-                    </p>
-                    <p className="font-body text-[11px] text-dark-400">
-                      {t.course}
-                    </p>
-                  </div>
-                </div>
-              </div>
+          <div className="grid grid-cols-2 gap-x-3 gap-y-8 md:grid-cols-3 lg:grid-cols-4 md:gap-x-5 lg:gap-x-7">
+            {products.map((product) => (
+              <ProductCard key={product.id} product={product} />
             ))}
           </div>
-        </Panel>
+        </div>
+      </section>
 
-        {/* ─── 5. Final CTA ─── */}
-        <Panel
-          className="text-center"
-          style={{
-            background:
-              "linear-gradient(180deg, #fdf6f3 0%, #ffffff 40%, #f5e8e5 100%)",
-          }}
-        >
-          <div
-            className="absolute top-0 right-0 w-96 h-96 rounded-full blur-3xl"
-            style={{
-              background:
-                "radial-gradient(circle, rgba(183,110,121,0.12) 0%, transparent 70%)",
-            }}
-          />
-          <div
-            className="absolute bottom-0 left-0 w-72 h-72 rounded-full blur-3xl"
-            style={{
-              background:
-                "radial-gradient(circle, rgba(217,173,177,0.2) 0%, transparent 70%)",
-            }}
-          />
-          <div className="relative max-w-3xl mx-auto">
-            <h2 className="font-display text-3xl md:text-4xl font-medium leading-tight">
-              <PanelLetterReveal text="Hai să " staggerMs={50} />
-              <PanelLetterReveal
-                text="vorbim"
-                delay={"Hai să ".length * 50 + 80}
-                staggerMs={55}
-                className="italic text-pink"
+      <section className="shop-section-muted">
+        <div className="shop-container">
+          <div className="shop-heading-row">
+            <div>
+              <p className="section-label mb-3">Categorii</p>
+              <h2 className="shop-title">Descopera gama Emma Nails</h2>
+            </div>
+            <Link href="/produse" className="shop-link">
+              Toate categoriile
+            </Link>
+          </div>
+          <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-6">
+            {categoryCards.map((card) => (
+              <Link key={card.href} href={card.href} className="group block bg-white">
+                <div className="relative aspect-square overflow-hidden rounded bg-white">
+                  <Image
+                    src={card.image}
+                    alt={card.title}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 768px) 50vw, 16vw"
+                  />
+                </div>
+                <p className="mt-3 font-body text-sm font-semibold text-dark transition-colors group-hover:text-pink">
+                  {card.title}
+                </p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="shop-section">
+        <div className="shop-container">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-center lg:gap-12">
+            <div className="relative aspect-square overflow-hidden rounded bg-neutral-50">
+              <video
+                src="/videos/emma.mp4"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                poster="/videos/emma-frames/e001.webp"
+                className="h-full w-full object-cover"
               />
-            </h2>
-            <p className="font-body text-base md:text-lg text-dark-400 mt-5 max-w-lg mx-auto">
-              Fie că ești interesată de produse sau de cursuri, suntem aici
-              pentru tine.
-            </p>
-            <div className="flex flex-wrap justify-center gap-3 mt-8">
-              <a
-                href={whatsappLink("Bună! Aș dori mai multe informații.")}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary gap-2"
-              >
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                </svg>
-                Scrie pe WhatsApp
-              </a>
-              <Link href="/produse" className="btn-secondary">
-                Shop
-              </Link>
-              <Link href="/academie" className="btn-secondary">
-                Academie
-              </Link>
+            </div>
+            <div className="max-w-xl">
+              <p className="section-label mb-3">Despre noi</p>
+              <h2 className="shop-title">Brand romanesc pentru tehnicieni de unghii</h2>
+              <div className="mt-5 space-y-4 shop-copy">
+                <p>
+                  Emma Nails combina experienta de salon cu produse testate in lucru real. Gama este construita pentru manichiura curata, rezistenta si usor de repetat.
+                </p>
+                <p>
+                  In academie, cursurile sunt gandite practic: tehnici clare, model real si suport pentru fiecare cursanta.
+                </p>
+              </div>
+              <div className="mt-7 flex flex-wrap gap-3">
+                <Link href="/despre" className="btn-primary">
+                  Descopera Emma Nails
+                </Link>
+                <a href={whatsappLink("Buna! As dori mai multe informatii despre Emma Nails.")} target="_blank" rel="noopener noreferrer" className="btn-secondary">
+                  WhatsApp
+                </a>
+              </div>
             </div>
           </div>
-        </Panel>
-      </FadeStack>
+        </div>
+      </section>
+
+      <section className="border-y border-neutral-100 bg-white">
+        <div className="shop-container grid grid-cols-1 divide-y divide-neutral-100 py-2 md:grid-cols-4 md:divide-x md:divide-y-0">
+          {benefits.map((item) => (
+            <div key={item.title} className="px-2 py-8 text-center md:px-6">
+              <h3 className="font-body text-sm font-semibold uppercase text-dark" style={{ letterSpacing: "0.12em" }}>
+                {item.title}
+              </h3>
+              <p className="mt-3 font-body text-sm leading-relaxed text-dark-400">
+                {item.text}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="shop-section">
+        <div className="shop-container">
+          <div className="shop-heading-row">
+            <div>
+              <p className="section-label mb-3">Academie</p>
+              <h2 className="shop-title">Cursuri profesionale</h2>
+            </div>
+            <Link href="/academie" className="shop-link">
+              Toate cursurile {courseCount}
+            </Link>
+          </div>
+          <div className="grid grid-cols-2 gap-x-3 gap-y-8 md:grid-cols-4 md:gap-x-5 lg:gap-x-7">
+            {featuredCourses.map((course) => (
+              <CourseCard key={course.id} course={course} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="shop-section-muted">
+        <div className="shop-container">
+          <div className="shop-heading-row">
+            <div>
+              <p className="section-label mb-3">Recenzii</p>
+              <h2 className="shop-title">Ce spun clientele</h2>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+            {testimonials.map((item) => (
+              <figure key={item.name} className="shop-card p-6">
+                <div className="mb-4 flex gap-1 text-pink" aria-hidden="true">
+                  {[...Array(5)].map((_, index) => (
+                    <span key={index}>★</span>
+                  ))}
+                </div>
+                <blockquote className="font-body text-sm leading-relaxed text-dark-500">
+                  “{item.text}”
+                </blockquote>
+                <figcaption className="mt-5 font-body text-sm font-semibold text-dark">
+                  {item.name}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="shop-section bg-dark text-white">
+        <div className="shop-container text-center">
+          <p className="mb-3 font-body text-[11px] font-semibold uppercase text-white/60" style={{ letterSpacing: "0.18em" }}>
+            Suport rapid
+          </p>
+          <h2 className="mx-auto max-w-2xl font-display text-3xl font-semibold leading-tight md:text-4xl">
+            Ai nevoie de recomandari pentru produse sau cursuri?
+          </h2>
+          <p className="mx-auto mt-4 max-w-xl font-body text-sm leading-relaxed text-white/70 md:text-base">
+            Scrie-ne si te ajutam sa alegi varianta potrivita pentru nivelul tau de lucru.
+          </p>
+          <div className="mt-8 flex justify-center">
+            <a href={whatsappLink("Buna! Am nevoie de o recomandare Emma Nails.")} target="_blank" rel="noopener noreferrer" className="btn-white">
+              Scrie pe WhatsApp
+            </a>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

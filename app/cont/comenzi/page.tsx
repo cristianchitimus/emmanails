@@ -32,7 +32,7 @@ export default async function OrdersPage() {
         </div>
 
         {orders.length === 0 ? (
-          <div className="bg-white rounded-2xl p-12 shadow-sm text-center">
+          <div className="bg-white rounded p-12 shadow-sm text-center">
             <svg className="w-16 h-16 text-neutral-200 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
             </svg>
@@ -40,7 +40,7 @@ export default async function OrdersPage() {
             <p className="font-body text-sm text-neutral-500 mb-6">Descoperă produsele noastre și plasează prima comandă!</p>
             <Link
               href="/produse"
-              className="inline-block bg-pink text-white font-body text-xs font-semibold uppercase tracking-[0.2em] px-8 py-3 rounded-full hover:bg-dark transition-colors"
+              className="inline-block bg-dark text-white font-body text-xs font-semibold uppercase tracking-[0.14em] px-8 py-3 rounded-full hover:bg-pink transition-colors"
             >
               Mergi la magazin
             </Link>
@@ -51,7 +51,7 @@ export default async function OrdersPage() {
               <Link
                 key={order.id}
                 href={`/cont/comenzi/${order.id}`}
-                className="block bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow"
+                className="block bg-white rounded p-6 shadow-sm hover:shadow-md transition-shadow"
               >
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   <div>

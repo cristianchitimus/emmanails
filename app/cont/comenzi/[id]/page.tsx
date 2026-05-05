@@ -61,7 +61,7 @@ export default async function OrderDetailPage({ params }: Props) {
 
         {/* Status tracker */}
         {!isCancelled && (
-          <div className="bg-white rounded-2xl p-6 shadow-sm mb-6">
+          <div className="bg-white rounded p-6 shadow-sm mb-6">
             <div className="flex items-center justify-between relative">
               {/* Progress bar */}
               <div className="absolute top-4 left-0 right-0 h-0.5 bg-neutral-200">
@@ -75,7 +75,7 @@ export default async function OrderDetailPage({ params }: Props) {
                 <div key={step} className="relative flex flex-col items-center z-10">
                   <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold ${
                     i <= currentStepIndex
-                      ? "bg-pink text-white"
+                      ? "bg-dark text-white"
                       : "bg-neutral-200 text-neutral-400"
                   }`}>
                     {i < currentStepIndex ? "✓" : i + 1}
@@ -93,7 +93,7 @@ export default async function OrderDetailPage({ params }: Props) {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Products */}
-          <div className="bg-white rounded-2xl p-6 shadow-sm">
+          <div className="bg-white rounded p-6 shadow-sm">
             <h2 className="font-display text-lg font-bold uppercase tracking-wider mb-4">Produse</h2>
             <ul className="space-y-3">
               {order.items.map((item) => (
@@ -134,7 +134,7 @@ export default async function OrderDetailPage({ params }: Props) {
 
           {/* Details */}
           <div className="space-y-6">
-            <div className="bg-white rounded-2xl p-6 shadow-sm">
+            <div className="bg-white rounded p-6 shadow-sm">
               <h2 className="font-display text-lg font-bold uppercase tracking-wider mb-4">Livrare</h2>
               <div className="space-y-1 font-body text-sm">
                 <p className="font-semibold">{order.name}</p>
@@ -145,7 +145,7 @@ export default async function OrderDetailPage({ params }: Props) {
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl p-6 shadow-sm">
+            <div className="bg-white rounded p-6 shadow-sm">
               <h2 className="font-display text-lg font-bold uppercase tracking-wider mb-4">Plată</h2>
               <div className="space-y-1 font-body text-sm">
                 <p>{order.paymentMethod === "stripe" ? "Card bancar (Stripe)" : "Ramburs (plata la livrare)"}</p>

@@ -46,7 +46,7 @@ const config: Config = {
         },
       },
       fontFamily: {
-        display: ['"Playfair Display"', "Georgia", "serif"],
+        display: ['"DM Sans"', "system-ui", "sans-serif"],
         body: ['"DM Sans"', "system-ui", "sans-serif"],
       },
     },
