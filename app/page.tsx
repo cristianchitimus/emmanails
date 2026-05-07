@@ -197,12 +197,12 @@ export default async function HomePage() {
       <section className="shop-section">
         <div className="shop-container">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-center lg:gap-12">
-            <div className="relative aspect-[16/10] overflow-hidden rounded bg-neutral-50 shadow-sm lg:aspect-[4/3]">
+            <div className="premium-media-frame relative mx-auto aspect-[4/5] w-full max-w-[620px] overflow-hidden rounded">
               <Image
-                src="/about-courses-accredited.jpg"
-                alt="Cursuri acreditate Emma Nails"
+                src="/about-emma-portrait.jpg"
+                alt="Emma Nails trainer"
                 fill
-                className="object-cover transition-transform duration-700 hover:scale-[1.025]"
+                className="object-cover object-top transition-transform duration-700 hover:scale-[1.025]"
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>
