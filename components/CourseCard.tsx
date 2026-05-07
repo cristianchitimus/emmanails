@@ -17,7 +17,7 @@ interface CourseCardProps {
 export function CourseCard({ course }: CourseCardProps) {
   return (
     <Link href={`/academie/${course.slug}`} className="motion-card group block">
-      <div className="relative aspect-square overflow-hidden rounded bg-neutral-50">
+      <div className="premium-media-frame relative aspect-square overflow-hidden rounded">
         {course.imageUrl ? (
           <Image
             src={course.imageUrl}

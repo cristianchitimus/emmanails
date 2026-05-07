@@ -30,7 +30,7 @@ export function CategoryFilter({ categories, paramName = "categorie" }: Category
     <div className="flex flex-wrap gap-2">
       <button
         onClick={() => handleFilter("")}
-        className={`font-body text-[11px] font-semibold uppercase px-4 py-2 rounded border transition-colors ${
+        className={`font-body text-[11px] font-semibold uppercase px-4 py-2 rounded border transition-all duration-300 hover:-translate-y-0.5 ${
           !active
             ? "bg-dark border-dark text-white"
             : "bg-white border-neutral-200 text-neutral-600 hover:border-dark"
@@ -43,7 +43,7 @@ export function CategoryFilter({ categories, paramName = "categorie" }: Category
         <button
           key={cat.value}
           onClick={() => handleFilter(cat.value)}
-          className={`font-body text-[11px] font-semibold uppercase px-4 py-2 rounded border transition-colors ${
+          className={`font-body text-[11px] font-semibold uppercase px-4 py-2 rounded border transition-all duration-300 hover:-translate-y-0.5 ${
             active === cat.value
               ? "bg-dark border-dark text-white"
               : "bg-white border-neutral-200 text-neutral-600 hover:border-dark"

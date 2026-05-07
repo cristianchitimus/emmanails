@@ -61,7 +61,7 @@ export default async function ProductDetailPage({ params }: Props) {
           </nav>
 
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-14">
-            <ImageGallery images={product.images || (product.imageUrl ? [product.imageUrl] : [])} alt={product.name} />
+            <ImageGallery images={product.images || (product.imageUrl ? [product.imageUrl] : [])} alt={product.name} variant="product" />
 
             <div className="lg:pt-4">
               <div className="flex flex-wrap items-center gap-2">

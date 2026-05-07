@@ -56,14 +56,14 @@ export function ProductCard({ product }: ProductCardProps) {
   return (
     <article className="motion-card group relative">
       <Link href={`/produse/${product.slug}`} className="block">
-        <div className="relative aspect-square overflow-hidden rounded bg-neutral-50">
+        <div className="premium-product-frame relative aspect-square overflow-hidden rounded">
           {primaryImg ? (
             <>
               <Image
                 src={primaryImg}
                 alt={product.name}
                 fill
-                className={`object-contain p-4 transition duration-500 ${hoverImg ? "group-hover:opacity-0" : "group-hover:scale-105"}`}
+                className={`premium-product-image object-contain transition duration-500 ${hoverImg ? "group-hover:opacity-0" : "group-hover:scale-105"}`}
                 sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
               />
               {hoverImg && (
@@ -71,7 +71,7 @@ export function ProductCard({ product }: ProductCardProps) {
                   src={hoverImg}
                   alt={`${product.name} imagine secundara`}
                   fill
-                  className="object-contain p-4 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                  className="premium-product-image object-contain opacity-0 transition-opacity duration-500 group-hover:opacity-100"
                   sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                 />
               )}
@@ -128,7 +128,7 @@ export function ProductCard({ product }: ProductCardProps) {
       {product.inStock ? (
         <button
           onClick={addToCart}
-          className="mt-3 w-full rounded border border-dark bg-white px-3 py-2.5 font-body text-[11px] font-semibold uppercase text-dark transition-colors hover:bg-dark hover:text-white"
+          className="premium-product-button mt-3 w-full rounded px-3 py-2.5 font-body text-[11px] font-semibold uppercase text-dark"
           style={{ letterSpacing: "0.14em" }}
         >
           Adauga in cos

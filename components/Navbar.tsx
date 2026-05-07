@@ -88,7 +88,7 @@ export function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white border-b border-neutral-100">
+    <header className="sticky top-0 z-50 border-b border-neutral-100 bg-white/90 backdrop-blur-xl">
       <div className="shop-container">
         <div className="grid h-16 grid-cols-[1fr_auto_1fr] items-center gap-4 lg:h-[76px]">
           <div className="flex items-center gap-3 lg:hidden">
@@ -195,14 +195,14 @@ export function Navbar() {
               <Link
                 href="/produse?categorie=polygel"
                 onClick={() => setShopOpen(false)}
-                className="group col-span-4 grid grid-cols-[120px_1fr] gap-5 rounded border border-neutral-100 bg-neutral-50 p-4"
+                className="group col-span-4 grid grid-cols-[120px_1fr] gap-5 rounded border border-neutral-100 bg-white p-4 shadow-[0_18px_45px_rgba(20,20,20,0.05)] transition-transform duration-300 hover:-translate-y-1"
               >
-                <div className="relative aspect-square overflow-hidden rounded bg-white">
+                <div className="premium-product-frame relative aspect-square overflow-hidden rounded">
                   <Image
                     src="/uploads/al-pink-luna.jpeg"
                     alt="Best seller Emma Nails"
                     fill
-                    className="object-contain p-3 transition-transform duration-300 group-hover:scale-105"
+                    className="premium-product-image object-contain transition-transform duration-300 group-hover:scale-105"
                     sizes="120px"
                   />
                 </div>

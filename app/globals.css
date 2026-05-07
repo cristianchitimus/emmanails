@@ -78,7 +78,8 @@
     @apply py-12 md:py-16 lg:py-20 bg-white;
   }
   .shop-section-muted {
-    @apply py-12 md:py-16 lg:py-20 bg-neutral-50;
+    @apply py-12 md:py-16 lg:py-20;
+    background: #fbfbfb;
   }
   .shop-heading-row {
     @apply flex flex-col gap-4 md:flex-row md:items-end md:justify-between mb-8 md:mb-10;
@@ -90,7 +91,8 @@
     @apply font-body text-sm md:text-base text-dark-400 leading-relaxed;
   }
   .shop-card {
-    @apply bg-white border border-neutral-100 rounded shadow-sm;
+    @apply bg-white border border-neutral-100 rounded;
+    box-shadow: 0 18px 50px rgba(20, 20, 20, 0.045);
   }
   .shop-link {
     @apply font-body text-xs font-semibold uppercase text-dark hover:text-pink transition-colors;
@@ -165,6 +167,76 @@
   .category-motion-card:hover,
   .shop-card:hover {
     transform: translateY(-4px);
+  }
+  .premium-product-frame {
+    position: relative;
+    isolation: isolate;
+    background: #ffffff;
+    border: 1px solid rgba(26, 26, 26, 0.07);
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, 0.9),
+      0 18px 45px rgba(20, 20, 20, 0.04);
+  }
+  .premium-product-frame::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0;
+    background:
+      linear-gradient(115deg, transparent 0%, rgba(255,255,255,0.5) 46%, transparent 68%),
+      radial-gradient(circle at 20% 0%, rgba(183,110,121,0.06), transparent 32%);
+    transform: translateX(-65%);
+  }
+  .motion-card:hover .premium-product-frame,
+  .premium-product-frame:hover {
+    border-color: rgba(26, 26, 26, 0.12);
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, 0.96),
+      0 24px 65px rgba(20, 20, 20, 0.075);
+  }
+  .motion-card:hover .premium-product-frame::before,
+  .premium-product-frame:hover::before {
+    animation: productFrameSweep 1.15s ease-out;
+  }
+  .premium-product-image {
+    padding: 7%;
+    background: transparent;
+    object-fit: contain;
+    filter: saturate(0.98) contrast(1.035);
+    mix-blend-mode: multiply;
+  }
+  .premium-media-frame {
+    background: #ffffff;
+    border: 1px solid rgba(26, 26, 26, 0.07);
+    box-shadow: 0 18px 50px rgba(20, 20, 20, 0.045);
+  }
+  .premium-product-button {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    border: 1px solid rgba(26, 26, 26, 0.82);
+    background: #ffffff;
+    transition: color 0.25s ease, border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .premium-product-button::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: #1A1A1A;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .premium-product-button:hover {
+    color: #ffffff;
+    border-color: #1A1A1A;
+    box-shadow: 0 14px 28px rgba(20, 20, 20, 0.12);
+  }
+  .premium-product-button:hover::before {
+    transform: scaleX(1);
   }
 }
 
@@ -242,6 +314,11 @@
 @keyframes cardReveal {
   from { opacity: 0; transform: translateY(22px) scale(0.985); }
   to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes productFrameSweep {
+  0% { opacity: 0; transform: translateX(-65%); }
+  18% { opacity: 1; }
+  100% { opacity: 0; transform: translateX(70%); }
 }
 
 .animate-fade-in-up { animation: fadeInUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards; }

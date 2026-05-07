@@ -176,7 +176,7 @@ export default async function HomePage() {
           <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-6">
             {categoryCards.map((card) => (
               <Link key={card.href} href={card.href} className="category-motion-card group block bg-white">
-                <div className="relative aspect-square overflow-hidden rounded bg-white">
+                <div className="premium-media-frame relative aspect-square overflow-hidden rounded">
                   <Image
                     src={card.image}
                     alt={card.title}
