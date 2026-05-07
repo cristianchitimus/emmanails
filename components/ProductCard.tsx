@@ -54,7 +54,7 @@ export function ProductCard({ product }: ProductCardProps) {
   };
 
   return (
-    <article className="group relative">
+    <article className="motion-card group relative">
       <Link href={`/produse/${product.slug}`} className="block">
         <div className="relative aspect-square overflow-hidden rounded bg-neutral-50">
           {primaryImg ? (

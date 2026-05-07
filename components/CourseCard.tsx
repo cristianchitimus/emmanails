@@ -16,7 +16,7 @@ interface CourseCardProps {
 
 export function CourseCard({ course }: CourseCardProps) {
   return (
-    <Link href={`/academie/${course.slug}`} className="group block">
+    <Link href={`/academie/${course.slug}`} className="motion-card group block">
       <div className="relative aspect-square overflow-hidden rounded bg-neutral-50">
         {course.imageUrl ? (
           <Image

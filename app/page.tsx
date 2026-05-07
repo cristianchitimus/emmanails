@@ -99,39 +99,58 @@ export default async function HomePage() {
 
   return (
     <>
-      <section className="relative overflow-hidden bg-dark">
-        <div className="relative h-[540px] min-h-[62vh] max-h-[760px]">
-          <video
-            src="/videos/hero.mp4"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            poster="/videos/frames/f001.webp"
-            className="absolute inset-0 h-full w-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/65 via-black/28 to-transparent" />
-          <div className="shop-container relative z-10 flex h-full items-end pb-10 md:pb-14">
-            <div className="max-w-xl text-white">
-              <p className="mb-4 font-body text-[11px] font-semibold uppercase text-white/80" style={{ letterSpacing: "0.18em" }}>
-                Emma Nails
-              </p>
-              <h1 className="font-display text-4xl font-semibold leading-[1.02] md:text-5xl lg:text-6xl">
-                Produse profesionale pentru manichiura si pedichiura
+      <section className="hero-split-shell bg-white">
+        <div className="shop-container py-4 md:py-6 lg:py-8">
+          <div className="mb-5 flex flex-col gap-3 md:mb-6 md:flex-row md:items-end md:justify-between">
+            <div className="animate-hero-copy">
+              <p className="section-label mb-3">Emma Nails</p>
+              <h1 className="max-w-4xl font-display text-3xl font-semibold leading-[1.02] text-dark md:text-5xl lg:text-6xl">
+                Produse profesionale si cursuri pentru rezultate de salon.
               </h1>
-              <p className="mt-5 max-w-lg font-body text-sm leading-relaxed text-white/80 md:text-base">
-                Geluri, baze, topuri, instrumente si cursuri pentru tehnicieni care vor rezultate constante.
-              </p>
-              <div className="mt-7 flex flex-wrap gap-3">
-                <Link href="/produse" className="btn-white">
-                  Shop
-                </Link>
-                <Link href="/academie" className="inline-flex items-center justify-center rounded border border-white/70 px-8 py-3.5 font-body text-[12px] font-semibold uppercase text-white transition-colors hover:bg-white hover:text-dark" style={{ letterSpacing: "0.14em" }}>
-                  Academie
-                </Link>
-              </div>
             </div>
+            <p className="max-w-md font-body text-sm leading-relaxed text-dark-400 md:text-base">
+              Alege rapid intre gama de produse Emma Nails si academie, cu experiente vizuale create pentru fiecare directie.
+            </p>
+          </div>
+
+          <div className="hero-split-grid">
+            <Link href="/produse" className="hero-split-card hero-split-card-products group">
+              <Image
+                src="/hero-products.jpg"
+                alt="Produse Emma Nails"
+                fill
+                priority
+                className="hero-split-image object-cover object-center"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+              <div className="hero-split-sheen" />
+              <div className="hero-split-overlay" />
+              <div className="hero-split-content">
+                <span className="hero-split-kicker">Shop</span>
+                <h2>Produse Emma Nails</h2>
+                <p>Geluri, baze, topuri si instrumente profesionale pentru tehnicieni.</p>
+                <span className="hero-split-action">Vezi produsele</span>
+              </div>
+            </Link>
+
+            <Link href="/academie" className="hero-split-card hero-split-card-courses group">
+              <Image
+                src="/hero-courses.jpeg"
+                alt="Unghii realizate in academia Emma Nails"
+                fill
+                priority
+                className="hero-split-image object-cover object-center"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+              <div className="hero-split-sheen" />
+              <div className="hero-split-overlay" />
+              <div className="hero-split-content">
+                <span className="hero-split-kicker">Academie</span>
+                <h2>Cursuri profesionale</h2>
+                <p>Tehnici moderne, practica reala si suport pentru fiecare cursanta.</p>
+                <span className="hero-split-action">Vezi cursurile</span>
+              </div>
+            </Link>
           </div>
         </div>
       </section>
@@ -168,7 +187,7 @@ export default async function HomePage() {
           </div>
           <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-6">
             {categoryCards.map((card) => (
-              <Link key={card.href} href={card.href} className="group block bg-white">
+              <Link key={card.href} href={card.href} className="category-motion-card group block bg-white">
                 <div className="relative aspect-square overflow-hidden rounded bg-white">
                   <Image
                     src={card.image}
