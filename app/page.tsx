@@ -101,18 +101,6 @@ export default async function HomePage() {
     <>
       <section className="hero-split-shell bg-white">
         <div className="shop-container py-4 md:py-6 lg:py-8">
-          <div className="mb-5 flex flex-col gap-3 md:mb-6 md:flex-row md:items-end md:justify-between">
-            <div className="animate-hero-copy">
-              <p className="section-label mb-3">Emma Nails</p>
-              <h1 className="max-w-4xl font-display text-3xl font-semibold leading-[1.02] text-dark md:text-5xl lg:text-6xl">
-                Produse profesionale si cursuri pentru rezultate de salon.
-              </h1>
-            </div>
-            <p className="max-w-md font-body text-sm leading-relaxed text-dark-400 md:text-base">
-              Alege rapid intre gama de produse Emma Nails si academie, cu experiente vizuale create pentru fiecare directie.
-            </p>
-          </div>
-
           <div className="hero-split-grid">
             <Link href="/produse" className="hero-split-card hero-split-card-products group">
               <Image
