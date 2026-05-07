@@ -204,8 +204,10 @@
     padding: 7%;
     background: transparent;
     object-fit: contain;
-    filter: saturate(0.98) contrast(1.035);
-    mix-blend-mode: multiply;
+    filter: none;
+    mix-blend-mode: normal;
+    opacity: 1;
+    backface-visibility: hidden;
   }
   .premium-media-frame {
     background: #ffffff;
@@ -308,12 +310,12 @@
   100% { left: 120%; opacity: 0; }
 }
 @keyframes sectionReveal {
-  from { opacity: 0; transform: translateY(36px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { transform: translateY(28px); }
+  to { transform: translateY(0); }
 }
 @keyframes cardReveal {
-  from { opacity: 0; transform: translateY(22px) scale(0.985); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+  from { transform: translateY(18px) scale(0.992); }
+  to { transform: translateY(0) scale(1); }
 }
 @keyframes productFrameSweep {
   0% { opacity: 0; transform: translateX(-65%); }
@@ -360,7 +362,6 @@
       animation-timeline: view();
       animation-range: entry 8% cover 26%;
     }
-    .motion-card,
     .category-motion-card,
     .shop-card {
       animation: cardReveal linear both;
