@@ -1,0 +1,542 @@
+<!doctype html>
+<html lang="ro">
+  <head>
+    <meta charset="utf-8" />
+    <title>Ghid Dashboard Admin Emma Nails</title>
+    <style>
+      @page {
+        size: A4;
+        margin: 18mm 16mm;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: #ffffff;
+        color: #1a1a1a;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 12px;
+        line-height: 1.55;
+      }
+
+      h1,
+      h2,
+      h3 {
+        margin: 0;
+        line-height: 1.15;
+      }
+
+      h1 {
+        font-size: 34px;
+        letter-spacing: -0.01em;
+      }
+
+      h2 {
+        margin-top: 28px;
+        padding-top: 18px;
+        border-top: 1px solid #eadadd;
+        font-size: 20px;
+      }
+
+      h3 {
+        margin-top: 18px;
+        font-size: 14px;
+      }
+
+      p {
+        margin: 7px 0 0;
+      }
+
+      ul,
+      ol {
+        margin: 8px 0 0 18px;
+        padding: 0;
+      }
+
+      li {
+        margin: 4px 0;
+      }
+
+      table {
+        width: 100%;
+        margin-top: 12px;
+        border-collapse: collapse;
+        page-break-inside: avoid;
+      }
+
+      th,
+      td {
+        padding: 9px 10px;
+        border: 1px solid #eadadd;
+        vertical-align: top;
+        text-align: left;
+      }
+
+      th {
+        background: #fbf5f5;
+        color: #5c333a;
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      .cover {
+        min-height: 230mm;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .brand {
+        display: inline-block;
+        padding: 8px 12px;
+        border: 1px solid #d9adb1;
+        color: #5c333a;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+      }
+
+      .subtitle {
+        max-width: 560px;
+        margin-top: 16px;
+        color: #525252;
+        font-size: 15px;
+      }
+
+      .meta {
+        margin-top: 30px;
+        color: #737373;
+        font-size: 11px;
+      }
+
+      .note,
+      .warning,
+      .success {
+        margin-top: 12px;
+        padding: 12px 14px;
+        border-radius: 10px;
+        page-break-inside: avoid;
+      }
+
+      .note {
+        background: #fbf5f5;
+        border: 1px solid #eadadd;
+      }
+
+      .warning {
+        background: #fff8e8;
+        border: 1px solid #efd796;
+      }
+
+      .success {
+        background: #eefaf2;
+        border: 1px solid #b9e4c5;
+      }
+
+      .kicker {
+        color: #b76e79;
+        font-size: 10px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-top: 12px;
+      }
+
+      .card {
+        padding: 13px;
+        border: 1px solid #eadadd;
+        border-radius: 10px;
+        page-break-inside: avoid;
+      }
+
+      .card h3 {
+        margin-top: 0;
+      }
+
+      .page-break {
+        page-break-before: always;
+      }
+
+      .small {
+        color: #737373;
+        font-size: 10px;
+      }
+
+      .footer-line {
+        margin-top: 28px;
+        padding-top: 12px;
+        border-top: 1px solid #eadadd;
+        color: #737373;
+        font-size: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="cover">
+      <div>
+        <span class="brand">Emma Nails Admin</span>
+        <h1 style="margin-top: 34px;">Ghid de utilizare dashboard admin</h1>
+        <p class="subtitle">
+          Document intern pentru administrarea comenzilor, produselor, cursurilor,
+          campaniilor, primei pagini si viitoarei integrari de facturare automata prin Oblio.
+        </p>
+        <p class="meta">
+          Versiune: Mai 2026<br />
+          Website: emmanails.vercel.app<br />
+          Flux tehnic: GitHub, Vercel, Supabase, Vercel Blob
+        </p>
+      </div>
+      <div class="note">
+        <strong>Important:</strong> dashboard-ul modifica date reale din magazin.
+        Orice schimbare de produs, stoc, comanda sau prima pagina trebuie facuta atent
+        si verificata pe site dupa salvare.
+      </div>
+    </section>
+
+    <section class="page-break">
+      <p class="kicker">Acces</p>
+      <h2>1. Intrare in dashboard</h2>
+      <ol>
+        <li>Deschide adresa <strong>/admin</strong>.</li>
+        <li>Introdu parola de admin.</li>
+        <li>Dupa autentificare, meniul din stanga afiseaza toate sectiunile disponibile.</li>
+      </ol>
+
+      <div class="warning">
+        Nu trimite parola de admin pe canale publice. Daca exista suspiciune ca parola a fost
+        distribuita gresit, aceasta trebuie schimbata in variabilele de mediu ale proiectului.
+      </div>
+
+      <h2>2. Structura meniului</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Sectiune</th>
+            <th>La ce se foloseste</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Dashboard</td>
+            <td>Rezumat rapid: vanzari, comenzi recente, produse, clienti si stoc redus.</td>
+          </tr>
+          <tr>
+            <td>Comenzi</td>
+            <td>Vizualizare comenzi, statusuri, plata si administrare procesare/livrare.</td>
+          </tr>
+          <tr>
+            <td>Produse &amp; Stocuri</td>
+            <td>Administrare produse, preturi, reduceri, stoc, vizibilitate si produse featured.</td>
+          </tr>
+          <tr>
+            <td>Categorii</td>
+            <td>Organizarea produselor pe categorii afisate in magazin.</td>
+          </tr>
+          <tr>
+            <td>Cursuri &amp; Inscrieri</td>
+            <td>Administrare cursuri, sesiuni, locuri disponibile si inscrieri.</td>
+          </tr>
+          <tr>
+            <td>Coduri Reducere</td>
+            <td>Creare si control coduri promotionale.</td>
+          </tr>
+          <tr>
+            <td>Emailuri &amp; Campanii</td>
+            <td>Administrare campanii email si comunicari catre clienti.</td>
+          </tr>
+          <tr>
+            <td>Prima pagina</td>
+            <td>Editarea imaginilor si textelor principale de pe homepage.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="page-break">
+      <p class="kicker">Comenzi</p>
+      <h2>3. Administrarea comenzilor</h2>
+      <p>
+        Sectiunea Comenzi este zona principala de lucru dupa ce un client plaseaza o comanda.
+        Aici se verifica metoda de plata, produsele comandate, totalul si statusul comenzii.
+      </p>
+
+      <h3>Statusuri recomandate</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Status</th>
+            <th>Cand se foloseste</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Pending / In asteptare</td>
+            <td>Comanda noua, inca neverificata sau neprocesata.</td>
+          </tr>
+          <tr>
+            <td>Processing / Se proceseaza</td>
+            <td>Comanda a fost verificata si se pregateste coletul.</td>
+          </tr>
+          <tr>
+            <td>Shipped / Expediata</td>
+            <td>Coletul a plecat catre client.</td>
+          </tr>
+          <tr>
+            <td>Delivered / Livrata</td>
+            <td>Comanda a ajuns la client.</td>
+          </tr>
+          <tr>
+            <td>Cancelled / Anulata</td>
+            <td>Comanda nu se mai proceseaza.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="note">
+        La schimbarea statusului, sistemul poate trimite email de status catre client,
+        in functie de configuratia existenta pentru emailuri.
+      </div>
+
+      <h2>4. Facturare in comanda</h2>
+      <p>
+        In checkout exista optiunea <strong>Vreau factura</strong>. Cand clientul o bifeaza,
+        sistemul salveaza datele de facturare pe comanda.
+      </p>
+      <ul>
+        <li>Pentru persoana fizica: nume, CNP optional, adresa de facturare optionala.</li>
+        <li>Pentru firma: denumire firma, CUI, numar registru optional si adresa de facturare.</li>
+        <li>In prezent sistemul colecteaza datele, dar nu emite automat factura fiscala.</li>
+      </ul>
+
+      <div class="warning">
+        Pana la integrarea Oblio, factura se emite manual in serviciul de facturare ales,
+        folosind datele salvate pe comanda.
+      </div>
+    </section>
+
+    <section class="page-break">
+      <p class="kicker">Produse</p>
+      <h2>5. Produse &amp; Stocuri</h2>
+      <p>
+        In aceasta sectiune se administreaza catalogul de produse din magazin.
+        Orice modificare salvata aici poate afecta imediat ce vede clientul.
+      </p>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Adaugare produs</h3>
+          <ol>
+            <li>Intra in Produse &amp; Stocuri.</li>
+            <li>Apasa Produs nou.</li>
+            <li>Completeaza numele, categoria, pretul si descrierea.</li>
+            <li>Incarca imaginea principala si galeria, daca exista.</li>
+            <li>Seteaza stocul si disponibilitatea.</li>
+            <li>Salveaza si verifica produsul pe site.</li>
+          </ol>
+        </div>
+        <div class="card">
+          <h3>Editare rapida</h3>
+          <ul>
+            <li>Pretul si reducerea se verifica in lei, dar intern sunt salvate in bani.</li>
+            <li>Stoc gol sau nelimitat se trateaza diferit fata de stoc zero.</li>
+            <li>Optiunea featured poate afisa produsul pe prima pagina.</li>
+            <li>Daca un produs nu trebuie vandut, dezactiveaza disponibilitatea.</li>
+          </ul>
+        </div>
+      </div>
+
+      <h2>6. Categorii</h2>
+      <p>
+        Categoriile ajuta clientul sa gaseasca rapid gama potrivita: polygel, baze,
+        geluri UV, top coat, instrumente si alte grupe. Pastreaza denumirile clare si
+        evita categorii duplicate.
+      </p>
+
+      <h2>7. Coduri de reducere</h2>
+      <p>
+        Codurile de reducere pot fi folosite pentru campanii, cliente recurente sau oferte
+        punctuale. Verifica mereu perioada de valabilitate, valoarea reducerii si numarul
+        maxim de utilizari.
+      </p>
+    </section>
+
+    <section class="page-break">
+      <p class="kicker">Academie</p>
+      <h2>8. Cursuri &amp; Inscrieri</h2>
+      <p>
+        Sectiunea de cursuri controleaza academia Emma Nails. Fiecare curs poate avea sesiuni,
+        locuri disponibile si inscrieri.
+      </p>
+
+      <ul>
+        <li>Actualizeaza datele cursurilor cand se schimba calendarul.</li>
+        <li>Verifica numarul maxim de locuri pentru fiecare sesiune.</li>
+        <li>Pastreaza descrierile clare: nivel, durata, ce include cursul si acreditare.</li>
+        <li>Nu sterge cursuri cu inscrieri active fara verificare inainte.</li>
+      </ul>
+
+      <h2>9. Emailuri &amp; Campanii</h2>
+      <p>
+        Campaniile email trebuie folosite controlat. Pentru fiecare campanie verifica subiectul,
+        segmentul de clienti, textul si obiectivul mesajului.
+      </p>
+
+      <div class="note">
+        Recomandare: trimite intai un email de test catre o adresa interna, apoi verifica
+        textul, linkurile si imaginile inainte de trimiterea catre clienti.
+      </div>
+    </section>
+
+    <section class="page-break">
+      <p class="kicker">Homepage</p>
+      <h2>10. Prima pagina</h2>
+      <p>
+        Sectiunea Prima pagina controleaza continutul principal al homepage-ului actual:
+        hero-ul impartit in Produse si Cursuri, blocul Despre noi, titlurile sectiunilor si CTA-ul final.
+      </p>
+
+      <h3>Ce se poate modifica</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Zona</th>
+            <th>Campuri editabile</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Hero Produse</td>
+            <td>Poza, eticheta, titlu, descriere, text buton si text alternativ pentru poza.</td>
+          </tr>
+          <tr>
+            <td>Hero Cursuri</td>
+            <td>Poza, eticheta, titlu, descriere, text buton si text alternativ pentru poza.</td>
+          </tr>
+          <tr>
+            <td>Despre noi</td>
+            <td>Poza, eticheta, titlu, doua paragrafe, butoane si mesaj WhatsApp.</td>
+          </tr>
+          <tr>
+            <td>Sectiuni</td>
+            <td>Titluri pentru produse, categorii, cursuri, recenzii si CTA final.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Cum se schimba o poza</h3>
+      <ol>
+        <li>Intra in Admin &gt; Prima pagina.</li>
+        <li>Alege zona dorita: Hero Produse, Hero Cursuri sau Despre noi.</li>
+        <li>Apasa Incarca poza.</li>
+        <li>Alege o imagine JPG, PNG sau WebP.</li>
+        <li>Verifica preview-ul live din dreapta.</li>
+        <li>Apasa Salveaza pagina.</li>
+      </ol>
+
+      <div class="success">
+        Recomandare pentru poze: foloseste imagini clare, luminoase, minim 1400px latime,
+        fara margini colorate sau fundaluri care arata nepremium.
+      </div>
+
+      <div class="warning">
+        Butonul Reseteaza local revine in ecran la textele implicite, dar schimbarea devine reala
+        doar dupa ce apesi Salveaza pagina.
+      </div>
+    </section>
+
+    <section class="page-break">
+      <p class="kicker">Oblio</p>
+      <h2>11. Facturare automata prin Oblio</h2>
+      <p>
+        Integrarea Oblio va fi adaugata dupa ce este disponibil API-ul. Scopul este ca factura
+        sa fie emisa automat pe baza comenzii, fara completare manuala.
+      </p>
+
+      <h3>Flux recomandat dupa integrare</h3>
+      <ol>
+        <li>Clientul plaseaza comanda si bifeaza Vreau factura, daca are nevoie.</li>
+        <li>Comanda este creata in magazin cu datele de livrare si facturare.</li>
+        <li>Dupa plata cu cardul sau dupa confirmarea comenzii ramburs, sistemul trimite datele catre Oblio.</li>
+        <li>Oblio emite factura si intoarce seria, numarul si linkul documentului.</li>
+        <li>Site-ul salveaza aceste date pe comanda.</li>
+        <li>Clientul primeste factura pe email sau o poate primi impreuna cu emailul de confirmare.</li>
+      </ol>
+
+      <h3>Date necesare pentru configurare</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>De unde vin</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Cheie API Oblio</td>
+            <td>Din contul Oblio, furnizata de administrator.</td>
+          </tr>
+          <tr>
+            <td>Firma emitenta</td>
+            <td>Denumire firma, CUI, adresa, cont bancar, serie factura.</td>
+          </tr>
+          <tr>
+            <td>Reguli TVA</td>
+            <td>Configuratie fiscala stabilita de contabilitate.</td>
+          </tr>
+          <tr>
+            <td>Trigger emitere</td>
+            <td>De stabilit: la plata card confirmata, la comanda ramburs confirmata sau la status processing.</td>
+          </tr>
+          <tr>
+            <td>Trimitere email</td>
+            <td>De stabilit: trimite Oblio factura sau o trimite site-ul prin emailul Emma Nails.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="warning">
+        Facturarea automata trebuie testata intai cu 2-3 comenzi de test. Nu se activeaza direct
+        pe comenzi reale fara verificarea seriei, TVA-ului, produselor si datelor clientului.
+      </div>
+    </section>
+
+    <section class="page-break">
+      <p class="kicker">Checklist</p>
+      <h2>12. Checklist zilnic pentru admin</h2>
+      <ul>
+        <li>Verifica comenzile noi si statusul platilor.</li>
+        <li>Proceseaza comenzile in ordinea intrarii.</li>
+        <li>Verifica daca exista solicitari de factura.</li>
+        <li>Actualizeaza statusul comenzilor dupa pregatire si expediere.</li>
+        <li>Verifica produsele cu stoc redus.</li>
+        <li>Verifica mesajele primite pe WhatsApp si email.</li>
+        <li>Dupa modificari pe Prima pagina, deschide site-ul public si verifica vizual.</li>
+      </ul>
+
+      <h2>13. Reguli de siguranta</h2>
+      <ul>
+        <li>Nu sterge produse, cursuri sau comenzi fara verificare.</li>
+        <li>Nu schimba preturi in timpul unei campanii fara confirmare.</li>
+        <li>Nu incarca poze neclare, comprimate excesiv sau cu fundal nepotrivit.</li>
+        <li>Nu modifica setari de facturare fara confirmare de la contabilitate.</li>
+        <li>Daca apare o eroare, noteaza ora, actiunea facuta si comanda/produsul afectat.</li>
+      </ul>
+
+      <p class="footer-line">
+        Document generat pentru Emma Nails. Actualizeaza acest ghid dupa fiecare schimbare majora
+        in dashboard, checkout sau facturare.
+      </p>
+    </section>
+  </body>
+</html>

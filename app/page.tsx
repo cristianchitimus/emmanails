@@ -4,6 +4,7 @@ import { prisma } from "@/lib/db";
 import { ProductCard } from "@/components/ProductCard";
 import { CourseCard } from "@/components/CourseCard";
 import { whatsappLink } from "@/lib/utils";
+import { getHomepageContent } from "@/lib/homepage-content";
 
 export const revalidate = 60;
 
@@ -75,7 +76,7 @@ const testimonials = [
 ];
 
 export default async function HomePage() {
-  const [featuredProducts, latestProducts, featuredCourses, productCount, courseCount] =
+  const [featuredProducts, latestProducts, featuredCourses, productCount, courseCount, homepage] =
     await Promise.all([
       prisma.product.findMany({
         where: { featured: true },
@@ -93,6 +94,7 @@ export default async function HomePage() {
       }),
       prisma.product.count(),
       prisma.course.count(),
+      getHomepageContent(),
     ]);
 
   const products = featuredProducts.length >= 4 ? featuredProducts : latestProducts;
@@ -102,10 +104,10 @@ export default async function HomePage() {
       <section className="hero-split-shell bg-white">
         <div className="shop-container py-4 md:py-6 lg:py-8">
           <div className="hero-split-grid">
-            <Link href="/produse" className="hero-split-card hero-split-card-products group">
+            <Link href={homepage.hero.products.href} className="hero-split-card hero-split-card-products group">
               <Image
-                src="/hero-products.jpg"
-                alt="Produse Emma Nails"
+                src={homepage.hero.products.imageUrl}
+                alt={homepage.hero.products.imageAlt}
                 fill
                 priority
                 className="hero-split-image object-cover object-center"
@@ -114,17 +116,17 @@ export default async function HomePage() {
               <div className="hero-split-sheen" />
               <div className="hero-split-overlay" />
               <div className="hero-split-content">
-                <span className="hero-split-kicker">Shop</span>
-                <h2>Produse Emma Nails</h2>
-                <p>Geluri, baze, topuri si instrumente profesionale pentru tehnicieni.</p>
-                <span className="hero-split-action">Vezi produsele</span>
+                <span className="hero-split-kicker">{homepage.hero.products.eyebrow}</span>
+                <h2>{homepage.hero.products.title}</h2>
+                <p>{homepage.hero.products.description}</p>
+                <span className="hero-split-action">{homepage.hero.products.ctaLabel}</span>
               </div>
             </Link>
 
-            <Link href="/academie" className="hero-split-card hero-split-card-courses group">
+            <Link href={homepage.hero.courses.href} className="hero-split-card hero-split-card-courses group">
               <Image
-                src="/hero-courses.jpeg"
-                alt="Unghii realizate in academia Emma Nails"
+                src={homepage.hero.courses.imageUrl}
+                alt={homepage.hero.courses.imageAlt}
                 fill
                 priority
                 className="hero-split-image object-cover object-center"
@@ -133,10 +135,10 @@ export default async function HomePage() {
               <div className="hero-split-sheen" />
               <div className="hero-split-overlay" />
               <div className="hero-split-content">
-                <span className="hero-split-kicker">Academie</span>
-                <h2>Cursuri profesionale</h2>
-                <p>Tehnici moderne, practica reala si suport pentru fiecare cursanta.</p>
-                <span className="hero-split-action">Vezi cursurile</span>
+                <span className="hero-split-kicker">{homepage.hero.courses.eyebrow}</span>
+                <h2>{homepage.hero.courses.title}</h2>
+                <p>{homepage.hero.courses.description}</p>
+                <span className="hero-split-action">{homepage.hero.courses.ctaLabel}</span>
               </div>
             </Link>
           </div>
@@ -147,11 +149,11 @@ export default async function HomePage() {
         <div className="shop-container">
           <div className="shop-heading-row">
             <div>
-              <p className="section-label mb-3">Noutati</p>
-              <h2 className="shop-title">Produse populare</h2>
+              <p className="section-label mb-3">{homepage.sections.products.eyebrow}</p>
+              <h2 className="shop-title">{homepage.sections.products.title}</h2>
             </div>
             <Link href="/produse" className="shop-link">
-              Vezi toate {productCount}
+              {homepage.sections.products.linkLabel} {productCount}
             </Link>
           </div>
           <div className="grid grid-cols-2 gap-x-3 gap-y-8 md:grid-cols-3 lg:grid-cols-4 md:gap-x-5 lg:gap-x-7">
@@ -166,11 +168,11 @@ export default async function HomePage() {
         <div className="shop-container">
           <div className="shop-heading-row">
             <div>
-              <p className="section-label mb-3">Categorii</p>
-              <h2 className="shop-title">Descopera gama Emma Nails</h2>
+              <p className="section-label mb-3">{homepage.sections.categories.eyebrow}</p>
+              <h2 className="shop-title">{homepage.sections.categories.title}</h2>
             </div>
             <Link href="/produse" className="shop-link">
-              Toate categoriile
+              {homepage.sections.categories.linkLabel}
             </Link>
           </div>
           <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-6">
@@ -199,30 +201,27 @@ export default async function HomePage() {
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-center lg:gap-12">
             <div className="premium-media-frame relative mx-auto aspect-[4/5] w-full max-w-[620px] overflow-hidden rounded">
               <Image
-                src="/about-emma-portrait.jpg"
-                alt="Emma Nails trainer"
+                src={homepage.about.imageUrl}
+                alt={homepage.about.imageAlt}
                 fill
                 className="object-cover object-top transition-transform duration-700 hover:scale-[1.025]"
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>
             <div className="max-w-xl">
-              <p className="section-label mb-3">Despre noi</p>
-              <h2 className="shop-title">Brand romanesc pentru tehnicieni de unghii</h2>
+              <p className="section-label mb-3">{homepage.about.eyebrow}</p>
+              <h2 className="shop-title">{homepage.about.title}</h2>
               <div className="mt-5 space-y-4 shop-copy">
-                <p>
-                  Emma Nails combina experienta de salon cu produse testate in lucru real. Gama este construita pentru manichiura curata, rezistenta si usor de repetat.
-                </p>
-                <p>
-                  In academie, cursurile sunt gandite practic: tehnici clare, model real si suport pentru fiecare cursanta.
-                </p>
+                {homepage.about.paragraphs.map((paragraph, index) => (
+                  <p key={`${index}-${paragraph}`}>{paragraph}</p>
+                ))}
               </div>
               <div className="mt-7 flex flex-wrap gap-3">
-                <Link href="/despre" className="btn-primary">
-                  Descopera Emma Nails
+                <Link href={homepage.about.primaryHref} className="btn-primary">
+                  {homepage.about.primaryLabel}
                 </Link>
-                <a href={whatsappLink("Buna! As dori mai multe informatii despre Emma Nails.")} target="_blank" rel="noopener noreferrer" className="btn-secondary">
-                  WhatsApp
+                <a href={whatsappLink(homepage.about.whatsappMessage)} target="_blank" rel="noopener noreferrer" className="btn-secondary">
+                  {homepage.about.whatsappLabel}
                 </a>
               </div>
             </div>
@@ -249,11 +248,11 @@ export default async function HomePage() {
         <div className="shop-container">
           <div className="shop-heading-row">
             <div>
-              <p className="section-label mb-3">Academie</p>
-              <h2 className="shop-title">Cursuri profesionale</h2>
+              <p className="section-label mb-3">{homepage.sections.courses.eyebrow}</p>
+              <h2 className="shop-title">{homepage.sections.courses.title}</h2>
             </div>
             <Link href="/academie" className="shop-link">
-              Toate cursurile {courseCount}
+              {homepage.sections.courses.linkLabel} {courseCount}
             </Link>
           </div>
           <div className="grid grid-cols-2 gap-x-3 gap-y-8 md:grid-cols-4 md:gap-x-5 lg:gap-x-7">
@@ -268,8 +267,8 @@ export default async function HomePage() {
         <div className="shop-container">
           <div className="shop-heading-row">
             <div>
-              <p className="section-label mb-3">Recenzii</p>
-              <h2 className="shop-title">Ce spun clientele</h2>
+              <p className="section-label mb-3">{homepage.sections.reviews.eyebrow}</p>
+              <h2 className="shop-title">{homepage.sections.reviews.title}</h2>
             </div>
           </div>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
@@ -295,17 +294,17 @@ export default async function HomePage() {
       <section className="shop-section bg-dark text-white">
         <div className="shop-container text-center">
           <p className="mb-3 font-body text-[11px] font-semibold uppercase text-white/60" style={{ letterSpacing: "0.18em" }}>
-            Suport rapid
+            {homepage.sections.finalCta.eyebrow}
           </p>
           <h2 className="mx-auto max-w-2xl font-display text-3xl font-semibold leading-tight md:text-4xl">
-            Ai nevoie de recomandari pentru produse sau cursuri?
+            {homepage.sections.finalCta.title}
           </h2>
           <p className="mx-auto mt-4 max-w-xl font-body text-sm leading-relaxed text-white/70 md:text-base">
-            Scrie-ne si te ajutam sa alegi varianta potrivita pentru nivelul tau de lucru.
+            {homepage.sections.finalCta.description}
           </p>
           <div className="mt-8 flex justify-center">
-            <a href={whatsappLink("Buna! Am nevoie de o recomandare Emma Nails.")} target="_blank" rel="noopener noreferrer" className="btn-white">
-              Scrie pe WhatsApp
+            <a href={whatsappLink(homepage.sections.finalCta.whatsappMessage)} target="_blank" rel="noopener noreferrer" className="btn-white">
+              {homepage.sections.finalCta.buttonLabel}
             </a>
           </div>
         </div>
