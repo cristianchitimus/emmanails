@@ -20,9 +20,9 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Tip de fișier invalid. Acceptăm: JPG, PNG, WebP, GIF" }, { status: 400 });
   }
 
-  // Validate file size (max 5MB)
-  if (file.size > 5 * 1024 * 1024) {
-    return NextResponse.json({ error: "Fișierul este prea mare (max 5MB)" }, { status: 400 });
+  // Validate file size (max 20MB)
+  if (file.size > 20 * 1024 * 1024) {
+    return NextResponse.json({ error: "Fișierul este prea mare (max 20MB)" }, { status: 400 });
   }
 
   try {

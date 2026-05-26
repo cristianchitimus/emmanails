@@ -33,6 +33,21 @@ export function HomepageEditor() {
   const [error, setError] = useState<string | null>(null);
   const [uploading, setUploading] = useState<string | null>(null);
 
+  const persistContent = async (contentToSave: HomepageContent) => {
+    const res = await fetch("/api/admin/homepage", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ content: contentToSave }),
+    });
+    const data = await res.json();
+
+    if (!res.ok) throw new Error(data.error || "Eroare la salvare.");
+
+    setContent(data.content);
+    setSaved(true);
+    setTimeout(() => setSaved(false), 3000);
+  };
+
   useEffect(() => {
     let mounted = true;
 
@@ -62,18 +77,7 @@ export function HomepageEditor() {
     setError(null);
 
     try {
-      const res = await fetch("/api/admin/homepage", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ content }),
-      });
-      const data = await res.json();
-
-      if (!res.ok) throw new Error(data.error || "Eroare la salvare.");
-
-      setContent(data.content);
-      setSaved(true);
-      setTimeout(() => setSaved(false), 3000);
+      await persistContent(content);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Eroare la salvare.");
     } finally {
@@ -81,7 +85,11 @@ export function HomepageEditor() {
     }
   };
 
-  const uploadImage = async (key: string, file: File, onUploaded: (url: string) => void) => {
+  const uploadImage = async (
+    key: string,
+    file: File,
+    applyUrl: (current: HomepageContent, url: string) => HomepageContent,
+  ) => {
     setUploading(key);
     setSaved(false);
     setError(null);
@@ -98,7 +106,9 @@ export function HomepageEditor() {
 
       if (!res.ok || !data.url) throw new Error(data.error || "Upload esuat.");
 
-      onUploaded(data.url);
+      const nextContent = applyUrl(content, data.url);
+      setContent(nextContent);
+      await persistContent(nextContent);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Eroare la upload.");
     } finally {
@@ -188,7 +198,7 @@ export function HomepageEditor() {
         <div>
           <h1 className="font-display text-2xl font-medium text-dark md:text-3xl">Prima pagina</h1>
           <p className="mt-1 max-w-2xl font-body text-sm text-dark-400">
-            Editeaza imaginile si textele principale de pe homepage. Schimbarile apar pe site dupa salvare.
+            Editeaza imaginile si textele principale de pe homepage. Pozele se salveaza automat dupa upload, iar textele cu butonul Salveaza pagina.
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
@@ -235,7 +245,13 @@ export function HomepageEditor() {
               uploading={uploading === "hero-products"}
               onUrlChange={(value) => updateHero("products", "imageUrl", value)}
               onUpload={(file) =>
-                uploadImage("hero-products", file, (url) => updateHero("products", "imageUrl", url))
+                uploadImage("hero-products", file, (current, url) => ({
+                  ...current,
+                  hero: {
+                    ...current.hero,
+                    products: { ...current.hero.products, imageUrl: url },
+                  },
+                }))
               }
             />
             <div className="grid gap-4 md:grid-cols-2">
@@ -258,7 +274,13 @@ export function HomepageEditor() {
               uploading={uploading === "hero-courses"}
               onUrlChange={(value) => updateHero("courses", "imageUrl", value)}
               onUpload={(file) =>
-                uploadImage("hero-courses", file, (url) => updateHero("courses", "imageUrl", url))
+                uploadImage("hero-courses", file, (current, url) => ({
+                  ...current,
+                  hero: {
+                    ...current.hero,
+                    courses: { ...current.hero.courses, imageUrl: url },
+                  },
+                }))
               }
             />
             <div className="grid gap-4 md:grid-cols-2">
@@ -280,7 +302,12 @@ export function HomepageEditor() {
               value={content.about.imageUrl}
               uploading={uploading === "about-image"}
               onUrlChange={(value) => updateAbout("imageUrl", value)}
-              onUpload={(file) => uploadImage("about-image", file, (url) => updateAbout("imageUrl", url))}
+              onUpload={(file) =>
+                uploadImage("about-image", file, (current, url) => ({
+                  ...current,
+                  about: { ...current.about, imageUrl: url },
+                }))
+              }
             />
             <div className="grid gap-4 md:grid-cols-2">
               <TextField label="Eticheta" value={content.about.eyebrow} onChange={(value) => updateAbout("eyebrow", value)} />
@@ -471,7 +498,7 @@ function ImageControl({
             className="mt-3 w-full rounded-xl border border-neutral-200 bg-white px-3 py-2.5 font-body text-xs text-dark outline-none transition focus:border-pink focus:ring-2 focus:ring-pink/20"
           />
           <p className="mt-2 font-body text-xs text-dark-300">
-            Recomandat: JPG/WebP, minim 1400px latime. Upload-ul salveaza imaginea in Vercel Blob.
+            Recomandat: JPG/WebP, minim 1400px latime. Upload-ul salveaza automat poza in site.
           </p>
         </div>
       </div>
